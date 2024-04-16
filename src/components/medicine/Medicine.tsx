@@ -1,4 +1,12 @@
+import { useEffect } from "react";
+import { getData } from "../../services/axios";
 
 export const Medicine = () => {
-  return <b>medicine;</b>
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <>medicine;</>
+  )
 }
