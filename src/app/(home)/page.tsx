@@ -9,7 +9,9 @@ export default async function Home() {
       {medicines.map((medicine) => {
         return (
           <ul key={medicine.id}>
-            <li>{medicine.name}</li>
+            <a target='_blank' href='/pdf_sample.pdf'>
+              <li>{medicine.name}</li>
+            </a>
           </ul>
         )
       })}

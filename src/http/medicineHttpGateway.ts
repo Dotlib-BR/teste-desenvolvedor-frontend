@@ -1,4 +1,4 @@
-import { MedicineProps } from '@/@types/medice'
+import { MedicineProps } from '@/@types/medicine'
 import { HttpClient } from './httpClient'
 import { MedicineGateway } from './medicineGateway'
 
@@ -11,15 +11,29 @@ export class MedicineHttpGateway implements MedicineGateway {
     return medicines
   }
 
-  async getMedicineById(id: string): Promise<MedicineProps> {
-    throw new Error('Method not implemented.')
+  async getMedicineById(id: string): Promise<MedicineProps | null> {
+    return await this.http.get(this.baseUrl + `/${id}`)
   }
 
-  async getMedicineByName(name: string): Promise<MedicineProps> {
-    throw new Error('Method not implemented.')
+  async getMedicineByName(name: string): Promise<MedicineProps | null> {
+    const medicines = await this.http.get<MedicineProps[]>(this.baseUrl)
+    const medicine = medicines.find((medicine) => medicine.name === name)
+
+    if (!medicine) {
+      return null
+    }
+
+    return medicine
   }
 
-  async getMedicineByLabName(labName: string): Promise<MedicineProps> {
-    throw new Error('Method not implemented.')
+  async getMedicineByLabName(labName: string): Promise<MedicineProps | null> {
+    const medicines = await this.http.get<MedicineProps[]>(this.baseUrl)
+    const medicine = medicines.find((medicine) => medicine.company === labName)
+
+    if (!medicine) {
+      return null
+    }
+
+    return medicine
   }
 }
