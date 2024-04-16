@@ -27,7 +27,7 @@ export function SearchInput(properties: SearchInputProperties) {
   useEffect(() => {
     if (inputRef.current != null && properties.valueRef != null)
       properties.valueRef.current = inputRef.current.value;
-  }, [properties.value]);
+  }, [properties.value, properties.valueRef]);
 
   return (
     <input
