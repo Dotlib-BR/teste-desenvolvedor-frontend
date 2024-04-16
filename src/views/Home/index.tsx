@@ -10,8 +10,8 @@ export function Home() {
   const [filterBy, setFilterBy] = useState<FilterBy>(FilterBy.dinamic);
 
   return (
-    <div className="px-4">
-      <header className="flex flex-col justify-center items-center gap-4 h-[124px] mb-11">
+    <div className="h-dvh flex flex-col gap-6 px-4">
+      <header className="flex flex-col justify-center items-center gap-4 h-[124px]">
         <img src="./dotlib.png" alt="Dotlib Logo" className="w-32" />
         <h1 className="text-2xl font-bold">BULÁRIO ELETRÔNICO</h1>
       </header>

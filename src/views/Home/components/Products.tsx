@@ -60,6 +60,7 @@ export function Products({ searchText, filterBy }: ProductsProps) {
       const products = await getProductsByFilter(searchText, filterBy);
 
       setProducts(products);
+      setCurrentPage(1);
       setPageQuantity(Math.ceil(products.length / 10));
     }
 
@@ -82,75 +83,79 @@ export function Products({ searchText, filterBy }: ProductsProps) {
   }
 
   return (
-    <section className="flex flex-col gap-6 mb-8">
-      {filteredProducts.map((product) => {
-        const { id, name, company, active_principles, documents } = product;
-        const registry = documents[0].expedient;
+    <>
+      <section className="flex flex-col flex-1 gap-6 overflow-y-scroll pb-4">
+        {filteredProducts.map((product) => {
+          const { id, name, company, active_principles, documents } = product;
+          const registry = documents[0].expedient;
 
-        return (
-          <div
-            key={id}
-            className="relative w-full flex flex-col gap-2 px-6 py-4 shadow-lg rounded-xl"
-          >
-            <Popover>
-              <PopoverTrigger className="absolute top-6 right-4">
-                <FileDownIcon size={20} />
-              </PopoverTrigger>
-              <PopoverContent className="text-sm flex flex-col items-start gap-2 mt-2 px-4 py-2 bg-white border rounded-md">
-                <button type="button" className="border-b pb-2">
-                  Profissional
-                </button>
-                <button type="button">Paciente</button>
-              </PopoverContent>
-            </Popover>
-            <div className="flex flex-col w-11/12">
-              <small className="text-xs text-zinc-800/70">
-                N° Registro: {registry}
-              </small>
-              <strong className="text-lg text-ellipsis overflow-hidden">
-                {name}
-              </strong>
+          return (
+            <div
+              key={id}
+              className="relative w-full flex flex-col gap-2 px-6 py-4 shadow-lg rounded-xl"
+            >
+              <Popover>
+                <PopoverTrigger className="absolute top-6 right-4">
+                  <FileDownIcon size={20} />
+                </PopoverTrigger>
+                <PopoverContent className="text-sm flex flex-col items-start gap-2 mt-2 px-4 py-2 bg-white border rounded-md">
+                  <button type="button" className="border-b pb-2">
+                    Profissional
+                  </button>
+                  <button type="button">Paciente</button>
+                </PopoverContent>
+              </Popover>
+              <div className="flex flex-col w-11/12">
+                <small className="text-xs text-zinc-800/70">
+                  N° Registro: {registry}
+                </small>
+                <strong className="text-lg text-ellipsis overflow-hidden">
+                  {name}
+                </strong>
+              </div>
+              <span className="text-zinc-800/70 text-ellipsis overflow-hidden">
+                Princípios ativos:
+                {active_principles.map((activePrinciple, index) => (
+                  <Fragment key={activePrinciple.id}>
+                    {` ${activePrinciple.name}`}
+                    {index !== active_principles.length - 1 && ','}
+                  </Fragment>
+                ))}
+              </span>
+              <span className="text-zinc-800/70 text-ellipsis overflow-hidden">
+                Laboratório: {company}
+              </span>
             </div>
-            <span className="text-zinc-800/70 text-ellipsis overflow-hidden">
-              Princípios ativos:
-              {active_principles.map((activePrinciple, index) => (
-                <Fragment key={activePrinciple.id}>
-                  {` ${activePrinciple.name}`}
-                  {index !== active_principles.length - 1 && ','}
-                </Fragment>
-              ))}
-            </span>
-            <span className="text-zinc-800/70 text-ellipsis overflow-hidden">
-              Laboratório: {company}
-            </span>
-          </div>
-        );
-      })}
+          );
+        })}
+      </section>
 
-      <Pagination>
-        <PaginationContent>
-          <PaginationPrevious
-            className={cn(currentPage === 1 && 'opacity-50')}
-            onClick={() => handlePaginationActions('previous')}
-          />
-          {Array.from({ length: pageQuantity }, (_, index) => index + 1).map(
-            (value) => (
-              <PaginationItem
-                key={Math.random()}
-                onClick={() => handleJumpPage(value)}
-              >
-                <PaginationLink isActive={currentPage === value}>
-                  {value}
-                </PaginationLink>
-              </PaginationItem>
-            ),
-          )}
-          <PaginationNext
-            className={cn(currentPage === pageQuantity && 'opacity-50')}
-            onClick={() => handlePaginationActions('next')}
-          />
-        </PaginationContent>
-      </Pagination>
-    </section>
+      {pageQuantity > 1 && (
+        <Pagination>
+          <PaginationContent className="h-fit">
+            <PaginationPrevious
+              className={cn(currentPage === 1 && 'opacity-50')}
+              onClick={() => handlePaginationActions('previous')}
+            />
+            {Array.from({ length: pageQuantity }, (_, index) => index + 1).map(
+              (value) => (
+                <PaginationItem
+                  key={Math.random()}
+                  onClick={() => handleJumpPage(value)}
+                >
+                  <PaginationLink isActive={currentPage === value}>
+                    {value}
+                  </PaginationLink>
+                </PaginationItem>
+              ),
+            )}
+            <PaginationNext
+              className={cn(currentPage === pageQuantity && 'opacity-50')}
+              onClick={() => handlePaginationActions('next')}
+            />
+          </PaginationContent>
+        </Pagination>
+      )}
+    </>
   );
 }

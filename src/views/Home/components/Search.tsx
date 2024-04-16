@@ -33,7 +33,7 @@ export function Search({
   }
 
   return (
-    <div className="relative flex w-full h-11 border rounded-xl mb-8">
+    <div className="relative flex w-full h-11 border rounded-xl">
       <div className="flex-1">
         <SearchIcon
           size={16}
