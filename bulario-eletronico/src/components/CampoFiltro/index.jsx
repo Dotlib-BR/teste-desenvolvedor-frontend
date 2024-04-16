@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { useMedicamentos } from "../../context/MedicamentosContext";
 
 const ContainerEstilizado = styled.div`
     display: flex;
@@ -39,15 +40,18 @@ const CampoFiltroEstilizadoOption = styled.option`
     color: #000000;
 `
 
-const CampoFiltro = ({ titulo, setOrdenar, ordenar }) => {
+const CampoFiltro = ({titulo}) => {
+
+    const { ordenarFiltro, setOrdenarFiltro } = useMedicamentos();
+
     return (
         <ContainerEstilizado>
             <CampoFiltroTituloEstilizado htmlFor="select-ordenar" >{titulo}</CampoFiltroTituloEstilizado>
             <CampoFiltroEstilizadoSelect
                 name="select-ordenar" 
                 id="select-ordenar"
-                value={ordenar}
-                onChange={e => setOrdenar(e.target.value)}
+                value={ordenarFiltro}
+                onChange={e => setOrdenarFiltro(e.target.value)}
             >
                 <CampoFiltroEstilizadoOption value=""></CampoFiltroEstilizadoOption>
                 <CampoFiltroEstilizadoOption value="data">Por data</CampoFiltroEstilizadoOption>

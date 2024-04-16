@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { useMedicamentos } from "../../context/MedicamentosContext";
 
 const ContainerEstilizado = styled.div`
     display: flex;
@@ -54,13 +55,16 @@ const CampoTextoEstilizado = styled.input`
 `;
 
 const CampoTexto = ({ titulo, placeholder, setFiltro }) => {
+
+    const { setFiltroInput } = useMedicamentos();
+
     return (
         <ContainerEstilizado>
             <CampoTituloEstilizado>{titulo}</CampoTituloEstilizado>
             <CampoContainerEstilizadoInput>
                 <CampoTextoEstilizado  
                     placeholder={placeholder}
-                    onChange={e => {setFiltro(e.target.value)}}
+                    onChange={e => setFiltroInput(e.target.value)}
                     type="text"
                 />
             </CampoContainerEstilizadoInput>

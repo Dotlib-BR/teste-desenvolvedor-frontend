@@ -47,26 +47,17 @@ const CampoTextoBotaoEstilizado = styled.button`
     }
 `
 
-const Filtro = ({setFiltroInput, filtroInput, setOrdenarFiltro, ordenar }) => {
-
-
-    const testarFuncao = (e) => {
-        e.preventDefault()
-        console.log('Filtro: ', filtroInput, 'Ordem:', ordenar, )
-    }
+const Filtro = () => {
    
-
     return (
         <HeaderEstilizado>
-            <FiltrarContainerEstilizado onSubmit={testarFuncao}>
+            <FiltrarContainerEstilizado>
                 <CampoTexto 
                     titulo="Consultar bulas de medicamentos"
-                    setFiltro={setFiltroInput} 
                     placeholder="Digite o nome do medicamento ou laboratório"
                 />
                 <CampoFiltro
                     titulo="Ordenar por"
-                    setOrdenar={setOrdenarFiltro}
                 />
             </FiltrarContainerEstilizado>
         </HeaderEstilizado>

@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import CardMedicamento from "../CardMedicamento";
+import { useMedicamentos } from "../../context/MedicamentosContext";
 
 const SecaoEstilizado = styled.section`
     margin-bottom: 2rem;
@@ -35,8 +36,10 @@ const SecaoBotaoEstilizado = styled.button`
     }
 `;
 
-const SecaoMedicamentos = ({medicamentos, numeroPagina, totalPaginas, setNumetoPagina }) => {
+const SecaoMedicamentos = () => {
     
+    const { medicamentos, numeroPagina, totalPaginas, setNumeroPagina } = useMedicamentos();
+
     return (
         <SecaoEstilizado>
             <SecaoCardEstilizado>
@@ -54,8 +57,8 @@ const SecaoMedicamentos = ({medicamentos, numeroPagina, totalPaginas, setNumetoP
                 }
             </SecaoCardEstilizado>
             <SecaoBotaoContainerEstilizado>
-                {numeroPagina > 1 && <SecaoBotaoEstilizado onClick={e => setNumetoPagina(numeroPagina - 1)}>Voltar</SecaoBotaoEstilizado>}
-                {numeroPagina < totalPaginas && <SecaoBotaoEstilizado onClick={e => setNumetoPagina(numeroPagina + 1)}>Proximo</SecaoBotaoEstilizado>}
+                {numeroPagina > 1 && <SecaoBotaoEstilizado onClick={e => setNumeroPagina(numeroPagina - 1)}>Voltar</SecaoBotaoEstilizado>}
+                {numeroPagina < totalPaginas && <SecaoBotaoEstilizado onClick={e => setNumeroPagina(numeroPagina + 1)}>Proximo</SecaoBotaoEstilizado>}
             </SecaoBotaoContainerEstilizado>
         </SecaoEstilizado>
     )
