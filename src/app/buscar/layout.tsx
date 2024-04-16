@@ -7,10 +7,10 @@ export interface LayoutProperties {
 
 export default function Layout(properties: LayoutProperties) {
   return (
-    <main className="flex min-h-screen items-center justify-center text-lg">
+    <main className="flex min-h-screen items-center justify-center p-4 text-lg">
       <Section
         title="Resultados da busca"
-        className="flex flex-col items-center gap-8"
+        className="flex max-w-full flex-col items-center gap-8"
       >
         {properties.children}
       </Section>

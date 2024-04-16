@@ -1,6 +1,7 @@
 import Button from "@/app/_components/button";
 import NoResults from "../../_components/no-results";
 import { fetchMedications } from "../../_lib/api";
+import MedicationPreview from "./_components/medication-preview";
 
 export interface PageProperties {
   params: {
@@ -22,10 +23,12 @@ export default async function Page(properties: PageProperties) {
           message={`Você buscou por "${busca}" na página ${pagina}, mas ainda não temos resultados nessa página.`}
         ></NoResults>
       ) : (
-        <div>
-          <ul>
+        <div className="w-[768px] max-w-full">
+          <ul className="flex flex-col gap-16">
             {results.map((medication) => (
-              <li key={medication.id}>{medication.name}</li>
+              <li key={medication.id} className="contents">
+                <MedicationPreview medication={medication}></MedicationPreview>
+              </li>
             ))}
           </ul>
           {pagina > 1 && (
