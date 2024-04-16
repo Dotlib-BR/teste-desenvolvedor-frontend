@@ -3,13 +3,16 @@ import { CardStyled, FlexDiv, Info, Label, MedicineInfo, MedicineName } from './
 import { MdOutlineScience, MdDateRange } from "react-icons/md";
 import { CgPill } from "react-icons/cg";
 import { FaFilePdf } from "react-icons/fa6";
+import { IMedicine } from '@/interfaces/medicine';
 
-const Card = () => {
-  const greenColor = "#0FE3AF"
+const Card = (props: { medicine: IMedicine }) => {
+  const greenColor = "#0FE3AF";
+  const { medicine } = props as { medicine: IMedicine }; 
+
   return (
     <CardStyled>
       <MedicineName>
-        ALPRAZOLAM
+        {medicine.name}
       </MedicineName>
 
     <Info>
@@ -21,7 +24,7 @@ const Card = () => {
 
           <FlexDiv>
             <Label>Data de publicação:</Label>
-            22/11/2022
+            {new Date(medicine.published_at).toLocaleDateString()}
           </FlexDiv>
       </MedicineInfo>
 
@@ -32,7 +35,7 @@ const Card = () => {
 
           <FlexDiv>
           <Label>Laboratório:</Label>
-          CRISTÁLIA PRODUTOS QUÍMICOS FARMACÊUTICOS LTDA.
+          {medicine.company}
           </FlexDiv>
 
       </MedicineInfo>
@@ -43,8 +46,9 @@ const Card = () => {
           </div>
           <FlexDiv>
             <Label> Príncipios ativos: </Label>
-            <p>CANDESARTANA CILEXETILA</p>
-            <p>INSULINA DETEMIR</p>
+            {medicine.active_principles.map((principle) => (
+                <p key={principle.id}>{principle.name}</p>
+            ))}
           </FlexDiv>
       </MedicineInfo>
 

@@ -11,7 +11,6 @@ export const HeaderStyled = styled.header`
     width: 100vw;
     height: 500px;
     justify-content: space-between;
-
 `
 
 export const HeaderText = styled.div`
