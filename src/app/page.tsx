@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import SearchInput from "./_components/search-input";
 import Section from "./_components/section";
+import Button from "./_components/button";
 
 export default function Home() {
   const searchRef = useRef<string>("");
@@ -21,6 +22,7 @@ export default function Home() {
             valueRef={searchRef}
           ></SearchInput>
         </label>
+        <Button onClick={() => alert(searchRef.current)}>Pesquisar</Button>
       </Section>
     </main>
   );
