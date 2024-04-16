@@ -24,7 +24,21 @@ export default async function Page(properties: PageProperties) {
           message={`Você buscou por "${busca}" na página ${pagina}, mas ainda não temos resultados nessa página.`}
         ></NoResults>
       ) : (
-        <div className="w-[768px] max-w-full">
+        <div className="flex w-[768px] max-w-full flex-col gap-8">
+          <div className="flex flex-row-reverse justify-between gap-2">
+            <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina + 1}`}>
+              Página seguinte
+              <ArrowRightIcon />
+            </Button>
+            {pagina > 1 && (
+              <Button
+                href={`/buscar/${encodeURIComponent(busca)}/${pagina - 1}`}
+              >
+                <ArrowLeftIcon />
+                Página anterior
+              </Button>
+            )}
+          </div>
           <ul className="flex flex-col gap-16">
             {results.map((medication) => (
               <li key={medication.id} className="contents">
@@ -32,16 +46,6 @@ export default async function Page(properties: PageProperties) {
               </li>
             ))}
           </ul>
-          {pagina > 1 && (
-            <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina - 1}`}>
-              <ArrowLeftIcon />
-              Página anterior
-            </Button>
-          )}
-          <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina + 1}`}>
-            Página seguinte
-            <ArrowRightIcon />
-          </Button>
         </div>
       )}
     </>
