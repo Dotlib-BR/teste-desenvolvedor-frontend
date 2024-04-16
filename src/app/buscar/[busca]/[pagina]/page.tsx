@@ -39,7 +39,7 @@ export default async function Page(properties: PageProperties) {
               </Button>
             )}
           </div>
-          <ul className="flex flex-col gap-16">
+          <ul className="flex flex-col gap-8">
             {results.map((medication) => (
               <li key={medication.id} className="contents">
                 <MedicationPreview medication={medication}></MedicationPreview>
