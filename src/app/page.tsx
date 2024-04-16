@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Heading from "./_components/heading";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen items-center justify-center text-lg">
-      Em construção
+      <Heading>Em construção</Heading>
     </main>
   );
 }
