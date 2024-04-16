@@ -1,8 +1,8 @@
-import { MedicineProps } from '../@types/medicine'
+import { MedicineDataProps, MedicineProps } from '../@types/medicine'
 
 export interface MedicineGateway {
-  getAllMedicines(): Promise<MedicineProps[]>
-  getMedicineById(id: string): Promise<MedicineProps | null>
-  getMedicineByName(name: string): Promise<MedicineProps | null>
-  getMedicineByLabName(labName: string): Promise<MedicineProps | null>
+  getAllMedicines(): Promise<MedicineProps>
+  getMedicineById(id: string): Promise<MedicineDataProps | null>
+  getMedicineByName(name: string): Promise<MedicineDataProps | null>
+  getMedicineByLabName(labName: string): Promise<MedicineDataProps | null>
 }

@@ -10,7 +10,8 @@ export default async function Home({
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const name = searchParams?.name as string
-  const { medicines } = await useHome(name)
+  const page = (searchParams?._page as string) || '1'
+  const { medicines } = await useHome(name, page)
 
   return (
     <main className='flex flex-col py-6 w-full px-6'>
@@ -18,9 +19,9 @@ export default async function Home({
         <h1 className=''>Dotlib Farma</h1>
         <Filter />
         <div className='flex flex-wrap gap-6'>
-          <Cards medicines={medicines} />
+          <Cards medicines={medicines.data} />
         </div>
-        <Pagination />
+        <Pagination medicines={medicines} />
       </div>
     </main>
   )

@@ -1,16 +1,16 @@
 import { FetchAdapter } from '@/http/fetchAdapter'
 import { MedicineHttpGateway } from '@/http/medicineHttpGateway'
 
-export async function useHome(name: string) {
+export async function useHome(name: string, page: string) {
   // const httpAdapter = new AxiosAdapter()
   const httpAdapter = new FetchAdapter()
   const httpGateway = new MedicineHttpGateway(
     httpAdapter,
-    'http://localhost:3001/data'
+    `http://localhost:3001/data?_page=${page}`
   )
   const response = await httpGateway.getAllMedicines()
 
-  const listMedicineFiltered = response.filter((medicine) => {
+  const listMedicineFiltered = response.data.filter((medicine) => {
     if (!name) return response
     return (
       medicine.name.toLowerCase().includes(name.toLowerCase()) ||
@@ -18,5 +18,7 @@ export async function useHome(name: string) {
     )
   })
 
-  return { medicines: listMedicineFiltered }
+  response.data = listMedicineFiltered
+
+  return { medicines: response }
 }

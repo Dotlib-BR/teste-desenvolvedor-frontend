@@ -1,4 +1,4 @@
-import { MedicineProps } from '@/@types/medicine'
+import { MedicineDataProps } from '@/@types/medicine'
 import { nameFormatter } from '@/lib/utils'
 import dayjs from 'dayjs'
 import {
@@ -11,7 +11,7 @@ import {
 } from './ui/card'
 
 interface CardsProps {
-  medicines: MedicineProps[]
+  medicines: MedicineDataProps[]
 }
 
 export function Cards({ medicines }: CardsProps) {

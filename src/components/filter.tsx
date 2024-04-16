@@ -1,14 +1,13 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { Input } from './ui/input'
 
 export function Filter() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [name, setName] = useState('')
-
-  router.replace(`?name=${name}`)
 
   return (
     <Input

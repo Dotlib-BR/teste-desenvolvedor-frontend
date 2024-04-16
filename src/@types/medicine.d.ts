@@ -1,4 +1,14 @@
 export interface MedicineProps {
+  first: number
+  prev: number | null
+  next: number | null
+  last: number
+  pages: number
+  items: number
+  data: MedicineDataProps[]
+}
+
+export interface MedicineDataProps {
   id: string
   name: string
   published_at: date
