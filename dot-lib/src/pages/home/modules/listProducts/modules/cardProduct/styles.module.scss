@@ -22,3 +22,13 @@
     max-width: 260px;
   }
 }
+
+@media screen and (max-width: 768px){
+  .cardProduct{
+    flex-direction: column;
+    gap: 1rem;
+    .buttonsArea{
+      margin: 0 auto;
+    }
+  }
+}

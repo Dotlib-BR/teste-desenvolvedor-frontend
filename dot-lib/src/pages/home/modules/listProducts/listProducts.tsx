@@ -1,19 +1,22 @@
 import styles from './styles.module.scss'
-import { ProductProps } from '../../useHome'
 import { CardProduct } from './modules'
+import { useContexts } from '../../../../contexts/useContexts'
 
-interface ListProductsProps {
-  list: ProductProps[]
-}
+export function ListProducts() {
+  const { filterProducts, products } = useContexts()
 
-export function ListProducts({ list }: ListProductsProps) {
-  console.log(list)
   return (
     <div>
       <div className={styles.listProducts}>
-        {list.map((product) => (
-          <CardProduct key={product.id} product={product} />
-        ))}
+        {filterProducts.length === 0 && products.length > 0 && (
+          <div className={styles.filterNotResult}>
+            <p>Nenhum produto corresponde ao filtro!</p>
+          </div>
+        )}
+        {filterProducts.length > 0 &&
+          filterProducts.map((product) => (
+            <CardProduct key={product.id} product={product} />
+          ))}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 import { Button } from '../../../../../../components/ui'
-import { ProductProps } from '../../../../useHome'
 import { formatDate } from '../../../../../../utils'
+import { ProductProps } from '../../../../../../contexts/productContext'
 
 interface CardProductProps {
   product: ProductProps

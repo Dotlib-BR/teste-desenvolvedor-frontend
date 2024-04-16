@@ -1,23 +1,16 @@
 import { icons } from '../../../../assets/icons'
-import { Button } from '../../../../components/ui'
-import { GetProductsProps, TypeSearchProps } from '../../useHome'
+import { TypeSearchProps } from '../../../../contexts/productContext'
+import { useContexts } from '../../../../contexts/useContexts'
 import styles from './styles.module.scss'
-import { useFilterProducts } from './useFilterProducts'
 
-interface FilterProductsProps {
-  getProducts: (data: GetProductsProps) => Promise<void>
-}
-
-export function FilterProduct({ getProducts }: FilterProductsProps) {
+export function FilterProduct() {
   const {
     typesSearch,
     filterValue,
     typeSearch,
-    loading,
-    aplySearch,
     setFilterValue,
     setTypeSearch,
-  } = useFilterProducts({ getProducts })
+  } = useContexts()
 
   return (
     <div className={styles.filterProduct}>
@@ -43,10 +36,6 @@ export function FilterProduct({ getProducts }: FilterProductsProps) {
         />
         <span className={styles.inputIcon}>{icons.search}</span>
       </label>
-
-      <Button onClick={aplySearch} loading={loading}>
-        Aplicar Busca
-      </Button>
     </div>
   )
 }
