@@ -19,37 +19,37 @@ export function Heading(properties: HeadingProperties) {
   switch (currentLevel) {
     case 0:
       return (
-        <h1 className="text-2xl font-bold text-teal-500">
+        <h1 className="text-center text-2xl font-bold text-teal-500">
           {properties.children}
         </h1>
       );
     case 1:
       return (
-        <h2 className="text-xl font-bold text-teal-500">
+        <h2 className="text-center text-xl font-bold text-teal-500">
           {properties.children}
         </h2>
       );
     case 2:
       return (
-        <h3 className="text-lg font-bold text-teal-500">
+        <h3 className="text-center text-lg font-bold text-teal-500">
           {properties.children}
         </h3>
       );
     case 3:
       return (
-        <h4 className="text-base font-bold text-teal-500">
+        <h4 className="text-center text-base font-bold text-teal-500">
           {properties.children}
         </h4>
       );
     case 4:
       return (
-        <h5 className="text-base font-bold text-teal-500">
+        <h5 className="text-center text-base font-bold text-teal-500">
           {properties.children}
         </h5>
       );
     case 5:
       return (
-        <h6 className="text-base font-bold text-teal-500">
+        <h6 className="text-center text-base font-bold text-teal-500">
           {properties.children}
         </h6>
       );
