@@ -4,7 +4,7 @@ import styled from "styled-components"
 import CardMedicamento from "../CardMedicamento";
 
 const SecaoEstilizado = styled.section`
-
+    margin-bottom: 2rem;
 `;
 
 const SecaoCardEstilizado = styled.div`
@@ -35,39 +35,16 @@ const SecaoBotaoEstilizado = styled.button`
     }
 `;
 
-const SecaoMedicamentos = () => {
-
-    const [medicamentos, setMedicamentos] = useState([])
-    
-
-
-    const [numeroPagina, setNumetoPagina] = useState(1)
-    const tamanhoPagina = 10
-    const [totalPaginas, setTotalPaginas] = useState()
-
-    useEffect(() => {
-        axios.get(`http://localhost:3000/data`)
-          .then(resposta => {
-            const indiceInicial = (numeroPagina - 1) * tamanhoPagina
-            const indiceFinal = indiceInicial + tamanhoPagina
-            setMedicamentos(resposta.data.slice(indiceInicial, indiceFinal))
-            setTotalPaginas(Math.ceil(resposta.data.length / 10))
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      }, [numeroPagina])
-
-      console.log('Data é:', medicamentos[1])
+const SecaoMedicamentos = ({medicamentos, numeroPagina, totalPaginas, setNumetoPagina }) => {
     
     return (
         <SecaoEstilizado>
             <SecaoCardEstilizado>
-                
                 {
                     medicamentos.map((medicamento) => 
                         <CardMedicamento 
                             key={medicamento.id}
+                            publicado={medicamento.published_at}
                             nome={medicamento.name}
                             company={medicamento.company}
                             principio={medicamento.active_principles[0]?.name}

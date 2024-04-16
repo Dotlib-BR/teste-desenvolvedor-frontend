@@ -1,10 +1,8 @@
 import styled from "styled-components"
-import search from "./search.png"
 
 const ContainerEstilizado = styled.div`
     display: flex;
     flex-direction: column;
-    margin-inline: 1rem;
 `;
 
 const CampoTituloEstilizado = styled.label`
@@ -12,11 +10,18 @@ const CampoTituloEstilizado = styled.label`
     color: #000000;
     font-weight: 700;
     margin-bottom: .5rem;
+    
+    @media screen and (max-width: 768px) {
+        text-align: center;
+    }
 `
 
-const ContainerEstilizadoInput = styled.div`
-    position: relative;
-    display: inline-block;
+const CampoContainerEstilizadoInput = styled.div`
+    display: flex;
+    gap: 1.5rem;
+    @media screen and (max-width: 768px) {
+        justify-content: center;
+    }
 `;
 
 const CampoTextoEstilizado = styled.input`
@@ -31,31 +36,34 @@ const CampoTextoEstilizado = styled.input`
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 1.5rem;
-    
     &::placeholder {
-        color: #8e8e8e;
+        color: #ffffff;
     }
+    &:focus {
+        outline: none;
+        background-color: white;
+    }
+
+    @media screen and (max-width: 768px) {
+        max-width: 18rem;
+        &::placeholder {
+            font-size: 1rem;
+        }
+    }
+
 `;
 
-const IconeLupa = styled.img`
-    position: absolute;
-    top: 9px;
-    right: 10px;
-    width: 2.5rem;
-    height: 2.5rem;
-`;
-
-const CampoTexto = ({ titulo, placeholder, setFiltro}) => {
+const CampoTexto = ({ titulo, placeholder, setFiltro }) => {
     return (
         <ContainerEstilizado>
             <CampoTituloEstilizado>{titulo}</CampoTituloEstilizado>
-            <ContainerEstilizadoInput>
+            <CampoContainerEstilizadoInput>
                 <CampoTextoEstilizado  
                     placeholder={placeholder}
-                    onChange={(e) => {setFiltro(e.target.value)}}
+                    onChange={e => {setFiltro(e.target.value)}}
+                    type="text"
                 />
-                <IconeLupa src={search}  alt="Lupa"/>
-            </ContainerEstilizadoInput>
+            </CampoContainerEstilizadoInput>
         </ContainerEstilizado>
     )
 }

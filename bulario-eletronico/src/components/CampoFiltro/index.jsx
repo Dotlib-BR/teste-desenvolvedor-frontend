@@ -3,7 +3,10 @@ import styled from "styled-components"
 const ContainerEstilizado = styled.div`
     display: flex;
     flex-direction: column;
-    margin-inline: 1rem;
+
+    @media screen and (max-width: 768px) {
+        align-items: center;
+    }
 `;
 
 const CampoFiltroTituloEstilizado = styled.label`
@@ -28,6 +31,7 @@ const CampoFiltroEstilizadoSelect = styled.select`
     &::placeholder {
         color: #8e8e8e;
     }
+    
 `;
 
 const CampoFiltroEstilizadoOption = styled.option`
@@ -35,14 +39,19 @@ const CampoFiltroEstilizadoOption = styled.option`
     color: #000000;
 `
 
-const CampoFiltro = ({ titulo }) => {
+const CampoFiltro = ({ titulo, setOrdenar, ordenar }) => {
     return (
         <ContainerEstilizado>
-            <CampoFiltroTituloEstilizado>{titulo}</CampoFiltroTituloEstilizado>
-            <CampoFiltroEstilizadoSelect>
-                <CampoFiltroEstilizadoOption>Por nome</CampoFiltroEstilizadoOption>
-                <CampoFiltroEstilizadoOption>Por data</CampoFiltroEstilizadoOption>
-                <CampoFiltroEstilizadoOption>Por laboratório</CampoFiltroEstilizadoOption>
+            <CampoFiltroTituloEstilizado htmlFor="select-ordenar" >{titulo}</CampoFiltroTituloEstilizado>
+            <CampoFiltroEstilizadoSelect
+                name="select-ordenar" 
+                id="select-ordenar"
+                value={ordenar}
+                onChange={e => setOrdenar(e.target.value)}
+            >
+                <CampoFiltroEstilizadoOption value=""></CampoFiltroEstilizadoOption>
+                <CampoFiltroEstilizadoOption value="data">Por data</CampoFiltroEstilizadoOption>
+                <CampoFiltroEstilizadoOption value="company">Por laboratório</CampoFiltroEstilizadoOption>
             </CampoFiltroEstilizadoSelect>
         </ContainerEstilizado>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 const CardContainerEstilizado = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,11 +10,19 @@ const CardContainerEstilizado = styled.div`
     margin: 1rem;
     background-color: #ffffff;
     width: 16rem;
-    height: 18rem;
+    height: 20rem;
     padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
 `;
+
+const CardDataEstilizado = styled.h2`
+    margin: 0;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 1rem;
+`
 
 const CardLabelEstilizado = styled.label`
     font-size: 1.5rem;
@@ -23,6 +32,8 @@ const CardLabelEstilizado = styled.label`
 const CardSpanEstilizado = styled.span`
     font-size: 1rem;
     font-weight: normal;
+    max-width: 15rem;
+    word-wrap: break-word;
 `;
 
 const CardPDFEstilizado = styled.div`
@@ -44,9 +55,10 @@ const CardLinkEstilizado = styled.a`
     }
 `
 
-const CardMedicamento = ({ nome, company, principio, pdf }) => {
+const CardMedicamento = ({ nome, publicado, company, principio, pdf }) => {
   return (
     <CardContainerEstilizado>
+        <CardDataEstilizado>{publicado.slice(0,10)}</CardDataEstilizado>
         <CardLabelEstilizado>Nome:</CardLabelEstilizado>
         <CardSpanEstilizado>{nome}</CardSpanEstilizado>
         <CardLabelEstilizado>Laboratório:</CardLabelEstilizado>
