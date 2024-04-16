@@ -26,7 +26,10 @@ const initialize = () => {
     server.listen(3000);
     server.get('/data/', (req, res) => {
         let pages = [];
-        let query = req.query._page;
+        console.log(req.query)
+        let query_page = req.query['_page'];
+        let query_name = req.query['_name'];
+        let query_company = req.query['_company'];
         let max_pages = Math.ceil(fetch_json.data.length/10);
         for(let i = 0; i < max_pages; i++){
             let ans = fetch_json['data'].slice(i * 10, Math.min((i+1)* 10, fetch_json.data.length));
@@ -35,11 +38,18 @@ const initialize = () => {
             });
             pages.push(ans);
         }
-        if(query){
-            if(query >= 0 && query < max_pages)
-                res.send({data: pages[query], num_pages: max_pages, steps: 10})
-            else
+        if(query_page){
+            if(query_page >= 0 && query_page < max_pages){
+                let ans = pages[query_page];
+                if(query_name)
+                    ans = ans.map((item) => {return item.name.contains(query_name)})
+                if(query_company)
+                    ans = ans.map((item) => {return item.company.contains(query_company)});
+                res.send({data: ans, num_pages: max_pages, steps: 10})
+
+            }else{
                 res.json({message: "Esta página não existe."})
+            }
         }else{
             res.send({
                 data: pages
