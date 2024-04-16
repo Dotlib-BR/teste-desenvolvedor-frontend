@@ -1,7 +1,7 @@
 import { FetchAdapter } from '@/http/fetchAdapter'
 import { MedicineHttpGateway } from '@/http/medicineHttpGateway'
 
-export async function useHome() {
+export async function useHome(name: string) {
   // const httpAdapter = new AxiosAdapter()
   const httpAdapter = new FetchAdapter()
   const httpGateway = new MedicineHttpGateway(
@@ -10,5 +10,13 @@ export async function useHome() {
   )
   const response = await httpGateway.getAllMedicines()
 
-  return { medicines: response }
+  const listMedicineFiltered = response.filter((medicine) => {
+    if (!name) return response
+    return (
+      medicine.name.toLowerCase().includes(name.toLowerCase()) ||
+      medicine.company.toLowerCase().includes(name.toLowerCase())
+    )
+  })
+
+  return { medicines: listMedicineFiltered }
 }

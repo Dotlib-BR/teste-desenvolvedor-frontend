@@ -8,7 +8,15 @@ export class MedicineHttpGateway implements MedicineGateway {
   async getAllMedicines(): Promise<MedicineProps[]> {
     const medicines = await this.http.get<MedicineProps[]>(this.baseUrl)
 
-    return medicines
+    const medicineOrderedList = medicines.sort((a, b) => {
+      if (a.published_at > b.published_at) {
+        return 1
+      }
+
+      return -1
+    })
+
+    return medicineOrderedList
   }
 
   async getMedicineById(id: string): Promise<MedicineProps | null> {
