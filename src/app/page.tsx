@@ -4,8 +4,10 @@ import { useRef } from "react";
 import SearchInput from "./_components/search-input";
 import Section from "./_components/section";
 import Button from "./_components/button";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const searchRef = useRef<string>("");
 
   return (
@@ -22,7 +24,9 @@ export default function Home() {
             valueRef={searchRef}
           ></SearchInput>
         </label>
-        <Button onClick={() => alert(searchRef.current)}>Pesquisar</Button>
+        <Button onClick={() => router.push(`/buscar/${searchRef.current}`)}>
+          Pesquisar
+        </Button>
       </Section>
     </main>
   );
