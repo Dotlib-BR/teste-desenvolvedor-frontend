@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { FileDownIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
 import pdfStatic from '../../../../api/public/pdf_sample.pdf';
 
 import {
@@ -85,15 +86,18 @@ export function Products({ searchText, filterBy }: ProductsProps) {
 
   return (
     <>
-      <section className="flex flex-col flex-1 gap-6 w-full max-w-[1024px] overflow-y-scroll pb-4">
-        {filteredProducts.map((product) => {
+      <section className="flex flex-col flex-1 gap-6 w-full max-w-[1024px] overflow-y-scroll overflow-x-hidden pb-4">
+        {filteredProducts.map((product, index) => {
           const { id, name, company, active_principles, documents } = product;
           const registry = documents[0].expedient;
 
           return (
-            <div
+            <motion.div
               key={id}
               className="relative w-full flex flex-col gap-2 px-6 py-4 shadow-lg rounded-xl"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
             >
               <Popover>
                 <PopoverTrigger className="absolute top-6 right-4">
@@ -128,7 +132,7 @@ export function Products({ searchText, filterBy }: ProductsProps) {
               <span className="text-zinc-800/70 text-ellipsis overflow-hidden">
                 Laboratório: {company}
               </span>
-            </div>
+            </motion.div>
           );
         })}
       </section>
