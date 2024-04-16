@@ -1,5 +1,14 @@
 export default function Home() {
   return (
-    <h1>Home</h1>
+    <>
+      <header>
+        <nav></nav>
+      </header>
+      <main>
+        {/* render all api product in date ordem */}
+        
+      </main>
+      <footer></footer>
+    </>
   );
 }
