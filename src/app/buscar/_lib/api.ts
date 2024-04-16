@@ -10,7 +10,7 @@ import { Medication } from "../_lib/schemas";
  */
 export function fetchMedications(name: string, page: number) {
   return fetch(
-    `http://localhost:3000/data?name_like=${encodeURIComponent(name)}&_page=${page}&_limit=10`,
+    `http://localhost:3000/data?name_like=${encodeURIComponent(name)}&_sort=published_at&_order=desc&_page=${page}&_limit=10`,
   )
     .then((response) => response.json())
     .then((json) => z.array(Medication).parse(json));
