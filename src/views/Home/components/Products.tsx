@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { FileDownIcon } from 'lucide-react';
+import pdfStatic from '../../../../api/public/pdf_sample.pdf';
 
 import {
   Popover,
@@ -98,11 +99,13 @@ export function Products({ searchText, filterBy }: ProductsProps) {
                 <PopoverTrigger className="absolute top-6 right-4">
                   <FileDownIcon size={20} />
                 </PopoverTrigger>
-                <PopoverContent className="text-sm flex flex-col items-start gap-2 mt-2 px-4 py-2 bg-white border rounded-md">
-                  <button type="button" className="border-b pb-2">
+                <PopoverContent className="text-sm flex flex-col items-start gap-2 w-fit mt-2 px-4 py-2 bg-white border rounded-md">
+                  <a href={pdfStatic} download className="border-b pb-2">
                     Profissional
-                  </button>
-                  <button type="button">Paciente</button>
+                  </a>
+                  <a href={pdfStatic} download>
+                    Paciente
+                  </a>
                 </PopoverContent>
               </Popover>
               <div className="flex flex-col w-11/12">
