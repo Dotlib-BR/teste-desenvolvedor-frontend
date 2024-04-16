@@ -7,7 +7,7 @@ export interface LayoutProperties {
 
 export default function Layout(properties: LayoutProperties) {
   return (
-    <main className="flex min-h-screen items-center justify-center p-4 text-lg">
+    <main className="flex min-h-screen items-center justify-center p-4">
       <Section
         title="Resultados da busca"
         className="flex max-w-full flex-col items-center gap-8"

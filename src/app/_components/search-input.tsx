@@ -40,7 +40,7 @@ export function SearchInput(properties: SearchInputProperties) {
           properties.valueRef.current = event.target.value;
         properties.onChange?.(event);
       }}
-      className="rounded-lg bg-gray-200 px-4 py-2"
+      className="rounded-lg bg-gray-100 px-4 py-2 outline outline-1 outline-teal-500 focus:outline-2"
     ></input>
   );
 }

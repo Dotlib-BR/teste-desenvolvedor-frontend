@@ -11,7 +11,7 @@ export default function ActiveIngredient(
   properties: ActiveIngredientProperties,
 ) {
   return (
-    <div className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-gray-200 px-2">
+    <div className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap rounded-full px-2 text-teal-500 outline outline-1 outline-teal-500">
       {properties.activeIngredient.name}
     </div>
   );

@@ -17,12 +17,14 @@ export function MedicationPreview(properties: MedicationPreviewProperties) {
   return (
     <div className="flex flex-col justify-between gap-x-16 gap-y-2 sm:flex-row">
       <div className="max-w-full">
-        <div className="text-lg font-bold">{medication.name}</div>
-        <div className="w-sm max-w-full overflow-hidden text-ellipsis ">
+        <div className="text-lg font-bold lowercase first-letter:uppercase">
+          {medication.name}
+        </div>
+        <div className="max-w-full overflow-hidden text-ellipsis opacity-75">
           {medication.company}
         </div>
       </div>
-      <div className="flex max-w-full flex-col items-center sm:items-end">
+      <div className="flex max-w-full flex-col items-center gap-1 sm:items-end">
         <div>Princípios ativos</div>
         <ul className="flex max-w-full flex-row flex-wrap justify-end gap-2">
           {medication.active_principles.map((activePrinciple) => (
