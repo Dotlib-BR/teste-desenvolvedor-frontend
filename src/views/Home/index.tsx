@@ -1,14 +1,5 @@
 import { useEffect, useState, Fragment } from 'react';
-import { FileDown, Search } from 'lucide-react';
-
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-} from '@/views/components/ui/select';
+import { FileDown } from 'lucide-react';
 
 import { Product, ProductResponse } from '@/app/types/ProductResponse';
 import { Popover, PopoverTrigger } from '../components/ui/popover';
@@ -22,19 +13,20 @@ import {
   PaginationPrevious,
 } from '../components/ui/pagination';
 import { cn } from '@/app/lib/utils';
+import { Search } from './components/Search';
+import { FilterBy } from '@/app/enums/FilterBy';
 
 export function Home() {
-  const [filterBy, setFilterBy] = useState<'dinamic' | 'name' | 'company'>(
-    'dinamic',
-  );
+  const [searchText, setSearchText] = useState('');
+  const [filterBy, setFilterBy] = useState<FilterBy>(FilterBy.dinamic);
   const [currentPage, setCurrentPage] = useState(1);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [pageQuantity, setPageQuantity] = useState(0);
 
   useEffect(() => {
-    console.log(new Array(pageQuantity));
-  }, [pageQuantity]);
+    console.log(searchText);
+  }, [searchText]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/data?_page=${currentPage}`)
@@ -44,27 +36,6 @@ export function Home() {
         setPageQuantity(productResponse.pages);
       });
   }, [currentPage]);
-
-  function translateFilter(): string {
-    switch (filterBy) {
-      case 'dinamic':
-        return 'Dinâmico';
-      case 'name':
-        return 'Nome';
-      case 'company':
-        return 'Companhia';
-      default:
-        return 'Dinâmico';
-    }
-  }
-
-  function handleFilterChange(value: string): void {
-    const filter = ['dinamic', 'name', 'company'].includes(value)
-      ? value
-      : 'dinamic';
-
-    setFilterBy(filter as 'dinamic' | 'name' | 'company');
-  }
 
   function handlePaginationActions(action: 'next' | 'previous'): void {
     if (action === 'next' && currentPage === pageQuantity) return;
@@ -86,31 +57,11 @@ export function Home() {
         <h1 className="text-2xl font-bold">BULÁRIO ELETRÔNICO</h1>
       </header>
 
-      <div className="relative flex w-full h-11 border rounded-xl mb-8">
-        <div className="flex-1">
-          <Search
-            size={16}
-            className="absolute top-1/2 -translate-y-1/2 left-4 text-dotlib"
-          />
-          <input
-            type="text"
-            className="text-zinc-800/70 text-sm font-medium w-full h-full px-11 rounded-xl"
-          />
-        </div>
-        <Select onValueChange={handleFilterChange}>
-          <SelectTrigger className="w-32 h-full border-y-0 border-r-0 rounded-none shadow-none">
-            {translateFilter()}
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Filtro</SelectLabel>
-              <SelectItem value="dinamic">Dinâmico</SelectItem>
-              <SelectItem value="name">Nome</SelectItem>
-              <SelectItem value="company">Companhia</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
+      <Search
+        currentFilter={filterBy}
+        onSearchTextChange={(value) => setSearchText(value)}
+        onFilterChange={(value) => setFilterBy(value)}
+      />
 
       <section className="flex flex-col gap-6 mb-8">
         {products.map((product) => {
