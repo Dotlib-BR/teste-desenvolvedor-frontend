@@ -1,4 +1,3 @@
-import { formatDocumentType } from "@/helper/format-document-type"
 import { Medicine } from "@/types/medicine"
 
 interface MedicineListProps {
@@ -16,7 +15,7 @@ export const MedicineList = ({
     <section className="overflow-hidden rounded-md border shadow-md">
       <div className="flex justify-between bg-zinc-800 p-2 text-lg text-white">
         <strong>Medicamento</strong>
-        <strong>Documento</strong>
+        <strong>Publicação</strong>
       </div>
       {medicines.slice(start, limit).map((medicine) => (
         <div key={medicine.id} className="border-b p-2 hover:bg-zinc-200">
@@ -27,12 +26,11 @@ export const MedicineList = ({
                 <span className="hidden sm:inline">Companhia: </span>
                 {medicine.company}
               </p>
-              <span className="text-sm">
-                <span>Data de publicação: </span>
-                {new Date(medicine.published_at).toLocaleDateString("pt-BR")}
-              </span>
             </div>
-            <div className="flex gap-2">
+            <span className="text-sm">
+              {new Date(medicine.published_at).toLocaleDateString("pt-BR")}
+            </span>
+            {/* <div className="flex gap-2">
               {medicine.documents.map((document) => (
                 <div
                   key={document.id}
@@ -41,7 +39,7 @@ export const MedicineList = ({
                   {formatDocumentType(document.type)}
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       ))}
