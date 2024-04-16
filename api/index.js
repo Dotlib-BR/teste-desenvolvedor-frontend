@@ -15,10 +15,20 @@ fs.readFile("/home/rrs6/Desktop/teste-desenvolvedor-frontend/api/dotlib.json", "
 
 const initialize = () => {
     server.listen(3000, () => {
-        server.get('/', (req, res) => {
+        server.get('/data', (req, res) => {
+            let pages = [];
+            let max_pages = Math.ceil(fetch_json.data.length/10);
+            for(let i = 0; i < max_pages; i++){
+                let ans = fetch_json['data'].slice(i * 10, Math.min((i+1)* 10, fetch_json.data.length));
+                pages = pages.concat(ans);
+            }
             res.send({
-                data: fetch_json
+                data: pages,
+                num_pages: max_pages,
+                steps: 10
             })
+        })
+        server.get('/data/:id', (res, req) => {
         })
     });
 }
