@@ -15,7 +15,13 @@ fs.readFile("/home/rrs6/Desktop/teste-desenvolvedor-frontend/api/dotlib.json", "
             initialize();
         }
     })
+function dateDiffInDays(a, b) {
+  const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 
+  return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+}
 const initialize = () => {
     server.listen(3000);
     server.get('/data/', (req, res) => {
@@ -24,6 +30,9 @@ const initialize = () => {
         let max_pages = Math.ceil(fetch_json.data.length/10);
         for(let i = 0; i < max_pages; i++){
             let ans = fetch_json['data'].slice(i * 10, Math.min((i+1)* 10, fetch_json.data.length));
+            ans.sort(function(a, b){
+                return dateDiffInDays(new Date(a.published_at), new Date(b.published_at));
+            });
             pages.push(ans);
         }
         if(query){
