@@ -9,11 +9,12 @@ import {
     Typography,
   } from '@mui/material';
   
-  import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-  import { useState } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useState } from 'react';
+import { sortByDate } from '../utils/sortByDate';
   
-  export const TableMedicine = ({ medicines }: any) => {
-      const [expanded, setExpanded] = useState(false);
+export const TableMedicine = ({ medicines }: any) => {
+  const [expanded, setExpanded] = useState(false);
   
     const handleChange = (panel: any) => (event: any, isExpanded: any) => {
       setExpanded(isExpanded ? panel : false);
@@ -55,6 +56,7 @@ import {
           </AccordionSummary>
         </Accordion>
         {medicines
+          .sort(sortByDate)
           .map((item: any) => (
             <Accordion expanded={expanded === item.id} key={item.id} onChange={handleChange(item.id)}>
               <AccordionSummary aria-controls="panel1bh-content" expandIcon={<ExpandMoreIcon />} id="panel1bh-header">
