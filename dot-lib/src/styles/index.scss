@@ -17,7 +17,8 @@ button {
   cursor: pointer;
 }
 
-input, button {
+input,
+button {
   outline: none;
   border: none;
 }
@@ -25,7 +26,13 @@ input, button {
 a {
   text-decoration: none;
 }
-.container{
+
+a,
+button {
+  transition: all 0.3s;
+}
+
+.container {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
