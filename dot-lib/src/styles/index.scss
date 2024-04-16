@@ -1,0 +1,27 @@
+@import "./fonts.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-primary;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+input, button {
+  outline: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
