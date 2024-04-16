@@ -33,7 +33,7 @@ export type ButtonProperties = CommonButtonProperties &
  */
 export function Button(properties: ButtonProperties) {
   const className =
-    "inline-block rounded-lg bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600 transition";
+    "rounded-lg bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600 transition inline-flex flex-row gap-2 items-center";
 
   if ("href" in properties) {
     return (

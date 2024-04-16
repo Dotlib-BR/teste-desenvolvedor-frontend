@@ -5,6 +5,7 @@ import SearchInput from "./_components/search-input";
 import Section from "./_components/section";
 import Button from "./_components/button";
 import { useRouter } from "next/navigation";
+import { SearchIcon } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function Home() {
           ></SearchInput>
         </label>
         <Button onClick={() => router.push(`/buscar/${searchRef.current}/1`)}>
-          Pesquisar
+          <SearchIcon /> Pesquisar
         </Button>
       </Section>
     </main>

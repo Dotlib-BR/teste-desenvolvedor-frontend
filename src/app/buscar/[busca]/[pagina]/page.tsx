@@ -2,6 +2,7 @@ import Button from "@/app/_components/button";
 import NoResults from "../../_components/no-results";
 import { fetchMedications } from "../../_lib/api";
 import MedicationPreview from "./_components/medication-preview";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 export interface PageProperties {
   params: {
@@ -33,11 +34,13 @@ export default async function Page(properties: PageProperties) {
           </ul>
           {pagina > 1 && (
             <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina - 1}`}>
+              <ArrowLeftIcon />
               Página anterior
             </Button>
           )}
           <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina + 1}`}>
             Página seguinte
+            <ArrowRightIcon />
           </Button>
         </div>
       )}

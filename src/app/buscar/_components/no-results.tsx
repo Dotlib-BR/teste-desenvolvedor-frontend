@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/app/_components/button";
+import { ArrowLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 /** Properties for the {@link NoResults} component. */
@@ -15,7 +16,10 @@ export default function NoResults(properties: NoResultsProperties) {
   return (
     <div className="flex flex-col items-center gap-4">
       <div>{properties.message ?? "Nenhum resultado"}</div>
-      <Button onClick={() => router.push("/")}>Voltar</Button>
+      <Button onClick={() => router.push("/")}>
+        <ArrowLeftIcon />
+        Voltar
+      </Button>
     </div>
   );
 }
