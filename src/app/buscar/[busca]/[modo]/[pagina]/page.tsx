@@ -1,21 +1,26 @@
 import Button from "@/app/_components/button";
-import NoResults from "../../_components/no-results";
-import { fetchMedications } from "../../_lib/api";
+import NoResults from "../../../_components/no-results";
+import { fetchMedications, fetchMedicationsByCompany } from "../../../_lib/api";
 import MedicationPreview from "./_components/medication-preview";
 import { ArrowLeftIcon, ArrowRightIcon, HomeIcon } from "lucide-react";
 
 export interface PageProperties {
   params: {
     busca: string;
+    modo: string;
     pagina: string;
   };
 }
 
 export default async function Page(properties: PageProperties) {
   const busca = decodeURIComponent(properties.params.busca);
+  const modo = decodeURIComponent(properties.params.modo);
   const pagina = Number.parseInt(properties.params.pagina);
 
-  const results = await fetchMedications(busca, pagina);
+  const results =
+    modo === "laboratorio"
+      ? await fetchMedicationsByCompany(busca, pagina)
+      : await fetchMedications(busca, pagina);
 
   return (
     <>
@@ -26,13 +31,15 @@ export default async function Page(properties: PageProperties) {
       ) : (
         <div className="flex w-[768px] max-w-full flex-col gap-8">
           <div className="flex flex-row-reverse justify-between gap-2">
-            <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina + 1}`}>
+            <Button
+              href={`/buscar/${encodeURIComponent(busca)}/${encodeURIComponent(modo)}/${pagina + 1}`}
+            >
               <span className="sr-only sm:not-sr-only">Página seguinte</span>
               <ArrowRightIcon />
             </Button>
             {pagina > 1 ? (
               <Button
-                href={`/buscar/${encodeURIComponent(busca)}/${pagina - 1}`}
+                href={`/buscar/${encodeURIComponent(busca)}/${encodeURIComponent(modo)}/${pagina - 1}`}
               >
                 <ArrowLeftIcon />
                 <span className="sr-only sm:not-sr-only">Página anterior</span>

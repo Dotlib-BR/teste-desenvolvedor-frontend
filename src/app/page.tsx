@@ -28,10 +28,18 @@ export default function Home() {
         <Button
           onClick={() => {
             if (searchRef.current.length > 0)
-              router.push(`/buscar/${searchRef.current}/1`);
+              router.push(`/buscar/${searchRef.current}/medicamento/1`);
           }}
         >
-          <SearchIcon /> Pesquisar
+          <SearchIcon /> Pesquisar nome
+        </Button>
+        <Button
+          onClick={() => {
+            if (searchRef.current.length > 0)
+              router.push(`/buscar/${searchRef.current}/laboratorio/1`);
+          }}
+        >
+          <SearchIcon /> Pesquisar laboratório
         </Button>
       </Section>
     </main>
