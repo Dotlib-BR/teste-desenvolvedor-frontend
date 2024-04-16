@@ -1,6 +1,9 @@
 const express = require('express');
 const server = express();
-
+const cors = require('cors');
+server.use(cors({
+    origin: '*'
+}));
 const fs = require("fs");
 let fetch_json;
 fs.readFile("/home/rrs6/Desktop/teste-desenvolvedor-frontend/api/dotlib.json", "utf8", (error, data) => {
@@ -25,14 +28,12 @@ const initialize = () => {
         }
         if(query){
             if(query >= 0 && query < max_pages)
-                res.send({data: pages[query]})
+                res.send({data: pages[query], num_pages: max_pages, steps: 10})
             else
                 res.json({message: "Esta página não existe."})
         }else{
             res.send({
-                data: pages,
-                num_pages: max_pages,
-                steps: 10
+                data: pages
             })
         }
     })
