@@ -25,7 +25,12 @@ export default function Home() {
             valueRef={searchRef}
           ></SearchInput>
         </label>
-        <Button onClick={() => router.push(`/buscar/${searchRef.current}/1`)}>
+        <Button
+          onClick={() => {
+            if (searchRef.current.length > 0)
+              router.push(`/buscar/${searchRef.current}/1`);
+          }}
+        >
           <SearchIcon /> Pesquisar
         </Button>
       </Section>
