@@ -14,21 +14,38 @@ fs.readFile("/home/rrs6/Desktop/teste-desenvolvedor-frontend/api/dotlib.json", "
     })
 
 const initialize = () => {
-    server.listen(3000, () => {
-        server.get('/data', (req, res) => {
-            let pages = [];
-            let max_pages = Math.ceil(fetch_json.data.length/10);
-            for(let i = 0; i < max_pages; i++){
-                let ans = fetch_json['data'].slice(i * 10, Math.min((i+1)* 10, fetch_json.data.length));
-                pages = pages.concat(ans);
-            }
+    server.listen(3000);
+    server.get('/data/', (req, res) => {
+        let pages = [];
+        let query = req.query._page;
+        let max_pages = Math.ceil(fetch_json.data.length/10);
+        for(let i = 0; i < max_pages; i++){
+            let ans = fetch_json['data'].slice(i * 10, Math.min((i+1)* 10, fetch_json.data.length));
+            pages.push(ans);
+        }
+        if(query){
+            if(query >= 0 && query < max_pages)
+                res.send({data: pages[query]})
+            else
+                res.json({message: "Esta página não existe."})
+        }else{
             res.send({
                 data: pages,
                 num_pages: max_pages,
                 steps: 10
             })
+        }
+    })
+    server.get('/data/:id', (req, res) => {
+        let id = req.params.id;
+        for(let i = 0; i < fetch_json.data.length; i++){
+            if(id == fetch_json.data[i]['id']){
+                res.send({item: fetch_json.data[i]})
+                return;
+            }
+        }
+        res.json({
+            message: "Produto não encontrado"
         })
-        server.get('/data/:id', (res, req) => {
-        })
-    });
+    })
 }
