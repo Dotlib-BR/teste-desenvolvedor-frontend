@@ -1,3 +1,12 @@
+import { FilterProduct } from './modules'
+import { useHome } from './useHome'
+
 export function Home() {
-  return <main>HOME</main>
+  const { getProducts } = useHome()
+
+  return (
+    <main>
+      <FilterProduct getProducts={getProducts} />
+    </main>
+  )
 }

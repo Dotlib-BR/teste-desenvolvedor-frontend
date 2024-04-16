@@ -1,0 +1,60 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/mixins";
+
+
+.filterProduct{
+  display: flex;
+  gap: 1rem;
+
+  .selectType{
+    @include flexCenter;
+    .labelRadio{
+      display: flex;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+  }
+
+  .label{
+    flex: 1;
+    display: flex;
+    background: $secondary-50;
+    align-items: center;
+    border-radius: 0.3rem;
+    
+    .input{
+      width: 100%;
+      padding: 0.5rem 1rem;
+      background: transparent;
+    }
+    .inputIcon{
+      @include flexCenter;
+      background: $primary-700;
+      color: $white;
+      padding: 0.5rem;
+      font-size: 20px;
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover{
+        background: $primary-900;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .filterProduct{
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .filterProduct{
+    .selectType{
+      flex-direction: column;
+    }
+  }
+}
