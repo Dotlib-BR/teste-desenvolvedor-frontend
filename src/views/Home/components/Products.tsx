@@ -85,7 +85,7 @@ export function Products({ searchText, filterBy }: ProductsProps) {
 
   return (
     <>
-      <section className="flex flex-col flex-1 gap-6 overflow-y-scroll pb-4">
+      <section className="flex flex-col flex-1 gap-6 w-full max-w-[1024px] overflow-y-scroll pb-4">
         {filteredProducts.map((product) => {
           const { id, name, company, active_principles, documents } = product;
           const registry = documents[0].expedient;
@@ -108,11 +108,11 @@ export function Products({ searchText, filterBy }: ProductsProps) {
                   </a>
                 </PopoverContent>
               </Popover>
-              <div className="flex flex-col w-11/12">
+              <div className="flex flex-col w-11/12 md:flex-row-reverse md:items-center md:justify-end md:gap-2">
                 <small className="text-xs text-zinc-800/70">
                   N° Registro: {registry}
                 </small>
-                <strong className="text-lg text-ellipsis overflow-hidden">
+                <strong className="text-lg max-w-[400px] text-ellipsis overflow-hidden">
                   {name}
                 </strong>
               </div>
@@ -137,13 +137,17 @@ export function Products({ searchText, filterBy }: ProductsProps) {
         <Pagination>
           <PaginationContent className="h-fit">
             <PaginationPrevious
-              className={cn(currentPage === 1 && 'opacity-50')}
+              className={cn(
+                'cursor-pointer',
+                currentPage === 1 && 'cursor-not-allowed opacity-50',
+              )}
               onClick={() => handlePaginationActions('previous')}
             />
             {Array.from({ length: pageQuantity }, (_, index) => index + 1).map(
               (value) => (
                 <PaginationItem
                   key={Math.random()}
+                  className="cursor-pointer"
                   onClick={() => handleJumpPage(value)}
                 >
                   <PaginationLink isActive={currentPage === value}>
@@ -153,7 +157,10 @@ export function Products({ searchText, filterBy }: ProductsProps) {
               ),
             )}
             <PaginationNext
-              className={cn(currentPage === pageQuantity && 'opacity-50')}
+              className={cn(
+                'cursor-pointer',
+                currentPage === pageQuantity && 'cursor-not-allowed opacity-50',
+              )}
               onClick={() => handlePaginationActions('next')}
             />
           </PaginationContent>
