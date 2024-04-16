@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState, Fragment, useMemo } from 'react';
 import { FileDown } from 'lucide-react';
 
 import { Product, ProductResponse } from '@/app/types/ProductResponse';
@@ -24,18 +24,63 @@ export function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [pageQuantity, setPageQuantity] = useState(0);
 
-  useEffect(() => {
-    console.log(searchText);
-  }, [searchText]);
+  const filteredProducts = useMemo(() => {
+    return searchText !== ''
+      ? products.slice((currentPage - 1) * 10, currentPage * 10)
+      : products;
+  }, [products, searchText, currentPage]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/data?_page=${currentPage}`)
-      .then((response) => response.json())
-      .then((productResponse: ProductResponse) => {
-        setProducts(productResponse.data);
-        setPageQuantity(productResponse.pages);
-      });
-  }, [currentPage]);
+    if (searchText === '') {
+      fetch(`http://localhost:3000/data?_page=${currentPage}`)
+        .then((response) => response.json())
+        .then((productResponse: ProductResponse) => {
+          setProducts(productResponse.data);
+          setPageQuantity(productResponse.pages);
+        });
+    }
+  }, [searchText, currentPage]);
+
+  useEffect(() => {
+    if (searchText !== '') {
+      fetch(`http://localhost:3000/data`)
+        .then((response) => response.json())
+        .then((products: Product[]) => {
+          setCurrentPage(1);
+          let productsList = [];
+
+          if (filterBy === FilterBy.dinamic) {
+            productsList = products.filter((product) =>
+              product.name.toLowerCase().includes(searchText.toLowerCase()),
+            );
+
+            if (productsList.length === 0) {
+              productsList = products.filter((product) =>
+                product.company
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase()),
+              );
+            }
+
+            setProducts(productsList);
+          } else if (filterBy === FilterBy.name) {
+            productsList = products.filter((product) =>
+              product.name.toLowerCase().includes(searchText.toLowerCase()),
+            );
+
+            setProducts(productsList);
+          } else if (filterBy === FilterBy.company) {
+            productsList = products.filter((product) =>
+              product.company.toLowerCase().includes(searchText.toLowerCase()),
+            );
+
+            setProducts(productsList);
+          }
+
+          setPageQuantity(Math.ceil(productsList.length / 10));
+        });
+    }
+  }, [searchText, filterBy]);
 
   function handlePaginationActions(action: 'next' | 'previous'): void {
     if (action === 'next' && currentPage === pageQuantity) return;
@@ -64,7 +109,7 @@ export function Home() {
       />
 
       <section className="flex flex-col gap-6 mb-8">
-        {products.map((product) => {
+        {filteredProducts.map((product) => {
           const { id, name, company, active_principles, documents } = product;
           const registry = documents[0].expedient;
 
