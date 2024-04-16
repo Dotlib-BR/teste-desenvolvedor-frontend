@@ -1,5 +1,9 @@
+import { Link } from "react-router-dom"
+
 import { Medicine } from "@/types/medicine"
 
+// Utilities
+import { formatDate } from "@/helpers/format-date"
 interface MedicineListProps {
   medicines: Medicine[]
   start?: number
@@ -20,16 +24,16 @@ export const MedicineList = ({
       {medicines.slice(start, limit).map((medicine) => (
         <div key={medicine.id} className="border-b p-2 hover:bg-zinc-200">
           <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 overflow-hidden" title={medicine.name}>
-              <p className="truncate font-semibold">{medicine.name}</p>
-              <p className="truncate text-xs">
-                <span className="hidden sm:inline">Companhia: </span>
-                {medicine.company}
-              </p>
-            </div>
-            <span className="text-sm">
-              {new Date(medicine.published_at).toLocaleDateString("pt-BR")}
-            </span>
+            <Link to={`/medicines/${medicine.id}`}>
+              <div className="flex-1 overflow-hidden" title={medicine.name}>
+                <p className="truncate font-semibold">{medicine.name}</p>
+                <p className="truncate text-xs">
+                  <span className="hidden sm:inline">Companhia: </span>
+                  {medicine.company}
+                </p>
+              </div>
+            </Link>
+            <span className="text-sm">{formatDate(medicine.published_at)}</span>
             {/* <div className="flex gap-2">
               {medicine.documents.map((document) => (
                 <div
