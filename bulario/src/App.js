@@ -6,18 +6,25 @@ import axios from 'axios';
 function App() {
   const [list, setList] = useState([]);
   const [pages, setPages] = useState(0);
+  const [actualPage, setActualPage] = useState(0);
+  const [pagination, setPagination] = useState([]);
   const fetching = (params) => {
-    axios.get('http://localhost:3000/data' + params)
+    setActualPage(params);
+    axios.get('http://localhost:3000/data?_page=' + params)
       .then(response => {
         setList(response.data.data);
         setPages(response.data.num_pages)
+        let paginatioon = [];
+        for(let i = 0; i < response.data.num_pages; i++)
+          paginatioon.push(i);
+        setPagination(paginatioon);
       })
       .catch(error => {
         console.error(error);
       });
   }
   useEffect(() => {
-      fetching("?_page=0");
+      fetching(0);
   }, []);
   return (
     <div>
@@ -32,7 +39,11 @@ function App() {
       <div className='ls-wrapper'>
         <List columns={['Nome', 'Laboratório', 'Data']} rows={list}></List>
       </div>
-      <div>{pages}</div>
+      <div id='pagination-container'>
+        {pagination.map((i, index) => {
+          return <button onClick={() => fetching(i)} className={'btn-pag '+(actualPage === i ? 'selected' : '')} key={index}>Página {i}</button>
+        })}
+      </div>
     </div>
   );
 }

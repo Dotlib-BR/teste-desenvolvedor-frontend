@@ -33,3 +33,19 @@
 .ls-wrapper {
   padding: 10px;
 }
+
+#pagination-container {
+  display: flex;
+  justify-content: center;
+}
+.btn-pag {
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  background-color: rgb(106, 106, 106);
+  color: white;
+  border-radius: 3px;
+}
+.btn-pag.selected {
+  background-color: black;
+}
