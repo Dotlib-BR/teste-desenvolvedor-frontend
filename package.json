@@ -1,0 +1,30 @@
+{
+  "name": "teste",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"next dev -p 3001\" \"json-server --watch api/dotlib.json\"",
+    "build": "next build",
+    "start": "concurrently \"next start -p 3001\" \"json-server --watch api/dotlib.json\"",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "json-server": "^1.0.0-alpha.23",
+    "next": "14.2.1",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.1",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

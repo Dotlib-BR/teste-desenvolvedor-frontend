@@ -1,31 +1,10 @@
-[![](https://dotlib.com/theme/img/logos/logo.png)](https://www.dotlib.com)
+# Remed.io
 
-# Descrição da vaga de Desenvolvedor Frontend Jr.
+Remed.io é uma aplicação web que fornece um banco de dados de medicações e
+bulas.
 
-Buscamos profissionais que sejam apaixonados por desenvolvimento, inovação e novas tecnologias, para integrar nosso time em projetos baseados em Laravel, Node.js, React e React Native.
+## Executando
 
-[Oportunidades Dotlib](https://github.com/Dotlib-BR/oportunidades)
+Utilize `npm run build` e `npm run start`.
 
-## Requisitos
-
-### Obrigatórios:
-
-- Experiência em desenvolvimento de sites em React
-- Consumo de APIs RESTful
-- SASS e Flexbox
-- API Contexts e Hooks
-- Controle de versões (GIT)
-
-### Bônus:
-
-- Conhecimentos em Docker
-- Conhecimentos em Typescript
-- Conhecimentos em Node.js
-- Conhecimentos em testes automatizados com Cypress
-- Experiência em metodologias ágeis (Scrum/Kanban)
-
-## Como se candidatar
-
-Para se candidatar, basta acessar a url e realizar o teste para a vaga:
-
-- [Teste para Desenvolvedor Frontend Jr.](teste-frontend.md)
+Acesse o site em `localhost:3001`.
