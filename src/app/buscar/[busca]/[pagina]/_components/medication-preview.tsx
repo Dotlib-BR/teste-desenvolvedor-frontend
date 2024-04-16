@@ -15,7 +15,8 @@ export function MedicationPreview(properties: MedicationPreviewProperties) {
   const { medication } = properties;
 
   return (
-    <div className="flex flex-col justify-between gap-x-16 gap-y-2 rounded-lg border-[1px] border-teal-500 p-4 [background:radial-gradient(ellipse,_transparent,theme(colors.teal.500/5%))]  sm:flex-row">
+    <div className="relative flex flex-col justify-between gap-x-16 gap-y-2 rounded-lg border-[1px] border-teal-500 bg-white p-4 sm:flex-row">
+      <div className="absolute inset-0 rounded-lg [background:radial-gradient(ellipse,_transparent,theme(colors.teal.500/5%))]"></div>
       <div className="max-w-full">
         <div className="break-words text-lg font-bold lowercase first-letter:uppercase">
           {medication.name}
