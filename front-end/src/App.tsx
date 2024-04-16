@@ -1,9 +1,12 @@
+import { Home } from './Pages/Home';
+import { ManageDataProvider } from './Providers/manageDataProvider';
+
 function App() {
 
   return (
-    <>
-    <h1>bulário eletrônico</h1>   
-    </>
+    <ManageDataProvider>
+      <Home/>
+    </ManageDataProvider>
   )
 }
 
