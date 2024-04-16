@@ -41,7 +41,7 @@ export function Search({
         />
         <input
           type="text"
-          className="text-zinc-800/70 text-sm font-medium w-full h-full px-11 rounded-xl"
+          className="text-zinc-800/70 text-sm font-medium w-full h-full px-11 rounded-xl outline-none"
           onChange={handleSearchTextChange}
         />
       </div>

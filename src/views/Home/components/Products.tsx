@@ -86,7 +86,20 @@ export function Products({ searchText, filterBy }: ProductsProps) {
 
   return (
     <>
-      <section className="flex flex-col flex-1 gap-6 w-full max-w-[1024px] overflow-y-scroll overflow-x-hidden pb-4">
+      <section className="flex flex-col flex-1 gap-6 w-full max-w-[1024px] overflow-y-auto overflow-x-hidden pb-4">
+        {filteredProducts.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col justify-center items-center gap-4 mt-2 px-6"
+          >
+            <img src="./empty.svg" alt="Vazio" width={288} />
+            <strong className="text-2xl text-center">
+              Ops!! Parece que não há nenhum registro para esse filtro.
+            </strong>
+          </motion.div>
+        )}
         {filteredProducts.map((product, index) => {
           const { id, name, company, active_principles, documents } = product;
           const registry = documents[0].expedient;
