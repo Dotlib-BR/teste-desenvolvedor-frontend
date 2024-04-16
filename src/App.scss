@@ -1,8 +1,10 @@
 
 html,
-body {
+body, #root {
   border: 0;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
 }
