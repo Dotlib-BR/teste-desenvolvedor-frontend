@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={atkinsonHyperlegible.className}>
       <body className="min-h-screen">
-        <div className="pointer-events-none absolute inset-0 z-[-1] text-teal-500 opacity-50">
+        <div className="pointer-events-none fixed inset-0 z-[-1] text-teal-500 opacity-50">
           <Goo></Goo>
         </div>
         {children}
