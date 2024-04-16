@@ -1,7 +1,5 @@
+import { RoutesApp } from './routes/routes'
+
 export function App() {
-  return (
-    <div>
-      <p>APP</p>
-    </div>
-  )
+  return <RoutesApp />
 }
