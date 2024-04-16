@@ -103,13 +103,15 @@ export function Products({ searchText, filterBy }: ProductsProps) {
                 <button type="button">Paciente</button>
               </PopoverContent>
             </Popover>
-            <div className="flex flex-col">
+            <div className="flex flex-col w-11/12">
               <small className="text-xs text-zinc-800/70">
                 N° Registro: {registry}
               </small>
-              <strong className="text-xl">{name}</strong>
+              <strong className="text-lg text-ellipsis overflow-hidden">
+                {name}
+              </strong>
             </div>
-            <span className="text-zinc-800/70">
+            <span className="text-zinc-800/70 text-ellipsis overflow-hidden">
               Princípios ativos:
               {active_principles.map((activePrinciple, index) => (
                 <Fragment key={activePrinciple.id}>
@@ -118,7 +120,9 @@ export function Products({ searchText, filterBy }: ProductsProps) {
                 </Fragment>
               ))}
             </span>
-            <span className="text-zinc-800/70">Laboratório: {company}</span>
+            <span className="text-zinc-800/70 text-ellipsis overflow-hidden">
+              Laboratório: {company}
+            </span>
           </div>
         );
       })}
