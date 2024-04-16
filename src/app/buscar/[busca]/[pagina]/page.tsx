@@ -1,3 +1,4 @@
+import Button from "@/app/_components/button";
 import NoResults from "../../_components/no-results";
 import { fetchMedications } from "../../_lib/api";
 
@@ -21,11 +22,21 @@ export default async function Page(properties: PageProperties) {
           message={`Você buscou por "${busca}" na página ${pagina}, mas ainda não temos resultados nessa página.`}
         ></NoResults>
       ) : (
-        <ul>
-          {results.map((medication) => (
-            <li key={medication.id}>{medication.name}</li>
-          ))}
-        </ul>
+        <div>
+          <ul>
+            {results.map((medication) => (
+              <li key={medication.id}>{medication.name}</li>
+            ))}
+          </ul>
+          {pagina > 1 && (
+            <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina - 1}`}>
+              Página anterior
+            </Button>
+          )}
+          <Button href={`/buscar/${encodeURIComponent(busca)}/${pagina + 1}`}>
+            Página seguinte
+          </Button>
+        </div>
       )}
     </>
   );
