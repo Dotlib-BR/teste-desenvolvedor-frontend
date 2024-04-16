@@ -1,0 +1,24 @@
+@import "../../../../../../styles/colors";
+@import "../../../../../../styles/mixins";
+
+.cardProduct{
+  display: flex;
+  justify-content: space-between;
+  background: $secondary-50;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  box-shadow: 2px 2px 4px #12121238;
+
+  p{
+    @include ellipsis;
+  }
+
+  .buttonsArea{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 260px;
+  }
+}
