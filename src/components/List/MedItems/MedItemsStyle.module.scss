@@ -1,0 +1,25 @@
+@use '@/styles/variables' as *;
+
+.medItem {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15px;
+    border-bottom: solid 1px $sandBg;
+}
+
+.medItemInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+}
+
+.medDownload  {
+    display: flex;
+    gap: 20px;
+    width: 275px;
+    justify-self: center;
+}
