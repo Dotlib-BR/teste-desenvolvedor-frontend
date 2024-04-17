@@ -1,4 +1,4 @@
-import "../styles/medications.sass"
+import "../styles/medications.sass";
 import { MedicationCard } from "./MedicationCard";
 import { useMedications } from "../store/UseMedications";
 
@@ -12,15 +12,14 @@ export const Medications = () => {
       <div className="medications-container">
         {medications &&
           medications
-            .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
             .filter((medication) =>
-              searchTerm.toLowerCase() === "" ? medication : medication.name.toLowerCase().includes(searchTerm)
+              searchTerm.toLowerCase() === "" ? true : medication.name.toLowerCase().includes(searchTerm.toLowerCase())
             )
+            .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
             .map((medication, index) => (
               <MedicationCard key={index} medication={medication} />
             ))}
       </div>
     </div>
   );
-
-}
+};
