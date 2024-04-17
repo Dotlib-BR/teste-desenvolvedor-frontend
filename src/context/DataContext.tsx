@@ -1,12 +1,13 @@
 
 import { ReactNode, useState, createContext } from "react";
-import { errorToast } from "../helpers/Toasts";
+import { errorToast, successToast } from "../helpers/Toasts";
 import { api } from "../services/baseUrl";
 import { Cards } from "../model/card";
 
 type DataContextProviderProps = {
   children: ReactNode
 }
+
 type DataSearchParams = {
   name: string;
   company: string
@@ -14,8 +15,8 @@ type DataSearchParams = {
 type DataContextTypes = {
   data: Cards | undefined;
   searched_data: Cards | undefined
-  getData: any;
-  getDataByNameOrLab: any
+  getData: () => void;
+  getDataByNameOrLab: ( value: string ) => void
   setData: React.Dispatch<React.SetStateAction<Cards | undefined>>;
 }
 
