@@ -1,0 +1,36 @@
+@use '../../../../styles/variables' as variables
+@use '../../../../styles/mixin' as mixin
+@use '../../../../styles/media' as media
+
+.containerHero
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 17rem
+    background: url('../../../../assets/bg-hero.svg')
+    background-repeat: no-repeat
+    background-size: cover
+
+    @include media.max-width(extra-large)
+        @include mixin.paddingMobile
+
+.inputSearch
+    width: 33rem
+    height: 3rem
+    padding: 0 1.5rem
+    border: 2px solid variables.$button-color
+    border-radius: 3rem
+    outline: none
+    font-size: 0.8rem
+    color: variables.$text-light
+
+    &::placeholder
+        font-size: 0.8rem
+        color: variables.$text-light
+        opacity: 0.5
+
+    @include media.max-width(large)
+        width: 24rem
+
+    @include media.max-width(small)
+        width: 100%
