@@ -1,18 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export async function getDate() {
-    const [dateInfo, setDateInfo] = useState([])
+export function getDate() {
+    const [dateInfo, setDateInfo] = useState({})
+    const [search, setSearch] = useState('')
+    const typeUrl = search ? 'data/:id' : 'data'
 
-    try {
-        const res = await fetch('')
-        const data = await res.json()
+    const fetchDate = async () => {
+        try {
+            const res = await fetch('http://localhost:3000/' + `${typeUrl}`)
+            const data = await res.json()
 
-        setDateInfo(data)
-    } catch (err) {
-        console.log("Error ==>", err)
+            setDateInfo(data)
+        } catch (err) {
+            console.log("Error ==>", err)
+        }
+
     }
+    useEffect(() => {
+        fetchDate()
+    }, [])
 
     return {
-        dateInfo
+        dateInfo,
+        setSearch
     }
 }
