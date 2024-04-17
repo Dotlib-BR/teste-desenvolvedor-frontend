@@ -6,4 +6,5 @@ export type Cards = {
   published_at: string
   length?: any
   map?: any
+  slice?: any
 }
