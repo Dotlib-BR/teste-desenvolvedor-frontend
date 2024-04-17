@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "./components/Cards";
@@ -22,10 +21,17 @@ const App: React.FC = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleFilter = (searchTerm: string) => {
+  const handleFilter = (searchTerm: string, searchBy: string) => {
     setRecords(
       mediData.filter(
-        (f) => f.name.toLowerCase().includes(searchTerm) || f.company.toLowerCase().includes(searchTerm)
+        (f) => {
+          if (searchBy === "Nome") {
+            return f.name.toLowerCase().includes(searchTerm);
+          } else if (searchBy === "Empresa") {
+            return f.company.toLowerCase().includes(searchTerm);
+          }
+          return false;
+        }
       )
     );
   };

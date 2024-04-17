@@ -1,4 +1,3 @@
-// Cards.tsx
 import React, { useState } from "react";
 import { Medicine } from "../types/types";
 import { motion } from "framer-motion";
