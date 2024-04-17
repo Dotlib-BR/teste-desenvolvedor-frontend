@@ -14,19 +14,22 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { sortByDate } from '../utils/sortByDate';
 import { Title } from './Title';
 import { Document, Medicine } from '../Types/medicine';
+import { formatDate } from '../utils/formatDate';
 
 type TableMedicineProps = {
-  medicines: Medicine[]
+  medicines: Medicine[],
+  isMobile?: boolean
 }
 
 type ItemProps = {
   title: string; 
   text?: string; 
   isLine?: boolean,
+  isMobile?: boolean,
   documents?: Document[]
 }
   
-export const TableMedicine = ({ medicines }: TableMedicineProps) => {
+export const TableMedicine = ({ medicines, isMobile }: TableMedicineProps) => {
   const [expanded, setExpanded] = useState('');
   
   const handleChange = (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
@@ -36,7 +39,7 @@ export const TableMedicine = ({ medicines }: TableMedicineProps) => {
   
     return (
       <>
-        <Accordion
+        { !isMobile && <Accordion
           expanded={false}
           sx={{ background: '#005090' }}
         >
@@ -45,16 +48,28 @@ export const TableMedicine = ({ medicines }: TableMedicineProps) => {
             <Title text="Laboratório"/>
             <Title text="Data de publicação"/>
           </AccordionSummary>
-        </Accordion>
+        </Accordion>}
         {medicines
           .sort(sortByDate)
           .map((item: Medicine) => (
             <Accordion expanded={expanded === item.id} key={item.id} onChange={handleChange(item.id)}>
-              <AccordionSummary aria-controls="panel1bh-content" expandIcon={<ExpandMoreIcon />} id="panel1bh-header">
-                <Typography sx={{ width: '33%' }}>{item.name}</Typography>
-                <Typography sx={{ width: '33%', marginX: '5px'}}>{item.company}</Typography>
-                <Typography>{new Date(item.published_at).toLocaleDateString('pt-BR')}</Typography>
-           
+              <AccordionSummary sx={{overflowY: 'hidden'}} aria-controls="panel1bh-content" expandIcon={<ExpandMoreIcon />} id="panel1bh-header">
+                
+              {
+                isMobile ? 
+                  <Box display='flex' flexDirection="column">
+                  <Item title={'Medicamento'} text={item.name} isLine isMobile />
+                  <Item title={'Laboratório'} text={item.company} isLine isMobile />
+                  <Item title={'Data'} text={ formatDate(item.published_at)} isLine isMobile />
+                  </Box>
+                :
+                <>
+                  <Typography width='33%' overflow='hidden'>{item.name}</Typography>
+                <Typography width='33%' marginX='5px' overflow='hidden'>{item.company}</Typography>
+                <Typography>{formatDate(item.published_at)}</Typography>
+                </>
+              }
+                
               </AccordionSummary>
               <AccordionDetails>
                 <Divider sx={{ marginY: '1rem' }} />
@@ -76,14 +91,15 @@ export const TableMedicine = ({ medicines }: TableMedicineProps) => {
     );
   };
   
-  const Item = ({ title, text = '', isLine = false, documents  }: ItemProps) => {
+  const Item = ({ title, text = '', isLine = false, documents, isMobile = false  }: ItemProps) => {
+
     return (
       <Box display={isLine ? 'flex' : undefined} alignItems='center'>
-        <Typography fontWeight="700"> {title}:</Typography>
+        <Typography fontWeight={ isMobile ? "400" :"700" }> {title}:</Typography>
         
         {
           documents ? documents.map((item) => <Link href={item.url} target="_blank" marginX={1}>{item.type}</Link>) :
-          <Typography marginLeft="10px">{text}</Typography>
+          <Typography marginLeft="10px" fontSize={isMobile ? '12px' : '14px'}>{text}</Typography>
         }
       </Box>
     );
