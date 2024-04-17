@@ -1,0 +1,28 @@
+$breakpoint-xsmall: 320px
+$breakpoint-small: 576px
+$breakpoint-medium: 768px
+$breakpoint-large: 1024px
+$breakpoint-extra-large: 1366px
+
+@mixin max-width($breakpoint)
+    @if $breakpoint == extra-large
+        @media (max-width: $breakpoint-extra-large)
+            @content
+    @else if $breakpoint == small
+        @media (max-width: $breakpoint-small)
+            @content
+
+    @else if $breakpoint == medium
+        @media (max-width: $breakpoint-medium)
+            @content
+
+    @else if $breakpoint == large
+        @media (max-width: $breakpoint-large)
+            @content
+
+    @else if $breakpoint == xsmall
+        @media (max-width: $breakpoint-xsmall)
+            @content
+
+    @else
+        @error "UNKNOWN MEDIA BREAKPOINT #{$breakpoint}"
