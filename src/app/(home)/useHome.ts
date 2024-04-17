@@ -1,8 +1,9 @@
 import { FetchAdapter } from '@/http/fetchAdapter'
 import { MedicineHttpGateway } from '@/http/medicineHttpGateway'
 
-export async function useHome(name: string, page: string) {
+export async function useHome(name: string, page: string = '1') {
   // const httpAdapter = new AxiosAdapter()
+  if (!page) page = '1'
   const httpAdapter = new FetchAdapter()
   const httpGateway = new MedicineHttpGateway(
     httpAdapter,

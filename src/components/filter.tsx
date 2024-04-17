@@ -9,9 +9,10 @@ export function Filter() {
   const searchParams = useSearchParams()
   const [name, setName] = useState('')
 
-  const page = searchParams.get('_page')
+  const page = searchParams.get('_page') || '1'
 
   router.replace(`?_page=${page}&name=${name}`)
+
   return (
     <Input
       placeholder='busque por um medicamento ou um laboratório...'
