@@ -131,3 +131,17 @@
       color: $white
       box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2)
       transition: all 0.3s ease
+
+.loading
+  @include size(3rem, 3rem)
+  border: .5rem solid #f3f3f3
+  border-top: .5rem solid $primary
+  border-radius: 50%
+  margin: 1rem 0
+  animation: spin 2s linear infinite
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)

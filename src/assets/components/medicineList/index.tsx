@@ -16,22 +16,26 @@ import magnifyingGlass from "/magnifyingGlass.svg";
 //styles
 import "./style.sass";
 
+//AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const MedicineList: React.FC = () => {
   const { medicines, loading } = useContext(ApiContext);
   const [query, setQuery] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1); // Define a página atual como 1 por padrão
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [filteredMedicines, setFilteredMedicines] = useState<Medicine[]>([]);
   const [sortedMedicines, setSortedMedicines] = useState<Medicine[]>([]);
-  const location = useLocation(); // Para obter a localização atual
+  const location = useLocation();
 
   useEffect(() => {
-    const queryParams = queryString.parse(location.search); // Obtém os parâmetros da URL
-    const page = parseInt(queryParams.page as string) || 1; // Recupera o número da página da URL, se não houver, usa 1
-    setCurrentPage(page); // Define a página atual com base nos parâmetros da URL
+    const queryParams = queryString.parse(location.search);
+    const page = parseInt(queryParams.page as string) || 1;
+    setCurrentPage(page);
   }, [location.search]);
 
   useEffect(() => {
-    localStorage.setItem("currentPage", currentPage.toString()); // Armazena a página atual no localStorage
+    localStorage.setItem("currentPage", currentPage.toString());
   }, [currentPage]);
 
   useEffect(() => {
@@ -51,6 +55,10 @@ const MedicineList: React.FC = () => {
     );
     setFilteredMedicines(filtered);
   }, [query, sortedMedicines]);
+
+  useEffect(() => {
+    AOS.init();
+  });
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const keyword = e.target.value.toLowerCase();
@@ -75,11 +83,11 @@ const MedicineList: React.FC = () => {
     indexOfLastItem
   );
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="loading"></div>;
 
   return (
     <section className="medicine__list">
-      <div className="search__bar">
+      <div className="search__bar" data-aos="fade-up" data-aos-duration="2000">
         <img src={magnifyingGlass} alt="Search" />
         <input
           type="text"
@@ -90,7 +98,11 @@ const MedicineList: React.FC = () => {
       </div>
 
       {filteredMedicines.length > itemsPerPage && (
-        <section className="pagination">
+        <section
+          className="pagination"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
           {Array(Math.ceil(filteredMedicines.length / itemsPerPage))
             .fill(null)
             .map((_, index) => (
@@ -107,12 +119,21 @@ const MedicineList: React.FC = () => {
       )}
 
       {currentItems.length === 0 ? (
-        <section className="no__results">
+        <section
+          className="no__results"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
           <p>No results found for "{query}".</p>
         </section>
       ) : (
         currentItems.map((medicine) => (
-          <Link to={`/medicine/${medicine.id}`}>
+          <Link
+            to={`/medicine/${medicine.id}`}
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-anchor-placement="top-bottom"
+          >
             <section key={medicine.id} className="medicine__card">
               <p>
                 {medicine.name} <span>({medicine.company})</span>
@@ -121,8 +142,6 @@ const MedicineList: React.FC = () => {
           </Link>
         ))
       )}
-
-      
     </section>
   );
 };

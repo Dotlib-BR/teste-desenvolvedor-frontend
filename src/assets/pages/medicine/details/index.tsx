@@ -16,6 +16,10 @@ import Animation from "../../../components/animations/pills";
 //style
 import "./style.sass";
 
+//AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 export default function Index() {
   const { id } = useParams();
   const [medicine, setMedicine] = useState<Medicine>();
@@ -25,6 +29,8 @@ export default function Index() {
       setMedicine(response.data);
       console.log(response.data);
     });
+
+    AOS.init();
   }, [id]);
 
   return (
@@ -33,22 +39,39 @@ export default function Index() {
         <main>
           <section className="medicine__details">
             <div className="medicine__details__content">
-              <h1>Detalhes do Medicamento</h1>
-              <p>Nome: {medicine?.name}</p>
-              <p>
+              <h1 data-aos="fade-up" data-aos-duration="2000">
+                Detalhes do Medicamento
+              </h1>
+              <p
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >Nome: {medicine?.name}</p>
+              <p
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >
                 Publicado em:{" "}
                 {new Date(medicine?.published_at ?? "").toLocaleDateString(
                   "pt-BR"
                 )}
               </p>
-              <p>Empressa: {medicine?.company}</p>
+              <p
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >Empressa: {medicine?.company}</p>
             </div>
 
             <div className="medicine__details__documents">
-              <h2>Documentos</h2>
+              <h2
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >Documentos</h2>
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {medicine?.documents.map((document: any) => (
-                <div key={document.id} className="medicine__details__document">
+                <div key={document.id} className="medicine__details__document"
+                  data-aos="fade-up"
+                  data-aos-duration="3000"
+                >
                   <p>Tipo: {document.type}</p>
                   <a href={document.url} target="_blank" rel="noreferrer">
                     Visualizar
