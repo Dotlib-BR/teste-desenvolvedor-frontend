@@ -13,4 +13,14 @@ export const successToast = ( ) => toast.success( 'Fármacos carregados com suce
   draggable: true,
 });
 
+export const errorToast = ( ) => toast.error('Algo deu errado, tente novamente.', {
+  position: "bottom-right",
+  autoClose: 2000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+});
+
  
