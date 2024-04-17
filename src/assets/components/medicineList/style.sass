@@ -5,6 +5,7 @@
   @include size(90%, 100%)
   @include flex(row, center, center)
   flex-wrap: wrap
+  padding-bottom: 2rem
 
   a
     text-decoration: none
@@ -59,6 +60,11 @@
   color: $secondary
   text-align: center
   padding: 1rem
+  overflow-x: hidden
+  max-width: 100%
+
+  p
+    text-wrap: pretty
 
 .medicine__card
   @include size(100%, 11vh)
@@ -75,6 +81,7 @@
     @include flex(column, center, center)
     font: 500 1rem 'Quicksand', sans-serif
     color: $secondary
+    text-wrap: pretty
     text-align: center
 
   &:hover

@@ -1,0 +1,53 @@
+@import "../../global/mixin/style.sass"
+@import "../../global/variables/style.sass"
+
+footer
+  @include size(100%, 20vh)
+  @include flex(row, center, center)
+  gap: 1rem
+  background-color: $primary
+  color: $white
+  font: 400 1rem 'Platypi', sans-serif
+  padding: 0 2rem
+
+.footer__container
+  @include flex(column, center, flex-start)
+  @include size(100%, 100%)
+
+  h3
+    font: 900 1.5rem 'Quicksand', sans-serif
+    text-wrap: pretty
+
+  p
+    font: 400 1rem 'Platypi', sans-serif
+    color: $white
+    padding: 0.5rem 0
+
+  a
+    text-decoration: none
+    color: $white
+    position: relative
+    transition: all 0.3s ease
+
+    &::after
+      content: ''
+      @include position(absolute, 1.5rem, 0, 0, 0)
+      @include size(100%, 0.125rem)
+      background-color: $tertiary
+      transform: scaleX(1)
+      transform-origin: center
+      transition: transform 0.3s ease
+
+    &:hover::after
+      transform: scaleX(0)
+  
+  @media (width <= 425px)
+
+    h3
+      font-size: 1.25rem
+
+    p
+      font-size: 0.875rem
+
+    a
+      font-size: 0.875rem
