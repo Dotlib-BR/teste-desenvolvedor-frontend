@@ -12,7 +12,6 @@ interface IManageData {
 
 export const ManageDataContext = createContext<IManageData>({} as IManageData);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ManageDataProvider: FC<any> = (props) =>{
 
     const [medicines, setMedicines] = useState([]);

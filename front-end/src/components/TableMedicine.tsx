@@ -6,13 +6,14 @@ import {
     AccordionSummary,
     Box,
     Divider,
+    Link,
     Typography,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { sortByDate } from '../utils/sortByDate';
 import { Title } from './Title';
-import { Medicine } from '../Types/medicine';
+import { Document, Medicine } from '../Types/medicine';
 
 type TableMedicineProps = {
   medicines: Medicine[]
@@ -20,8 +21,9 @@ type TableMedicineProps = {
 
 type ItemProps = {
   title: string; 
-  text: string; 
-  isLine?: boolean 
+  text?: string; 
+  isLine?: boolean,
+  documents?: Document[]
 }
   
 export const TableMedicine = ({ medicines }: TableMedicineProps) => {
@@ -62,6 +64,8 @@ export const TableMedicine = ({ medicines }: TableMedicineProps) => {
                     Informações Adicionais
                   </Typography>
                   <Item title={'Principio Ativo'} text={item.active_principles.map((item) => item.name).join(", ")} isLine />
+                  <Item title={'Documents'} documents={item.documents} isLine />
+                  
                 </Box>
               </AccordionDetails>
               <AccordionActions>
@@ -72,11 +76,15 @@ export const TableMedicine = ({ medicines }: TableMedicineProps) => {
     );
   };
   
-  const Item = ({ title, text, isLine = false }: ItemProps) => {
+  const Item = ({ title, text = '', isLine = false, documents  }: ItemProps) => {
     return (
-      <Box display={isLine ? 'flex' : undefined}>
+      <Box display={isLine ? 'flex' : undefined} alignItems='center'>
         <Typography fontWeight="700"> {title}:</Typography>
-        <Typography marginLeft="10px">{text}</Typography>
+        
+        {
+          documents ? documents.map((item) => <Link href={item.url} target="_blank" marginX={1}>{item.type}</Link>) :
+          <Typography marginLeft="10px">{text}</Typography>
+        }
       </Box>
     );
   };  

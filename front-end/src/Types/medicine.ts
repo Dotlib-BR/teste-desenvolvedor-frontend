@@ -1,4 +1,4 @@
-type Document = {
+export type Document = {
     id: string,
 	expedient: string,
 	type: string,
