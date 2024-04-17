@@ -1,0 +1,62 @@
+@import "../../../global/mixin/style.sass"
+@import "../../../global/variables/style.sass"
+
+main
+  @include size(100%, 100vh)
+  @include flex(row, space-around, center)
+  background-color: $tertiary
+  padding-top: 2rem
+
+.medicine__details
+  @include size(100%, 100%)
+  @include flex(column, space-around, center)
+  padding: 2rem
+  border-radius: 1rem
+
+.medicine__details__content
+  @include size(100%, 100%)
+  @include flex(column, space-around, flex-start)
+  padding: 2rem
+
+  h1
+    font: 900 2rem "Quicksand", sans-serif
+    color: $secondary
+    padding-bottom: 1.5rem
+
+  p
+    font: 400 1rem "Platypi", sans-serif
+    color: $secondary
+    padding-bottom: .5rem
+
+.medicine__details__documents
+  @include size(100%, 100%)
+  @include flex(column, space-around, flex-start)
+  padding: 2rem
+
+  h2
+    font: 900 2rem "Quicksand", sans-serif
+    color: $secondary
+    padding-bottom: 1.5rem
+
+  .medicine__details__document
+    @include size(100%, 100%)
+    @include flex(row, space-between, center)
+    padding: 1rem
+    border-radius: 1rem
+    background-color: $primary
+    margin-bottom: 1rem
+
+    p
+      font: 400 1rem "Platypi", sans-serif
+      color: $quaternary
+      padding-bottom: .5rem
+
+    a
+      font: 400 1rem "Platypi", sans-serif
+      color: $tertiary
+      text-decoration: none
+      padding-bottom: .5rem
+      transition: color .3s
+
+      &:hover
+        color: $secondary
