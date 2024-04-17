@@ -24,6 +24,7 @@
 import { format } from 'date-fns'
 import medStyles from './MedItemsStyle.module.scss'
 import { ptBR } from 'date-fns/locale/pt-BR'
+import Link from 'next/link'
 
 export const MedItems = ({ medData }: any) => {
 	const medItems = Array.isArray(medData) ? medData : []
@@ -39,9 +40,9 @@ export const MedItems = ({ medData }: any) => {
 						<div>
 							<p>Princípio Ativo: </p>
 							{medItem.active_principles.map((principle: any) => (
-								<p key={principle.id}>
+								<div key={principle.id}>
 									<p>{principle.name}</p>
-								</p>
+								</div>
 							))}
 						</div>
 					</div>
@@ -51,7 +52,7 @@ export const MedItems = ({ medData }: any) => {
 					</div>
 
 					<div className={`${medStyles.medItemInfo} ${medStyles.medDate}`}>
-						<p >
+						<p>
 							{format(medItem.published_at, 'dd/MM/yyyy', {
 								locale: ptBR,
 							})}
@@ -59,8 +60,17 @@ export const MedItems = ({ medData }: any) => {
 					</div>
 
 					<div className={medStyles.medDownload}>
-						<button>Médico</button>
-						<button>Paciente</button>
+						{medItem.documents.map((document) =>
+							document.type === 'PROFESSIONAL' ? (
+								<Link key={document.id} href={document.url} target='_blank' className={medStyles.downloadLink}>
+									Médico
+								</Link>
+							) : (
+								<Link key={document.id} href={document.url} target='_blank' className={medStyles.downloadLink}>
+									Paciente
+								</Link>
+							)
+						)}
 					</div>
 				</li>
 			))}

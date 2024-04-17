@@ -1,32 +1,44 @@
 @use '@/styles/variables' as *;
 
 .medItem {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 15px;
-    border-bottom: solid 1px $sandBg;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0 15px;
+	border-bottom: solid 1px $sandBg;
 }
 
 .medItemInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 15px;
-    text-transform: uppercase;
-    p {
-        margin-bottom: 5px;
-    }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 15px;
+	text-transform: uppercase;
+	p {
+		margin-bottom: 5px;
+	}
 }
 .medDate {
-   padding-left: 30px;
+	padding-left: 30px;
 }
 
-.medDownload  {
-    display: flex;
-    gap: 20px;
-    width: 275px;
-    justify-self: center;
+.medDownload {
+	display: flex;
+	gap: 20px;
+	width: 275px;
+	justify-content: center;
+	align-items: center;
+
+	.downloadLink {
+		background-color: $translucidBlack;
+		border-radius: 8px;
+		border-width: 0;
+		color: $black;
+		cursor: pointer;
+		display: inline-block;
+		font-weight: 500;
+		padding: 10px 12px;
+	}
 }
