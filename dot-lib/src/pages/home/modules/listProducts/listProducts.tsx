@@ -31,7 +31,7 @@ export function ListProducts() {
 
       <div className={styles.buttonsPagination}>
         <Button disabled={currentPage === 1} onClick={prevPage}>
-          Prev
+          Anterior
         </Button>
         {pageButtons.map((button) => (
           <Button
@@ -46,7 +46,7 @@ export function ListProducts() {
           disabled={lastIndex >= filterProducts.length}
           onClick={nextPage}
         >
-          Next
+          Próxima
         </Button>
       </div>
     </div>
