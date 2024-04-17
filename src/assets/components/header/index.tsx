@@ -13,7 +13,7 @@ export default function Index() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 10) {
         setScroll(true);
       } else {
         setScroll(false);
