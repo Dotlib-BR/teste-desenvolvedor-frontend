@@ -56,6 +56,10 @@ function App() {
     });
   };
 
+  const handleClearSearch = () => {
+    setSearchTerm("");
+  };
+
   const handleNextPage = () => {
     setPaginationInfo((prevState) => ({
       ...prevState,
@@ -83,22 +87,42 @@ function App() {
         </h1>
       </header>
       <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="mb-4">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={handleSearch}
-            placeholder="Buscar pelo nome do medicamento ou laboratório farmacêutico..."
-            className="w-full border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-500"
-          />
+        <div className="mb-4 relative">
+          <div className="relative">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearch}
+              placeholder="Buscar pelo nome do medicamento ou laboratório farmacêutico..."
+              className="w-full border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-500"
+            />
+            {searchTerm && (
+              <button
+                className="absolute right-0 inset-y-0 flex items-center pr-3 text-gray-500"
+                onClick={handleClearSearch}
+              >
+                <svg
+                  className="h-4 w-4 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M14.707 5.293a1 1 0 00-1.414 1.414L10 10.414l-3.293-3.293a1 1 0 00-1.414 1.414L8.586 12 5.293 15.293a1 1 0 101.414 1.414L10 13.414l3.293 3.293a1 1 0 001.414-1.414L11.414 12l3.293-3.293a1 1 0 000-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            )}
+          </div>
           <div className="flex justify-end mt-4">
             <button
               onClick={toggleSortOrder}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
             >
               {sortOrder === "asc"
-                ? "Ordenar Descendentemente"
-                : "Ordenar Ascendentemente"}
+                ? "Mais Antigo" 
+                : "Mais Recente"}
             </button>
           </div>
         </div>
@@ -112,7 +136,7 @@ function App() {
             disabled={!paginationInfo.prevPage}
             className={`${
               paginationInfo.prevPage
-                ? "bg-blue-500 cursor-pointer"
+                ? "bg-blue-500 hover:bg-blue-600 cursor-pointer"
                 : "bg-gray-500 cursor-not-allowed"
             } text-white px-4 py-2 rounded`}
           >
@@ -123,7 +147,7 @@ function App() {
             disabled={!paginationInfo.nextPage}
             className={`${
               paginationInfo.nextPage
-                ? "bg-blue-500 cursor-pointer"
+                ? "bg-blue-500 hover:bg-blue-600 cursor-pointer"
                 : "bg-gray-500 cursor-not-allowed"
             } text-white px-4 py-2 rounded`}
           >
