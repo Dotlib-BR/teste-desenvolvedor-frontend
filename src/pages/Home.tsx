@@ -1,3 +1,4 @@
+
 import { Medicine } from "../components/Medicine/Medicine";
 import { Search } from "../components/Search/Search";
 import './Home.scss';
