@@ -1,11 +1,16 @@
 import { useRoutes } from "react-router-dom";
-import FormProduct from "../views/formProduct";
-
+import { useState } from "react";
+import { Product } from "../types";
 //Views
+import ProductListPage from "../views/productsListPage";
+import FormProductPage from "../views/formSearchProductPage";
 
 export const MainRouter = () =>{
+  const [ productsList, setProductsList ] = useState<Product[]>([]);
+
   const router = useRoutes([
-    {path: "/", element: <FormProduct />},
+    {path: "/", element: <FormProductPage setProductsList={setProductsList}/>},
+    {path: "/medicamentos", element: <ProductListPage productList={productsList} />}
   ])
 
   return router;
