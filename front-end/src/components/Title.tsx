@@ -1,12 +1,13 @@
-import { Typography } from "@mui/material"
+import { Typography } from "@mui/material";
 
 type TitleProps = {
-    text: string
-}
+  text: string;
+};
 
-export const Title = ({text}: TitleProps ) => {
-    return (
-    <Typography width='33%' color='white' fontWeight='700'> 
+export const Title = ({ text }: TitleProps) => {
+  return (
+    <Typography width="33%" color="white" fontWeight="700">
       {text}
-    </Typography>)
-}
+    </Typography>
+  );
+};
