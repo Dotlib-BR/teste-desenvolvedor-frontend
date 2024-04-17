@@ -114,8 +114,8 @@ const Pagination = () => {
               <PageButton
                 key={page}
                 onClick={() => handlePageChange(page)}
-                active={page === currentPage}
-              >
+                active={page === currentPage ? 'true' : 'false'} 
+                >
                 {page}
               </PageButton>
             );

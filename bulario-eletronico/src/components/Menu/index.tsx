@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Icon from '../../assets/images/menu_icon.png'
-import { ListOption, ListOptions, LogoDiv, MenuStyled } from "./menu_styled"
+import { LogoDiv, MenuStyled } from "./menu_styled"
 
 const Menu = () => {
   return (
@@ -10,20 +10,6 @@ const Menu = () => {
             <p>Bulário Eletrônico</p>
         </LogoDiv>
 
-        <div>
-            <ListOptions>
-                <ListOption>
-                    <a href="">Início</a>
-                </ListOption>
-                <ListOption>
-                    <a href="">Filtros</a>
-                </ListOption>
-                <ListOption>
-                    <a href="">Medicamentos</a>
-                </ListOption>
-                
-            </ListOptions>
-        </div>
     </MenuStyled>
   )
 }
