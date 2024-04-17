@@ -1,6 +1,6 @@
 export type Document = {
-  id: string,
-  expedient: string,
-  type: string,
-  url: string
+  id: string;
+  expedient: string;
+  type: string;
+  url: string;
 }
