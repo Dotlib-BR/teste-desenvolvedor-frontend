@@ -14,12 +14,7 @@
   }
 
   .buttonsArea{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 260px;
+    @include flexCenter;
   }
 }
 

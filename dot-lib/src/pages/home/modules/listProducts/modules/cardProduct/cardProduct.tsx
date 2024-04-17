@@ -2,12 +2,14 @@ import styles from './styles.module.scss'
 import { Button } from '../../../../../../components/ui'
 import { formatDate } from '../../../../../../utils'
 import { ProductProps } from '../../../../../../contexts/productContext'
+import { Link } from 'react-router-dom'
 
 interface CardProductProps {
   product: ProductProps
 }
 
 export function CardProduct({ product }: CardProductProps) {
+  console.log(product)
   return (
     <div className={styles.cardProduct}>
       <div>
@@ -23,8 +25,9 @@ export function CardProduct({ product }: CardProductProps) {
         </p>
       </div>
       <div className={styles.buttonsArea}>
-        <Button iconLeft="download" />
-        <Button>Ver mais informações</Button>
+        <Link to={`/details/${product.id}`}>
+          <Button>Ver mais informações</Button>
+        </Link>
       </div>
     </div>
   )
