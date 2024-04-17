@@ -121,7 +121,7 @@ function App() {
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
             >
               {sortOrder === "asc"
-                ? "Mais Antigo" 
+                ? "Mais Antigo"
                 : "Mais Recente"}
             </button>
           </div>
