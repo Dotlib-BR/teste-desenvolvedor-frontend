@@ -1,4 +1,4 @@
-import { Autocomplete, Box, TextField } from '@mui/material';
+import { Autocomplete, Box, Pagination, TextField } from '@mui/material';
 import { useMemo } from 'react';
 import { useManageData } from '../Providers/manageDataProvider';
 import { TableMedicine } from '../components/TableMedicine';
@@ -6,7 +6,7 @@ import { TableMedicine } from '../components/TableMedicine';
 
 export const Home = () =>{
 
-    const {medicines} = useManageData();
+    const {medicines, updateMedicines, pages} = useManageData();
 
     const namesMedicines = useMemo(() =>{
         const values = medicines.map((medicine) => medicine.name)
@@ -14,7 +14,7 @@ export const Home = () =>{
     }, [medicines] )
 
     return (
-        <Box display="flex" flexDirection='column'  padding={6}>
+        <Box display="flex" flexDirection='column'  padding={6} >
         <Autocomplete
             disablePortal
             id="combo-box-demo"
@@ -25,6 +25,9 @@ export const Home = () =>{
             sx={{ marginBottom: '20px'}}
         />
         <TableMedicine medicines={medicines}/>
+        <Box display='flex' justifyContent='center' alignItems='center' marginTop={2}>
+            <Pagination count={pages} shape="rounded" onChange={(_event, page) => updateMedicines(page)}  />
+        </Box>
         </Box>  
     )
 }

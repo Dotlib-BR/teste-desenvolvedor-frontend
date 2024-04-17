@@ -61,7 +61,7 @@ export const TableMedicine = ({ medicines }: TableMedicineProps) => {
                   <Typography minWidth="100%" textAlign="center">
                     Informações Adicionais
                   </Typography>
-                  <Item title={'Principio Ativo'} text={item.active_principles[0].name} isLine />
+                  <Item title={'Principio Ativo'} text={item.active_principles.map((item) => item.name).join(", ")} isLine />
                 </Box>
               </AccordionDetails>
               <AccordionActions>
