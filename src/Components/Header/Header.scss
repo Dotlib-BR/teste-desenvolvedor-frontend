@@ -1,0 +1,22 @@
+$MainBlue: #024873;
+$Iconblue: #0477BF;
+$Buttonblue: #049DBF;
+$SubIconBlue: #048ABF;
+$MainWhite: #FFF;
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 2rem 4rem;
+    background-color: $MainBlue;
+
+    h1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+
+        color: $MainWhite;
+    }
+}
