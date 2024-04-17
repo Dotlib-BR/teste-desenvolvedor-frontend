@@ -1,0 +1,11 @@
+.mainTable {
+    border-collapse: collapse;
+
+    background-color: brown;
+}
+
+.tableHeader {
+    height: 50px;
+
+    background-color: rgb(86, 21, 21);
+}
