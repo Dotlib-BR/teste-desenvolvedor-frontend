@@ -2,13 +2,19 @@ import { useContext, useState, useEffect, ChangeEvent } from "react";
 
 //libs
 import { Link, useLocation } from "react-router-dom";
-import queryString from "query-string"
+import queryString from "query-string";
 
 //services
 import { ApiContext } from "../../services/context/index";
 
 //types
 import { Medicine } from "../../../types";
+
+//images
+import magnifyingGlass from "../../../assets/img/magnifyingGlass.svg";
+
+//styles
+import "./style.sass";
 
 const MedicineList: React.FC = () => {
   const { medicines, loading } = useContext(ApiContext);
@@ -34,7 +40,7 @@ const MedicineList: React.FC = () => {
       const dateB = new Date(b.published_at).getTime();
       return dateB - dateA;
     });
-    setSortedMedicines(sorted);
+    setSortedMedicines(sorted as Medicine[]);
   }, [medicines]);
 
   useEffect(() => {
@@ -72,45 +78,52 @@ const MedicineList: React.FC = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search by medicine name or company"
-        value={query}
-        onChange={handleSearch}
-      />
-
-      {currentItems.length === 0 ? (
-        <section>
-          <p>No results found for "{query}".</p>
-        </section>
-      ) : (
-        currentItems.map((medicine) => (
-          <ul key={medicine.id}>
-            <Link to={`/medicine/${medicine.id}`}>
-              {medicine.name} ({medicine.company})
-            </Link>
-          </ul>
-        ))
-      )}
+    <section className="medicine__list">
+      <div className="search__bar">
+        <img src={magnifyingGlass} alt="Search" />
+        <input
+          type="text"
+          placeholder="Pesquise pelo nome ou fabricante"
+          value={query}
+          onChange={handleSearch}
+        />
+      </div>
 
       {filteredMedicines.length > itemsPerPage && (
-        <ul className="pagination">
+        <section className="pagination">
           {Array(Math.ceil(filteredMedicines.length / itemsPerPage))
             .fill(null)
             .map((_, index) => (
-              <li
+              <div
                 key={index}
                 className={currentPage === index + 1 ? "active" : ""}
               >
                 <button onClick={() => paginate(index + 1)}>
                   <Link to={generatePageUrl(index + 1)}>{index + 1}</Link>
                 </button>
-              </li>
+              </div>
             ))}
-        </ul>
+        </section>
       )}
-    </div>
+
+      {currentItems.length === 0 ? (
+        <section className="no__results">
+          <p>No results found for "{query}".</p>
+        </section>
+      ) : (
+        currentItems.map((medicine) => (
+          <Link to={`/medicine/${medicine.id}`}>
+            <section key={medicine.id} className="medicine__card">
+              <p>
+                {medicine.name} <span>({medicine.company})</span>
+              </p>
+            </section>
+          </Link>
+        ))
+      )}
+
+      
+    </section>
   );
 };
 

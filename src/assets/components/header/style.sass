@@ -4,9 +4,22 @@
 header
   @include flex(row, center, center)
   @include size(100%, 10vh)
+  @include position(fixed, 0, 0, 0, 0)
   display: flex
   justify-content: center
   align-items: center
+  z-index: 10
+  transition: all 0.3s ease
+
+.header__scroll
+  @include flex(row, center, center)
+  @include size(100%, 8vh)
+  backdrop-filter: blur(1rem) saturate(150%)
+  webkit-backdrop-filter: blur(1rem) saturate(150%)
+  background-color: rgba(249, 249, 249, 0.25)
+  border-radius: 0.75rem
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1)
+  transition: all 0.3s ease
 
 .header__container
   @include flex(row, space-between, center)
@@ -18,7 +31,7 @@ header
     @include flex(row, center, center)
     gap: 0.5rem
     text-decoration: none
-    color: #000
+    color: $black
 
     img
       @include size(4rem, 4rem)
@@ -26,6 +39,13 @@ header
 
     h1
       font: 900 1.5rem 'Quicksand', sans-serif
+
+    @media (width <= 768px)
+      img
+        @include size(3rem, 3rem)
+
+      h1
+        font-size: 1.25rem
 
 .header__container__nav
   padding: 0 0.5rem
@@ -40,7 +60,7 @@ header
     &::after
       content: ''
       @include position(absolute, 1.5rem, 0, 0, 0)
-      @include size(100%, 2px)
+      @include size(100%, 0.125rem)
       background-color: $black
       transform: scaleX(.1)
       transform-origin: center

@@ -1,0 +1,120 @@
+@import "../../global/mixin/style.sass"
+@import "../../global/variables/style.sass"
+  
+.medicine__list
+  @include size(90%, 100%)
+  @include flex(row, center, center)
+  flex-wrap: wrap
+
+  a
+    text-decoration: none
+    @include size(50%, auto)
+    @include flex(row, center, center)
+    flex: 1 1 30rem
+
+  @media (width <= 1067px)
+    a
+      flex: 1 1 25rem
+
+.search__bar
+  @include size(100%, 10%)
+  @include flex(row, center, center)
+  padding-bottom: 1rem
+  
+  input
+    @include size(100%, 3rem)
+    @include flex(row, center, center)
+    @include position(relative, auto, .5rem, auto, auto)
+    border-radius: 0.3125rem
+    border: none
+    outline: none
+    padding:  0 .5rem 0 3.3rem
+    font: 500 1.2rem 'Quicksand', sans-serif
+    color: $primary
+    background-color: $white
+    outline: none
+    transition: 0.3s
+
+    &::placeholder
+      color: $primary
+      font-size: 1.2rem
+
+  img
+    width: 1.5rem
+    @include position(relative, auto, auto, auto, 2rem)
+    cursor: pointer
+    z-index: 1
+
+  @media (width <= 768px)
+    input
+      font-size: 1rem
+
+      &::placeholder
+        font-size: 1rem
+
+.no__results
+  @include size(100%, 100%)
+  @include flex(column, center, center)
+  font: 600 1.5rem 'Platypi', sans-serif
+  color: $secondary
+  text-align: center
+  padding: 1rem
+
+.medicine__card
+  @include size(100%, 11vh)
+  @include flex(row, center, center)
+  background-color: $quaternary
+  padding: 1rem
+  margin: 1rem
+  border-radius: 0.625rem
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1)
+  transition: all 0.3s ease
+  cursor: pointer
+
+  p
+    @include flex(column, center, center)
+    font: 500 1rem 'Quicksand', sans-serif
+    color: $secondary
+    text-align: center
+
+  &:hover
+    transform: scale(1.05)
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2)
+    background-color: $white
+    border-radius: 0.625rem
+    transition: all 0.3s ease
+
+.pagination
+  @include size(100%, 10%)
+  @include flex(row, center, center)
+  gap: 1rem
+  padding: 1rem
+
+  button
+    @include flex(row, center, center)
+    border: none
+    outline: none
+    background: transparent
+
+  a
+    @include size(2.5rem, 2.5rem)
+    text-decoration: none
+    font: 500 1.2rem 'Platypi', sans-serif
+    color: $secondary
+    padding: .5rem 1rem
+    border-radius: 100%
+    background-color: $white
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1)
+    transition: all 0.3s ease
+
+    &:hover
+      background-color: $primary
+      color: $white
+      box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2)
+      transition: all 0.3s ease
+
+    &.active
+      background-color: $primary
+      color: $white
+      box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2)
+      transition: all 0.3s ease

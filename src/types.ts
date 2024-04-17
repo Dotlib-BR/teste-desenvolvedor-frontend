@@ -3,4 +3,5 @@ export interface Medicine {
   name: string;
   published_at: string;
   company: string;
+  documents: Document[];
 }

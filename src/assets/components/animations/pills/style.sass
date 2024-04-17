@@ -1,0 +1,13 @@
+@import "../../../global/mixin/style.sass"
+
+.Lottie 
+  @include size(40rem, 30rem) 
+
+  @media (width <= 1200px)
+    @include size(30rem, 20rem)
+
+  @media (width <= 905px)
+    @include size(25rem, 15rem)
+
+  @media (width <= 425px)
+    @include size(22rem, 15rem)
