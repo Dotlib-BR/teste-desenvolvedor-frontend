@@ -3,6 +3,10 @@
 .header {
   background: $secondary-50;
   box-shadow: 2px 2px 8px #12121221;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   .content {
     padding: 0.5rem 1rem;
     display: flex;
