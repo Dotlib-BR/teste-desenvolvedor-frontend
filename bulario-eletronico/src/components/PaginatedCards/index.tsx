@@ -1,11 +1,24 @@
-import { IMedicine } from '@/interfaces/medicine';
-import { ApiPaginatedResponse } from '@/interfaces/pagination_api';
-import api from '@/services/http';
 import React, { useState, useEffect } from 'react';
+
+// interface 
+import { ApiPaginatedResponse } from '@/interfaces/pagination_api';
+
+// services
+import api from '@/services/http';
+
+// components 
 import Button from '../Button/index';
 import Card from '../Card/index';
 import Input from '../Input/index';
-import { CardSection, Filters, PageButton, PaginationWrapper } from './pagination_styled';
+
+// styles
+import { 
+    CardSection, 
+    Filters, 
+    PageButton, 
+    PaginationWrapper } from './pagination_styled';
+
+    
 
 const Pagination = () => {
   const [medicines, setMedicines] = useState<ApiPaginatedResponse>();

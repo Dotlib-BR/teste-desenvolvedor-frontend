@@ -1,9 +1,20 @@
 import React from 'react'
-import { CardStyled, FlexDiv, Info, Label, MedicineInfo, MedicineName } from './card_styled'
+
+// styles
+import { 
+    CardStyled, 
+    FlexDiv, 
+    Info, 
+    Label, 
+    MedicineInfo, 
+    MedicineName } from './card_styled';
+
+// icons
 import { MdOutlineScience, MdDateRange } from "react-icons/md";
 import { CgPill } from "react-icons/cg";
 import { FaFilePdf } from "react-icons/fa6";
 import { IMedicine } from '@/interfaces/medicine';
+
 
 const Card = (props: { medicine: IMedicine }) => {
   const greenColor = "#0FE3AF";

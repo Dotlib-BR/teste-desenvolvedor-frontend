@@ -1,6 +1,11 @@
 import Image from "next/image"
+
+// image
 import Icon from '../../assets/images/menu_icon.png'
+
+//styles
 import { LogoDiv, MenuStyled } from "./menu_styled"
+
 
 const Menu = () => {
   return (

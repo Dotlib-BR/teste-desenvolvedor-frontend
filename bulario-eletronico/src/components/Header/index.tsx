@@ -1,5 +1,11 @@
 import React from 'react'
-import { HeaderStyled, HeaderTag, HeaderText, HeaderTitle } from './header_styled'
+
+// styles
+import { 
+    HeaderStyled, 
+    HeaderTag, 
+    HeaderText, 
+    HeaderTitle } from './header_styled'
 
 const Header = () => {
   return (

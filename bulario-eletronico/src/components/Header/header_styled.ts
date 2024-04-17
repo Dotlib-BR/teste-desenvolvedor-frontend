@@ -1,4 +1,6 @@
 import styled from "styled-components";
+
+// image
 import headerImage from '../../assets/images/header_image.png'
 
 export const HeaderStyled = styled.header`

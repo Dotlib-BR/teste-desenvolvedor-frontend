@@ -1,4 +1,6 @@
 import React, { ChangeEvent } from 'react';
+
+// styles
 import { InputStyled } from './input_styled';
 
 interface InputProps {

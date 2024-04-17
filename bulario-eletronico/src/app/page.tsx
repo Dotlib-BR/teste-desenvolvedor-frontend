@@ -1,5 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+
+// components
 import Header from "../components/Header/index";
 import Menu from "../components/Menu/index";
 import Pagination from "@/components/PaginatedCards/index";
