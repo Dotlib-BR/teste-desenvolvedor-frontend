@@ -8,6 +8,8 @@ import { ApiException } from './app/services/api/ApiException.ts';
 function App() {
   const [lista, setLista] = useState<IMedicamentos[]>([]);
   const [busca, setBusca] = useState('');
+  const [listaOrdem, setOrdemLista] = useState<IMedicamentos[]>([]);
+  
 
   useEffect(() => {
     MedicamentosService.getAll().then((result) => {
@@ -15,6 +17,12 @@ function App() {
         alert(result.message);
       } else {
         setLista(result);
+        const listaOrdenada = () => {
+          lista.sort((a, b) => a.published_at.localeCompare(b.published_at));
+          setOrdemLista(lista);
+        }
+
+        listaOrdenada();
       }
     })
   }, []);
@@ -22,7 +30,7 @@ function App() {
   const medicamentosFiltrados = useMemo (() => {
     const upperBusca = busca.toUpperCase();
 
-    return lista.filter((medicamento) => medicamento.name.toUpperCase().includes(upperBusca) || medicamento.company.includes(upperBusca));
+    return listaOrdem.filter((medicamento) => medicamento.name.toUpperCase().includes(upperBusca) || medicamento.company.includes(upperBusca));
   }, [busca]); 
 
   return (
@@ -36,7 +44,7 @@ function App() {
       <ol>
         {medicamentosFiltrados.map((lisItem, index) => {
           return <li key={lisItem.id}>
-            {lisItem.name} ---- {lisItem.company}
+            {lisItem.published_at}
           </li>
         })}
       </ol>
