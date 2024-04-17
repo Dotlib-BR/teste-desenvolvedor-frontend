@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useHome } from './useHome'
 
 import { Cards } from '@/components/cards'
@@ -16,7 +17,7 @@ export default async function Home({
   return (
     <main className='flex flex-col py-6 w-full px-6'>
       <div className='flex flex-col w-full'>
-        <h1 className=''>Dotlib Farma</h1>
+        <Image src={'/logo.png'} alt='logo-dotlib' width={200} height={100} />
         <Filter />
         <div className='flex flex-wrap gap-6'>
           <Cards medicines={medicines.data} />
