@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { SyntheticEvent, useState } from 'react';
 import {
     Accordion,
     AccordionActions,
@@ -7,57 +7,46 @@ import {
     Box,
     Divider,
     Typography,
-  } from '@mui/material';
-  
+} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useState } from 'react';
+
 import { sortByDate } from '../utils/sortByDate';
+import { Title } from './Title';
+import { Medicine } from '../Types/medicine';
+
+type TableMedicineProps = {
+  medicines: Medicine[]
+}
+
+type ItemProps = {
+  title: string; 
+  text: string; 
+  isLine?: boolean 
+}
   
-export const TableMedicine = ({ medicines }: any) => {
-  const [expanded, setExpanded] = useState(false);
+export const TableMedicine = ({ medicines }: TableMedicineProps) => {
+  const [expanded, setExpanded] = useState('');
   
-    const handleChange = (panel: any) => (event: any, isExpanded: any) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+  const handleChange = (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : '');
+  };
   
   
     return (
       <>
         <Accordion
           expanded={false}
-          sx={{ background: '#005090', color: 'write', fontWeight: '700' }}
+          sx={{ background: '#005090' }}
         >
           <AccordionSummary aria-controls="panel1bh-content" id="panel1bh-header">
-            <Typography
-              sx={{
-                width: '33%',
-                flexShrink: 0,
-                color: 'white',
-                fontWeight: '700',
-              }}
-            >
-              Medicamento
-            </Typography>
-            <Typography
-              sx={{
-                width: '33%',
-                flexShrink: 0,
-                color: 'white',
-                fontWeight: '700',
-              }}
-            >
-              Laboratório
-            </Typography>
-            <Box alignItems="center" display="flex" justifyContent="center">
-              <Typography marginRight="5px" sx={{ color: 'white', fontWeight: '700' }}>
-                Data de publicação
-              </Typography>
-            </Box>
+            <Title text="Medicamento"/>
+            <Title text="Laboratório"/>
+            <Title text="Data de publicação"/>
           </AccordionSummary>
         </Accordion>
         {medicines
           .sort(sortByDate)
-          .map((item: any) => (
+          .map((item: Medicine) => (
             <Accordion expanded={expanded === item.id} key={item.id} onChange={handleChange(item.id)}>
               <AccordionSummary aria-controls="panel1bh-content" expandIcon={<ExpandMoreIcon />} id="panel1bh-header">
                 <Typography sx={{ width: '33%' }}>{item.name}</Typography>
@@ -83,12 +72,11 @@ export const TableMedicine = ({ medicines }: any) => {
     );
   };
   
-  const Item = ({ title, text, isLine = false }: { title: string; text: string; isLine?: boolean }) => {
+  const Item = ({ title, text, isLine = false }: ItemProps) => {
     return (
       <Box display={isLine ? 'flex' : undefined}>
         <Typography fontWeight="700"> {title}:</Typography>
         <Typography marginLeft="10px">{text}</Typography>
       </Box>
     );
-  };
-  
+  };  
