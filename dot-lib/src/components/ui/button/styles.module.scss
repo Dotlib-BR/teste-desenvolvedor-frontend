@@ -16,13 +16,16 @@
     opacity: 0.8;
   }
 
-  &.widthFull{
+  &.widthFull {
     width: 100%;
   }
 
-  &.circle {
-    border-radius: 2000px;
-    padding: 0.3rem;
+  &.disablePagination {
+    background: $secondary-200;
+  }
+
+  &.disabled {
+    opacity: 0.6;
   }
 
   .icon {

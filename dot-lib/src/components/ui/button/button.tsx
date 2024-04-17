@@ -8,9 +8,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean
   iconLeft?: IconsProps
   iconRigth?: IconsProps
-  circle?: boolean
   className?: string
   widthFull?: boolean
+  disabled?: boolean
+  disablePagination?: boolean
 }
 
 export function Button({
@@ -18,23 +19,25 @@ export function Button({
   loading,
   iconLeft,
   iconRigth,
-  circle,
   children,
   className,
   widthFull,
+  disablePagination,
+  disabled,
   ...rest
 }: ButtonProps) {
   return (
     <button
       className={`
       ${styles.button} 
-      ${circle && styles.circle} 
       ${color && styles[color]} 
       ${widthFull && styles.widthFull}
+      ${disabled && styles.disabled}
+      ${disablePagination && styles.disablePagination}
       ${className}
       `}
       {...rest}
-      disabled={loading}
+      disabled={loading || disabled}
     >
       {loading ? (
         'Carregando...'

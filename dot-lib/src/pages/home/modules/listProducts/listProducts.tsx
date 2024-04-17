@@ -1,9 +1,19 @@
 import styles from './styles.module.scss'
 import { CardProduct } from './modules'
 import { useContexts } from '../../../../contexts/useContexts'
+import { Button } from '../../../../components/ui'
+import { useListProducts } from './useListProducts'
 
 export function ListProducts() {
   const { filterProducts, products } = useContexts()
+  const {
+    nextPage,
+    prevPage,
+    currentProducts,
+    pageButtons,
+    currentPage,
+    lastIndex,
+  } = useListProducts()
 
   return (
     <div>
@@ -14,9 +24,30 @@ export function ListProducts() {
           </div>
         )}
         {filterProducts.length > 0 &&
-          filterProducts.map((product) => (
+          currentProducts.map((product) => (
             <CardProduct key={product.id} product={product} />
           ))}
+      </div>
+
+      <div className={styles.buttonsPagination}>
+        <Button disabled={currentPage === 1} onClick={prevPage}>
+          Prev
+        </Button>
+        {pageButtons.map((button) => (
+          <Button
+            disablePagination={currentPage !== button.pageNumber}
+            onClick={button.onClick}
+            key={button.pageNumber}
+          >
+            {button.pageNumber}
+          </Button>
+        ))}
+        <Button
+          disabled={lastIndex >= filterProducts.length}
+          onClick={nextPage}
+        >
+          Next
+        </Button>
       </div>
     </div>
   )
