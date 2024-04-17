@@ -5,6 +5,8 @@
   box-shadow: 2px 2px 8px #12121221;
   .content {
     padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
     .logo {
       max-width: 120px;
     }
