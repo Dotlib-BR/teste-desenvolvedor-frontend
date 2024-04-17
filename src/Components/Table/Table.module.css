@@ -1,0 +1,12 @@
+.Table {
+  height: 0;
+  opacity: 0;
+  animation: animateTable .4s forwards;
+}
+
+@keyframes animateTable {
+  to {
+    height: 100%;
+    opacity: 1;
+  }
+}

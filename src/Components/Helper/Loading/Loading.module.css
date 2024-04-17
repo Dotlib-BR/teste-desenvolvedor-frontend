@@ -1,0 +1,16 @@
+.Loading {
+  align-self: center;
+  margin-top: 1rem;
+  height: 36px;
+  width: 36px;
+  border: 6px solid var(--color-1);
+  border-radius: 50%;
+  border-top: 6px solid transparent;
+  animation: animationLoading 1s infinite;
+}
+
+@keyframes animationLoading {
+  to {
+    transform: rotate(360deg);
+  }
+}
