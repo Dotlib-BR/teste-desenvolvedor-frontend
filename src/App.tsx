@@ -7,10 +7,10 @@ import { MedicineList } from "@/components/medicine-list"
 import { Pagination } from "@/components/pagination"
 import { Search } from "@/components/search"
 import { Header } from "@/components/header"
+import { useMedicines } from "./lib/query"
 
 const App = () => {
-  const [data, setData] = useState<Medicine[]>([])
-  const [loading, setLoading] = useState(true)
+  const { data, isLoading } = useMedicines()
 
   const [filteredData, setFilteredData] = useState<Medicine[]>([])
   const [filterInput, setFilterInput] = useState("")
@@ -21,27 +21,27 @@ const App = () => {
     limit: 9,
   })
 
-  useEffect(() => {
-    const getData = async () => {
-      const req = await fetch("http://localhost:3000/data")
-      const data = (await req.json()) as Medicine[]
-      if (!req.ok) {
-        return []
-      }
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const req = await fetch("http://localhost:3000/data")
+  //     const data = (await req.json()) as Medicine[]
+  //     if (!req.ok) {
+  //       return []
+  //     }
 
-      setData(
-        data.sort((a, b) => {
-          if (a.published_at > b.published_at) {
-            return 1
-          } else {
-            return -1
-          }
-        }),
-      )
-      setLoading(false)
-    }
-    getData()
-  }, [])
+  //     setData(
+  //       data.sort((a, b) => {
+  //         if (a.published_at > b.published_at) {
+  //           return 1
+  //         } else {
+  //           return -1
+  //         }
+  //       }),
+  //     )
+  //     setLoading(false)
+  //   }
+  //   getData()
+  // }, [])
 
   const handleNextClick = () => {
     setPagination((prev) => {
@@ -67,6 +67,7 @@ const App = () => {
 
   const handleFilter = () => {
     if (filterInput.trim() === "") return
+    if (!data) return
     const filteredData = [...data].filter(
       (item) =>
         item.name
@@ -99,10 +100,10 @@ const App = () => {
         <Search onChange={setFilterInput} onFilter={handleFilter} />
 
         <div className="flex-1 space-y-2">
-          {loading && <div>Carregando medicamentos...</div>}
-          {!loading && filteredData.length === 0 && (
+          {isLoading && <div>Carregando medicamentos...</div>}
+          {!isLoading && filteredData.length === 0 && (
             <MedicineList
-              medicines={data}
+              medicines={data ? data : []}
               start={pagination.start}
               limit={pagination.limit}
             />
@@ -118,7 +119,9 @@ const App = () => {
 
         <Pagination
           pageNum={pagination.page}
-          dataLength={filterInput ? filteredData.length : data.length}
+          dataLength={
+            filterInput ? filteredData.length : (data?.length as number)
+          }
           onNextClick={handleNextClick}
           onPrevClick={handlePrevClick}
         />
