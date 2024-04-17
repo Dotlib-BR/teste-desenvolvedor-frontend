@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import Pills from "../../../../public/pills.svg";
+import Pills from "/pills.svg";
 
 //react-router-dom
 import { Link } from "react-router-dom";
@@ -28,7 +28,7 @@ export default function Index() {
           <div className="header__container__logo">
             <Link to="/">
               <img src={Pills} alt="Pills" />
-              <h1>Bulário Eletrônico</h1>
+              <h1 data-testid="cypress-title">Bulário Eletrônico</h1>
             </Link>
           </div>
           <nav className="header__container__nav">

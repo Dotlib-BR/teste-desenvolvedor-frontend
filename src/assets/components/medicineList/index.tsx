@@ -11,7 +11,7 @@ import { ApiContext } from "../../services/context/index";
 import { Medicine } from "../../../types";
 
 //images
-import magnifyingGlass from "../../../assets/img/magnifyingGlass.svg";
+import magnifyingGlass from "/magnifyingGlass.svg";
 
 //styles
 import "./style.sass";
