@@ -1,0 +1,50 @@
+@import '../../global/variables/style.sass'
+@import '../../global/mixin/style.sass'
+
+header
+  @include flex(row, center, center)
+  @include size(100%, 10vh)
+  display: flex
+  justify-content: center
+  align-items: center
+
+.header__container
+  @include flex(row, space-between, center)
+  @include size(100%, 100%)
+  padding: 0 1.25rem
+
+.header__container__logo
+  a
+    @include flex(row, center, center)
+    gap: 0.5rem
+    text-decoration: none
+    color: #000
+
+    img
+      @include size(4rem, 4rem)
+      object-fit: contain
+
+    h1
+      font: 900 1.5rem 'Quicksand', sans-serif
+
+.header__container__nav
+  padding: 0 0.5rem
+
+  a
+    text-decoration: none
+    color: $black
+    font: 500 1rem 'Platypi', sans-serif
+    position: relative
+    transition: all 0.3s ease
+
+    &::after
+      content: ''
+      @include position(absolute, 1.5rem, 0, 0, 0)
+      @include size(100%, 2px)
+      background-color: $black
+      transform: scaleX(.1)
+      transform-origin: center
+      transition: transform 0.3s ease
+
+    &:hover::after
+      transform: scaleX(1)
