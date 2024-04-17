@@ -1,10 +1,31 @@
-import React from 'react';
+import React from "react";
 
-function MedicineList({ medicines }) {
-    
-  if (!Array.isArray(medicines)) {
-    medicines = medicines.data;
+function sortByDate(data, order = "asc") {
+  const toDate = (dateString) => new Date(dateString);
+
+  data.sort((a, b) => {
+    const dateA = toDate(a.published_at);
+    const dateB = toDate(b.published_at);
+
+    if (order === "asc") {
+      return dateA - dateB;
+    } else if (order === "desc") {
+      return dateB - dateA;
+    } else {
+      console.error('Invalid order parameter. Using default order: "asc"');
+      return dateA - dateB;
+    }
+  });
+
+  return data;
 }
+
+function MedicineList({ medicines = [], sortOrder = "asc" }) {
+  if (!Array.isArray(medicines)) {
+    medicines = medicines.data || []; // Default to an empty array if medicines.data is not defined
+  }
+
+  medicines = sortByDate(medicines, sortOrder);
 
   return (
     <div>
@@ -14,14 +35,28 @@ function MedicineList({ medicines }) {
           <li key={index} className="py-4">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.3 6.3a1 1 0 011.4-1.4L10 8.586l2.3-2.3a1 1 0 111.4 1.4L11.414 10l2.3 2.3a1 1 0 11-1.4 1.4L10 11.414l-2.3 2.3a1 1 0 01-1.4-1.4L8.586 10 6.3 7.7a1 1 0 01-1.4-1.4z" clipRule="evenodd" />
+                <svg
+                  className="h-5 w-5 text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.3 6.3a1 1 0 011.4-1.4L10 8.586l2.3-2.3a1 1 0 111.4 1.4L11.414 10l2.3 2.3a1 1 0 11-1.4 1.4L10 11.414l-2.3 2.3a1 1 0 01-1.4-1.4L8.586 10 6.3 7.7a1 1 0 01-1.4-1.4z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
               <div className="ml-3">
-                <div className="text-sm font-medium text-gray-900">{medicine.name}</div>
+                <div className="text-sm font-medium text-gray-900">
+                  {medicine.name}
+                </div>
                 <div className="text-sm text-gray-500">{medicine.company}</div>
-                <div className="text-sm text-gray-500">Publicado em: {new Date(medicine.published_at).toLocaleDateString()}</div>
+                <div className="text-sm text-gray-500">
+                  Publicado em:{" "}
+                  {new Date(medicine.published_at).toLocaleDateString()}
+                </div>
               </div>
             </div>
           </li>
