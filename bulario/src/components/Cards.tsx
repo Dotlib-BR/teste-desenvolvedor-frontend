@@ -63,7 +63,7 @@ const Cards: React.FC<{ records: Medicine[]}> = ({ records }) => {
           </motion.div>
         ))}
       </div>
-      <div className="m-4 flex justify-center">
+      <div className="p-12 flex justify-center">
         <button
           onClick={() => setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))}
           disabled={currentPage === 1}
@@ -81,7 +81,6 @@ const Cards: React.FC<{ records: Medicine[]}> = ({ records }) => {
             {page}
           </button>
         ))}
-
         <button
           onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
           disabled={isNextDisabled}
