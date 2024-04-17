@@ -15,7 +15,7 @@ export const SearchBar = () => {
 
   return (
     <div className="container">
-      <input type="text" placeholder="Buscar Medicação" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} ref={input} className="input" />
+      <input type="text" placeholder="Buscar Medicamento" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} ref={input} className="input" />
     </div>
   )
 }

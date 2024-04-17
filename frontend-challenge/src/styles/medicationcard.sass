@@ -1,6 +1,39 @@
 .medication-card
-  background-color: #f4f5f7
+  background-color: var(--white-color)
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)
+  display: flex
+  flex-direction: column
+  border-radius: 1rem
+  width: 300px
+  padding: 1.5rem
 
-@media (min-width: 768px)
-  .medication-card
-    width: calc(33.333% - 1rem)
+  .medication-name
+    text-align: center
+    font-size: 1.2rem
+    font-weight: bold
+
+  .paragraph
+    margin-left: 0.5rem
+    font-size: 1rem
+    color: #6b7280
+
+  ul
+    margin: auto
+    padding: 0
+    list-style: none
+    text-align: left
+
+  li
+    margin-bottom: 0.5rem
+
+  .medication-content, .document-content, .active-principles-content
+    margin: 0.5rem
+
+  a
+    color: var(--blue-color)
+    text-decoration: none
+
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2)
+    transition: transform 0.3s ease, box-shadow 0.3s ease

@@ -12,13 +12,13 @@ export const Pagination = () => {
 
   return (
     <div className="pagination">
-      <button onClick={() => setCurrentPage(first)} disabled={currentPage === 1}>First</button>
-      <button onClick={() => setCurrentPage(currentPage - 1)} disabled={!prev}>Prev</button>
+      <button onClick={() => setCurrentPage(first)} disabled={currentPage === 1}>Primeira</button>
+      <button onClick={() => setCurrentPage(currentPage - 1)} disabled={!prev}>Anterior</button>
       {Array.from({ length: pages }, (_, index) => index + 1).map((pageNumber) => (
         <button key={pageNumber} onClick={() => setCurrentPage(pageNumber)} className={pageNumber === currentPage ? "active" : ""}>{pageNumber}</button>
       ))}
-      <button onClick={() => setCurrentPage(currentPage + 1)} disabled={!next}>Next</button>
-      <button onClick={() => setCurrentPage(pages)} disabled={currentPage === pages}>Last</button>
+      <button onClick={() => setCurrentPage(currentPage + 1)} disabled={!next}>Próxima</button>
+      <button onClick={() => setCurrentPage(pages)} disabled={currentPage === pages}>Última</button>
     </div>
   );
 };
