@@ -1,7 +1,9 @@
+import { HomePage } from "../../pages/";
+
 export const App = () => {
   return (
-    <div>
-      <div>Teste</div>
-    </div>
+    <>
+      <HomePage />
+    </>
   );
 };
