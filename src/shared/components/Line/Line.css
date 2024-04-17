@@ -3,5 +3,11 @@
 
     height: 40px;
 
-    background-color: rgb(110, 21, 51);
+    border-bottom: 1px solid var(--table-border);
+}
+
+.tableLine:hover {
+    cursor: pointer;
+
+    background-color: var(--table-hover);
 }

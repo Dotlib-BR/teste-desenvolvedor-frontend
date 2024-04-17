@@ -11,6 +11,7 @@ export function Home() {
             <Container>
                 <Table>
                     <Line
+                        id="oi"
                         name="AMOXICILINA"
                         company="MULTILAB INDUSTRIA E COMERCIO DE PRODUTOS FARMACEUTICOS LTDA"
                         date="12/12/2019"
@@ -18,6 +19,7 @@ export function Home() {
                         professional="oi"
                     />
                     <Line
+                        id="olá"
                         name="AMOXICILINA"
                         company="MULTILAB INDUSTRIA E COMERCIO DE PRODUTOS FARMACEUTICOS LTDA"
                         date="12/12/2019"

@@ -1,6 +1,10 @@
 :root {
     --background-main-color: #dee2e6;
     --background-light-color: #ffffff;
+
+    --table-border: #b4b7ba;
+    --table-header: #caced1;
+    --table-hover: #c2d6b2;
 }
 
 * {

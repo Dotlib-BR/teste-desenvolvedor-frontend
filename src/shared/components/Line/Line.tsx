@@ -1,6 +1,7 @@
 import './Line.css';
 
 interface LineProps {
+    id: string;
     name: string;
     company: string;
     date: string;
@@ -9,6 +10,7 @@ interface LineProps {
 }
 
 export default function Line({
+    id,
     name,
     company,
     date,
@@ -16,7 +18,7 @@ export default function Line({
     professional,
 }: LineProps) {
     return (
-        <tr className="tableLine">
+        <tr className="tableLine" onClick={() => console.log(id)}>
             <td>{name}</td>
             <td>{company}</td>
             <td>{date}</td>

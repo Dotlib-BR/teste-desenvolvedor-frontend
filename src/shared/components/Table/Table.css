@@ -1,11 +1,35 @@
 .mainTable {
+    width: 100%;
+
     border-collapse: collapse;
 
-    background-color: brown;
+    border-radius: 10px 10px 0 0;
+
+    box-shadow:
+        1px -1px var(--table-border),
+        -1px -1px var(--table-border);
 }
 
 .tableHeader {
     height: 50px;
 
-    background-color: rgb(86, 21, 21);
+    border-bottom: 1px solid var(--table-border);
+
+    text-align: center;
+}
+
+.tableHeaderLine th {
+    padding: 0 20px;
+
+    font-weight: normal;
+
+    background-color: var(--table-header);
+}
+
+/* BORDER */
+.borderOne {
+    border-radius: 10px 0 0;
+}
+.borderTwo {
+    border-radius: 0 10px 0 0;
 }
