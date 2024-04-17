@@ -1,6 +1,11 @@
 import React from 'react';
 
 function MedicineList({ medicines }) {
+    
+  if (!Array.isArray(medicines)) {
+    medicines = medicines.data;
+}
+
   return (
     <div>
       <h2 className="text-lg font-semibold mb-4">Resultados da Pesquisa</h2>
