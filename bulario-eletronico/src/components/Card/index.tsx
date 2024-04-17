@@ -9,6 +9,24 @@ const Card = (props: { medicine: IMedicine }) => {
   const greenColor = "#0FE3AF";
   const { medicine } = props as { medicine: IMedicine }; 
 
+  async function downloadPDF(url: string, fileName: string) {
+    try {
+    
+      const pdfUrl = url;
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.target = "_blank"; 
+      link.download =  fileName + "document.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    
+    } catch (error) {
+      console.error('Erro ao fazer o download do PDF:', error);
+    }
+  }
+  
+
   return (
     <CardStyled>
       <MedicineName>
@@ -57,8 +75,8 @@ const Card = (props: { medicine: IMedicine }) => {
             <FaFilePdf color={greenColor} size={25} />
           </div>
           <FlexDiv>
-          <a>Profissional</a>
-          <a>Paciente</a>
+            <a onClick={() => downloadPDF(medicine.documents[0].url, 'professional')}>Profissional</a>
+            <a onClick={() => downloadPDF(medicine.documents[1].url, 'patient')}>Paciente</a>
           </FlexDiv>
       </MedicineInfo>
 

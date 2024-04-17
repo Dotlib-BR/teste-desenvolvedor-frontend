@@ -1,3 +1,4 @@
+import StyledComponentsRegistry from "@/lib/styled-components-registry";
 import type { Metadata } from "next";
 import { Lato, Montserrat } from "next/font/google";
 import "./globals.css";
@@ -16,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        <StyledComponentsRegistry>
+          {children}
+        </StyledComponentsRegistry>
+      </body>
     </html>
   );
 }

@@ -45,6 +45,13 @@ export const MedicineInfo = styled.div`
 export const FlexDiv = styled.div`
     display: flex;
     flex-direction: column;
+
+    > a {
+        cursor: pointer;
+        &:hover {
+            border-bottom: 1px solid black;
+        }
+    }
 `
 
 export const Label = styled.p`
