@@ -1,6 +1,6 @@
 
 import { ReactNode, useState, createContext } from "react";
-import { errorToast, successToast } from "../helpers/Toasts";
+import { errorToast } from "../helpers/Toasts";
 import { api } from "../services/baseUrl";
 import { Cards } from "../model/card";
 
@@ -13,11 +13,17 @@ type DataSearchParams = {
   company: string
 }
 type DataContextTypes = {
-  data: Cards | undefined;
+  currentPage: number;
+  getData: () => void
+  prevPage: () => void;
+  nextPage: () => void;
+  data: Cards | undefined
+  indexOfLastItem: number;
   searched_data: Cards | undefined
-  getData: () => void;
+  dataForPagination: Cards | undefined
   getDataByNameOrLab: ( value: string ) => void
-  setData: React.Dispatch<React.SetStateAction<Cards | undefined>>;
+  setData: React.Dispatch<React.SetStateAction<Cards | undefined>>
+ 
 }
 
 export const DataContext = createContext({} as DataContextTypes);
@@ -26,6 +32,25 @@ export function DataProvider(props: DataContextProviderProps) {
 
   const [data, setData] = useState<Cards>();
   const [searched_data, setSearched_data] = useState<Cards>();
+
+  // pagina inicial;
+  const [currentPage, setCurrentPage] = useState(1);
+  // 10 itens por pagina;
+  const [itemsPerPage] = useState(10);
+  // ultimo item da pagina atual para fazer o calculo e buscar mais itens para a próxima pagina;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  // calculo de para voltar na paginação
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // separando dados por pagina;
+  const dataForPagination = data?.slice(indexOfFirstItem, indexOfLastItem);
+
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
 
   const getData = async () => {
     try {
@@ -69,7 +94,13 @@ export function DataProvider(props: DataContextProviderProps) {
       setData,
       getData,
       searched_data,
-      getDataByNameOrLab
+      getDataByNameOrLab,
+
+      nextPage,
+      prevPage,
+      dataForPagination,
+      currentPage,
+      indexOfLastItem
     }}>
       {props.children}
     </DataContext.Provider>
