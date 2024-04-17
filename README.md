@@ -43,3 +43,6 @@ Isso iniciará o website na porta 5173 por padrão. Você pode acessar o Bulári
 * Tailwind CSS: Framework CSS para estilização rápida e responsiva.
 * JSON Server: Simples servidor de API REST para desenvolvimento e prototipagem rápida.
 
+## Figma Design
+
+You can view the design of the Bulário Eletrônico on Figma: [Bulário Eletrônico - Figma Design](https://www.figma.com/file/3q4qZEW46lt1YbVCF29WZd/Bul%C3%A1rio?type=design&node-id=0%3A1&mode=design&t=p8hVYCIANGJExcIV-1)
