@@ -1,0 +1,28 @@
+@use "../../styles/variables" as variabes
+@use "../../styles/media"  as media
+@use "../../styles/mixin"  as mixin
+
+.header
+    display: flex
+    align-items: center
+    height: 5.5rem
+    @include mixin.paddingDesktopL
+    background: variabes.$background-dark
+    cursor: pointer
+
+    @include media.max-width(extra-large)
+        @include mixin.paddingMobile
+
+.logo
+    width: 8.4rem
+    height: 2.5rem
+    aspect-ratio: 16 / 9
+    object-fit: cover
+    transition: all 0.2s ease-in-out
+
+    &:hover
+        opacity: 0.8
+
+    @include media.max-width(medium)
+        width: 6rem
+        height: 1.8rem
