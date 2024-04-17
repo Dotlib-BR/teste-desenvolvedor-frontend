@@ -12,7 +12,7 @@ export function RoutesApp() {
           element: <Home />,
         },
         {
-          path: '/details/:uid',
+          path: '/details/:id',
           element: <DetailProduct />,
         },
       ],
