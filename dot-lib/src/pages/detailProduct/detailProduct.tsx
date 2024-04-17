@@ -1,10 +1,12 @@
 import styles from './styles.module.scss'
 import { formatDate } from '../../utils'
 import { useDetailProduct } from './useDetailProduct'
-import { Button } from '../../components/ui'
+import { Button, Loading } from '../../components/ui'
 
 export function DetailProduct() {
-  const { product, handleOpenDoc } = useDetailProduct()
+  const { product, handleOpenDoc, loadingProduct } = useDetailProduct()
+
+  if (loadingProduct) return <Loading />
 
   if (!product) return <></>
   return (

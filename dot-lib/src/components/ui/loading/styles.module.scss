@@ -1,0 +1,28 @@
+@import "../../../styles/colors";
+@import "../../../styles/mixins";
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingPage{
+  @include flexCenter;
+  height: 100%;
+  width: 100%;
+
+  .spinner {
+
+    svg{
+      font-size: 30px;
+      animation: spin 1s linear infinite; 
+      color: $primary-700;
+    }
+  }
+
+}

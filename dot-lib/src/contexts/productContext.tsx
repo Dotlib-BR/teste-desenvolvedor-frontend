@@ -50,6 +50,7 @@ interface ProductContextProps {
   typeSearch: TypeSearchProps
   typesSearch: TypeProps[]
   order: OrderProps
+  loadingProducts: boolean
   setFilterValue: Dispatch<SetStateAction<string>>
   setTypeSearch: Dispatch<SetStateAction<TypeSearchProps>>
   setOrder: Dispatch<SetStateAction<OrderProps>>
@@ -62,6 +63,7 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
   const [filterValue, setFilterValue] = useState<string>('')
   const [typeSearch, setTypeSearch] = useState<TypeSearchProps>('product')
   const [order, setOrder] = useState<OrderProps>('desc')
+  const [loadingProducts, setLoadingProducts] = useState(true)
 
   useEffect(() => {
     async function getProducts() {
@@ -72,6 +74,7 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
         console.log(error)
         // tratar erros
       }
+      setLoadingProducts(false)
     }
     getProducts()
   }, [])
@@ -115,6 +118,7 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
         typeSearch,
         typesSearch,
         order,
+        loadingProducts,
         setFilterValue,
         setTypeSearch,
         setOrder,

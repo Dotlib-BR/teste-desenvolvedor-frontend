@@ -6,6 +6,7 @@ import { ProductProps } from '../../contexts/productContext'
 export function useDetailProduct() {
   const { id } = useParams()
   const [product, setProduct] = useState<ProductProps | null>(null)
+  const [loadingProduct, setLoadingProduct] = useState(true)
 
   useEffect(() => {
     async function getProduct() {
@@ -16,6 +17,8 @@ export function useDetailProduct() {
       } catch (error) {
         console.log(error)
       }
+
+      setLoadingProduct(false)
     }
     getProduct()
   }, [])
@@ -23,5 +26,5 @@ export function useDetailProduct() {
   const handleOpenDoc = (url: string) => {
     window.open(url, '_blank')
   }
-  return { product, handleOpenDoc }
+  return { product, handleOpenDoc, loadingProduct }
 }
