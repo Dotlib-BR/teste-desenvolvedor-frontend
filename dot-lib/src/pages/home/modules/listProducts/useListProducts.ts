@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useContexts } from '../../../../contexts/useContexts'
 
 export function useListProducts() {
@@ -21,16 +21,28 @@ export function useListProducts() {
     disabled: currentPage === i + 1,
   }))
 
+  useEffect(() => {
+    setCurrentPage(1)
+    handleScroll()
+  }, [filterProducts])
+
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1)
+    handleScroll()
   }
 
   const prevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1)
+    handleScroll()
   }
 
   const changePage = (pageNumber: number) => {
     setCurrentPage(pageNumber)
+    handleScroll()
+  }
+
+  function handleScroll() {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return {

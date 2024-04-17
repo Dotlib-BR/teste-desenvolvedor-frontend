@@ -43,6 +43,19 @@
       }
     }
   }
+  .order{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    select{
+      height: 35px;
+      padding: 0 0.5rem;
+      border: none;
+      border-radius: 0.3rem;
+      background: $primary-700;
+      color: $white;
+    }
+  }
 }
 
 @media screen and (max-width: 1024px){

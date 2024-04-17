@@ -36,6 +36,7 @@ export interface ProductProps {
   active_principles: ActivePrinciplesProps[]
 }
 
+export type OrderProps = 'desc' | 'asc'
 interface TypeProps {
   readonly id: string | number
   title: string
@@ -48,8 +49,10 @@ interface ProductContextProps {
   filterValue: string
   typeSearch: TypeSearchProps
   typesSearch: TypeProps[]
+  order: OrderProps
   setFilterValue: Dispatch<SetStateAction<string>>
   setTypeSearch: Dispatch<SetStateAction<TypeSearchProps>>
+  setOrder: Dispatch<SetStateAction<OrderProps>>
 }
 
 export const ProductsContext = createContext({} as ProductContextProps)
@@ -58,6 +61,7 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<ProductProps[]>([])
   const [filterValue, setFilterValue] = useState<string>('')
   const [typeSearch, setTypeSearch] = useState<TypeSearchProps>('product')
+  const [order, setOrder] = useState<OrderProps>('desc')
 
   useEffect(() => {
     async function getProducts() {
@@ -85,11 +89,22 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
     },
   ]
 
-  const filterProducts = products.filter((product) => {
-    return product[typeSearch === 'product' ? 'name' : 'company']
-      .toUpperCase()
-      .includes(filterValue.toUpperCase().trim())
-  })
+  const filterProducts = products
+    .filter((product) => {
+      return product[typeSearch === 'product' ? 'name' : 'company']
+        .toUpperCase()
+        .includes(filterValue.toUpperCase().trim())
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.published_at)
+      const dateB = new Date(b.published_at)
+
+      if (order === 'desc') {
+        return dateA.getTime() - dateB.getTime()
+      } else {
+        return dateB.getTime() - dateA.getTime()
+      }
+    })
 
   return (
     <ProductsContext.Provider
@@ -99,8 +114,10 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
         products,
         typeSearch,
         typesSearch,
+        order,
         setFilterValue,
         setTypeSearch,
+        setOrder,
       }}
     >
       {children}

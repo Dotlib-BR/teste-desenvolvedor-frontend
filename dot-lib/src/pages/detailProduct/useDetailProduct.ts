@@ -9,6 +9,7 @@ export function useDetailProduct() {
 
   useEffect(() => {
     async function getProduct() {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       try {
         const response = await api.get(`/data/${id}`)
         setProduct(response.data)

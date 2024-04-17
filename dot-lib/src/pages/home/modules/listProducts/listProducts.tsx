@@ -29,26 +29,28 @@ export function ListProducts() {
           ))}
       </div>
 
-      <div className={styles.buttonsPagination}>
-        <Button disabled={currentPage === 1} onClick={prevPage}>
-          Anterior
-        </Button>
-        {pageButtons.map((button) => (
-          <Button
-            disablePagination={currentPage !== button.pageNumber}
-            onClick={button.onClick}
-            key={button.pageNumber}
-          >
-            {button.pageNumber}
+      {currentProducts.length > 0 && (
+        <div className={styles.buttonsPagination}>
+          <Button disabled={currentPage === 1} onClick={prevPage}>
+            Anterior
           </Button>
-        ))}
-        <Button
-          disabled={lastIndex >= filterProducts.length}
-          onClick={nextPage}
-        >
-          Próxima
-        </Button>
-      </div>
+          {pageButtons.map((button) => (
+            <Button
+              disablePagination={currentPage !== button.pageNumber}
+              onClick={button.onClick}
+              key={button.pageNumber}
+            >
+              {button.pageNumber}
+            </Button>
+          ))}
+          <Button
+            disabled={lastIndex >= filterProducts.length}
+            onClick={nextPage}
+          >
+            Próxima
+          </Button>
+        </div>
+      )}
     </div>
   )
 }
