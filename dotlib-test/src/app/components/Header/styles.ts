@@ -6,6 +6,7 @@ export const ContainerHeader = styled.header`
     height: 90px;
     display: flex;
     align-items: center;
+    background-color: #f3f3f3;
 `;
 
 export const TitleHeader = styled.h1`

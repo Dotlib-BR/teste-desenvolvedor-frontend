@@ -6,6 +6,7 @@ export const ContainerSearchBar = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+
 `;
 
 export const InputSearchBar = styled.input`
@@ -24,7 +25,7 @@ export const ButtonSearchBar = styled.button`
     width: 80px;
     height: 30px;
     border-radius: 10px;
-    background-color: #58A4B0;
+    background-color: #357266;
     border: none;
     cursor: pointer;
 `;

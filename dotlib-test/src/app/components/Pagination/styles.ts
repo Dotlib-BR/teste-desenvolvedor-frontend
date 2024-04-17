@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerPagination = styled.div`
-    width: 300px;
+    width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,7 +13,7 @@ export const ButtonPagination = styled.button`
     height: 30px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: #58A4B0;
+    background-color: #357266;
     border: none;
     &:disabled {
         cursor: not-allowed;
