@@ -1,8 +1,10 @@
-// components/Pagination.tsx
-
 import React from "react";
 
-import { ContainerPagination } from "./styles";
+import {
+  ContainerPagination,
+  ButtonPagination,
+  TextPagination,
+} from "./styles";
 
 interface PaginationProps {
   totalItems: number;
@@ -27,23 +29,23 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <ContainerPagination>
-      <button
+      <ButtonPagination
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         Anterior
-      </button>
-      <span style={{ color: "black" }}>
+      </ButtonPagination>
+      <TextPagination style={{ color: "black" }}>
         Página {currentPage} de {totalPages}
-      </span>
-      <button
+      </TextPagination>
+      <ButtonPagination
         onClick={() => {
           handlePageChange(currentPage + 1);
         }}
         disabled={currentPage === totalPages}
       >
         Próximo
-      </button>
+      </ButtonPagination>
     </ContainerPagination>
   );
 };
