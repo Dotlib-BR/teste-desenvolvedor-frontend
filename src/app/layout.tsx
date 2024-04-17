@@ -8,7 +8,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: 'Bulário Eletronico',
+  title: 'Bulário Eletrônico',
   description: 'Acesse informações de medicamentos',
 }
 

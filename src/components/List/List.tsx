@@ -5,10 +5,9 @@ import { MedItems } from './MedItems/MedItems'
 import { fetchMedData } from '@/services/fetchMedData'
 import listStyles from './ListStyle.module.scss'
 
-
 export const List = () => {
 	const [medData, setMedData] = useState([])
-    const [page, setPage] = useState(1)
+	const [page, setPage] = useState(1)
 	const [isSearch, setIsSearch] = useState(false)
 	const [searchData, setSearchData] = useState({})
 
@@ -31,20 +30,42 @@ export const List = () => {
 				<ul className={listStyles.mainList}>
 					<li>
 						<ul className={listStyles.itemTopics}>
-							<li><p>nome</p></li>
-							<li><p>empresa</p></li>
-							<li><p>data de publicação</p></li>
-							<li><p>bula</p></li>
+							<li>
+								<p>nome</p>
+							</li>
+							<li>
+								<p>empresa</p>
+							</li>
+							<li>
+								<p>data de publicação</p>
+							</li>
+							<li>
+								<p>bula</p>
+							</li>
 						</ul>
 					</li>
 
 					{!isSearch ? <MedItems medData={medData} /> : <MedItems medData={searchData} />}
 
-                    <li>
-                        {medData.length === 10 && <button onClick={() => setPage(page + 1)}>Próxima</button>}
-                        
-                        {page > 1 && <button onClick={() => setPage(page - 1)}>Anterior</button>}
-                    </li>
+					<li className={listStyles.pagination}>
+						{page > 1 && (
+							<button
+								className={listStyles.pageButton}
+								onClick={() => setPage(page - 1)}
+							>
+								Anterior
+							</button>
+						)}
+
+						{medData.length === 10 && (
+							<button
+								className={listStyles.pageButton}
+								onClick={() => setPage(page + 1)}
+							>
+								Próxima
+							</button>
+						)}
+					</li>
 				</ul>
 			</div>
 		</>

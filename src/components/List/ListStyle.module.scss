@@ -24,3 +24,20 @@
 	text-transform: capitalize;
 	border-radius: 10px 10px 0 0;
 }
+
+.pagination {
+	display: flex;
+	gap: 20px;
+	padding: 15px;
+
+	.pageButton {
+		background-color: $sandBg;
+		border-radius: 8px;
+		border-width: 0;
+		color: $black;
+		cursor: pointer;
+		margin: 0;
+		padding: 10px 12px;
+		text-align: center;
+	}
+}
