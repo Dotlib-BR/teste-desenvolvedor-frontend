@@ -1,5 +1,4 @@
 import { Medications } from "./components/Medications"
-import { Pagination } from "./components/Pagination"
 import { SearchBar } from "./components/SearchBar"
 
 export const App = () => {
@@ -7,7 +6,6 @@ export const App = () => {
     <>
       <SearchBar />
       <Medications />
-      <Pagination />
     </>
   )
 }
