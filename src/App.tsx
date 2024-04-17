@@ -7,9 +7,10 @@ import { MedicineList } from "@/components/medicine-list"
 import { Pagination } from "@/components/pagination"
 import { Search } from "@/components/search"
 import { Header } from "@/components/header"
-import { useMedicines } from "./lib/query"
-import { useToast } from "./components/ui/use-toast"
-import { title } from "process"
+
+// Utilities
+import { useMedicines } from "@/lib/query"
+import { useToast } from "@/components/ui/use-toast"
 
 const App = () => {
   const { data, isLoading } = useMedicines()
