@@ -8,40 +8,21 @@ import { Pagination } from "@/components/pagination"
 import { Search } from "@/components/search"
 import { Header } from "@/components/header"
 import { useMedicines } from "./lib/query"
+import { useToast } from "./components/ui/use-toast"
+import { title } from "process"
 
 const App = () => {
   const { data, isLoading } = useMedicines()
 
   const [filteredData, setFilteredData] = useState<Medicine[]>([])
   const [filterInput, setFilterInput] = useState("")
-
   const [pagination, setPagination] = useState({
     page: 1,
     start: 0,
     limit: 9,
   })
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const req = await fetch("http://localhost:3000/data")
-  //     const data = (await req.json()) as Medicine[]
-  //     if (!req.ok) {
-  //       return []
-  //     }
-
-  //     setData(
-  //       data.sort((a, b) => {
-  //         if (a.published_at > b.published_at) {
-  //           return 1
-  //         } else {
-  //           return -1
-  //         }
-  //       }),
-  //     )
-  //     setLoading(false)
-  //   }
-  //   getData()
-  // }, [])
+  const { toast } = useToast()
 
   const handleNextClick = () => {
     setPagination((prev) => {
@@ -79,7 +60,11 @@ const App = () => {
     )
 
     if (filteredData.length === 0) {
-      alert("Nenhum resultado para consulta")
+      toast({
+        title: "Erro",
+        description: "Nenhum resultado para consulta",
+        variant: "destructive",
+      })
     }
 
     setPagination({ page: 1, limit: 9, start: 0 })
