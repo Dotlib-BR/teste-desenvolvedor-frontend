@@ -11,8 +11,6 @@ export function useDetailProduct() {
     async function getProduct() {
       try {
         const response = await api.get(`/data/${id}`)
-
-        console.log(response.data)
         setProduct(response.data)
       } catch (error) {
         console.log(error)

@@ -9,7 +9,6 @@ interface CardProductProps {
 }
 
 export function CardProduct({ product }: CardProductProps) {
-  console.log(product)
   return (
     <div className={styles.cardProduct}>
       <div>
