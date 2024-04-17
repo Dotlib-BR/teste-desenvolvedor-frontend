@@ -13,11 +13,20 @@ export const HeaderStyled = styled.header`
     width: 100vw;
     height: 500px;
     justify-content: space-between;
+
+    @media (max-width: 640px) {
+        display: none;
+      }
 `
 
 export const HeaderText = styled.div`
     width: 530px;
     padding-left: 175px;
+
+    @media (max-width: 640px) {
+        padding-left: 0px;
+        padding: 10px;
+      }
 
 `
 

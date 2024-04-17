@@ -14,4 +14,8 @@ export const InputStyled = styled.input`
     border-color: var(--blue-primary);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 `;

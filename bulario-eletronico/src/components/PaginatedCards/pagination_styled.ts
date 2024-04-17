@@ -9,6 +9,7 @@ export const PaginationWrapper = styled.div`
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 50px;
+
 `;
 
 export const PageButton = styled.button<PageButtonProps>`
@@ -39,4 +40,9 @@ export const Filters = styled.div`
     justify-content: center;
     gap: 30px;
     margin-top: 30px;
+    padding: 10px;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
 `

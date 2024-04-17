@@ -19,4 +19,9 @@ export const LogoDiv = styled.div`
       font-weight: 600;
       font-size: 25px;
     }
-`
+
+    @media (max-width: 640px) {
+      padding-left: 0px;
+    }
+` 
+
