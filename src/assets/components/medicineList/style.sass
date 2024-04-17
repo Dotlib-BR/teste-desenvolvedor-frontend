@@ -84,6 +84,12 @@
     border-radius: 0.625rem
     transition: all 0.3s ease
 
+  @media (width <= 768px)
+    @include size(100%, 15vh)
+
+    p
+      font-size: .9rem
+
 .pagination
   @include size(100%, 10%)
   @include flex(row, center, center)

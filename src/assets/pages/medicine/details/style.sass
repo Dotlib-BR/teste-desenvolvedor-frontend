@@ -7,15 +7,22 @@ main
   background-color: $tertiary
   padding-top: 2rem
 
+  @media (width <= 900px)
+    @include size(100%, 100%)
+    @include flex(column-reverse, center, center)
+
 .medicine__details
   @include size(100%, 100%)
   @include flex(column, space-around, center)
   padding: 2rem
   border-radius: 1rem
 
+  @media (width <= 900px)
+    padding: 1rem
+
 .medicine__details__content
   @include size(100%, 100%)
-  @include flex(column, space-around, flex-start)
+  @include flex(column, center, flex-start)
   padding: 2rem
 
   h1
@@ -27,6 +34,9 @@ main
     font: 400 1rem "Platypi", sans-serif
     color: $secondary
     padding-bottom: .5rem
+
+  @media (width <= 900px)
+    padding: 0
 
 .medicine__details__documents
   @include size(100%, 100%)
@@ -60,3 +70,14 @@ main
 
       &:hover
         color: $secondary
+
+  @media (width <= 900px)
+    padding: 0
+
+.medicine__details__animation
+  @include size(auto, auto)
+  @include flex(row, flex-end, center)
+
+  @media (width <= 768px)
+    @include size(100%, 100%)
+    @include flex(row, center, center)

@@ -57,7 +57,7 @@ export default function Index() {
               ))}
             </div>
           </section>
-          <section>
+          <section className="medicine__details__animation">
             <Animation />
           </section>
         </main>
