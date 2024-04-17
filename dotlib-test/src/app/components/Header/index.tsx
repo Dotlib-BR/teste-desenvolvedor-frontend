@@ -1,13 +1,13 @@
 "use client";
+import Image from "next/image";
 import react from "react";
 import { ContainerHeader, TitleHeader } from "./styles";
+import logo from "../../assets/logo.png";
 
 export default function Header() {
   return (
     <ContainerHeader className="bg-white shadow">
-      <TitleHeader className="text-3xl font-bold tracking-tight text-gray-900">
-        Dotlib Test
-      </TitleHeader>
+      <Image src={logo} alt="Logo" width={300} height={300} />
     </ContainerHeader>
   );
 }
