@@ -1,0 +1,44 @@
+@import "../../styles//colors.scss";
+
+.detailProduct {
+
+  .priciples {
+    display: flex;
+    gap: 0.5rem;
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .documents {
+    margin-top: 1rem;
+
+    .allDocument {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+
+
+      .document {
+        padding: 1rem;
+        border-radius: 0.3rem;
+        background: $secondary-50;
+
+        .bula {
+
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 1rem;
+
+          .buttonsArea {
+            display: flex;
+            gap: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
