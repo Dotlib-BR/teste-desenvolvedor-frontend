@@ -1,31 +1,45 @@
-[![](https://dotlib.com/theme/img/logos/logo.png)](https://www.dotlib.com)
+# Bulário Eletrônico
 
-# Descrição da vaga de Desenvolvedor Frontend Jr.
+O Bulário Eletrônico é uma aplicação web que permite aos usuários pesquisar e visualizar informações sobre medicamentos, incluindo seus princípios ativos, documentos relacionados e data de publicação.
 
-Buscamos profissionais que sejam apaixonados por desenvolvimento, inovação e novas tecnologias, para integrar nosso time em projetos baseados em Laravel, Node.js, React e React Native.
+---
 
-[Oportunidades Dotlib](https://github.com/Dotlib-BR/oportunidades)
+## Instruções de Instalação
 
-## Requisitos
+### 1. Configuração da API
 
-### Obrigatórios:
+Para iniciar o servidor da API, siga estas etapas:
 
-- Experiência em desenvolvimento de sites em React
-- Consumo de APIs RESTful
-- SASS e Flexbox
-- API Contexts e Hooks
-- Controle de versões (GIT)
+1. Instale o pacote `json-server` globalmente:
 
-### Bônus:
+   ```bash
+   npm install -g json-server
+2. Execute o seguinte comando para iniciar o servidor da API:
+   ```bash
+    json-server api/dotlib.json -s ./api/public
 
-- Conhecimentos em Docker
-- Conhecimentos em Typescript
-- Conhecimentos em Node.js
-- Conhecimentos em testes automatizados com Cypress
-- Experiência em metodologias ágeis (Scrum/Kanban)
 
-## Como se candidatar
+### 2. Configuração do Website
+Após configurar a API, siga estas etapas para iniciar o website:
 
-Para se candidatar, basta acessar a url e realizar o teste para a vaga:
+1. Instale as dependências do projeto:
+     ```bash
+   npm install
+   
+2. Inicie o servidor de desenvolvimento:
+     ```bash
+    npm run dev
+    
+Isso iniciará o website na porta 5173 por padrão. Você pode acessar o Bulário Eletrônico em seu navegador usando o endereço http://localhost:5173.
 
-- [Teste para Desenvolvedor Frontend Jr.](teste-frontend.md)
+### Funcionalidades
+* Pesquisa de Medicamentos: Os usuários podem buscar medicamentos pelo nome ou pelo laboratório farmacêutico.
+* Ordenação: Os resultados da pesquisa podem ser ordenados por ordem crescente ou decrescente da data de publicação.
+* Paginação: Os resultados da pesquisa são exibidos em páginas, permitindo aos usuários navegar entre elas.
+* Detalhes do Medicamento: Ao clicar em um medicamento na lista de resultados, os usuários podem visualizar detalhes adicionais, incluindo os princípios ativos e documentos relacionados.
+## Tecnologias Usadas
+* React: Biblioteca JavaScript para construção de interfaces de usuário.
+* Axios: Cliente HTTP para fazer requisições à API.
+* Tailwind CSS: Framework CSS para estilização rápida e responsiva.
+* JSON Server: Simples servidor de API REST para desenvolvimento e prototipagem rápida.
+
