@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,26 +39,28 @@ const MedicineResults: React.FC<MedicineResultsProps> = ({ searchTerm }) => {
   const [totalItems, setTotalItems] = useState(0);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/data?_page=${currentPage}`
-        );
-        if (Array.isArray(response.data.data)) {
-          setData(response.data.data);
-        } else {
-          console.error("A resposta da API não é um array");
-        }
-      } catch (error) {
-        toast.error(
-          "Erro ao carregar os dados. Por favor, tente novamente mais tarde."
-        );
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/data?_page=${currentPage}`
+      );
+      if (Array.isArray(response.data.data)) {
+        setData(response.data.data);
+      } else {
+        console.error("A resposta da API não é um array");
       }
-    };
+    } catch (error) {
+      toast.error(
+        "Erro ao carregar os dados. Por favor, tente novamente mais tarde."
+      );
+    }
+  };
 
-    fetchData();
-  }, [currentPage]);
+  const memoizedData = useMemo(() => fetchData, [currentPage]);
+
+  useEffect(() => {
+    memoizedData();
+  }, [memoizedData]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,8 +120,6 @@ const MedicineResults: React.FC<MedicineResultsProps> = ({ searchTerm }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  console.log(screenWidth);
 
   return (
     <>
