@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { ResponseLeafletMapper } from "../service/types";
-import { getDefaultLeaflet } from "../service/search.service";
+import { getDefaultLeafletPagination } from "../service/search.service";
 
 type SearchContext = {
   leafletCollection: ResponseLeafletMapper[];
   setLeafletCollection: (value: ResponseLeafletMapper[]) => void;
-  searchLeaflet: () => void;
+  searchLeafletPagination: (page: number) => void;
 };
 
 export const SearchContext = createContext({} as SearchContext);
@@ -21,13 +21,19 @@ export const SearchContextProvider = ({
     {} as ResponseLeafletMapper[]
   );
 
-  const searchLeaflet = () => {
-    getDefaultLeaflet().then((data) => setLeafletCollection(data));
+  const searchLeafletPagination = (page: number) => {
+    getDefaultLeafletPagination(page).then((data) =>
+      setLeafletCollection(data.data)
+    );
   };
 
   return (
     <SearchContext.Provider
-      value={{ leafletCollection, setLeafletCollection, searchLeaflet }}
+      value={{
+        leafletCollection,
+        setLeafletCollection,
+        searchLeafletPagination,
+      }}
     >
       {children}
     </SearchContext.Provider>
