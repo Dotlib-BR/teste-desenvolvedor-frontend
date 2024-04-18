@@ -1,5 +1,5 @@
 
-import { ChangeEvent, useState, useContext } from 'react';
+import { ChangeEvent, useState, useContext, useEffect } from 'react';
 import './Search.scss';
 import './MediasSearch.scss'; 
 
@@ -7,13 +7,16 @@ import { ToastContainer } from 'react-toastify';
 import { DataContext } from '../../context/DataContext';
 
 export const Search = () => {
-  const { getDataByNameOrLab } = useContext(DataContext);
-  const [value, setValue] = useState<string>('');
+  const { getDataByNameOrLab, searched_value, setSearched_value } = useContext(DataContext);
+
+  useEffect(() => {
+    
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setValue(value);
     getDataByNameOrLab(value);
+    setSearched_value(value);
   };
 
   return (
@@ -22,7 +25,7 @@ export const Search = () => {
         <h1> Encontre fármacos ou laboratórios que atendam sua necessidade. </h1>
         <input
           type="input"
-          value={value}
+          value={searched_value}
           onChange={handleChange}
           placeholder=' Pesquisar...' />
       </main>
