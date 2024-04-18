@@ -23,6 +23,8 @@ type DataContextTypes = {
   dataForPagination: Cards | undefined
   getDataByNameOrLab: (value: string) => void
   setData: React.Dispatch<React.SetStateAction<Cards | undefined>>
+  setSearched_value: (value: string) => void
+  searched_value: string
 }
 
 export const DataContext = createContext({} as DataContextTypes);
@@ -30,6 +32,7 @@ export const DataContext = createContext({} as DataContextTypes);
 export function DataProvider(props: DataContextProviderProps) {
   const [data, setData] = useState<Cards>();
   const [searched_data, setSearched_data] = useState<Cards>();
+  const [ searched_value, setSearched_value ] = useState<any>('');
   // pagina inicial;
   const [currentPage, setCurrentPage] = useState(1);
   // 10 itens por pagina;
@@ -69,18 +72,18 @@ export function DataProvider(props: DataContextProviderProps) {
 
   const getDataByNameOrLab = async (value: string) => {
     try {
-      const searched_value = value.trim().toLowerCase();
+      setSearched_value(value.trim().toLocaleLowerCase())
+      
       if (searched_value.length > 2) {
         const response = await api.get('/data');
-
         const result = response.data.filter(({ name, company }: DataSearchParams) => {
           return (
             name.toLowerCase().includes(searched_value) ||
             company.toLowerCase().includes(searched_value)
           );
         });
-        return setSearched_data(result);
-      } setSearched_data(data);
+        setSearched_data(result);
+      }
     } catch (error) {
       errorToast();
       throw error;
@@ -98,7 +101,9 @@ export function DataProvider(props: DataContextProviderProps) {
       prevPage,
       dataForPagination,
       currentPage,
-      indexOfLastItem
+      indexOfLastItem,
+      searched_value,
+      setSearched_value
     }}>
       {props.children}
     </DataContext.Provider>
