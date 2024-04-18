@@ -7,6 +7,7 @@ import { FcCalendar } from "react-icons/fc";
 import { FcOrganization } from "react-icons/fc";
 import { GiHospitalCross } from "react-icons/gi";
 import './Card.scss';
+import './MediasCard.scss';
 
 export const Card = ({ id, name, company, published_at }: Cards) => {
   return (
