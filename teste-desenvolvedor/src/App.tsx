@@ -1,28 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import DataTable, {createTheme} from 'react-data-table-component';
+import { FaSearch } from "react-icons/fa";
 
 import './App.css';
 import 'styled-components'
 
 import { IMedicamentos, MedicamentosService } from './app/services/medicamentos/MedicamentosService.ts'
 import { ApiException } from './app/services/api/ApiException.ts';
+import DataTable from './app/components/Datatable.js';
 
-const columns = [
-  {
-    name: 'MEDICAMENTO',
-    selector: row => row.name
-  },
-
-  {
-    name: 'LABORATÓRIO',
-    selector: row => row.company
-  },
-
-  {
-    name: 'DATA',
-    selector: row => row.published_at
-  },
-]
 
 function App() {
   const [lista, setLista] = useState<IMedicamentos[]>([]);
@@ -46,32 +31,31 @@ function App() {
     })
   });
 
-  //const medicamentosFiltrados = useMemo (() => {
+  const medicamentosFiltrados = useMemo (() => {
     const upperBusca = busca.toUpperCase();
 
-    const medicamentosFiltrados =  listaOrdem.filter((medicamento) => medicamento.name.toUpperCase().includes(upperBusca) || medicamento.company.includes(upperBusca));
-  //}, [busca]); 
+    return listaOrdem.filter((medicamento) => medicamento.name.toUpperCase().includes(upperBusca) || medicamento.company.includes(upperBusca));
+  }, [busca, listaOrdem]); 
 
   return (
-    <div className="App">
-      <h1>Listagem de Medicamentos</h1>
-      <input 
-        type='text'
-        value={busca}
-        onChange={(ev) => setBusca(ev.target.value)}
-      />
-      <DataTable
-        columns={columns}
-        data={medicamentosFiltrados}
-        pagination
-      />
-      {/* <ol>
-        {medicamentosFiltrados.map((lisItem) => {
-          return <li key={lisItem.id}>
-            {lisItem.published_at}
-          </li>
-        })}
-      </ol> */}
+    <div>
+      <div className="header">
+        <img src={"medicamento_logo.png"} alt="logo" />
+      </div>
+      <div className="App">
+      <div className="" id="divBusca">
+        <input 
+          type='text'
+          value={busca}
+          placeholder='Pesquisa...'
+          id="txtBusca"
+          onChange={(ev) => setBusca(ev.target.value)}
+        />
+        <FaSearch id="search-icon"/>
+      </div>
+
+      <DataTable medicamentosFiltrados={medicamentosFiltrados} />
+    </div>
     </div>
   );
 }
