@@ -17,7 +17,7 @@ export default function Input({
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (!setValue) return;
 
-        setValue(e.target.value);
+        setValue(e.target.value.toLocaleUpperCase());
     };
     return (
         <input

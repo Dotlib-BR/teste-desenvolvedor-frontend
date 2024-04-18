@@ -14,8 +14,12 @@ import Input from '../../shared/components/Input';
 import Button from '../../shared/components/Button/Button';
 import IconSearch from '../../shared/icons/Search/IconSeacrh';
 import IconDelete from '../../shared/icons/Delete/IconDelete';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export function Home() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     // Data
     const [medicines, setMedicines] = useState<MedicineInterface[]>([]);
     const [pageSettings, setPageSettings] = useState<Partial<ApiResult> | null>(
@@ -26,61 +30,122 @@ export function Home() {
     // Values
     const [medicineValue, setMedicineValue] = useState('');
     const [companyValue, setCompanyValue] = useState('');
-    const [search, setSearch] = useState<string[]>([]);
+    const [search, setSearch] = useState(false);
 
     useEffect(() => {
-        DataServices.getAll(page).then((result) => {
-            if (result instanceof Error) {
-                alert(result);
-            } else {
-                setMedicines(result.data);
+        const queryParams = new URLSearchParams(location.search);
+        const name = queryParams.get('name');
+        const company = queryParams.get('company');
 
-                const settings = {
-                    first: result.first,
-                    prev: result.prev,
-                    next: result.next,
-                    last: result.last,
-                    pages: result.pages,
-                    items: result.items,
-                };
-                setPageSettings(settings);
-            }
-        });
-    }, [page]);
+        if (name && company) {
+            DataServices.getByNameAndCompany(page, name, company).then(
+                (result) => {
+                    if (result instanceof Error) {
+                        alert(result);
+                    } else {
+                        setMedicines(result.data);
+
+                        const settings = {
+                            first: result.first,
+                            prev: result.prev,
+                            next: result.next,
+                            last: result.last,
+                            pages: result.pages,
+                            items: result.items,
+                        };
+                        setPageSettings(settings);
+                    }
+                },
+            );
+        } else if (name) {
+            DataServices.getByName(page, name).then((result) => {
+                if (result instanceof Error) {
+                    alert(result);
+                } else {
+                    setMedicines(result.data);
+
+                    const settings = {
+                        first: result.first,
+                        prev: result.prev,
+                        next: result.next,
+                        last: result.last,
+                        pages: result.pages,
+                        items: result.items,
+                    };
+                    setPageSettings(settings);
+                }
+            });
+        } else if (company) {
+            DataServices.getByCompany(page, company).then((result) => {
+                if (result instanceof Error) {
+                    alert(result);
+                } else {
+                    setMedicines(result.data);
+
+                    const settings = {
+                        first: result.first,
+                        prev: result.prev,
+                        next: result.next,
+                        last: result.last,
+                        pages: result.pages,
+                        items: result.items,
+                    };
+                    setPageSettings(settings);
+                }
+            });
+        } else {
+            DataServices.getAll(page).then((result) => {
+                if (result instanceof Error) {
+                    alert(result);
+                } else {
+                    setMedicines(result.data);
+
+                    const settings = {
+                        first: result.first,
+                        prev: result.prev,
+                        next: result.next,
+                        last: result.last,
+                        pages: result.pages,
+                        items: result.items,
+                    };
+                    setPageSettings(settings);
+                }
+            });
+        }
+    }, [page, location.search]);
 
     const handleSearch = () => {
-        if (medicineValue.length > 0) setSearch([...search, medicineValue]);
+        if (medicineValue.length > 0 && companyValue.length > 0) {
+            setSearch(true);
+            navigate(`/?name=${medicineValue}&company=${companyValue}`);
 
-        if (companyValue.length > 0) setSearch([...search, companyValue]);
+            setMedicineValue('');
+            setCompanyValue('');
+            return;
+        }
 
-        setMedicineValue('');
-        setCompanyValue('');
+        if (medicineValue.length > 0) {
+            setSearch(true);
+            navigate(`/?name=${medicineValue}`);
 
-        handleFilter();
+            setMedicineValue('');
+            setCompanyValue('');
+            return;
+        }
+
+        if (companyValue.length > 0) {
+            setSearch(true);
+            navigate(`/?company=${companyValue}`);
+
+            setMedicineValue('');
+            setCompanyValue('');
+            return;
+        }
     };
 
-    const handleFilter = async () => {
-        DataServices.getByName(medicineValue, page).then((result) => {
-            if (result instanceof Error) {
-                alert(result);
-            } else {
-                setMedicines(result.data);
-
-                const settings = {
-                    first: result.first,
-                    prev: result.prev,
-                    next: result.next,
-                    last: result.last,
-                    pages: result.pages,
-                    items: result.items,
-                };
-                setPageSettings(settings);
-            }
-        });
-    };
-
-    const handleDelete = (index: number) => {
-        setSearch((prevSearch) => prevSearch.filter((_, i) => i !== index));
+    const handleCancelSearch = () => {
+        navigate(`/`);
+        setSearch(false);
     };
 
     return (
@@ -105,18 +170,14 @@ export function Home() {
                     <Button onClick={() => handleSearch()}>
                         <IconSearch height="15px" /> Pesquisar resultados
                     </Button>
+                    {search ? (
+                        <Button onClick={() => handleCancelSearch()}>
+                            <IconDelete height="15px" /> Cancelar pesquisa
+                        </Button>
+                    ) : (
+                        ''
+                    )}
                 </div>
-                {search.map((item, index) => {
-                    return (
-                        <span
-                            className="filterItem"
-                            key={index}
-                            onClick={() => handleDelete(index)}
-                        >
-                            <IconDelete height="10px" /> {item}
-                        </span>
-                    );
-                })}
             </div>
             <Table>
                 {medicines.map((medicine) => {

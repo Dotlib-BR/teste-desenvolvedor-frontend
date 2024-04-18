@@ -21,9 +21,37 @@ const getById = async (id: string): Promise<MedicineInterface | Error> => {
     }
 };
 
-const getByName = async (name: string, page: number) => {
+const getByName = async (page: number, name: string) => {
     try {
-        const { data } = await Api().get(`/data?name=${name}&_page=${page}`);
+        const { data } = await Api().get(`/data?_page=${page}&name=${name}`);
+
+        return data;
+    } catch (error) {
+        return new Error('Erro ao consultar a API');
+    }
+};
+
+const getByCompany = async (page: number, company: string) => {
+    try {
+        const { data } = await Api().get(
+            `/data?_page=${page}&company=${company}`,
+        );
+
+        return data;
+    } catch (error) {
+        return new Error('Erro ao consultar a API');
+    }
+};
+
+const getByNameAndCompany = async (
+    page: number,
+    name: string,
+    company: string,
+) => {
+    try {
+        const { data } = await Api().get(
+            `/data?_page=${page}&name=${name}&company=${company}`,
+        );
 
         return data;
     } catch (error) {
@@ -35,4 +63,6 @@ export const DataServices = {
     getAll,
     getById,
     getByName,
+    getByCompany,
+    getByNameAndCompany,
 };
