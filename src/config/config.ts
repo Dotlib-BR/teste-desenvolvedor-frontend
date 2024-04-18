@@ -1,7 +1,7 @@
 import { env } from "@/lib/env.mjs"
 
 export const siteConfig = {
-	name: "Next Boilerplate",
+	name: "Bulário Eletrônico",
 	authors: [
 		{
 			name: "whyleonardo",
@@ -10,8 +10,7 @@ export const siteConfig = {
 	],
 	url: env.NEXT_PUBLIC_SITE_BASE_URL,
 	ogImage: "",
-	description:
-		"✨ NextJS template for building apps with TailwindCSS and RadixUI ✨",
+	description: "",
 	links: {
 		github: "https://github.com/whyleonardo/next-shadcn-template",
 		twitter: "",
