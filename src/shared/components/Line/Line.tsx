@@ -1,3 +1,4 @@
+import { formatDate } from '../../services/utils/formatDate';
 import './Line.css';
 
 interface LineProps {
@@ -21,7 +22,7 @@ export default function Line({
         <tr className="tableLine" onClick={() => console.log(id)}>
             <td>{name}</td>
             <td>{company}</td>
-            <td>{date}</td>
+            <td>{formatDate(date)}</td>
             <td>{patient}</td>
             <td>{professional}</td>
         </tr>
