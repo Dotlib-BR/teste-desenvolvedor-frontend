@@ -10,6 +10,7 @@ import "@/styles/base.css"
 import { fontCalSans, fontMono, fontSans } from "@/styles/fonts"
 import "@/styles/global.css"
 
+import { QueryClientProvider } from "@/providers/query-client"
 import { ThemeProvider } from "@/providers/theme-provider"
 
 export const viewport: Viewport = {
@@ -75,10 +76,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
 					fontCalSans
 				)}
 			>
-				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-					{children}
-				</ThemeProvider>
-				<ScreenSizeIndicator />
+				<QueryClientProvider>
+					<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+						{children}
+					</ThemeProvider>
+					<ScreenSizeIndicator />
+				</QueryClientProvider>
 			</body>
 		</html>
 	)
