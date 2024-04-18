@@ -3,9 +3,7 @@
 @use '../../../../styles/media' as media
 
 .container
-    display: flex
-    justify-content: space-evenly
-    align-items: center
+    @include mixin.justifyEvenly
     position: relative
     padding: 4rem 11rem
 
@@ -20,8 +18,7 @@
         display: none
 
 .filterSelect
-    width: 9.3rem
-    height: 2.5rem
+    @include mixin.size(9.3rem, 2.5rem)
     padding: 0.5rem 1rem
     border: 1px solid #99B933
     border-radius: 1rem
@@ -29,8 +26,7 @@
     cursor: pointer
 
 .containerMedicine
-    width: 18rem
-    height: 26.8rem
+    @include mixin.size(18rem, 26.8rem)
     margin-top: 1rem
     border-radius: 0.25rem
     border: 1px solid variables.$border-color
@@ -40,8 +36,7 @@
         width: 16rem
 
 .medicineNameBox
-    display: flex
-    align-items: center
+    @include mixin.itemsCenter
     height: 4.5rem
     padding: 0 1.5rem
     background: variables.$custom-background-1
@@ -51,56 +46,34 @@
     background: variables.$custom-background-2
 
 .brandImageContainer
-    width: 3rem
-    height: 3rem
+    @include mixin.size(3rem, 3rem)
     margin-right: 0.87rem
-    border-radius: 100%
+    @include mixin.radiusFull
     background: variables.$background-dark
 
 .brandImage
-    width: 3rem
-    height: 3rem
+    @include mixin.size(3rem, 3rem)
+    @include mixin.radiusFull
     object-fit: contain
-    border-radius: 100%
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
 
 .medicineName
-    font-size: 1rem
-    color: variables.$text-dark
-    overflow: hidden
-    text-overflow: ellipsis
-    white-space: nowrap
+    @include mixin.fontStyle (1rem, 400, variables.$text-dark)
+    @include mixin.textEllipsis
 
 .pagination
-    display: flex
-    justify-content: center
+    @include mixin.center
     margin-top: 1rem
 
 .activeBtn
-    padding: 0.5rem
-    border: none
-    background: variables.$button-color
-    color: variables.$background-dark
-    cursor: pointer
+    @include mixin.paginationBtn(variables.$button-color, variables.$background-dark)
 
 .btnNotActive
-    background: variables.$border-color
-    padding: 0.5rem
-    border: none
-    color: variables.$text-dark
-    cursor: pointer
+    @include mixin.paginationBtn(variables.$border-color, variables.$text-dark)
 
 .active
-    padding: 0.5rem
-    border: none
-    background: variables.$custom-background-2
-    color: variables.$text-dark
-    cursor: pointer
+    @include mixin.paginationBtn(variables.$custom-background-2, variables.$text-dark)
 
 .disabledBtn
-    padding: 0.5rem
-    border: none
-    background: variables.$custom-background-2
-    color: variables.$text-dark
-    cursor: pointer
+    @include mixin.paginationBtn(variables.$custom-background-2, variables.$text-dark)
     opacity: 0.5
