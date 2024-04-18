@@ -1,9 +1,4 @@
-$MainBlue: #024873;
-$Iconblue: #0477BF;
-$Buttonblue: #049DBF;
-$SubIconBlue: #048ABF;
-$MainWhite: #FFF;
-
+@import '../../index.scss';
 header {
     display: flex;
     justify-content: space-between;

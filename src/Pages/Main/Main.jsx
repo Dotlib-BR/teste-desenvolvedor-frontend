@@ -1,5 +1,7 @@
 import './Main.css'
 import Header from '../../Components/Header/Header'
+import MedicalSearchForm from '../../Components/MedicalSearchForm/MedicalSearchForm'
+
 function Main() {
   return (
     <>
@@ -7,7 +9,7 @@ function Main() {
         MainHeaderText={"Bulário Eletrônico"}
       />
       <main>
-        
+        <MedicalSearchForm/>
       </main>
     </>
   )
