@@ -1,5 +1,5 @@
 
-import { ChangeEvent, useState, useContext, useEffect } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import './Search.scss';
 import './MediasSearch.scss'; 
 
@@ -8,10 +8,6 @@ import { DataContext } from '../../context/DataContext';
 
 export const Search = () => {
   const { getDataByNameOrLab, searched_value, setSearched_value } = useContext(DataContext);
-
-  useEffect(() => {
-    
-  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
