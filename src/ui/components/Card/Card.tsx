@@ -10,7 +10,6 @@ export const Card = ({ item }: CardProps) => {
   return (
     <article className="card-container">
       <header className="card-header">
-        <span className="card-title">Nome:</span>
         <h2>
           {item.name.map((item, index) => (
             <span key={index} className="card-name">
@@ -36,7 +35,6 @@ export const Card = ({ item }: CardProps) => {
         </div>
       </div>
       <div className="documents-info">
-        <span className="card-title">Documentos</span>
         {item.documents.map((item) => (
           <div key={item.id}>
             <div className="info-container">
@@ -49,9 +47,9 @@ export const Card = ({ item }: CardProps) => {
             </div>
           </div>
         ))}
-        <div className="favorite-container">
-          <RiStarLine />
-        </div>
+      </div>
+      <div className="favorite-container">
+        <RiStarLine />
       </div>
     </article>
   );
