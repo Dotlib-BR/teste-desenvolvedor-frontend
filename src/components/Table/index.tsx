@@ -40,7 +40,7 @@ export const Table: React.FC<TableProps> = ({ header, body }) => {
               ))}
             </tr>
           )
-        })}
+        }) || null}
       </tbody>
     </StyledTable>
   )

@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: ${(props) => props.theme['background-primary']};
+  width: 100%;
 
   display: flex;
   flex-direction: column;

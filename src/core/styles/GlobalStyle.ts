@@ -8,4 +8,8 @@ export const GlobalStyle = createGlobalStyle`
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+body{
+  background-color: ${(props) => props.theme['background-primary']};
+}
 `

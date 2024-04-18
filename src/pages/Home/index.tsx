@@ -8,6 +8,8 @@ import { z } from 'zod'
 import { Content, FlexSection, Header, HomeContainer } from './styles'
 
 import { Button, Form, Table } from '@/components'
+import { format } from 'date-fns'
+import { useMedication } from '@/modules/useMedication/useMedication'
 
 const formSchema = z.object({
   name: z.string().min(3, { message: 'Mínimo de 3 caracteres' }),
@@ -16,6 +18,8 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>
 
 export const Home: React.FC = () => {
+  const { response, isLoading } = useMedication()
+
   const handleSubmit = useCallback((data: FormSchema) => {
     console.log(data)
   }, [])
@@ -46,72 +50,20 @@ export const Home: React.FC = () => {
   }, [])
 
   const tableBody = useMemo(() => {
-    return [
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: <input type="radio" />,
-        actives_principles: <span>Hello</span>,
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-      {
-        name: 'Test',
-        published_at: 'Test',
-        company: 'Test',
-        documents: 'Test',
-        actives_principles: 'Test',
-      },
-    ]
-  }, [])
+    if (response.data) {
+      return response.data.map((medication) => {
+        return {
+          name: medication.name,
+          published_at: format(medication.published_at, 'dd/MM/yyyy'),
+          company: medication.company,
+          documents: 'Test',
+          actives_principles: 'Test',
+        }
+      })
+    }
+
+    return []
+  }, [response])
 
   return (
     <HomeContainer>
@@ -125,7 +77,13 @@ export const Home: React.FC = () => {
             label="Buscar por nome:"
             placeholder="Amoxicilina "
           />
-          <Button icon={<MagnifyingGlass />}>Buscar</Button>
+          <Button
+            icon={<MagnifyingGlass />}
+            loading={isLoading}
+            textLoading="Buscando..."
+          >
+            Buscar
+          </Button>
         </Form>
       </FlexSection>
       <Content>
