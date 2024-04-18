@@ -19,7 +19,7 @@ export const MedItems = ({ medData, isSorted }: MedItemsProps) => {
 			{medItems.map((medItem) => (
 				<li key={medItem.id} className={medStyles.medItem}>
 					<div className={medStyles.medItemInfo}>
-						<p>
+						<p className={medStyles.medName}>
 							<strong>{medItem.name}</strong>
 						</p>
 						<div>
@@ -33,10 +33,12 @@ export const MedItems = ({ medData, isSorted }: MedItemsProps) => {
 					</div>
 
 					<div className={medStyles.medItemInfo}>
+						<p className={medStyles.mobileTitle}>Laboratório:</p>
 						<p>{medItem.company}</p>
 					</div>
 
 					<div className={`${medStyles.medItemInfo} ${medStyles.medDate}`}>
+						<p className={medStyles.mobileTitle}>Data de publicação:</p>
 						<p>
 							{format(medItem.published_at, 'dd/MM/yyyy', {
 								locale: ptBR,

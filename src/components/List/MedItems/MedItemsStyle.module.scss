@@ -21,13 +21,25 @@
 	justify-content: center;
 	flex-wrap: wrap;
 	width: 100%;
-	gap: 15px;
 	text-transform: uppercase;
 
 	p {
 		margin-bottom: 5px;
 	}
+
+	.medName {
+		margin-bottom: 15px;
+	}
+
+	.mobileTitle {
+		display: none;
+
+		@media (max-width: $screen-mobile) {
+			display: block;
+		}
+	}
 }
+
 .medDate {
 	padding-left: 30px;
 

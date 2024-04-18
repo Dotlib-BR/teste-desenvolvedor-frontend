@@ -17,6 +17,8 @@
 
 	@media (max-width: $screen-mobile) {
 		padding: 0 30px;
+		border-top: solid 1px $sandBg;
+		margin-top: 15px;
 	}
 }
 
@@ -55,6 +57,8 @@
 	div {
 		display: flex;
 		gap: 5px;
+		
+
 		button {
 			border-radius: 8px;
 			border-width: 0;
