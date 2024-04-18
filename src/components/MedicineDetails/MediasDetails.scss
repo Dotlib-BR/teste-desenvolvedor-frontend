@@ -1,0 +1,28 @@
+@media screen and (max-width: 500px) {
+  .details {
+    h1 {
+      margin: 8px 0 8px 0;
+      font-size: 22px;
+    }
+
+    div {
+      gap: 8px;
+      height: auto;
+
+      h2 {
+        margin: 8px 0 8px 0;
+        font-size: 18px;
+      }
+
+      strong {
+        font-size: 14px;
+        text-align: center;
+      }
+
+      b {
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+}
