@@ -1,17 +1,8 @@
-export async function fetchSearchData(query: string) {
-	const isUUID = new RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
+export async function fetchSearchData(query: string): Promise<any> {
+	try {
+		let url
+		let response
 
-	let url
-	let response
-
-	if (isUUID.test(query)) {
-		url = `http://localhost:3000/data/${query}`
-		const fetchIdData = await fetch(url)
-
-		response = await fetchIdData.json()
-
-		response = [response]
-	} else {
 		url = `http://localhost:3000/data/`
 
 		const fetchQueryData = await fetch(url)
@@ -25,9 +16,13 @@ export async function fetchSearchData(query: string) {
 		)
 
 		response = filteredData
+
+		if (!Array.isArray(response)) {
+			response = [response]
+		}
+
+		return response
+	} catch (error) {
+		console.error('Ocorreu um erro de: ', error)
 	}
-
-	console.log('aaa', response)
-
-	return response
 }
