@@ -39,7 +39,7 @@ export const MedItems = ({ medData, isSorted }: MedItemsProps) => {
 
 					<div className={`${medStyles.medItemInfo} ${medStyles.medDate}`}>
 						<p className={medStyles.mobileTitle}>Data de publicação:</p>
-						<p>
+						<p data-testid='test-date'>
 							{format(medItem.published_at, 'dd/MM/yyyy', {
 								locale: ptBR,
 							})}
@@ -60,7 +60,7 @@ export const MedItems = ({ medData, isSorted }: MedItemsProps) => {
 							) : (
 								<Link
 									key={document.id}
-									href={document.id}
+									href={document.url}
 									target='_blank'
 									className={medStyles.downloadLink}
 								>
