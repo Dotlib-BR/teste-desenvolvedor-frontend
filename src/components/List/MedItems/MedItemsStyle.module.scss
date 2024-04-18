@@ -6,6 +6,13 @@
 	width: 100%;
 	padding: 0 15px;
 	border-bottom: solid 1px $sandBg;
+
+	@media (max-width: $screen-mobile) {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 15px;
+	}
 }
 
 .medItemInfo {
@@ -16,12 +23,17 @@
 	width: 100%;
 	gap: 15px;
 	text-transform: uppercase;
+
 	p {
 		margin-bottom: 5px;
 	}
 }
 .medDate {
 	padding-left: 30px;
+
+	@media (max-width: $screen-mobile) {
+		padding-left: 0;
+	}
 }
 
 .medDownload {
@@ -30,6 +42,10 @@
 	width: 275px;
 	justify-content: center;
 	align-items: center;
+
+	@media (max-width: $screen-mobile) {
+		margin-bottom: 15px;
+	}
 
 	.downloadLink {
 		background-color: $translucidBlack;
