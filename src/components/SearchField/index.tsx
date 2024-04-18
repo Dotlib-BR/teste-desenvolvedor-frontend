@@ -9,10 +9,10 @@ import { DEFAULT_PAGE } from "../utils/pagination"
 
 export function SearchField() {
 
+  const [searchBy, setSearchBy] = useState<SearchByType>('name') 
   const [error, setError] = useState<InputError | null>(null)
   const [medications, setMedications] = useState<Data>()
   const [valueSearched, setValueSearched] = useState('')
-  const [searchBy, setSearchBy] = useState<SearchByType>('name') 
 
   async function search(e?: React.KeyboardEvent<HTMLInputElement>) {
     let value: string
@@ -55,7 +55,7 @@ export function SearchField() {
       </SearchWrapper>
 
       <Pagination 
-      medications={medications}
+      medicationsData={medications}
       setMedications={setMedications}
       valueSearched={valueSearched}
       />

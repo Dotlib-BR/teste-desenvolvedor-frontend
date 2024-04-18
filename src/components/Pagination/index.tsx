@@ -5,11 +5,12 @@ import { Paginationcontainer } from "./Styles"
 
 type PaginationProps = {
   valueSearched: string
-  medications: Data | undefined
+  medicationsData: Data | undefined
   setMedications: (value: Data) => void
 }
 
-export function Pagination({ valueSearched, medications, setMedications }: PaginationProps) {
+export function Pagination({ valueSearched,  medicationsData, setMedications }: PaginationProps) {
+
   async function nextPage() {
     const data = await getMedications(valueSearched, 'name', currentPage + 1)
     setMedications(data)
@@ -20,14 +21,12 @@ export function Pagination({ valueSearched, medications, setMedications }: Pagin
     setMedications(data)
   }
 
-  const currentPage = (medications?.prev || 0) + 1
-
-  console.log(medications)
+  const currentPage = ( medicationsData?.prev || 0) + 1
 
   return (
     <>
       <table>
-        {!!medications?.data.length && 
+        {!! medicationsData?.data.length && 
         <>
           <thead>
             <tr>
@@ -37,18 +36,18 @@ export function Pagination({ valueSearched, medications, setMedications }: Pagin
             </tr>
           </thead>
           <tbody>
-            {medications.data.map((medication, index) => (
+            { medicationsData.data.map((medication, index) => (
               <MedicationRow key={index} medication={medication}/>
             ))}
           </tbody>
         </>}
       </table>
 
-      {(!!medications?.data.length) && 
+      {(!! medicationsData?.data.length) && 
       <Paginationcontainer>
-        {medications.prev && <span onClick={prevPage}>{medications.prev}</span>}
+        { medicationsData.prev && <span onClick={prevPage}>{ medicationsData.prev}</span>}
         <span className="selected">{currentPage}</span>
-        {medications.next && <span onClick={nextPage}>{medications.next}</span>}
+        { medicationsData.next && <span onClick={nextPage}>{ medicationsData.next}</span>}
       </Paginationcontainer>}
     </>
   )

@@ -17,14 +17,15 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   section.main-container {
+    position: relative;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 60px;
-    font-size: 14px;
 
-    margin: 20px;
+    font-size: 14px;
   }
 
   table {
@@ -40,6 +41,8 @@ export const GlobalStyles = createGlobalStyle`
     height: 30px;
     cursor: pointer;
     text-align: center;
+
+    margin: auto;
   }
 
   tbody tr:hover {
@@ -48,6 +51,7 @@ export const GlobalStyles = createGlobalStyle`
 
   h1 {
     font-size: 35px;
+    margin-top: 40px;
   }
 
 `
