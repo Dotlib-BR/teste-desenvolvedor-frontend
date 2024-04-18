@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  img{
+  img {
     width: 330px;
     height: 100px;
   }
-`
+`;
 
 export const Body = styled.div`
   display: flex;
@@ -17,5 +17,4 @@ export const Body = styled.div`
   justify-content: center;
   margin: auto;
   margin-top: 100px;
-
-`
+`;
