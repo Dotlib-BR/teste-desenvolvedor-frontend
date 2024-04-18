@@ -1,5 +1,3 @@
-import Multilab from '../../assets/multilab.svg'
-import MultilabPack from '../../assets/multilab-pack.svg'
 import { format } from 'date-fns'
 
 import { SelectedMedicineData } from '../../interface/selected-medicine-prop'
@@ -21,7 +19,13 @@ export default function MedicineDetails({ data }: SelectedMedicineData) {
     return (
         <div className={s.medicineItem}>
             <div className={s.brandInfo}>
-                <img src={Multilab} alt='multilab' className={s.brandImage} />
+                <figure className={s.brandImageContainer}>
+                    <img
+                        src={data.company_image}
+                        alt={`Foto de ${data.company_image}`}
+                        className={s.brandImage}
+                    />
+                </figure>
                 <h2 className={s.brandName}>{data.company}</h2>
             </div>
 
@@ -30,8 +34,8 @@ export default function MedicineDetails({ data }: SelectedMedicineData) {
                 <div className={s.medicineDetail}>
                     <figure className={s.medicineImageBox}>
                         <img
-                            src={MultilabPack}
-                            alt='multilab'
+                            src={data.medical_image}
+                            alt={`Foto de ${data.medical_image}`}
                             className={s.medicineImage}
                         />
                     </figure>
