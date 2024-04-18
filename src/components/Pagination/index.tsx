@@ -27,7 +27,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         return (
           <Item
             key={pageNumber}
-            isCurrentPage={currentPage === pageNumber}
+            $isCurrentPage={currentPage === pageNumber}
             disabled={currentPage === pageNumber}
             onClick={() =>
               handleGetNewData({

@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   textLoading?: string
   icon?: React.ReactNode
   size?: 'sm' | 'md'
-  ref?: React.RefObject<HTMLButtonElement>
+  control?: React.RefObject<HTMLButtonElement>
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,12 +21,12 @@ export const Button: React.FC<ButtonProps> = ({
   loading,
   textLoading,
   size = 'md',
-  ref,
+  control,
   ...rest
 }) => {
   return (
     <StyledButton
-      ref={ref}
+      ref={control}
       size={size}
       color={disabled ? 'disabled' : color}
       disabled={disabled || loading}

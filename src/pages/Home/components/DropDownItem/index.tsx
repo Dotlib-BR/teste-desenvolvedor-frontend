@@ -43,7 +43,7 @@ export const DropDownItem: React.FC<DropDownItem> = ({
 
   return (
     <div>
-      <Button size="sm" onClick={handleToggleState} ref={buttonRef}>
+      <Button size="sm" onClick={handleToggleState} control={buttonRef}>
         {buttonTitle}
       </Button>
       <DropDown open={open} ref={dropDownRef}>

@@ -8,7 +8,7 @@ export const PaginationContainer = styled.div`
 `
 
 type ItemProps = {
-  isCurrentPage: boolean
+  $isCurrentPage: boolean
 }
 
 export const Item = styled.button<ItemProps>`
@@ -23,7 +23,7 @@ export const Item = styled.button<ItemProps>`
   transition: all 0.1s ease-in-out;
 
   ${(props) =>
-    props.isCurrentPage
+    props.$isCurrentPage
       ? css`
           background-color: ${(props) => props.theme.primary};
           color: ${(props) => props.theme['text-light']};
