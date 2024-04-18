@@ -15,7 +15,7 @@
 	padding: 0 5px;
 	max-width: 1100px;
 
-	@media(max-width: $screen-mobile) {
+	@media (max-width: $screen-mobile) {
 		padding: 0 30px;
 	}
 }
@@ -34,8 +34,43 @@
 		padding: 0 78px;
 	}
 
-	@media(max-width: $screen-mobile) {
+	.publishDate {
+		display: flex;
+		gap: 5px;
+
+		button[data-sort='asc'] {
+			transform: rotate(180deg);
+		}
+	}
+
+	@media (max-width: $screen-mobile) {
 		display: none;
+	}
+}
+
+.mobileSort {
+	display: none;
+	gap: 5px;
+
+	div {
+		display: flex;
+		gap: 5px;
+		button {
+			border-radius: 8px;
+			border-width: 0;
+			color: $black;
+			cursor: pointer;
+			margin: 0;
+			padding: 8px 8px;
+			text-align: center;
+			border: solid 1px $sandBg;
+		}
+	}
+
+	@media (max-width: $screen-mobile) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 }
 
@@ -44,7 +79,7 @@
 	gap: 20px;
 	padding: 15px;
 
-	@media(max-width: $screen-mobile) {
+	@media (max-width: $screen-mobile) {
 		justify-content: space-between;
 	}
 

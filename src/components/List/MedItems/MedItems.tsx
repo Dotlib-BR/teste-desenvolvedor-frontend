@@ -3,9 +3,16 @@ import medStyles from './MedItemsStyle.module.scss'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import Link from 'next/link'
 import { MedDataProps } from '@/types/dataTypes'
+import { sortHelper } from '../helpers/sortHelper'
 
-export const MedItems = ({ medData }: MedDataProps) => {
+interface MedItemsProps extends MedDataProps {
+	isSorted: string
+}
+
+export const MedItems = ({ medData, isSorted }: MedItemsProps) => {
 	const medItems = Array.isArray(medData) ? medData : []
+
+	sortHelper(medData, isSorted)
 
 	return (
 		<>

@@ -11,6 +11,7 @@ export const List = () => {
 	const [medData, setMedData] = useState([])
 	const [page, setPage] = useState(1)
 	const [searchData, setSearchData] = useState('')
+	const [isSorted, setIsSorted] = useState('none')
 
 	useEffect(() => {
 		if (searchData.length <= 0) {
@@ -33,6 +34,17 @@ export const List = () => {
 	return (
 		<div className={listStyles.listWrapper}>
 			<MedSearch setSearchData={setSearchData} />
+			<div className={listStyles.mobileSort}>
+				<p>Organizar pela data por:</p>
+				<div>
+					<button data-sort={isSorted} onClick={() => setIsSorted('asc')}>
+						Mais antigo
+					</button>
+					<button data-sort={isSorted} onClick={() => setIsSorted('desc')}>
+						Mais Novo
+					</button>
+				</div>
+			</div>
 			<div>
 				<ul className={listStyles.mainList}>
 					<li>
@@ -43,8 +55,20 @@ export const List = () => {
 							<li>
 								<p>empresa</p>
 							</li>
-							<li>
+							<li className={listStyles.publishDate}>
 								<p>data de publicação</p>
+								<button
+									data-sort={isSorted}
+									onClick={() =>
+										setIsSorted(
+											isSorted === 'asc'
+												? 'desc'
+												: 'asc'
+										)
+									}
+								>
+									▼
+								</button>
 							</li>
 							<li>
 								<p>bula</p>
@@ -52,7 +76,7 @@ export const List = () => {
 						</ul>
 					</li>
 
-					<MedItems medData={medData} />
+					<MedItems medData={medData} isSorted={isSorted} />
 
 					<li className={listStyles.pagination}>
 						<button
