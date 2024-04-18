@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GetAllData from './Pages/getAllData'
+import MedicationSearch from './Pages/medicationSearch'
 
 function App() {
   return (
     <Router>
       <Routes>
         {/* Rota para a página de paginação */}
-        <Route path="/" element={<GetAllData />} />
+        <Route path="/" element={<MedicationSearch />} />
       </Routes>
     </Router>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchAllData } from '../Utils/fetchData';
 import RenderMedications from '../Components/renderMedications';
 
-const GetAllData = () => {
+const MedicationSearch = () => {
     const [data, setData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredMedications, setFilteredMedications] = useState([]);
@@ -29,7 +29,7 @@ const GetAllData = () => {
 
     const handleSearch = () => {
         if (searchQuery.length >= 3) {
-            const filtered = data.filter((medication) => {
+            const filteredData = data.filter((medication) => {
                 const lowerCaseQuery = searchQuery.toLowerCase();
                 const lowerCaseCompanyName = medication.company.toLowerCase();
                 return (
@@ -38,9 +38,9 @@ const GetAllData = () => {
                     lowerCaseCompanyName.split(' ')[0].includes(lowerCaseQuery)
                 );
             });
-            filtered.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-            setFilteredMedications(filtered);
-            setSearchNotFound(filtered.length === 0);
+            filteredData.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+            setFilteredMedications(filteredData);
+            setSearchNotFound(filteredData.length === 0);
             setCurrentPage(1);
         } else {
             setFilteredMedications([]);
@@ -80,4 +80,4 @@ const GetAllData = () => {
     );
 };
 
-export default GetAllData;
+export default MedicationSearch;

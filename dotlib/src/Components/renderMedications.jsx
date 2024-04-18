@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const RenderMedications = ({ filteredMedications, currentPage, handleExpandDocument, expandedDocument, handlePageChange }) => {
     if (filteredMedications.length === 0) {
@@ -27,10 +27,10 @@ const RenderMedications = ({ filteredMedications, currentPage, handleExpandDocum
                         <div>
                             <strong>Empresa:</strong> {medication.company}
                         </div>
-                        <button onClick={() => handleExpandDocument(medication.id)}>Expandir</button>
+                        <button onClick={() => handleExpandDocument(medication.id)}>Documentos</button>
                         {expandedDocument === medication.id && (
                             <div>
-                                <strong>Documentos:</strong>
+                                <strong>Documents:</strong>
                                 <ul>
                                     {medication.documents.map((document) => (
                                         <li key={document.id}>
@@ -44,13 +44,29 @@ const RenderMedications = ({ filteredMedications, currentPage, handleExpandDocum
                                                 <strong>Tipo:</strong> {document.type}
                                             </div>
                                             <div>
-                                                <strong>URL:</strong> {document.url}
+                                                <strong>Url:</strong> <a href={document.url} download>{document.url}</a>
                                             </div>
                                         </li>
                                     ))}
                                 </ul>
+
                             </div>
                         )}
+                        <div>
+                            <strong>Princípios Ativos:</strong>
+                            <ul>
+                                {medication.active_principles.map((principle) => (
+                                    <li key={principle.id}>
+                                        <div>
+                                            <strong>ID:</strong> {principle.id}
+                                        </div>
+                                        <div>
+                                            <strong>Nome:</strong> {principle.name}
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </li>
                 ))}
             </ul>
