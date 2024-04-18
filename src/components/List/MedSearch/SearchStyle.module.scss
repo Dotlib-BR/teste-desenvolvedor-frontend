@@ -1,11 +1,34 @@
 @use '@/styles/variables' as *;
 
-.search {
+.searchWrapper {
 	display: flex;
-	
 	flex-direction: column;
 	gap: 5px;
-	padding: 15px;	
+	padding: 15px;
+}
+
+.searchInput {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
+	input {
+		padding: 5px;
+		border: none;
+		outline: none;
+		border-bottom: 2px solid $sandBg;
+		font-size: 1.5rem;
+
+		&::placeholder{
+			font-size: 1.5rem;
+			letter-spacing: 0.2px;
+		}
+
+		&:active,
+		&:focus {
+			border-bottom: 2px solid $greenBg;
+		}
+	}
 
 	span {
 		color: $redError;
@@ -14,32 +37,25 @@
 		padding-left: 12px;
 	}
 
-	div {
-		display: flex;
-		flex-direction: row;
-		gap: 5px;
-		
-		input {
-			padding: 5px;
-			border: none;
-			outline: none;
-			width: 100%;
-			border-bottom: 2px solid $sandBg;
-	
-			&:active,&:focus {
-				border-bottom: 2px solid $greenBg;
-			}
-		}
-	
-		button {
-			background-color: $greenBg;
-			border-radius: 8px;
-			cursor: pointer;
-			font-weight: 500;
-			padding: 6px 12px;
-			text-align: center;
-		}
+	@media (max-width: $screen-mobile) {
+		flex-direction: column;
 	}
+}
 
-	
+.searchButtons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	gap: 15px;
+	margin-top: 10px;
+
+	button {
+		background-color: $greenBg;
+		border-radius: 8px;
+		cursor: pointer;
+		font-weight: 500;
+		padding: 6px 12px;
+		text-align: center;
+	}
 }

@@ -19,7 +19,8 @@ export const MedSearch = ({ setSearchData }: MedSearchProps) => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isSubmitted },
+		reset,
 	} = useForm<formData>({
 		resolver: zodResolver(createSchema),
 	})
@@ -28,14 +29,32 @@ export const MedSearch = ({ setSearchData }: MedSearchProps) => {
 		setSearchData(data.search)
 	}
 
-	return (
-		<form className={searchStyles.search}>
-			<div>
-				<input type='text' placeholder='Pesquise seu remédio...' {...register('search')} />
-				<button onClick={handleSubmit(sendFormData)}>Pesquisar</button>
-			</div>
+	const handlereset = () => {
+		reset()
+		setSearchData('')
+	}
 
-			{errors.search && <span>{errors.search.message as React.ReactNode}</span>}
+	return (
+		<form className={searchStyles.searchWrapper}>
+			<div>
+				<div className={searchStyles.searchInput}>
+					<input
+						type='text'
+						placeholder='Pesquise seu remédio...'
+						{...register('search')}
+						size={30}
+					/>
+					{errors.search && <span>{errors.search.message as React.ReactNode}</span>}
+				</div>
+				<div className={searchStyles.searchButtons}>
+					<button onClick={handleSubmit(sendFormData)}>Pesquisar</button>
+					{isSubmitted && (
+						<button type='reset' onClick={handlereset}>
+							Reiniciar
+						</button>
+					)}
+				</div>
+			</div>
 		</form>
 	)
 }
