@@ -7,18 +7,19 @@ import { z } from 'zod'
 
 import { Content, FlexSection, Header, HomeContainer } from './styles'
 
-import { Button, Form, Table } from '@/components'
+import { Button, Form, Pagination, Table } from '@/components'
 import { format } from 'date-fns'
 import { useMedication } from '@/modules/useMedication/useMedication'
 
 const formSchema = z.object({
-  name: z.string().min(3, { message: 'Mínimo de 3 caracteres' }),
+  name: z.string(),
+  company: z.string(),
 })
 
 type FormSchema = z.infer<typeof formSchema>
 
 export const Home: React.FC = () => {
-  const { response, isLoading } = useMedication()
+  const { response, isLoading, getMedications } = useMedication()
 
   const handleSubmit = useCallback((data: FormSchema) => {
     console.log(data)
@@ -77,6 +78,11 @@ export const Home: React.FC = () => {
             label="Buscar por nome:"
             placeholder="Amoxicilina "
           />
+          <Form.Input
+            name="company"
+            label="Buscar por Empresa:"
+            placeholder="Multilab "
+          />
           <Button
             icon={<MagnifyingGlass />}
             loading={isLoading}
@@ -88,6 +94,14 @@ export const Home: React.FC = () => {
       </FlexSection>
       <Content>
         <Table header={tableHeader} body={tableBody} />
+        <Pagination
+          pages={response.pages}
+          first={response.first}
+          last={response.last}
+          next={response.next}
+          prev={response.prev}
+          handleGetNewData={getMedications}
+        />
       </Content>
     </HomeContainer>
   )

@@ -37,10 +37,10 @@ export const useMedication = () => {
   const [response, setResponse] = useState<ResponseSchema>({} as ResponseSchema)
   const [isLoading, setIsLoading] = useState(false)
 
-  const getMedications = useCallback(async () => {
+  const getMedications = useCallback(async (page: number = 1) => {
     try {
       setIsLoading(true)
-      const response = await api.get(`/data?_page=1`)
+      const response = await api.get(`/data?_page=${page}`)
 
       setResponse(response.data)
       setIsLoading(false)

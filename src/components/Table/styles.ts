@@ -7,9 +7,8 @@ export const StyledTable = styled.table`
   font-size: 0.85rem;
 
   thead {
-    width: 100%;
-
     th {
+      min-width: 10rem;
       background-color: ${(props) => props.theme['background-secondary']};
       padding: 0.75rem;
       text-align: left;
@@ -30,14 +29,22 @@ export const StyledTable = styled.table`
   }
 
   tbody {
-    width: 100%;
     height: 10rem;
     overflow: auto;
+
+    tr {
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        background-color: ${(props) =>
+          hexToRgba(props.theme['button-disabled'], 0.4)};
+      }
+    }
 
     td {
       background-color: ${(props) =>
         hexToRgba(props.theme['background-secondary'], 0.2)};
-      padding: 0.75rem;
+      padding: 0.65rem;
       font-size: 0.875rem;
       line-height: 1.6;
 

@@ -5,14 +5,14 @@ export const HomeContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 `
 
 export const Header = styled.header`
   margin: 2rem auto 0;
 
   img {
-    max-width: 20rem;
+    max-width: 12rem;
   }
 `
 
@@ -34,4 +34,9 @@ export const FlexSection = styled.div`
 export const Content = styled.div`
   width: 70%;
   margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: end;
 `

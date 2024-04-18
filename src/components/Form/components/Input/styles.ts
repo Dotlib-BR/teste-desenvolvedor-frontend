@@ -5,10 +5,11 @@ export const InputContent = styled.label`
 
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
 `
 
 export const FlexArea = styled.div`
+  margin-bottom: 0.15rem;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,5 +29,6 @@ export const StyledInput = styled.input`
 
   &:focus {
     border: 2px solid ${(props) => props.theme.primary};
+    outline: none;
   }
 `
