@@ -43,48 +43,50 @@ GET http://localhost:3000/data?_page=:number
 ```
 
 ### Exemplo da resposta:
+
 ```json
 {
-	"id": "9fd2789c-50f5-4743-857b-bbfa746ed631",
-	"name": "AMOXICILINA",
-	"published_at": "2022-12-16T18:24:24.000Z",
-	"company": "MULTILAB INDUSTRIA E COMERCIO DE PRODUTOS FARMACEUTICOS LTDA",
-	"documents": [
-		{
-			"id": "57a35a05-1615-491c-b5ae-48ad770cdd53",
-			"expedient": "5064642229",
-			"type": "PROFESSIONAL",
-			"url": "http://localhost:3000/pdf_sample.pdf"
-		},
-		{
-			"id": "dcc3ecc6-5b62-4236-8dfe-f61f4da93fac",
-			"expedient": "5064642229",
-			"type": "PATIENT",
-			"url": "http://localhost:3000/pdf_sample.pdf"
-		}
-	],
-	"active_principles": [
-		{
-			"id": "595aeb0d-5b0d-4a05-a6f6-574a291ad574",
-			"name": "HIDROQUINONA"
-		}
-	]
+  "id": "9fd2789c-50f5-4743-857b-bbfa746ed631",
+  "name": "AMOXICILINA",
+  "published_at": "2022-12-16T18:24:24.000Z",
+  "company": "MULTILAB INDUSTRIA E COMERCIO DE PRODUTOS FARMACEUTICOS LTDA",
+  "documents": [
+    {
+      "id": "57a35a05-1615-491c-b5ae-48ad770cdd53",
+      "expedient": "5064642229",
+      "type": "PROFESSIONAL",
+      "url": "http://localhost:3000/pdf_sample.pdf"
+    },
+    {
+      "id": "dcc3ecc6-5b62-4236-8dfe-f61f4da93fac",
+      "expedient": "5064642229",
+      "type": "PATIENT",
+      "url": "http://localhost:3000/pdf_sample.pdf"
+    }
+  ],
+  "active_principles": [
+    {
+      "id": "595aeb0d-5b0d-4a05-a6f6-574a291ad574",
+      "name": "HIDROQUINONA"
+    }
+  ]
 }
 ```
+
 ### Dicionário de dados
 
-| Campo| Descrição | Tipo |
-|-|-|-| 
-| `id` | identificador do medicamento | `string` |
-| `name` | nome do medicamento | `string` |
-| `published_at` | data de publicação | `string` |
-| `company` | nome do laboratório | `string` |
-| `documents.id` | identificador da bula profissional ou paciente | `string` |
-| `documents.expedient` | registro da bula em orgãos responsáveis | `string` |
-| `documents.type` | tipo da bula (PROFESSIONAL ou PATIENT) | `string` |
-| `documents.url` | URL da bula | `string` |
-| `active_principles.id` | identificador do princípio ativo encontrado no medicamento | `string` |
-| `active_principles.name` | nome do princípio ativo encontrado no medicamento | `string` |
+| Campo                    | Descrição                                                  | Tipo     |
+| ------------------------ | ---------------------------------------------------------- | -------- |
+| `id`                     | identificador do medicamento                               | `string` |
+| `name`                   | nome do medicamento                                        | `string` |
+| `published_at`           | data de publicação                                         | `string` |
+| `company`                | nome do laboratório                                        | `string` |
+| `documents.id`           | identificador da bula profissional ou paciente             | `string` |
+| `documents.expedient`    | registro da bula em orgãos responsáveis                    | `string` |
+| `documents.type`         | tipo da bula (PROFESSIONAL ou PATIENT)                     | `string` |
+| `documents.url`          | URL da bula                                                | `string` |
+| `active_principles.id`   | identificador do princípio ativo encontrado no medicamento | `string` |
+| `active_principles.name` | nome do princípio ativo encontrado no medicamento          | `string` |
 
 ## O que iremos analisar
 
