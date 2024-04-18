@@ -9,6 +9,13 @@ interface IMedicineDataContext {
   setPaginationInfo: React.Dispatch<React.SetStateAction<IPaginationInfo>>;
   isSuccesModalOpen: boolean;
   setIsSuccesModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  searchTerm: ISearchTerm;
+  setSearchTerm: React.Dispatch<React.SetStateAction<ISearchTerm>>;
+}
+
+interface ISearchTerm {
+  name: string;
+  company: string;
 }
 
 interface IMedicineData {
@@ -39,4 +46,4 @@ interface IPaginationInfo {
   pages: number;
 }
 
-export { IMedicineDataContext, IMedicineData, IPaginationInfo, Document };
+export { IMedicineDataContext, IMedicineData, IPaginationInfo, Document, ISearchTerm };

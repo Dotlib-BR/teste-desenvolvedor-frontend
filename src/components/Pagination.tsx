@@ -2,7 +2,7 @@ import Arrow from "../assets/Icons/Arrow";
 import { useMedicineData } from "../context/MedicineDataContext";
 
 const Pagination = () => {
-  const { paginationInfo, setPaginationInfo } = useMedicineData();
+  const { paginationInfo, setPaginationInfo, setSearchTerm } = useMedicineData();
   const pageNumbers = Array.from(
     { length: paginationInfo.pages },
     (_, index) => index + 1
@@ -15,6 +15,9 @@ const Pagination = () => {
       ...prev,
       currentPage: currentPage + number,
     }));
+
+    setSearchTerm({ name: "", company: "" });
+
   };
 
   const handleNumbers = (number: number) => {
@@ -22,9 +25,9 @@ const Pagination = () => {
       ...prev,
       currentPage: number,
     }));
-  };
 
-  console.log(paginationInfo.currentPage)
+    setSearchTerm({ name: "", company: "" });
+  };
 
   return (
     <section className="pagination">

@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-@import 'table';
-@import 'pagination';
-@import 'documents';
-@import 'filters';
+@import 'breakpoints';
+
+@import 'components/table';
+@import 'components/pagination';
+@import 'components/documents';
+@import 'components/filters';
+@import 'components/header';
+@import 'components/details';
+@import 'components/page-heading';
 
 * {
     margin: 0;
@@ -16,16 +21,13 @@
     }
 }
 
+
+
 main {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 60px 0;
 
-    h2 {
-        margin-bottom: 5px;
-    }
-
-    p {
-        margin-bottom: 50px;
+    @include tablet {
+        padding: 0 20px;
     }
 }

@@ -1,10 +1,13 @@
 const Header = () => {
   return (
     <header>
-        <h2>Seja bem vindo!</h2>
-        <p>Aqui está a lista de medicamentos</p>
+      <div>
+        <a href="https://dotlib.com/" target="_blank">
+          <img src="/logo-dotlib.png" alt="logo" />
+        </a>
+      </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

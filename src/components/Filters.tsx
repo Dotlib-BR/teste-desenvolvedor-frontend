@@ -1,7 +1,7 @@
 import { useMedicineData } from "../context/MedicineDataContext";
 
 const Filters = () => {
-  const { medicineData, setFilteredMedicineData } = useMedicineData();
+  const { medicineData, setFilteredMedicineData, searchTerm, setSearchTerm } = useMedicineData();
 
   const handleFilter = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -25,12 +25,14 @@ const Filters = () => {
       <input
         type="text"
         placeholder="Buscar por nome"
-        onChange={(event) => handleFilter(event, "name")}
+        onChange={(event) => {handleFilter(event, "name"); setSearchTerm((prev) =>({...prev, name: event.target.value}))}}
+        value={searchTerm.name}
       />
       <input
         type="text"
         placeholder="Buscar por empresa"
-        onChange={(event) => handleFilter(event, "")}
+        onChange={(event) => {handleFilter(event, ""); setSearchTerm((prev) =>({...prev, company: event.target.value}))}}
+        value={searchTerm.company}
       />
     </section>
   );

@@ -10,6 +10,7 @@ import {
   IMedicineDataContext,
   IMedicineData,
   IPaginationInfo,
+  ISearchTerm,
 } from "./MedicineDataContext.d";
 import axios from "axios";
 
@@ -30,14 +31,13 @@ export function MedicineDataContextProvider({
     currentPage: 1,
   } as IPaginationInfo);
   const [isSuccesModalOpen, setIsSuccesModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState({} as ISearchTerm);
 
   useEffect(() => {
     const getMedicineData = async () => {
       const { data: response } = await axios.get(
         `http://localhost:3000/data?_page=${paginationInfo.currentPage}`
       );
-
-      console.log({ response }, paginationInfo.currentPage);
 
       setPaginationInfo({
         next: response.next,
@@ -63,6 +63,8 @@ export function MedicineDataContextProvider({
         setPaginationInfo,
         isSuccesModalOpen,
         setIsSuccesModalOpen,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}
