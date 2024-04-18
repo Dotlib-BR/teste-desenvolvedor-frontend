@@ -1,7 +1,9 @@
 @use '../../styles/media' as media
+@use '../../styles/variables' as variables
+@use '../../styles/mixin' as mixin
 
 .container
-    min-height: calc( 100vh - 5.5rem - 3rem )
+    mixin.occupyScreen
     padding: 4rem 11rem
 
     @include media.max-width(extra-large)
@@ -10,7 +12,7 @@
 .titleSearch
     margin-bottom: 2rem
     text-align: center
-    font-size: 2rem
+    @include mixin.fontStyle (2rem , 700 , variables.$text-dark)
 
     @include media.max-width(large)
         font-size: 1.5rem
