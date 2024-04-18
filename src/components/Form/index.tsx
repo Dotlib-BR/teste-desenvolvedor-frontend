@@ -12,14 +12,12 @@ interface FormProps<T extends ZodSchema>
   children: React.ReactNode
   formSchema: T
   onSubmitForm: SubmitHandler<FormData<T>>
-  className?: string
 }
 
 export const Form = <T extends ZodSchema>({
   children,
   formSchema,
   onSubmitForm,
-  className,
 }: FormProps<T>) => {
   const methods = useForm<FormData<T>>({
     resolver: zodResolver(formSchema),
@@ -35,9 +33,7 @@ export const Form = <T extends ZodSchema>({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit} className={className}>
-        {children}
-      </form>
+      <form onSubmit={handleSubmit}>{children}</form>
     </FormProvider>
   )
 }
