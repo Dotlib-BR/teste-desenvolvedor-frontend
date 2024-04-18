@@ -1,5 +1,5 @@
 import './style.scss'
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Product, FormProductProps } from '../../types';
@@ -28,6 +28,18 @@ const FormSearchPage: React.FC<FormProductProps> = ({setProductsList}) =>{
         console.log(searchResult);
         setProductsList(searchResult);
         navigate('/medicamentos');
+      }else{
+        //Filtrar resultados com base na pesquisa feita pelo usuário
+        const filteredResult = searchResult.filter(product => 
+          (product.name == name.value || product.company == company.value)
+        );
+        //Verificando se existe os dados da pesquisa em nossa API
+        if(filteredResult.length > 0){
+          setProductsList(filteredResult);
+          navigate('/medicamentos');
+        }else{
+          alert('Medicamento não encontrado!')
+        }
       }
 
     }catch(error){
