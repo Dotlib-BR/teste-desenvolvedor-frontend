@@ -1,6 +1,7 @@
 
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import { Cards } from "../../model/card";
 import { api } from "../../services/baseUrl";
@@ -8,13 +9,16 @@ import { PDFGenerator } from "../Pdf/PdfGenerator";
 import { errorToast } from "../../helpers/Toasts";
 import { FcCalendar, FcOrganization } from "react-icons/fc";
 import { GiHospitalCross } from "react-icons/gi";
+import { IoIosArrowRoundBack } from "react-icons/io";
 import { Loaders } from "../../helpers/Loaders";
 import './Details.scss';
 import './MediasDetails.scss';
+import { DataContext } from "../../context/DataContext";
 
 export const Details = () => {
   const { id } = useParams();
   const [details, setDetails] = useState<Cards>();
+  const { setSearched_value } = useContext(DataContext)
 
   useEffect(() => {
     getMedicineDetails(id!);
@@ -24,7 +28,6 @@ export const Details = () => {
     try {
       const response = await api.get('/data');
       const result = response.data?.find((item: any) => item.id === id);
-      console.log(result)
       if (result) {
         setDetails(result);
       }
@@ -61,6 +64,9 @@ export const Details = () => {
               <b> # DOWNLOAD PDF </b>
               <PDFGenerator className='PDF' data={details} />
             </span>
+          </div>
+          <div className='back_button'>
+            <Link to={'/'} onClick={() => setSearched_value('')}><IoIosArrowRoundBack /> </Link>
           </div>
         </>
       ) : (<Loaders />)
