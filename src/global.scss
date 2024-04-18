@@ -8,8 +8,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --blackColor: #000;
+  --whiteColor: #fff;
   --mainThemeColor: #9bba34;
-  --secondaryColor: #34b1ba;
+  --mainThemeColorHover: #789028;
+  --secondaryThemeColor: #34b1ba;
+  --secondaryThemeColorHover: #288990;
+  --errorThemeColor: #990000;
+  --errorThemeColorHover: #770000;
 }
 
 a {
