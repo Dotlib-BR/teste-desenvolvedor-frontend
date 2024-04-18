@@ -1,0 +1,38 @@
+* {
+    background-color: #57DA64;
+  }
+  
+  .logo-img {
+    width: 100px; 
+    height: auto;
+    border: 2px solid white;
+  }
+  
+  .logo-text {
+    font-size: 30px; 
+    color: #fff;
+    margin-left: 30px;   
+  }
+  
+  @media (max-width: 768px) {
+    .logo-img {
+      width: 80px; 
+    }
+  
+    .logo-text {
+      font-size: 20px; 
+      margin-left: 20px; 
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .logo-img {
+      width: 60px; 
+    }
+  
+    .logo-text {
+      font-size: 16px; 
+      margin-left: 10px; 
+    }
+  }
+  

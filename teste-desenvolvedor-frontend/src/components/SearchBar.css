@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+  }
+  
+.search-bar-container {
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    height: 80vh; 
+}
+  
+.search-bar-heading {
+    margin-bottom: 5px; 
+}
+  
+.search-bar {
+    display: inline-block;
+    border: 2px solid #fff; 
+    border-radius: 10px; 
+    overflow-x: auto; 
+    width: 90%; 
+    max-width: 600px; 
+    margin-bottom: 20px; 
+    background-color: rgba(188, 180, 180, 0.5);
+}
+  
+.search-bar input {
+    width: 70%; 
+    padding: 10px; 
+    border: none;
+    outline: none;
+    background-color: rgba(180, 150, 150, 0.2);
+}
+  
+.search-bar button {
+    border: none; 
+    cursor: pointer; 
+    border-radius: 20px;
+    transition: background-color 0.5s; 
+    margin-left: 140px
+}
+  
+.search-bar button:hover {
+    background-color: darkgreen; 
+}
+  
+.search-bar button i {
+    padding: 5px;
+}
+  
+ .search-bar input::placeholder {
+    color: black; 
+}
+  
+ /* flexbox para alinhar os medicamentos lado a lado */
+.medicine-info-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    margin-top: 20px; 
+    align-items: center; 
+}
+  
+.medicine-info {
+    width: calc(40% - 20px); 
+    margin-bottom: 20px; 
+    padding: 30px;
+    border: 2px solid #fff; 
+    border-radius: 15px; 
+    background-color: #A6A4A4;
+}
+  
+ @media (max-width: 768px) {
+    .search-bar {
+      width: 100%;
+      
+    }
+  
+    .search-bar input {
+      width: 60%; 
+    }
+  
+    .search-bar button {
+      margin-left: 0; 
+    }
+  
+.medicine-info {
+      width: calc(45% - 20px); 
+    }
+}
+  
+@media (max-width: 576px) {
+    .search-bar {
+      width: 90%; 
+    }
+  
+    .search-bar input {
+      width: 50%; 
+    }
+  
+    .medicine-info {
+      width: calc(100% - 20px);  
+    }
+  }
+  
