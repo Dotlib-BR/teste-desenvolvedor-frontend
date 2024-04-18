@@ -20,6 +20,7 @@ import { useState } from 'react'
 import { formatDate } from '../../utils/formatter'
 
 import clipboardImg from '../../assets/clipboard.svg'
+import { useNavigate } from 'react-router-dom'
 
 type MedicineCardProps = {
   filteredItems: Item[]
@@ -54,8 +55,11 @@ export function MedicineCard({ filteredItems }: MedicineCardProps) {
   }
 
   // Details page redirect //
+  const navigate = useNavigate()
+
   async function handleDetails(result: Item) {
     console.log("Redirected to details with this result: ", result)
+    navigate(`/details`)
   }
 
   return (
