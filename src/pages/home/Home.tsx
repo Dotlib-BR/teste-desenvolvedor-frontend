@@ -37,28 +37,26 @@ export function Home() {
         const name = queryParams.get('name');
         const company = queryParams.get('company');
 
-        if (name && company) {
-            DataServices.getByNameAndCompany(page, name, company).then(
-                (result) => {
-                    if (result instanceof Error) {
-                        alert(result);
-                    } else {
-                        setMedicines(result.data);
+        const searchMedicines = (
+            name?: string | null,
+            company?: string | null,
+        ) => {
+            let promise;
 
-                        const settings = {
-                            first: result.first,
-                            prev: result.prev,
-                            next: result.next,
-                            last: result.last,
-                            pages: result.pages,
-                            items: result.items,
-                        };
-                        setPageSettings(settings);
-                    }
-                },
-            );
-        } else if (name) {
-            DataServices.getByName(page, name).then((result) => {
+            if (name && company) {
+                setSearch(true);
+                promise = DataServices.getByNameAndCompany(page, name, company);
+            } else if (name) {
+                setSearch(true);
+                promise = DataServices.getByName(page, name);
+            } else if (company) {
+                setSearch(true);
+                promise = DataServices.getByCompany(page, company);
+            } else {
+                promise = DataServices.getAll(page);
+            }
+
+            promise.then((result) => {
                 if (result instanceof Error) {
                     alert(result);
                 } else {
@@ -75,72 +73,37 @@ export function Home() {
                     setPageSettings(settings);
                 }
             });
-        } else if (company) {
-            DataServices.getByCompany(page, company).then((result) => {
-                if (result instanceof Error) {
-                    alert(result);
-                } else {
-                    setMedicines(result.data);
+        };
 
-                    const settings = {
-                        first: result.first,
-                        prev: result.prev,
-                        next: result.next,
-                        last: result.last,
-                        pages: result.pages,
-                        items: result.items,
-                    };
-                    setPageSettings(settings);
-                }
-            });
-        } else {
-            DataServices.getAll(page).then((result) => {
-                if (result instanceof Error) {
-                    alert(result);
-                } else {
-                    setMedicines(result.data);
-
-                    const settings = {
-                        first: result.first,
-                        prev: result.prev,
-                        next: result.next,
-                        last: result.last,
-                        pages: result.pages,
-                        items: result.items,
-                    };
-                    setPageSettings(settings);
-                }
-            });
-        }
+        searchMedicines(name, company);
     }, [page, location.search]);
 
     const handleSearch = () => {
         if (medicineValue.length > 0 && companyValue.length > 0) {
-            setSearch(true);
             navigate(`/?name=${medicineValue}&company=${companyValue}`);
 
-            setMedicineValue('');
-            setCompanyValue('');
+            cleanInput();
             return;
         }
 
         if (medicineValue.length > 0) {
-            setSearch(true);
             navigate(`/?name=${medicineValue}`);
 
-            setMedicineValue('');
-            setCompanyValue('');
+            cleanInput();
             return;
         }
 
         if (companyValue.length > 0) {
-            setSearch(true);
             navigate(`/?company=${companyValue}`);
 
-            setMedicineValue('');
-            setCompanyValue('');
+            cleanInput();
             return;
         }
+    };
+
+    const cleanInput = () => {
+        setMedicineValue('');
+        setCompanyValue('');
     };
 
     const handleCancelSearch = () => {
