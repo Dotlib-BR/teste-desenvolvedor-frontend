@@ -21,15 +21,15 @@ const Filters = () => {
   };
 
   return (
-    <section>
+    <section className="filters">
       <input
         type="text"
-        placeholder="Busque por nome"
+        placeholder="Buscar por nome"
         onChange={(event) => handleFilter(event, "name")}
       />
       <input
         type="text"
-        placeholder="Busque por empresa"
+        placeholder="Buscar por empresa"
         onChange={(event) => handleFilter(event, "")}
       />
     </section>

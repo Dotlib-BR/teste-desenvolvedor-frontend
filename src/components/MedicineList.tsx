@@ -1,23 +1,24 @@
 import { useMedicineData } from "../context/MedicineDataContext";
 import dayjs from "dayjs";
+import Documents from "./Documents";
 
 const MedicineList = () => {
-  const { medicineData, filteredMedicineData } = useMedicineData();
+  const { filteredMedicineData } = useMedicineData();
 
   if (!filteredMedicineData || filteredMedicineData.length === 0) {
     return <p>Nenhum dado de medicamento encontrado.</p>;
   }
 
   return (
-    <section>
+    <section className="table-container">
       <table>
         <thead>
           <tr>
             <th>Nome</th>
             <th>Princípios Ativos</th>
             <th>Empresa</th>
-            <th>Documentos</th>
             <th>Data</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -27,16 +28,13 @@ const MedicineList = () => {
                 <td>{medicine.name}</td>
                 <td>{medicine.active_principles[0].name}</td>
                 <td>{medicine.company}</td>
-                <td>
-                  {medicine.documents.map((document) => {
-                    return (
-                      <a key={document.id} href={document.url}>
-                        {document.type}
-                      </a>
-                    );
-                  })}
-                </td>
                 <td>{dayjs(medicine.published_at).format("DD/MM/YYYY")}</td>
+                <td>
+                  <Documents
+                    documents={medicine.documents}
+                    medicineId={medicine.id}
+                  />
+                </td>
               </tr>
             );
           })}
