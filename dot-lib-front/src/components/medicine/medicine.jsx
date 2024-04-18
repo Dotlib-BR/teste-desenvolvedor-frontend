@@ -1,6 +1,10 @@
 import { Body } from "./medicineStyle";
+import dateConverter from "../../utils/dateConverter"
 
 export default function Medicine({ name, company, published_at }) {
+
+  let convertedDate = dateConverter(published_at)
+
   return (
     <Body>
       <div>
@@ -12,7 +16,7 @@ export default function Medicine({ name, company, published_at }) {
       </div>
       <div>
         <span className="description">Data de publicação:</span>{" "}
-        <span>{published_at}</span>
+        <span>{convertedDate}</span>
       </div>
     </Body>
   );
