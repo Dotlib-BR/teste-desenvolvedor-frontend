@@ -1,4 +1,11 @@
-import { Button, CardContainer, Input, InputContainer, InputLabel, Title } from './styles'
+import {
+  Button,
+  CardContainer,
+  Input,
+  InputContainer,
+  InputLabel,
+  Title,
+} from './styles'
 
 import { useState } from 'react'
 
@@ -38,5 +45,5 @@ export function SearchCard() {
       <Button onClick={handleBuscar}>Buscar</Button>
       <Button onClick={handleLimpar}>Limpar</Button>
     </CardContainer>
-  );
+  )
 }

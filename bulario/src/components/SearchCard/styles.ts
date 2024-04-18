@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const CardContainer = styled.div`
   width: 86.4rem;
@@ -11,23 +11,23 @@ export const CardContainer = styled.div`
 
   margin-top: -8.8rem;
   align-self: center;
-`;
+`
 
 export const Title = styled.h2`
   font-size: 24px;
   margin-bottom: 20px;
-`;
+`
 
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-`;
+`
 
 export const InputLabel = styled.label`
   font-size: 16px;
   margin-bottom: 8px;
-`;
+`
 
 export const Input = styled.input`
   outline: 1px solid ${(props) => props.theme['base-border']};
@@ -42,7 +42,7 @@ export const Input = styled.input`
   &::placeholder {
     color: ${(props) => props.theme['base-label']};
   }
-`;
+`
 
 export const Button = styled.button`
   padding: 8px 16px;
@@ -58,4 +58,4 @@ export const Button = styled.button`
   &:hover {
     background-color: #0056b3;
   }
-`;
+`

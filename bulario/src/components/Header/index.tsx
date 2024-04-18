@@ -6,7 +6,11 @@ export function Header() {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <img className="logo" src={logoImg} alt="Bulário Eletrônico logo image" />
+        <img
+          className="logo"
+          src={logoImg}
+          alt="Bulário Eletrônico logo image"
+        />
       </HeaderContent>
     </HeaderContainer>
   )
