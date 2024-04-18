@@ -1,9 +1,27 @@
 .tableLine {
-    text-align: center;
-
     height: 40px;
 
     border-bottom: 1px solid var(--table-border);
+}
+.tableLine td {
+    position: relative;
+
+    padding: 5px 50px;
+
+    max-width: 300px;
+
+    text-wrap: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.align {
+    text-align: center;
+}
+
+.download {
+    width: 20px;
 }
 
 .tableLine:hover {

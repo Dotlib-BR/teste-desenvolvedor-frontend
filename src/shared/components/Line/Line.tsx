@@ -19,12 +19,16 @@ export default function Line({
     patient,
     professional,
 }: LineProps) {
-    const handleDownloadPatient = (e: MouseEvent) => {
+    const handleDownloadPatient = (
+        e: React.MouseEvent<HTMLTableDataCellElement, MouseEvent>,
+    ) => {
         e.stopPropagation();
         console.log(patient);
     };
 
-    const handleDownloadProfessional = (e: MouseEvent) => {
+    const handleDownloadProfessional = (
+        e: React.MouseEvent<HTMLTableDataCellElement, MouseEvent>,
+    ) => {
         e.stopPropagation();
         console.log(professional);
     };
@@ -33,20 +37,18 @@ export default function Line({
         <tr className="tableLine" onClick={() => console.log(id)}>
             <td>{name}</td>
             <td>{company}</td>
-            <td>{formatDate(date)}</td>
-            <td>
-                <IconPdf
-                    width="20px"
-                    height="20px"
-                    onClick={(e: MouseEvent) => handleDownloadPatient(e)}
-                />
+            <td className="align">{formatDate(date)}</td>
+            <td
+                className="align download"
+                onClick={(e) => handleDownloadPatient(e)}
+            >
+                <IconPdf width="20px" height="20px" />
             </td>
-            <td>
-                <IconPdf
-                    width="20px"
-                    height="20px"
-                    onClick={(e: MouseEvent) => handleDownloadProfessional(e)}
-                />
+            <td
+                className="align download"
+                onClick={(e) => handleDownloadProfessional(e)}
+            >
+                <IconPdf width="20px" height="20px" />
             </td>
         </tr>
     );
