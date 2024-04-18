@@ -3,9 +3,7 @@
 @use '../../../../styles/media' as media
 
 .containerHero
-    display: flex
-    justify-content: center
-    align-items: center
+    @include mixin.center
     height: 17rem
     background: url('../../../../assets/bg-hero.svg')
     background-repeat: no-repeat
@@ -16,22 +14,20 @@
 
 .formSearch
     position: relative
+
     @include media.max-width(xsmall)
         width: 100%
 
 .inputSearch
-    width: 33rem
-    height: 3rem
+    @include mixin.size(33rem, 3rem)
     padding: 0 1.5rem
     border: 2px solid variables.$button-color
     border-radius: 3rem
     outline: none
-    font-size: 0.8rem
-    color: variables.$text-light
+    @include mixin.fontStyle (1rem, 400, variables.$text-light)
 
     &::placeholder
-        font-size: 0.8rem
-        color: variables.$text-light
+        @include mixin.fontStyle (0.8rem, 400, variables.$text-light)
         opacity: 0.5
 
     @include media.max-width(large)
@@ -41,16 +37,12 @@
         width: 100%
 
 .searchBtn
-    width: 2.4rem
-    position: absolute
-    top: 0
-    right: 0
+    @include mixin.size(2.4rem, 3rem)
+    @include mixin.absolute(0, 0)
     border: none
-    height: 3rem
     border-radius: 0 3rem 3rem 0
     background: transparent
     cursor: pointer
 
     img
-        width: 1.3rem
-        height: 1.3rem
+        @include mixin.size(1.3rem, 1.3rem)
