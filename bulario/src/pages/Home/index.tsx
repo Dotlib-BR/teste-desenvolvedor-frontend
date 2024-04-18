@@ -3,6 +3,7 @@ import { HomeContainer } from './styles'
 import { Header } from '../../components/Header'
 import { SearchCard } from '../../components/SearchCard'
 import { SearchResult } from '../../components/SearchResult'
+import { MedicineCard } from '../../components/MedicineCard'
 
 import { useState } from 'react'
 import axios from 'axios'
@@ -72,6 +73,8 @@ export function Home() {
       />
 
       <SearchResult length={filteredItems.length} />
+
+      <MedicineCard filteredItems={filteredItems} />
     </HomeContainer>
   )
 }
