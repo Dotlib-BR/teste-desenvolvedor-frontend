@@ -4,4 +4,5 @@ export { Card } from "./Card";
 export { Header } from "./Header";
 export { Input } from "./Input";
 export { Layout } from "./Layout";
+export { LeafletCollection } from "./LeafletCollection";
 export { SearchBar } from "./SearchBar";

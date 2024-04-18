@@ -1,0 +1,37 @@
+.leafletcollection-container {
+  max-width: 1280px;
+  padding: 24px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+
+  .leafletcollection-header {
+    font-family: volkhov;
+    color: var(--mainThemeColor);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .leafletcollection-container {
+    max-width: 964px;
+  }
+}
+
+@media (max-width: 964px) {
+  .leafletcollection-container {
+    max-width: 648px;
+  }
+}
+
+@media (max-width: 648px) {
+  .leafletcollection-container {
+    max-width: 100%;
+    justify-content: center;
+  }
+}
