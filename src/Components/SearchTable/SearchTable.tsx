@@ -7,6 +7,11 @@ import styles from '../Table/Table.module.css';
 import orderBy from '../../Functions/orderBy';
 import { useNavigate } from 'react-router-dom';
 
+const styleNotFound: React.CSSProperties = {
+  textAlign: "center",
+  color: "var(--color-font)"
+}
+
 function searchFor(data: Medication[], contentSearch: string) {
   const escapedContentSearch = contentSearch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const regex = new RegExp(escapedContentSearch, 'i');
@@ -34,7 +39,10 @@ const SearchTable = () => {
 
   return (
     <>
-      { <div className={styles.Table}>
+      {newData.length === 0 ? 
+        <p style={styleNotFound}>Não foi encontrado nenhum medicamento ou empresa.</p>
+        :
+        <div className={styles.Table}>
           <h1>Resultado da Consulta</h1>
           <table>
             <thead>

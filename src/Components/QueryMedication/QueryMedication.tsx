@@ -10,7 +10,7 @@ const QueryMedication = () => {
   const {search, setSearch} = useData();
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={(e)=> e.preventDefault()}>
       <div className={styles.container1}>
         <h2>Consultar Bula <SearchBtn color='#4CABDF'/></h2>
         <div className={styles.organizeInput}>
