@@ -1,0 +1,22 @@
+.customButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    height: 30px;
+
+    border-radius: 5px;
+
+    padding: 7px;
+
+    cursor: pointer;
+
+    border: 1px solid var(--button-border);
+
+    background-color: var(--button-background);
+}
+.customButton:hover {
+    background-color: var(--table-hover);
+}

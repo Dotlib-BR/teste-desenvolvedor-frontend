@@ -21,7 +21,18 @@ const getById = async (id: string): Promise<MedicineInterface | Error> => {
     }
 };
 
+const getByName = async (name: string, page: number) => {
+    try {
+        const { data } = await Api().get(`/data?name=${name}&_page=${page}`);
+
+        return data;
+    } catch (error) {
+        return new Error('Erro ao consultar a API');
+    }
+};
+
 export const DataServices = {
     getAll,
     getById,
+    getByName,
 };
