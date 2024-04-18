@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const SearchContainer = styled.div`
+export const MedicineDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 86.4rem;
   padding: 2rem;
   border: 1px solid ${(props) => props.theme['base-border']};
@@ -10,11 +14,10 @@ export const SearchContainer = styled.div`
   box-shadow: 0 2px 28px rgba(0, 0, 0, 0.1);
 
   margin-top: -8.8rem;
-  align-self: center;
 `
 
 export const Title = styled.h2`
-  font-size: 2.4rem;
+  font-size: 1.6rem;
   margin-bottom: 2rem;
 `
 
@@ -51,6 +54,29 @@ export const Input = styled.input`
   }
 `
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  padding-bottom: 3rem;
+  padding-top: 1.2rem;
+  gap: 2rem;
+`
+
+export const DownloadButton = styled.button`
+  width: 26rem;
+  padding: 1.6rem;
+  font-size: 1.6rem;
+  background-color: ${(props) => props.theme.blue};
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`
+
 export const Button = styled.button`
   padding: 0.8rem 1.6rem;
   font-size: 1.6rem;
@@ -65,4 +91,10 @@ export const Button = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+`
+
+export const ExpedientContainer = styled.div`
+  display: flex;
+  padding-top: 1.2rem;
+  gap: 20rem;
 `
