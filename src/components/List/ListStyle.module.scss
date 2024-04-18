@@ -2,8 +2,10 @@
 
 .listWrapper {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	justify-content: center;
+	align-items: center;
 }
 
 .mainList {
@@ -23,6 +25,10 @@
 	font-weight: 700;
 	text-transform: capitalize;
 	border-radius: 10px 10px 0 0;
+
+	li {
+		padding: 0 78px;
+	}
 }
 
 .pagination {
@@ -34,7 +40,7 @@
 		background-color: $sandBg;
 		border-radius: 8px;
 		border-width: 0;
-		color: $black;
+		color: $snow;
 		cursor: pointer;
 		margin: 0;
 		padding: 10px 12px;
