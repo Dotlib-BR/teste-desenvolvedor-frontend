@@ -29,9 +29,23 @@ type FormSchema = z.infer<typeof formSchema>
 export const Home: React.FC = () => {
   const { response, isLoading, getMedications } = useMedication()
 
-  const handleSubmit = useCallback((data: FormSchema) => {
-    console.log(data)
-  }, [])
+  const handleSubmit = useCallback(
+    (data: FormSchema) => {
+      if (data.name.length > 0 && data.company.length > 0) {
+        alert('Preencha apenas um campo para realiazr a pesquisa.')
+        return
+      }
+
+      if (data.company.length === 0 && data.name.length === 0) {
+        getMedications({})
+      }
+
+      if (data.name) getMedications({ name: data.name })
+
+      if (data.company) getMedications({ company: data.company })
+    },
+    [getMedications],
+  )
 
   const tableHeader = useMemo(() => {
     return [
@@ -138,14 +152,16 @@ export const Home: React.FC = () => {
       </FlexSection>
       <Content>
         <Table header={tableHeader} body={tableBody} />
-        <Pagination
-          pages={response.pages}
-          first={response.first}
-          last={response.last}
-          next={response.next}
-          prev={response.prev}
-          handleGetNewData={getMedications}
-        />
+        {response.pages > 1 ? (
+          <Pagination
+            pages={response.pages}
+            first={response.first}
+            last={response.last}
+            next={response.next}
+            prev={response.prev}
+            handleGetNewData={getMedications}
+          />
+        ) : null}
       </Content>
     </HomeContainer>
   )

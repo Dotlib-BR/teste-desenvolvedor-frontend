@@ -33,24 +33,52 @@ type ResponseSchema = {
   data: Medication[]
 }
 
+export type GetMedicationsProps = {
+  page?: number
+  name?: string
+  company?: string
+}
+
 export const useMedication = () => {
   const [response, setResponse] = useState<ResponseSchema>({} as ResponseSchema)
   const [isLoading, setIsLoading] = useState(false)
 
-  const getMedications = useCallback(async (page: number = 1) => {
-    try {
-      setIsLoading(true)
-      const response = await api.get(`/data?_page=${page}`)
+  const getMedications = useCallback(
+    async ({ page = 1, name, company }: GetMedicationsProps) => {
+      let query = `/data?_page=${page}`
 
-      setResponse(response.data)
-      setIsLoading(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+      if (name) query = `/data?name=${name.toUpperCase()}`
+
+      if (company) query = `/data?company=${company.toUpperCase()}`
+
+      try {
+        setIsLoading(true)
+        const response = await api.get(query)
+
+        if (name || company) {
+          setResponse({
+            data: response.data,
+            first: 0,
+            prev: null,
+            next: null,
+            last: 0,
+            pages: 0,
+            items: 0,
+          })
+        } else {
+          setResponse(response.data)
+        }
+
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [],
+  )
 
   useEffect(() => {
-    getMedications()
+    getMedications({})
   }, [getMedications])
 
   return {
