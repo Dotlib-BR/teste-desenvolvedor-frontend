@@ -1,4 +1,3 @@
-
 import { ReactNode, useState, createContext } from "react";
 import { errorToast } from "../helpers/Toasts";
 import { api } from "../services/baseUrl";
@@ -12,6 +11,7 @@ type DataSearchParams = {
   name: string;
   company: string
 }
+
 type DataContextTypes = {
   currentPage: number;
   getData: () => void
@@ -21,18 +21,15 @@ type DataContextTypes = {
   indexOfLastItem: number;
   searched_data: Cards | undefined
   dataForPagination: Cards | undefined
-  getDataByNameOrLab: ( value: string ) => void
+  getDataByNameOrLab: (value: string) => void
   setData: React.Dispatch<React.SetStateAction<Cards | undefined>>
- 
 }
 
 export const DataContext = createContext({} as DataContextTypes);
 
 export function DataProvider(props: DataContextProviderProps) {
-
   const [data, setData] = useState<Cards>();
   const [searched_data, setSearched_data] = useState<Cards>();
-
   // pagina inicial;
   const [currentPage, setCurrentPage] = useState(1);
   // 10 itens por pagina;
@@ -46,10 +43,12 @@ export function DataProvider(props: DataContextProviderProps) {
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
+    window.scrollTo(0, 0);
   };
 
   const prevPage = () => {
     setCurrentPage(currentPage - 1);
+    window.scrollTo(0, 0);
   };
 
   const getData = async () => {
@@ -62,7 +61,7 @@ export function DataProvider(props: DataContextProviderProps) {
         const date_b = new Date(b.published_at).getTime();
         return date_b - date_a;
       });
-       return setData(descending_date);
+      return setData(descending_date);
     } catch (error) {
       throw error;
     }
@@ -80,7 +79,7 @@ export function DataProvider(props: DataContextProviderProps) {
             company.toLowerCase().includes(searched_value)
           );
         });
-         return setSearched_data(result);
+        return setSearched_data(result);
       } setSearched_data(data);
     } catch (error) {
       errorToast();
@@ -95,7 +94,6 @@ export function DataProvider(props: DataContextProviderProps) {
       getData,
       searched_data,
       getDataByNameOrLab,
-
       nextPage,
       prevPage,
       dataForPagination,
