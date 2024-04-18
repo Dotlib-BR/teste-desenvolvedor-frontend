@@ -1,6 +1,7 @@
 
 import { ChangeEvent, useState, useContext } from 'react';
 import './Search.scss';
+import './MediasSearch.scss'; 
 
 import { ToastContainer } from 'react-toastify';
 import { DataContext } from '../../context/DataContext';
@@ -23,7 +24,7 @@ export const Search = () => {
           type="input"
           value={value}
           onChange={handleChange}
-          placeholder='  Ex: amoxicilina ou medlabs' />
+          placeholder=' Pesquisar...' />
       </main>
       <ToastContainer 
         position="bottom-right"
