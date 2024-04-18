@@ -4,9 +4,9 @@ export type Cards = {
   name: string 
   company: string 
   published_at: string
-  expedient: string
-  type: string
-  url: string
+  expedient?: string
+  type?: string
+  url?: string
   active_principles?: []
   documents?: []
   length?: any
