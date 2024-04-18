@@ -1,21 +1,10 @@
-import { format } from 'date-fns'
-
+import { formatDate } from '../../utils/format-date'
+import { handleDownload } from '../../utils/download-pdf'
 import { SelectedMedicineData } from '../../interface/selected-medicine-prop'
 
 import s from './style.module.sass'
 
 export default function MedicineDetails({ data }: SelectedMedicineData) {
-    function formatDate(date: string) {
-        return format(new Date(date), 'dd/MM/yyyy')
-    }
-
-    function handleDownload(type: string) {
-        const document = data.documents.find(doc => doc.type == type)
-        if (document) {
-            window.open(document.url)
-        }
-    }
-
     return (
         <div className={s.medicineItem}>
             <div className={s.brandInfo}>
@@ -63,13 +52,13 @@ export default function MedicineDetails({ data }: SelectedMedicineData) {
                 <div className={s.buttonsContainer}>
                     <button
                         className={s.userLeafletButton}
-                        onClick={() => handleDownload('PATIENT')}
+                        onClick={() => handleDownload(data, 'PATIENT')}
                     >
                         Bula Usuário
                     </button>
                     <button
                         className={s.professionalLeafletButton}
-                        onClick={() => handleDownload('PROFESSIONAL')}
+                        onClick={() => handleDownload(data, 'PROFESSIONAL')}
                     >
                         Bula Profissional
                     </button>
