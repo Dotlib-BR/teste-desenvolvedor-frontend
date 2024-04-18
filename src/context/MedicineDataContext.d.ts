@@ -7,6 +7,8 @@ interface IMedicineDataContext {
   >;
   paginationInfo: IPaginationInfo;
   setPaginationInfo: React.Dispatch<React.SetStateAction<IPaginationInfo>>;
+  isSuccesModalOpen: boolean;
+  setIsSuccesModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IMedicineData {
@@ -37,4 +39,4 @@ interface IPaginationInfo {
   pages: number;
 }
 
-export { IMedicineDataContext, IMedicineData, IPaginationInfo };
+export { IMedicineDataContext, IMedicineData, IPaginationInfo, Document };

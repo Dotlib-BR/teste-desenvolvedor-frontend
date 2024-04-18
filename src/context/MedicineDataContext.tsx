@@ -29,6 +29,7 @@ export function MedicineDataContextProvider({
   const [paginationInfo, setPaginationInfo] = useState({
     currentPage: 1,
   } as IPaginationInfo);
+  const [isSuccesModalOpen, setIsSuccesModalOpen] = useState(false);
 
   useEffect(() => {
     const getMedicineData = async () => {
@@ -60,6 +61,8 @@ export function MedicineDataContextProvider({
         setFilteredMedicineData,
         paginationInfo,
         setPaginationInfo,
+        isSuccesModalOpen,
+        setIsSuccesModalOpen,
       }}
     >
       {children}
