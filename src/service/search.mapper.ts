@@ -1,10 +1,10 @@
-import { dateConverter } from "../helpers/utils/utils";
+import { breakStringByPlus, dateConverter } from "../helpers/utils/utils";
 import { ResponseLeaflet } from "./types";
 
 export const responseLeafletMapper = (items: ResponseLeaflet[]) => {
   return items.map((item) => ({
     id: item.id,
-    name: item.name,
+    name: breakStringByPlus(item.name),
     published_at: dateConverter(item.published_at),
     company: item.company,
     documents: item.documents,

@@ -17,7 +17,7 @@ export type ResponseLeaflet = {
 
 export type ResponseLeafletMapper = {
   id: string;
-  name: string;
+  name: string[];
   published_at: string;
   company: string;
   documents: {
