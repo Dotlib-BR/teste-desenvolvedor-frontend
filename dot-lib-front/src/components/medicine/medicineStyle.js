@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const Body = styled.div`
   border: 5px double black;
   padding: 8px;
-  background-color: red;
+  background-color: Gainsboro;
   margin-bottom: 8px;
+  width: 500px;
 
   div {
     padding: 3px;

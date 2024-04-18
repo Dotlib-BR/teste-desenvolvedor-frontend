@@ -16,5 +16,5 @@ export const Body = styled.div`
   align-items: center;
   justify-content: center;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 30px;
 `;

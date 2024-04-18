@@ -3,6 +3,7 @@ import axios from "axios";
 import { Header, Body } from "./homeStyle";
 import logo from "../../assets/dotlib_logo.png";
 import Medicine from "../medicine/medicine";
+import Menu from "../menu/menu";
 import { sortFromNewToOld, sortFromOldToNew } from "../../utils/dataOrganizer";
 
 export default function Home() {
@@ -30,6 +31,8 @@ export default function Home() {
       <Header>
         <img src={logo} alt="DotLib logo" />
       </Header>
+
+      <Menu isTheOldItemFilterActive={isTheOldItemFilterActive} setIsTheOldItemFilterActive={setIsTheOldItemFilterActive}></Menu>
 
       <Body>
         {isLoading && <p>Carregando...</p>}

@@ -1,9 +1,8 @@
 import { Body } from "./medicineStyle";
-import dateConverter from "../../utils/dateConverter"
+import dateConverter from "../../utils/dateConverter";
 
 export default function Medicine({ name, company, published_at }) {
-
-  let convertedDate = dateConverter(published_at)
+  let convertedDate = dateConverter(published_at);
 
   return (
     <Body>
