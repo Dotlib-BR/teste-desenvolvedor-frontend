@@ -16,6 +16,8 @@ export const HeaderContent = styled.div`
   justify-content: center;
   align-items: center;
 
+  cursor: pointer;
+
   .logo:hover {
     -webkit-animation: wobble-hor-bottom 0.8s both;
     animation: wobble-hor-bottom 0.8s both;
