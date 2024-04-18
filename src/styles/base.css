@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background font-sans tracking-tighter text-foreground;
+	}
+
+	a,
+	button,
+	img {
+		@apply select-none;
+	}
+}
+
+@layer components {
+	.icon {
+		@apply h-6 w-6;
+	}
+}
