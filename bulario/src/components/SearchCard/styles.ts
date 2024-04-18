@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const CardContainer = styled.div`
+export const SearchContainer = styled.div`
   width: 86.4rem;
   padding: 2rem;
   border: 1px solid ${(props) => props.theme['base-border']};
-  border-radius: 8px;
+  border-radius: 0.8rem;
 
   background: ${(props) => props.theme['base-profile']};
   box-shadow: 0 2px 28px rgba(0, 0, 0, 0.1);
@@ -14,19 +14,26 @@ export const CardContainer = styled.div`
 `
 
 export const Title = styled.h2`
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+`
+
+export const InputsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 2.4rem;
 `
 
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  width: 100%;
 `
 
 export const InputLabel = styled.label`
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
 `
 
 export const Input = styled.input`
@@ -45,13 +52,13 @@ export const Input = styled.input`
 `
 
 export const Button = styled.button`
-  padding: 8px 16px;
-  font-size: 16px;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.6rem;
   margin-right: 2rem;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 

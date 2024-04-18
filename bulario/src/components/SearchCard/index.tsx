@@ -1,49 +1,68 @@
 import {
   Button,
-  CardContainer,
+  SearchContainer,
   Input,
   InputContainer,
   InputLabel,
   Title,
+  InputsContainer,
 } from './styles'
 
-import { useState } from 'react'
+type SearchProps = {
+  loading: boolean
 
-export function SearchCard() {
-  const [nomeMedicamento, setNomeMedicamento] = useState<string>('')
-  const [nomeFabricante, setNomeFabricante] = useState<string>('')
+  nameQuery: string
+  companyQuery: string
 
-  async function handleBuscar() {
-    // Lógica para buscar as bulas com os nomes fornecidos //
-    console.log('Buscar:', nomeMedicamento, nomeFabricante)
-  }
+  setNameQuery: (value: string) => void
+  setCompanyQuery: (value: string) => void
 
-  async function handleLimpar() {
-    setNomeMedicamento('')
-    setNomeFabricante('')
-  }
+  onPress: () => void
+  onClear: () => void
+}
 
+export function SearchCard({
+  loading,
+  nameQuery,
+  companyQuery,
+  setNameQuery,
+  setCompanyQuery,
+  onPress,
+  onClear,
+}: SearchProps) {
   return (
-    <CardContainer>
+    <SearchContainer>
       <Title>Buscador de Bulas</Title>
-      <InputContainer>
-        <InputLabel>Nome do Medicamento:</InputLabel>
-        <Input
-          type="text"
-          value={nomeMedicamento}
-          onChange={(e) => setNomeMedicamento(e.target.value)}
-        />
-      </InputContainer>
-      <InputContainer>
-        <InputLabel>Laboratório Fabricante:</InputLabel>
-        <Input
-          type="text"
-          value={nomeFabricante}
-          onChange={(e) => setNomeFabricante(e.target.value)}
-        />
-      </InputContainer>
-      <Button onClick={handleBuscar}>Buscar</Button>
-      <Button onClick={handleLimpar}>Limpar</Button>
-    </CardContainer>
+
+      <InputsContainer>
+        <InputContainer>
+          <InputLabel>Nome do Medicamento:</InputLabel>
+          <Input
+            type="text"
+            value={nameQuery}
+            onChange={(e) => setNameQuery(e.target.value)}
+            onSubmit={onPress}
+            disabled={loading}
+          />
+        </InputContainer>
+        <InputContainer>
+          <InputLabel>Laboratório Fabricante:</InputLabel>
+          <Input
+            type="text"
+            value={companyQuery}
+            onChange={(e) => setCompanyQuery(e.target.value)}
+            onSubmit={onPress}
+            disabled={loading}
+          />
+        </InputContainer>
+      </InputsContainer>
+
+      <Button onClick={onPress} disabled={loading}>
+        Buscar
+      </Button>
+      <Button onClick={onClear} disabled={loading}>
+        Limpar
+      </Button>
+    </SearchContainer>
   )
 }

@@ -1,11 +1,19 @@
 import { SearchResultContainer, Title } from './styles'
 
-export function SearchResult() {
+type SearchResultProps = {
+  length: number
+}
+
+export function SearchResult({ length }: SearchResultProps) {
   return (
     <SearchResultContainer>
       <Title>
         <h3>Resultado da busca</h3>
-        <span>6 resultados encontrados</span>
+        <span>
+          {length === 0
+            ? 'Nenhum resultado encontrado'
+            : `${length} resultado(s) encontrados`}
+        </span>
       </Title>
     </SearchResultContainer>
   )
