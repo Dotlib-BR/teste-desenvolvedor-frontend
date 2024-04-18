@@ -2,12 +2,16 @@ import React from 'react'
 import { Documents } from '../../../Context/DataContext'
 import IconPdf from '../../../assets/IconPdf';
 
+const typesExpedient = {
+  ["PATIENT"]: "Paciente",
+  ["PROFESSIONAL"]: "Profissional",
+}
 
 const styleTD: React.CSSProperties = {
   cursor: "pointer"
 }
 
-const Leaflet = ({data}: {data: Documents[]}) => {
+const Leaflet = ({data, expedient}: {data: Documents[]; expedient?: boolean }) => {
 
   function normalizeLeaflet() {
     if(data[0].type === "PROFESSIONAL") {
@@ -23,11 +27,19 @@ const Leaflet = ({data}: {data: Documents[]}) => {
 
   return (
     <>
-      {normalizeLeaflet().map((doc)=> 
+      {expedient ?
+        normalizeLeaflet().map((doc)=> 
+          <tr key={doc.id}>
+            <th>Bula do {typesExpedient[doc.type]} (Expediente)</th>
+            <td>{doc.expedient}</td>
+          </tr>)
+      :
+      normalizeLeaflet().map((doc)=> 
         <td key={doc.id}>
           <a style={styleTD} href={doc.url} target='_blank' download><IconPdf/></a>
         </td>
-      )}
+        )
+      }
     </>
 
   )

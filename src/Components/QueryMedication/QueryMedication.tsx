@@ -1,9 +1,9 @@
 import { useData } from '../../Context/DataContext';
 import Input from '../Form/Input/Input';
-import SearchBtn from '../../assets/SearchBtn';
-import Button from '../Form/Button/Button';
 import styles from './QueryMedication.module.css';
 import Table from '../Table/Table';
+import SearchTable from '../SearchTable/SearchTable';
+import SearchBtn from '../../assets/SearchBtn';
 
 const QueryMedication = () => {
 
@@ -12,13 +12,16 @@ const QueryMedication = () => {
   return (
     <form className={styles.form}>
       <div className={styles.container1}>
-        <h2>Consultar Bula</h2>
+        <h2>Consultar Bula <SearchBtn color='#4CABDF'/></h2>
         <div className={styles.organizeInput}>
-          <Input value={search} onChange={({target})=> setSearch(target.value)} />
-          <Button><SearchBtn/></Button>
+          <Input 
+            value={search} 
+            onChange={({target})=> setSearch(target.value)}
+            placeholder='Busque por medicamento ou empresa' 
+          />
         </div>
       </div>
-      <Table/>
+      {search ? <SearchTable/> : <Table/>}
     </form>
   )
 }

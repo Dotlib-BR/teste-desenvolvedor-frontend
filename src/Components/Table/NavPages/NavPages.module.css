@@ -1,0 +1,69 @@
+.NavPages {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  color: var(--color-1);
+}
+
+.listPages {
+  display: flex;
+  gap: .5rem;
+  list-style: none;
+}
+
+.listPages li {
+  background-color: var(--bg-color);
+  border: 1px solid var(--color-1);
+  color: var(--color-font);
+  padding: .5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  display: grid;
+  align-items: center;
+}
+
+.listPages li:hover {
+  background-color: var(--color-1);
+  color: var(--bg-color);
+  transition: .2s;
+}
+
+.listPages li img {
+  height: 14px;
+  width: 14px;
+}
+
+.listPages li:first-child img {
+  transform: rotate(180deg);
+}
+
+.listPages li:first-child:hover {
+  background-color: var(--bg-color);
+}
+
+.listPages li:last-child:hover {
+  background-color: var(--bg-color);
+}
+
+.NavPages p {
+  color: var(--color-font);
+  font-size: 1rem;
+}
+
+@media (max-width: 623px) {
+  .listPages li {
+    padding: .2rem .5rem;
+    font-size: .8rem;
+  }
+
+  .listPages li img {
+    height: 10px;
+    width: 10px;
+  }
+
+  .NavPages p {
+    color: var(--color-font);
+    font-size: .7rem;
+  }
+}

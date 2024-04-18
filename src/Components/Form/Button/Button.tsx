@@ -1,9 +1,12 @@
-import React from 'react';
 import styles from './Button.module.css';
 
-const Button = ({children}: React.PropsWithChildren) => {
+type ButtonType = React.ComponentProps<'button'> & {
+  name: string;
+}
+
+const Button = ({name, ...props}: ButtonType) => {
   return (
-    <button className={styles.Button}>{children}</button>
+    <button className={styles.Button} {...props}>{name}</button>
   )
 }
 

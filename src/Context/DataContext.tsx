@@ -1,7 +1,6 @@
 import React from 'react';
 import useFetch from '../Hooks/useFetch';
 
-
 export type Documents = {
   id: string;
   expedient: string;
@@ -14,7 +13,7 @@ type ActPrinciples = {
   name: string;
 }
 
-interface Medication {
+export interface Medication {
   id: string;
   name: string;
   published_at: string;
@@ -23,23 +22,11 @@ interface Medication {
   active_principles: ActPrinciples[];
 }
 
-interface DataPages{
-  data: Medication[];
-  first: number;
-  items: number;
-  last: number;
-  next: number | null;
-  pages: number;
-  prev: number | null;
-}
-
 interface TypeContext {
-  data: DataPages | null;
+  data: Medication[] | null;
   loading: boolean;
   erro: string | null;
-  page: number;
   search: string;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
   setSearch:  React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -54,13 +41,12 @@ export const useData = () => {
 }
 
 export const DataContextProvider = ({children}: React.PropsWithChildren) => {
-  const [page, setPage] = React.useState(1);
   const [search, setSearch] = React.useState('');
 
-  const fetchData = useFetch<DataPages>(`http://localhost:3000/data?_page=${page}`);
+  const fetchData = useFetch<Medication[]>(`http://localhost:3000/data`);
 
   return (
-    <Context.Provider value={{...fetchData, page, setPage, search, setSearch}}>
+    <Context.Provider value={{...fetchData, search, setSearch}}>
       {children}
     </Context.Provider>
   )
