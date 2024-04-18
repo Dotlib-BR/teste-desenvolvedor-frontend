@@ -1,3 +1,4 @@
+import IconPdf from '../../icons/Pdf/IconPdf';
 import { formatDate } from '../../services/utils/formatDate';
 import './Line.css';
 
@@ -18,13 +19,35 @@ export default function Line({
     patient,
     professional,
 }: LineProps) {
+    const handleDownloadPatient = (e: MouseEvent) => {
+        e.stopPropagation();
+        console.log(patient);
+    };
+
+    const handleDownloadProfessional = (e: MouseEvent) => {
+        e.stopPropagation();
+        console.log(professional);
+    };
+
     return (
         <tr className="tableLine" onClick={() => console.log(id)}>
             <td>{name}</td>
             <td>{company}</td>
             <td>{formatDate(date)}</td>
-            <td>{patient}</td>
-            <td>{professional}</td>
+            <td>
+                <IconPdf
+                    width="20px"
+                    height="20px"
+                    onClick={(e: MouseEvent) => handleDownloadPatient(e)}
+                />
+            </td>
+            <td>
+                <IconPdf
+                    width="20px"
+                    height="20px"
+                    onClick={(e: MouseEvent) => handleDownloadProfessional(e)}
+                />
+            </td>
         </tr>
     );
 }

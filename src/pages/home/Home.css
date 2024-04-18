@@ -1,0 +1,48 @@
+.buttonMainContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+
+    width: 100%;
+
+    margin-top: 20px;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.button {
+    display: flex;
+
+    height: 30px;
+    width: 30px;
+
+    padding: 7px;
+
+    cursor: pointer;
+
+    border: 1px solid var(--button-border);
+
+    background-color: var(--button-background);
+}
+.button:hover {
+    background-color: var(--table-hover);
+}
+.first {
+    border-radius: 5px 0 0 5px;
+}
+.last {
+    border-radius: 0 5px 5px 0;
+}

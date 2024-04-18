@@ -5,6 +5,10 @@
     --table-border: #b4b7ba;
     --table-header: #caced1;
     --table-hover: #c2d6b2;
+
+    --button-background: #d9d9d9;
+    --button-border: #b4b7ba;
+    --button-select: #86bc42;
 }
 
 * {

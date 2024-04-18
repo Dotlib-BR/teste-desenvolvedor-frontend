@@ -1,9 +1,9 @@
-import { MedicineInterface } from '../interfaces/medicineInterface';
 import { Api } from '../ApiConfig';
+import { ApiResult, MedicineInterface } from '../interfaces/MedicineInterface';
 
-const getAll = async (): Promise<MedicineInterface[] | Error> => {
+const getAll = async (page: number): Promise<ApiResult | Error> => {
     try {
-        const { data } = await Api().get('/data');
+        const { data } = await Api().get(`/data?_page=${page}`);
 
         return data;
     } catch (error) {
