@@ -6,6 +6,7 @@
     display: flex
     justify-content: space-evenly
     align-items: center
+    position: relative
     padding: 4rem 11rem
 
     @include media.max-width(extra-large)
@@ -13,6 +14,10 @@
 
     @include media.max-width(large)
         justify-content: space-between
+
+.details
+    @include media.max-width(medium)
+        display: none
 
 .filterSelect
     width: 9.3rem
@@ -30,7 +35,9 @@
     border-radius: 0.25rem
     border: 1px solid variables.$border-color
     overflow-y: auto
-    overflox-x: hidden
+
+    @include media.max-width(xsmall)
+        width: 16rem
 
 .medicineNameBox
     display: flex
@@ -43,10 +50,17 @@
 .selectedMedicine
     background: variables.$custom-background-2
 
-.brandImage
+.brandImageContainer
     width: 3rem
     height: 3rem
     margin-right: 0.87rem
+    border-radius: 100%
+    background: variables.$background-dark
+
+.brandImage
+    width: 3rem
+    height: 3rem
+    object-fit: contain
     border-radius: 100%
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
 
