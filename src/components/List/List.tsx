@@ -4,29 +4,37 @@ import { useEffect, useState } from 'react'
 import { MedItems } from './MedItems/MedItems'
 import { fetchMedData } from '@/services/fetchMedData'
 import listStyles from './ListStyle.module.scss'
+import { fetchSearchData } from '@/services/fetchSearchData'
+import { MedSearch } from './MedSearch/MedSearch'
 
 export const List = () => {
 	const [medData, setMedData] = useState([])
 	const [page, setPage] = useState(1)
-	const [isSearch, setIsSearch] = useState(false)
-	const [searchData, setSearchData] = useState({})
+	const [searchData, setSearchData] = useState('')
 
 	useEffect(() => {
-		if (!isSearch) {
+		if (searchData.length <= 0) {
 			const getMedData = async () => {
 				const medData = await fetchMedData(page)
 				setMedData(medData.data)
 			}
-			getMedData()
-		}
-	}, [isSearch, page])
 
-	console.log(medData)
+			getMedData()
+		} else {
+			const getSearchData = async () => {
+				const searchMedData = await fetchSearchData(searchData)
+
+				setMedData(searchMedData)
+			}
+
+			getSearchData()
+		}
+	}, [page, searchData])
 
 	return (
-		<>
-			{/* <div setIsSearch={setIsSearch}>SEARCH</div> */}
-			<div className={listStyles.listWrapper}>
+		<div className={listStyles.listWrapper}>
+			<MedSearch setSearchData={setSearchData} />
+			<div>
 				<ul className={listStyles.mainList}>
 					<li>
 						<ul className={listStyles.itemTopics}>
@@ -45,7 +53,7 @@ export const List = () => {
 						</ul>
 					</li>
 
-					{!isSearch ? <MedItems medData={medData} /> : <MedItems medData={searchData} />}
+					<MedItems medData={medData} />
 
 					<li className={listStyles.pagination}>
 						{page > 1 && (
@@ -68,6 +76,6 @@ export const List = () => {
 					</li>
 				</ul>
 			</div>
-		</>
+		</div>
 	)
 }

@@ -1,32 +1,10 @@
-// interface MedListProps {
-// 	medData: {
-// 		id: string
-// 		name: string
-// 		published_at: string
-// 		company: string
-// 		documents: DocumentsProps[]
-// 		active_principles: PrinciplesProps[]
-// 	}[]
-// }
-
-// interface DocumentsProps {
-// 	id: string
-// 	expedient: string
-// 	type: string
-// 	url: string
-// }
-
-// interface PrinciplesProps {
-// 	id: string
-// 	name: string
-// }
-
 import { format } from 'date-fns'
 import medStyles from './MedItemsStyle.module.scss'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import Link from 'next/link'
+import { MedDataProps } from '@/types/dataTypes'
 
-export const MedItems = ({ medData }: any) => {
+export const MedItems = ({ medData }: MedDataProps) => {
 	const medItems = Array.isArray(medData) ? medData : []
 
 	return (
@@ -61,13 +39,23 @@ export const MedItems = ({ medData }: any) => {
 
 					<div className={medStyles.medDownload}>
 						{medItem.documents.map((document) =>
-							document.type === 'PROFESSIONAL' ? (
-								<Link key={document.id} href={document.url} target='_blank' className={medStyles.downloadLink}>
-									Médico
+							document.type === 'PATIENT' ? (
+								<Link
+									key={document.id}
+									href={document.url}
+									target='_blank'
+									className={medStyles.downloadLink}
+								>
+									Paciente
 								</Link>
 							) : (
-								<Link key={document.id} href={document.url} target='_blank' className={medStyles.downloadLink}>
-									Paciente
+								<Link
+									key={document.id}
+									href={document.id}
+									target='_blank'
+									className={medStyles.downloadLink}
+								>
+									Médico
 								</Link>
 							)
 						)}
