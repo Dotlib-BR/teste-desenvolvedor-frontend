@@ -1,3 +1,5 @@
+import { DocumentsType } from "../../service/types";
+
 export const dateConverter = (date: string) => {
   const newDate = new Date(date);
 
@@ -13,4 +15,16 @@ export const dateConverter = (date: string) => {
 
 export const breakStringByPlus = (value: string) => {
   return value.split("+");
+};
+
+export const orderDocumentsByType = (data: DocumentsType[]) => {
+  const orderDocuments = data.sort((a, b) => {
+    if (a.type === "PROFESSIONAL" && b.type === "PATIENT") {
+      return -1;
+    } else if (a.type === "PATIENT" && b.type === "PROFESSIONAL") {
+      return 1;
+    }
+    return 0;
+  });
+  return orderDocuments;
 };
