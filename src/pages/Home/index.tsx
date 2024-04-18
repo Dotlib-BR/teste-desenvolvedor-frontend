@@ -9,7 +9,7 @@ import { Button, Form } from '@/components'
 import { z } from 'zod'
 
 const formSchema = z.object({
-  name: z.string(),
+  name: z.string().min(3, { message: 'Mínimo de 3 caracteres' }),
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -26,7 +26,11 @@ export const Home: React.FC = () => {
       </Header>
       <FlexSection>
         <Form formSchema={formSchema} onSubmitForm={handleSubmit}>
-          <input type="text" />
+          <Form.Input
+            name="name"
+            label="Buscar por nome:"
+            placeholder="Amoxicilina "
+          />
           <Button icon={<MagnifyingGlass />}>Buscar</Button>
         </Form>
       </FlexSection>

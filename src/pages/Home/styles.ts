@@ -24,7 +24,7 @@ export const FlexSection = styled.div`
 
   form {
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 1rem;
 
     input {

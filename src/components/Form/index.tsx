@@ -3,6 +3,7 @@ import React, { FormHTMLAttributes } from 'react'
 import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
 import { ZodSchema } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Input } from './components/Input'
 
 type FormData<T extends ZodSchema> =
   T extends ZodSchema<infer Data> ? Data : never
@@ -37,3 +38,5 @@ export const Form = <T extends ZodSchema>({
     </FormProvider>
   )
 }
+
+Form.Input = Input
