@@ -1,9 +1,28 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import DataTable, {createTheme} from 'react-data-table-component';
 
 import './App.css';
+import 'styled-components'
 
 import { IMedicamentos, MedicamentosService } from './app/services/medicamentos/MedicamentosService.ts'
 import { ApiException } from './app/services/api/ApiException.ts';
+
+const columns = [
+  {
+    name: 'MEDICAMENTO',
+    selector: row => row.name
+  },
+
+  {
+    name: 'LABORATÓRIO',
+    selector: row => row.company
+  },
+
+  {
+    name: 'DATA',
+    selector: row => row.published_at
+  },
+]
 
 function App() {
   const [lista, setLista] = useState<IMedicamentos[]>([]);
@@ -41,13 +60,18 @@ function App() {
         value={busca}
         onChange={(ev) => setBusca(ev.target.value)}
       />
-      <ol>
+      <DataTable
+        columns={columns}
+        data={medicamentosFiltrados}
+        pagination
+      />
+      {/* <ol>
         {medicamentosFiltrados.map((lisItem) => {
           return <li key={lisItem.id}>
             {lisItem.published_at}
           </li>
         })}
-      </ol>
+      </ol> */}
     </div>
   );
 }
