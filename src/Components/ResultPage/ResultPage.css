@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #D9D9D9;
+}
+
+.main-result-table {
+  width: 90vw;
+  margin: 5% auto 3rem auto;
+  border-radius: 24px;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
+  background-color: #FFF;
+}
+.main-result-table .resultPage-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #048ABF;
+  border-radius: 24px 24px 0 0;
+}
+.main-result-table .resultPage-table-header h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #FFF;
+}
+.main-result-table table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #dddddd;
+}
+.main-result-table table th,
+.main-result-table table td,
+.main-result-table table tr {
+  padding: 0.7rem 0;
+  border: 1px solid #dddddd;
+  border-left: none;
+  border-right: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+.main-result-table table tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+.main-result-table table tr td {
+  max-width: 11rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  text-align: center;
+}
+.main-result-table .section-main-table {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 60vh;
+}
+.main-result-table .result-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+.main-result-table #exit-button {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #0477BF;
+  color: #FFF;
+}
+.main-result-table .resultPage-sumary-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 0rem;
+}
+.main-result-table .resultPage-sumary-buttons button {
+  width: 1.3rem;
+  height: 1.5rem;
+  border: none;
+  background-color: #0477BF;
+  color: #FFF;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+}
+.main-result-table .resultPage-sumary-buttons button:hover {
+  transform: scale(1.1);
+}/*# sourceMappingURL=ResultPage.css.map */

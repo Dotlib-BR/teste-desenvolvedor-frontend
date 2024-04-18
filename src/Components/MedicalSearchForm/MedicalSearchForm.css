@@ -47,6 +47,7 @@ body {
 }
 .main-form-article form label input {
   height: 2.5rem;
+  padding-left: 1rem;
   border: 1px solid #333333;
   border-radius: 10px;
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
@@ -66,4 +67,10 @@ body {
   color: #FFF;
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.016), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.018), 12.5px 12.5px 10px rgba(0, 0, 0, 0.023), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.034), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.049), 100px 100px 80px rgba(0, 0, 0, 0.07);
   background: #048ABF;
+  cursor: pointer;
+}
+.main-form-article section button:hover {
+  transform: scale(1.1);
+  transition-delay: 100ms;
+  transition-duration: 300ms;
 }/*# sourceMappingURL=MedicalSearchForm.css.map */

@@ -1,7 +1,20 @@
 import React, { useState } from 'react'
 import './MedicalSearchForm.css'
 
-function MedicalSearchForm() {
+function MedicalSearchForm({ drug, setDrug, labs, setLabs, setResultOpen }) {
+
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
+
+    function handleCleanForm(){
+        setDrug('');
+        setLabs('');
+    }
+
+    function handleResultVisibility(){
+        setResultOpen(true)
+    }
 
     return (
         <article className='main-form-article'>
@@ -10,22 +23,30 @@ function MedicalSearchForm() {
                     Critérios da pesquisa
                 </h2>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Medicamento:
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={drug}
+                        onChange={(e) => setDrug(e.target.value)}
+                    />
                 </label>
-               
+
                 <label>
                     Laboratório:
-                    <input type="text"/>
+                    <input
+                        type="text"
+                        value={labs}
+                        onChange={(e) => setLabs(e.target.value)}
+                    />
                 </label>
             </form>
             <section>
-                <button>
+                <button onClick={handleResultVisibility}>
                     Consultar
                 </button>
-                <button>
+                <button onClick={handleCleanForm}>
                     Limpar
                 </button>
             </section>
