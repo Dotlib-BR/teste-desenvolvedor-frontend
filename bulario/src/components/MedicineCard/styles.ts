@@ -66,7 +66,7 @@ export const ResultCompany = styled.h3`
 
 export const ResultDate = styled.h3`
   width: 20rem;
-  
+
   font-size: 1.4rem;
 `
 

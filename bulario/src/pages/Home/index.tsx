@@ -1,6 +1,5 @@
 import { HomeContainer } from './styles'
 
-import { Header } from '../../components/Header'
 import { SearchCard } from '../../components/SearchCard'
 import { SearchResult } from '../../components/SearchResult'
 import { MedicineCard } from '../../components/MedicineCard'
@@ -60,8 +59,6 @@ export function Home() {
 
   return (
     <HomeContainer>
-      <Header />
-
       <SearchCard
         nameQuery={nameQuery}
         companyQuery={companyQuery}
