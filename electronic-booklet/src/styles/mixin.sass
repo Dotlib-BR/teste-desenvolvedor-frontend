@@ -1,6 +1,77 @@
+@use './media' as media
+
+@mixin center
+    display: flex
+    justify-content: center
+    align-items: center
+
+@mixin itemsCenter
+    display: flex
+    align-items: center
+
+@mixin colsCenter
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+@mixin justifyEvenly
+    display: flex
+    justify-content: space-evenly
+    align-items: center
 
 @mixin paddingDesktopL
     padding: 0 11rem
 
 @mixin paddingMobile
     padding: 0 2rem
+
+@mixin size($width, $height)
+    width: $width
+    height: $height
+
+@mixin occupyScreen
+    min-height: calc(100vh - 5.5rem - 3rem)
+
+@mixin absolute($top, $right)
+    position: absolute
+    top: $top
+    right: $right
+
+@mixin leafletButton($border, $bg, $color)
+    width: 100%
+    height: 2.5rem
+    border: 1px solid $border
+    border-radius: 1.5rem
+    background: $bg
+    color: $color
+    cursor: pointer
+    transition: all 0.4s ease-in-out
+
+    @include media.max-width(small)
+        font-size: 0.7rem
+
+@mixin leafletBtnHover($bg, $color)
+    &:hover
+        background: $bg
+        color: $color
+
+@mixin fontStyle ($size, $weight, $color)
+    font-size: $size
+    font-weight: $weight
+    color: $color
+
+@mixin textEllipsis
+    text-overflow: ellipsis
+    overflow: hidden
+    white-space: nowrap
+
+@mixin radiusFull
+    border-radius: 100%
+
+@mixin paginationBtn($bg, $color)
+    flex: 1
+    padding: 0.5rem
+    border: none
+    background: $bg
+    color: $color
+    cursor: pointer
