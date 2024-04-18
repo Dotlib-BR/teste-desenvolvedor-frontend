@@ -1,7 +1,30 @@
 import { List } from "@phosphor-icons/react";
 import { Container, ContainerInputs, ContainerMenu } from './styles';
+import { useState } from "react";
 
-export function Header(){
+interface HeaderProps {
+    onSearch: (medTerm: string, companyTerm: string) => void;
+}
+
+export function Header({ onSearch }: HeaderProps){
+    const [medSearchTerm, setMedSearchTerm] = useState("");
+    const [companySearchTerm, setCompanySearchTerm] = useState("");
+
+    const handleMedInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setMedSearchTerm(value);
+        setTimeout(() => {
+            onSearch(value, companySearchTerm);
+        }, 300)
+    };
+
+    const handleCompanyInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setCompanySearchTerm(value);
+        setTimeout(() => {
+            onSearch(medSearchTerm, value);
+        }, 300);
+    };
 
     return(
         <Container>
@@ -15,6 +38,8 @@ export function Header(){
                     <input 
                         type="text" 
                         placeholder="Digite por medicamento"
+                        value={medSearchTerm}
+                        onChange={handleMedInputChange}
                     />
                 </div>
                 <div>
@@ -22,6 +47,8 @@ export function Header(){
                     <input 
                         type="text" 
                         placeholder="Digite por laboratório"
+                        value={companySearchTerm}
+                        onChange={handleCompanyInputChange}
                     /> 
                 </div>
             </ContainerInputs>
