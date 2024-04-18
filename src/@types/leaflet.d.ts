@@ -17,5 +17,5 @@ interface Leaflet {
 interface LeafletContextProps {
   leaflets: Leaflet[]
   loading: boolean
-  handleGetLeaflet: () => Promise<void>
+  handleGetLeaflet: (currentPage?) => Promise<void>
 }
