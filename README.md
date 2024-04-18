@@ -1,30 +1,50 @@
-# React + TypeScript + Vite
+# Projeto de Teste Frontend Dot.Lib
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Teste técnico desenvolvido para a Dot.Lib, utilizando as seguintes tecnologias:
 
-Currently, two official plugins are available:
+- **React**
+- **TypeScript**
+- **SASS**
+- **React Router**
+- **Vite**
+- **Context API**
+- **Axios**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## Expanding the ESLint configuration
+Como bônus, o projeto inclui as seguintes funcionalidades:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Possibilidade de baixar um PDF para cada medicamento.
+- Opção para copiar o ID de cada medicamento.
+- Tratamento especial de imagens para evitar mudanças no layout (CLS).
+- Criação de páginas dedicadas para cada medicamento (`/medicine/details?id`).
 
-- Configure the top-level `parserOptions` property like this:
+## Configuração do Projeto
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Instalação
+
+Para executar este projeto localmente, siga os passos abaixo:
+
+```bash
+git clone https://github.com/raulluz/teste-dot-lib.git
+cd teste-dot-lib
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Executando o Projeto
+Para iniciar o projeto, utilize o seguinte comando:
+
+```bash
+npm run dev
+```
+Acesse a aplicação em http://localhost:5173.
+
+Para carregar a api, use o json-server:
+
+```bash
+npm install -g json-server
+json-server api/dotlib.json -s ./api/public
+```
+
+Acesse os dados simulados da API em http://localhost:3000.
+
