@@ -25,13 +25,13 @@ function App() {
         listaOrdenada();
       }
     })
-  }, []);
+  });
 
-  const medicamentosFiltrados = useMemo (() => {
+  //const medicamentosFiltrados = useMemo (() => {
     const upperBusca = busca.toUpperCase();
 
-    return listaOrdem.filter((medicamento) => medicamento.name.toUpperCase().includes(upperBusca) || medicamento.company.includes(upperBusca));
-  }, [busca]); 
+    const medicamentosFiltrados =  listaOrdem.filter((medicamento) => medicamento.name.toUpperCase().includes(upperBusca) || medicamento.company.includes(upperBusca));
+  //}, [busca]); 
 
   return (
     <div className="App">
@@ -42,7 +42,7 @@ function App() {
         onChange={(ev) => setBusca(ev.target.value)}
       />
       <ol>
-        {medicamentosFiltrados.map((lisItem, index) => {
+        {medicamentosFiltrados.map((lisItem) => {
           return <li key={lisItem.id}>
             {lisItem.published_at}
           </li>
