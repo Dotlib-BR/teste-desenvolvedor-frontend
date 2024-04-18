@@ -2,13 +2,21 @@ import React, { useCallback, useMemo } from 'react'
 
 import horizontalLogo from '@/assets/horizintal-logo.svg'
 
-import { MagnifyingGlass } from '@phosphor-icons/react'
+import { MagnifyingGlass, Stethoscope, User } from '@phosphor-icons/react'
 import { z } from 'zod'
+import { format } from 'date-fns'
 
-import { Content, FlexSection, Header, HomeContainer } from './styles'
+import {
+  Content,
+  DropDownContent,
+  FlexSection,
+  Header,
+  HomeContainer,
+} from './styles'
 
 import { Button, Form, Pagination, Table } from '@/components'
-import { format } from 'date-fns'
+import { DropDownItem } from './components/DropDownItem'
+
 import { useMedication } from '@/modules/useMedication/useMedication'
 
 const formSchema = z.object({
@@ -57,8 +65,44 @@ export const Home: React.FC = () => {
           name: medication.name,
           published_at: format(medication.published_at, 'dd/MM/yyyy'),
           company: medication.company,
-          documents: 'Test',
-          actives_principles: 'Test',
+          documents: (
+            <DropDownItem
+              buttonTitle="Ver Documentos"
+              content={
+                <DropDownContent>
+                  {medication.documents.map((document) => {
+                    return (
+                      <Button
+                        size="sm"
+                        icon={
+                          document.type === 'PROFESSIONAL' ? (
+                            <Stethoscope />
+                          ) : (
+                            <User />
+                          )
+                        }
+                        key={document.id}
+                      >
+                        {document.type}
+                      </Button>
+                    )
+                  })}
+                </DropDownContent>
+              }
+            />
+          ),
+          actives_principles: (
+            <DropDownItem
+              buttonTitle="Princípios Ativos"
+              content={
+                <DropDownContent>
+                  {medication.active_principles.map((principle) => {
+                    return <small key={principle.id}>{principle.name}</small>
+                  })}
+                </DropDownContent>
+              }
+            />
+          ),
         }
       })
     }

@@ -5,6 +5,7 @@ export const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-size: 0.85rem;
+  position: relative;
 
   thead {
     th {
@@ -13,7 +14,7 @@ export const StyledTable = styled.table`
       padding: 0.75rem;
       text-align: left;
       color: ${(props) => props.theme['gray-100']};
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       line-height: 1.6;
 
       &:first-child {
@@ -45,7 +46,7 @@ export const StyledTable = styled.table`
       background-color: ${(props) =>
         hexToRgba(props.theme['background-secondary'], 0.2)};
       padding: 0.65rem;
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       line-height: 1.6;
 
       &:first-child {

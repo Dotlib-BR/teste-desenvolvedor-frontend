@@ -40,3 +40,9 @@ export const Content = styled.div`
   gap: 0.5rem;
   align-items: end;
 `
+
+export const DropDownContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+`
