@@ -58,8 +58,8 @@ export function MedicineCard({ filteredItems }: MedicineCardProps) {
   const navigate = useNavigate()
 
   async function handleDetails(result: Item) {
-    console.log('Redirected to details with this result: ', result)
-    navigate(`/details`)
+    navigate(`/data/${result.id}`)
+    console.log(result.id)
   }
 
   return (
