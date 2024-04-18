@@ -1,6 +1,12 @@
 interface IMedicineDataContext {
-    medicineData: IMedicineData[];
-    setMedicineData: (data: IMedicineData[]) => void;
+  medicineData: IMedicineData[];
+  setMedicineData: React.Dispatch<React.SetStateAction<IMedicineData[]>>;
+  filteredMedicineData: IMedicineData[];
+  setFilteredMedicineData: React.Dispatch<
+    React.SetStateAction<IMedicineData[]>
+  >;
+  paginationInfo: IPaginationInfo;
+  setPaginationInfo: React.Dispatch<React.SetStateAction<IPaginationInfo>>;
 }
 
 interface IMedicineData {
@@ -24,4 +30,11 @@ interface ActivePrinciple {
   name: string;
 }
 
-export { IMedicineDataContext, IMedicineData };
+interface IPaginationInfo {
+  currentPage: number;
+  next: number;
+  previous: number;
+  pages: number;
+}
+
+export { IMedicineDataContext, IMedicineData, IPaginationInfo };

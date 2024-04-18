@@ -4,10 +4,13 @@ import {
   useState,
   useContext,
   useEffect,
-  useCallback,
 } from "react";
 
-import { IMedicineDataContext, IMedicineData } from "./MedicineDataContext.d";
+import {
+  IMedicineDataContext,
+  IMedicineData,
+  IPaginationInfo,
+} from "./MedicineDataContext.d";
 import axios from "axios";
 
 export const MedicineDataContext = createContext({} as IMedicineDataContext);
@@ -20,21 +23,43 @@ export function MedicineDataContextProvider({
   children,
 }: IMedicineDataContextProvider) {
   const [medicineData, setMedicineData] = useState<IMedicineData[]>([]);
+  const [filteredMedicineData, setFilteredMedicineData] = useState<
+    IMedicineData[]
+  >([]);
+  const [paginationInfo, setPaginationInfo] = useState({
+    currentPage: 1,
+  } as IPaginationInfo);
 
   useEffect(() => {
     const getMedicineData = async () => {
-      const { data } = await axios.get("http://localhost:3000/data");
+      const { data: response } = await axios.get(
+        `http://localhost:3000/data?_page=${paginationInfo.currentPage}`
+      );
 
-      setMedicineData(data);
+      console.log({ response }, paginationInfo.currentPage);
+
+      setPaginationInfo({
+        next: response.next,
+        previous: response.previous,
+        pages: response.pages,
+        currentPage: paginationInfo.currentPage,
+      });
+      setMedicineData(response.data);
+      setFilteredMedicineData(response.data);
     };
+
     getMedicineData();
-  }, []);
+  }, [paginationInfo.currentPage]);
 
   return (
     <MedicineDataContext.Provider
       value={{
         medicineData,
         setMedicineData,
+        filteredMedicineData,
+        setFilteredMedicineData,
+        paginationInfo,
+        setPaginationInfo,
       }}
     >
       {children}
