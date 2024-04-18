@@ -27,7 +27,7 @@ export const SearchBar = ({ handleSearch, searchTerm }: SearchBarProps) => {
           />
           <button
             type="submit"
-            className="text-white absolute end-2.5 bottom-2.5  focus:ring-1 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-[#ffd900] hover:bg-[#ffe80d] focus:ring-zinc-700 transition duration-300 ease-in-out"
+            className="text-black absolute end-2.5 bottom-2.5  focus:ring-1 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-[#ffd900] hover:bg-[#ffe80d] focus:ring-zinc-700 transition duration-300 ease-in-out"
           >
             Search
           </button>
