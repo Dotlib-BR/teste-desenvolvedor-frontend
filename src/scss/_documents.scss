@@ -1,0 +1,120 @@
+.documents-container {
+    position: relative;
+
+    &__dots {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .2s ease-in-out;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #F4F4F5;
+        }
+
+        svg {
+            width: 16px;
+            pointer-events: none;
+        }
+    }
+
+    &__documents {
+        opacity: 0;
+        visibility: hidden;
+        transition: all .2s ease-in-out;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        padding: 6px 8px;
+        background: #fff;
+        border: 1px solid #e4e4e7;
+        border-radius: 6px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        z-index: 10;
+        width: 220px;
+        top: 36px;
+        left: -188px;
+
+        span,
+        button,
+        a {
+            height: 32px;
+            padding: 6px 8px;
+        }
+
+        span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        button {
+            font-size: 14px;
+            background: transparent;
+            border: none;
+            text-align: left;
+            transition: all .2s ease-in-out;
+            border-radius: 6px;
+            color: #09090b;
+
+            &:hover {
+                background-color: #F4F4F5;
+            }
+        }
+
+        &_separator {
+            background-color: #F4F4F5;
+            height: 1px;
+            width: 220px;
+            margin: 4px 0 4px -8px;
+        }
+
+        a {
+            font-size: 14px;
+            text-decoration: none;
+            color: #09090b;
+            transition: all .2s ease-in-out;
+            border-radius: 6px;
+
+            &:hover {
+                background-color: #F4F4F5;
+            }
+        }
+
+        &.open {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.copy-id {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ECFDF3;
+    border-radius: 6px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all .4s ease-in-out;
+    padding: 20px;
+    gap: 15px;
+
+    &.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    p {
+        margin: 0;
+        font-size: 13px;
+        color: #008A2E;
+        font-weight: 500;
+    }
+}

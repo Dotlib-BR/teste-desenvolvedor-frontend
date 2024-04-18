@@ -1,0 +1,17 @@
+.filters {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+
+    input {
+        height: 40px;
+        border: 1px solid #E4E4E7;
+        padding: 8px 12px;
+        border-radius: 6px;
+        width: 300px;
+        
+        &:focus {
+            outline-color:#71717A;
+        }
+    }
+}
