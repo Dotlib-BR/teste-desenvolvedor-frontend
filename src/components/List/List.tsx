@@ -22,8 +22,7 @@ export const List = () => {
 			getMedData()
 		} else {
 			const getSearchData = async () => {
-				const searchMedData = await fetchSearchData(searchData)
-
+				const searchMedData = await fetchSearchData(searchData, page)
 				setMedData(searchMedData)
 			}
 
@@ -56,23 +55,21 @@ export const List = () => {
 					<MedItems medData={medData} />
 
 					<li className={listStyles.pagination}>
-						{page > 1 && (
-							<button
-								className={listStyles.pageButton}
-								onClick={() => setPage(page - 1)}
-							>
-								Anterior
-							</button>
-						)}
+						<button
+							className={listStyles.pageButton}
+							onClick={() => setPage(page - 1)}
+							disabled={page === 1 ? true : false}
+						>
+							Anterior
+						</button>
 
-						{medData.length === 10 && (
-							<button
-								className={listStyles.pageButton}
-								onClick={() => setPage(page + 1)}
-							>
-								Próxima
-							</button>
-						)}
+						<button
+							className={listStyles.pageButton}
+							onClick={() => setPage(page + 1)}
+							disabled={medData.length < 10 ? true : false}
+						>
+							Próxima
+						</button>
 					</li>
 				</ul>
 			</div>

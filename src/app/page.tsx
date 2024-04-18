@@ -1,7 +1,7 @@
 import { Header } from '@/components/Header/Header'
 import { List } from '@/components/List/List'
 
-export default async function Home() {
+export default function Home() {
 	return (
 		<>
 			<Header />
