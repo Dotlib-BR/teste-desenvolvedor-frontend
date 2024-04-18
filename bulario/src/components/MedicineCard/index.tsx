@@ -83,7 +83,11 @@ export function MedicineCard({ filteredItems }: MedicineCardProps) {
       <MedicineCardContainer>
         {peginatedResults.map((result, index) => (
           <ResultItem key={index}>
-            <ResultTitle>{result.name}</ResultTitle>
+            <ResultTitle>
+              {result.name.length > 20
+                ? result.name.slice(0, 17) + '...'
+                : result.name}
+            </ResultTitle>
             <ResultCompany>{result.company.split(' ')[0]}</ResultCompany>
             <ResultDate>
               {result.published_at && formatDate(result.published_at)}

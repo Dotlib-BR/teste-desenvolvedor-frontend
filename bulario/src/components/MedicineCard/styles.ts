@@ -4,6 +4,10 @@ export const MedicineCardContainer = styled.main`
   width: 86.4rem;
   margin-top: 2rem;
   align-self: center;
+
+  @media only screen and (max-width: 864px) {
+    width: 100%;
+  }
 `
 
 export const MedicineCardHeader = styled.header`
@@ -76,6 +80,14 @@ export const PaginationFooter = styled.div`
 
   margin-top: 2rem;
   margin-bottom: 4rem;
+
+  @media only screen and (max-width: 864px) {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+  }
 `
 
 export const PaginationContainer = styled.div`

@@ -11,6 +11,10 @@ export const SearchContainer = styled.div`
 
   margin-top: -8.8rem;
   align-self: center;
+
+  @media only screen and (max-width: 864px) {
+    width: 90%;
+  }
 `
 
 export const Title = styled.h2`
@@ -22,6 +26,10 @@ export const InputsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 2.4rem;
+
+  @media only screen and (max-width: 864px) {
+    flex-direction: column;
+  }
 `
 
 export const InputContainer = styled.div`

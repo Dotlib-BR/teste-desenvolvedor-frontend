@@ -14,11 +14,17 @@ export const MedicineDetailsContainer = styled.div`
   box-shadow: 0 2px 28px rgba(0, 0, 0, 0.1);
 
   margin-top: -8.8rem;
+
+  @media only screen and (max-width: 864px) {
+    width: 90%;
+  }
 `
 
 export const Title = styled.h2`
   font-size: 1.6rem;
   margin-bottom: 2rem;
+
+  text-align: center;
 `
 
 export const InputsContainer = styled.div`
@@ -75,6 +81,12 @@ export const DownloadButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+
+  @media only screen and (max-width: 864px) {
+    width: 90%;
+    justify-content: space-around;
+    gap: unset;
+  }
 `
 
 export const Button = styled.button`
@@ -97,4 +109,10 @@ export const ExpedientContainer = styled.div`
   display: flex;
   padding-top: 1.2rem;
   gap: 20rem;
+
+  @media only screen and (max-width: 864px) {
+    width: 90%;
+    justify-content: space-around;
+    gap: unset;
+  }
 `

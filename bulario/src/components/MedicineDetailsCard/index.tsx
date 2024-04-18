@@ -47,19 +47,22 @@ export function MedicineDetailsCard({ itemInfos }: MedicineDetailsProps) {
             <Title key={principle.id}>{principle.name}</Title>
           ))}
 
-            <>
-              <p>Expediente:</p>
-              <ExpedientContainer>
+          <>
+            <p>Expediente:</p>
+            <ExpedientContainer>
               {itemInfos.documents.map((expedient) => (
                 <Title key={expedient.id}>{expedient.expedient}</Title>
-                ))}
-                </ExpedientContainer>
-            </>
+              ))}
+            </ExpedientContainer>
+          </>
 
           <p>Bulas disponíveis:</p>
           <ButtonContainer>
             {itemInfos.documents.map((doc) => (
-              <DownloadButton key={doc.id} onClick={() => handleDownloadPDF(doc.url)}>
+              <DownloadButton
+                key={doc.id}
+                onClick={() => handleDownloadPDF(doc.url)}
+              >
                 Download bula do{' '}
                 {doc.type === 'PATIENT' ? 'Paciente' : 'Profissional'}
               </DownloadButton>

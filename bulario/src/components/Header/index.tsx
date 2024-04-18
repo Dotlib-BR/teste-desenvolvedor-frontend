@@ -10,7 +10,7 @@ export function Header() {
   async function handleHome() {
     navigate(`/`)
   }
-  
+
   return (
     <HeaderContainer>
       <HeaderContent>
