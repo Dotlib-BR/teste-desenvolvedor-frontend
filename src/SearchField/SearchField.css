@@ -1,0 +1,58 @@
+form {
+    --primary-color: #86bc42;
+    --secondary-color: #dee2e6;
+
+    display: grid;
+    padding: 16px;
+    gap: 8px;
+
+    height: fit-content;
+
+
+    grid-template-columns: [form-start] 1fr 1fr [form-end];
+    grid-template-rows: [form-start text-start] 1fr [text-end submit-start] 1fr [submit-end form-end];
+    max-width: 300px;
+
+    border: 6px solid var(--secondary-color);
+    background-color: white;
+
+    input[type="text"] {
+        grid-column: form-start / form-end;
+        grid-row: text;
+        padding: 8px;
+        border: 2px solid var(--secondary-color);
+        background-color: white;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        grid-column: span 1;
+        grid-row: submit;
+        padding: 8px;
+        cursor: pointer;
+        color:white;
+        font-weight: bold;
+        border: 1px solid var(--secondary-color);
+        background-color: var(--primary-color);
+
+        &:hover {
+            background-color: #77a83a;
+        }
+    }
+
+
+    select {
+        grid-column: span 1;
+        grid-row: submit;
+        border: 2px solid var(--secondary-color);
+        background-color: white;
+        
+        &:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+    }
+}
