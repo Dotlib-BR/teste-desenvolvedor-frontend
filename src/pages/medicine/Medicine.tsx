@@ -68,6 +68,7 @@ export default function Medicine() {
                     </li>
                 </ul>
             </div>
+
             <div className="containerInfo">
                 <div className="headerContainer">Documentos</div>
                 <div>
@@ -80,10 +81,10 @@ export default function Medicine() {
                                 <div className="documentContainerTitle">
                                     <div className="documentContainerTitleTwo">
                                         <div className="documentTitle">
-                                            <p>Tipo: </p>
+                                            <p className="titleType">Tipo: </p>
                                             <p>{document.type}</p>
                                         </div>
-                                        <div className="documentTitle">
+                                        <div className="documentTitle expedient">
                                             <p>Expediente: </p>
                                             <p>{document.expedient}</p>
                                         </div>

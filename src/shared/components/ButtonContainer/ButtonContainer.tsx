@@ -38,7 +38,7 @@ export default function ButtonContainer({
 
     return (
         <div className="buttonMainContainer">
-            <p>
+            <p className="countItems">
                 Total de <b>{pageSettings?.items}</b> item(s)
             </p>
 

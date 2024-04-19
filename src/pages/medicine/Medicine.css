@@ -68,3 +68,14 @@
     height: 100%;
     gap: 20px;
 }
+
+@media (max-width: 600px) {
+    .medicineListLine b,
+    .titleType,
+    .expedient {
+        display: none;
+    }
+    .medicineListLine {
+        justify-content: center;
+    }
+}

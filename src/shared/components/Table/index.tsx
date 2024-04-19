@@ -26,12 +26,19 @@ export default function Table({
                     <th scope="col" className="borderOne">
                         Medicamento
                     </th>
-                    <th scope="col">Empresa</th>
-                    <th scope="col"> Bula do profissional</th>
-                    <th scope="col">Bula do paciente</th>
+                    <th scope="col" className="columCompany">
+                        Empresa
+                    </th>
+                    <th scope="col" className="columleaflet">
+                        {' '}
+                        Bula do profissional
+                    </th>
+                    <th scope="col" className="columleaflet">
+                        Bula do paciente
+                    </th>
                     <th
                         scope="col"
-                        className="borderTwo"
+                        className="borderTwo columData"
                         onClick={() => handleDate()}
                     >
                         Publicação{' '}

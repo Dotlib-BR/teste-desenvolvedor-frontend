@@ -30,3 +30,9 @@
 .filterItem:hover {
     background-color: var(--table-hover);
 }
+
+@media (max-width: 810px) {
+    .searchContainer {
+        display: none;
+    }
+}

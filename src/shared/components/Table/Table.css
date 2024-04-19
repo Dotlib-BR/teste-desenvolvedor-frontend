@@ -35,3 +35,21 @@
 
     border-radius: 0 10px 0 0;
 }
+
+@media (max-width: 1050px) {
+    .columCompany {
+        display: none;
+    }
+}
+
+@media (max-width: 810px) {
+    .columleaflet {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .columData {
+        display: none;
+    }
+}

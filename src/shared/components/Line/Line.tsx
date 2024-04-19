@@ -40,20 +40,20 @@ export default function Line({ id, name, company, date }: LineProps) {
     return (
         <tr className="tableLine" onClick={() => handleRedirect()}>
             <td>{name}</td>
-            <td>{company}</td>
+            <td className="columCompany">{company}</td>
             <td
-                className="align download"
+                className="align download columleaflet"
                 onClick={(e) => handleDownloadPatient(e)}
             >
                 <IconPdf width="20px" height="20px" />
             </td>
             <td
-                className="align download"
+                className="align download columleaflet"
                 onClick={(e) => handleDownloadProfessional(e)}
             >
                 <IconPdf width="20px" height="20px" />
             </td>
-            <td className="align">{formatDate(date)}</td>
+            <td className="align columData">{formatDate(date)}</td>
         </tr>
     );
 }
