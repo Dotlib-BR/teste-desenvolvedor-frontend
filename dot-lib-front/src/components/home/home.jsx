@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, Body } from "./homeStyle";
+import { Header, Body, Buttons } from "./homeStyle";
 import logo from "../../assets/dotlib_logo.png";
 import Medicine from "../medicine/medicine";
 import Menu from "../menu/menu";
@@ -11,7 +11,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [oldToNew, setOldToNew] = useState([]);
   const [newToOld, setNewToOld] = useState([]);
-  const [isTheOldItemFilterActive, setIsTheOldItemFilterActive] = useState(false);
+  const [isTheOldItemFilterActive, setIsTheOldItemFilterActive] =
+    useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchbarResult, setSearchbarResult] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -99,9 +100,11 @@ export default function Home() {
             )
           )}
 
-        <button onClick={handlePreviousPage}>Anterior</button>
-        <span>{currentPage}</span>
-        <button onClick={handleNextPage}>Próxima</button>
+        <Buttons>
+          <button onClick={handlePreviousPage}>Anterior</button>
+          <span>{currentPage}</span>
+          <button onClick={handleNextPage}>Próxima</button>
+        </Buttons>
       </Body>
     </>
   );
