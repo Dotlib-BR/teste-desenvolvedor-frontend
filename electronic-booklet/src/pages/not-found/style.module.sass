@@ -1,0 +1,23 @@
+@use '../../styles/mixin' as mixin
+@use '../../styles/variables' as variables
+@use '../../styles/media' as media
+
+.container
+    @include mixin.center
+    flex-direction: column
+    gap: 1rem
+    @include mixin.occupyScreen
+
+.title
+    @include mixin.fontStyle (2rem, 500, variables.$text-light)
+
+    @include media.max-width(xsmall)
+        font-size: 1.5rem
+
+.goHome
+    padding: 0.5rem 1rem
+    border: none
+    border-radius: 0.5rem
+    background: variables.$button-color
+    color: variables.$background-dark
+    cursor: pointer
