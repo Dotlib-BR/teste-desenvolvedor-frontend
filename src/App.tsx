@@ -8,27 +8,51 @@ import { IMedicalRecipe } from "./utils/types/medicals-recipe.type";
 import { getRecipes } from "./services/recipes.service";
 import { CollapsableTable } from "./components/Table";
 import { IFilterConfig } from "./utils/types/flter-config.type";
+import { Filter } from "./components/Filter";
 
 function App() {
   const [recipes, setRecipes] = useState<IMedicalRecipe[]>([]);
-  const [filterConfig, setFilterConfig,] = useState<IFilterConfig>({page:1, last:0, items:0})
+  const [filterConfig, setFilterConfig] = useState<IFilterConfig>({
+    page: "1",
+    last: 0,
+    items: 0,
+  });
   useEffect(() => {
-    getRecipes(filterConfig).then((response) => {
-      setRecipes(response.data.data)
-      setFilterConfig((prev)=>({
-        ...prev, 
-        last: response.data.last,
-        items: response.data.items
-      }))
-    }
-  )
+    getRecipes({ page: filterConfig.page, name: "", company: "" }).then(
+      (response) => {
+        setRecipes(response.data.data);
+        setFilterConfig((prev) => ({
+          ...prev,
+          last: response.data.last,
+          items: response.data.items,
+        }));
+      }
+    );
   }, [filterConfig.page]);
-  const pagination = (page:number) =>{
-      setFilterConfig((prev) => ({...prev, page}))
-  }
+
+  const handleFilter = (filter: { name: string; company: string }) => {
+    getRecipes({
+      page: filterConfig.page,
+      name: filter.name,
+      company: filter.company,
+    }).then((response) => {
+      setRecipes(response.data.data);
+      setFilterConfig((prev) => ({ ...prev }));
+    });
+  };
+
+  const pagination = (page: string) => {
+    setFilterConfig((prev) => ({ ...prev, page }));
+  };
+
   return (
     <>
-      <CollapsableTable recipes={recipes} filterConfig={filterConfig} pagination={pagination}></CollapsableTable>
+      <Filter submit={handleFilter}></Filter>
+      <CollapsableTable
+        recipes={recipes}
+        filterConfig={filterConfig}
+        pagination={pagination}
+      ></CollapsableTable>
     </>
   );
 }
