@@ -1,111 +1,27 @@
-import { useEffect, useState } from 'react'
 import MedicineDetails from '../../../../components/medicine-details'
-import api from '../../../../services/api'
-
-import { SelectedMedicine } from '../../../../interface/selected-medicine-prop'
-import { Medicine } from '../../../../interface/medicine'
-import { Published } from '../../../../interface/published'
 import { CurrentItems } from '../../../../interface/current-items'
+import Modal from '../../../../components/modal'
+import useApi from '../../../../hook/useApi'
 
 import s from './style.module.sass'
-import Modal from '../../../../components/modal'
-
-const itemsPerPage = 10
 
 export default function MedicineLeaflet() {
-    const [medicine, setMedicine] = useState<Medicine[]>([])
-    const [selectedMedicine, setSelectedMedicine] = useState<SelectedMedicine>()
-    const [page, setPage] = useState<number>(1)
-    const [filter, setFilter] = useState<string>('recent')
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-
-    async function handleMedicine() {
-        try {
-            const { data } = await api.get(`/data`)
-
-            if (!data) return
-
-            if (filter === 'recent') {
-                const recents = data.sort(
-                    (a: Published, b: Published) =>
-                        new Date(b.published_at).getTime() -
-                        new Date(a.published_at).getTime(),
-                )
-                setMedicine(recents)
-                setSelectedMedicine(recents[0])
-            } else if (filter === 'ancient') {
-                const ancient = data.sort(
-                    (a: Published, b: Published) =>
-                        new Date(a.published_at).getTime() -
-                        new Date(b.published_at).getTime(),
-                )
-                setMedicine(ancient)
-            }
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-    useEffect(() => {
-        handleMedicine()
-    }, [filter])
-
-    function handleSelectItem(item: CurrentItems) {
-        const selected: SelectedMedicine = {
-            id: item.id,
-            name: item.name,
-            published_at: item.published_at || '',
-            company: item.company || '',
-            active_principles: item.active_principles || [],
-            documents: item.documents || [],
-            medical_image: item.medical_image || '',
-            company_image: item.company_image || '',
-        }
-        setSelectedMedicine(selected)
-
-        if (window.innerWidth < 767) {
-            setIsModalOpen(true)
-        }
-    }
-
-    const indexOfLastItem = page * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    const currentItems = medicine.slice(indexOfFirstItem, indexOfLastItem)
-    const total = Math.ceil(medicine.length / itemsPerPage)
-
-    function nextPage() {
-        setPage(prevPage => prevPage + 1)
-    }
-
-    function prevPage() {
-        setPage(prevPage => prevPage - 1)
-    }
-
-    function goToPage(pageNumber: number) {
-        setPage(pageNumber)
-    }
-
-    function renderPageNumbers() {
-        const numbers = []
-        for (let i = 1; i <= total; i++) {
-            const btnClass = i === page ? s.activeBtn : s.btnNotActive
-            numbers.push(
-                <button
-                    key={i}
-                    onClick={() => goToPage(i)}
-                    className={btnClass}
-                >
-                    {i}
-                </button>,
-            )
-        }
-
-        return numbers
-    }
-
-    function closeModal() {
-        setIsModalOpen(false)
-    }
+    const {
+        medicine,
+        selectedMedicine,
+        page,
+        filter,
+        isModalOpen,
+        // loading,
+        currentItems,
+        indexOfLastItem,
+        setFilter,
+        nextPage,
+        prevPage,
+        renderPageNumbers,
+        closeModal,
+        handleSelectItem,
+    } = useApi()
 
     return (
         <section className={s.container}>
