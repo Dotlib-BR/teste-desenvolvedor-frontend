@@ -65,10 +65,17 @@ export const SearchContextProvider = ({
   };
 
   const addFavoriteLeaflet = (leaflet: ResponseLeafletMapper) => {
-    setLeafletFavoriteCollection([leaflet, ...leafletFavoriteCollection]);
+    const leafletFavorite: ResponseLeafletMapper = {
+      ...leaflet,
+      favorite: true,
+    };
+    setLeafletFavoriteCollection([
+      leafletFavorite,
+      ...leafletFavoriteCollection,
+    ]);
     setLocalStorage("leafletFavoriteCollection", [
       ...leafletFavoriteCollection,
-      leaflet,
+      leafletFavorite,
     ]);
   };
 
