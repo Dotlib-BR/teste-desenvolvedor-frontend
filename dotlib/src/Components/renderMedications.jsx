@@ -12,69 +12,75 @@ const RenderMedications = ({ filteredMedications, currentPage, handleExpandDocum
 
     return (
         <>
-            <ul>
-                {currentItems.map((medication) => (
-                    <li key={medication.id}>
+        <div className="medications-container"> {/* Adicione uma div container para os blocos de 2 */}
+            {currentItems.map((medication, index) => (
+                <div key={medication.id} className="medication-details"> {/* Adicione a classe para estilização */}
+                    <div>
+                        <strong>ID:</strong> {medication.id}
+                    </div>
+                    <div>
+                        <strong>Nome:</strong> {medication.name}
+                    </div>
+                    <div>
+                        <strong>Data de Publicação:</strong> {medication.published_at}
+                    </div>
+                    <div>
+                        <strong>Empresa:</strong> {medication.company}
+                    </div>
+                    <button 
+                    className="expand-button"
+                    onClick={() => handleExpandDocument(medication.id)}
+                    >
+                        Documentos
+                    </button>
+                    {expandedDocument === medication.id && (
                         <div>
-                            <strong>ID:</strong> {medication.id}
-                        </div>
-                        <div>
-                            <strong>Nome:</strong> {medication.name}
-                        </div>
-                        <div>
-                            <strong>Data de Publicação:</strong> {medication.published_at}
-                        </div>
-                        <div>
-                            <strong>Empresa:</strong> {medication.company}
-                        </div>
-                        <button onClick={() => handleExpandDocument(medication.id)}>Documentos</button>
-                        {expandedDocument === medication.id && (
-                            <div>
-                                <strong>Documents:</strong>
-                                <ul>
-                                    {medication.documents.map((document) => (
-                                        <li key={document.id}>
-                                            <div>
-                                                <strong>Expediente:</strong> {document.expedient}
-                                            </div>
-                                            <div>
-                                                <strong>Id:</strong> {document.id}
-                                            </div>
-                                            <div>
-                                                <strong>Tipo:</strong> {document.type}
-                                            </div>
-                                            <div>
-                                                <strong>Url:</strong> <a href={document.url} download>{document.url}</a>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                            </div>
-                        )}
-                        <div>
-                            <strong>Princípios Ativos:</strong>
+                            <strong>Documents:</strong>
                             <ul>
-                                {medication.active_principles.map((principle) => (
-                                    <li key={principle.id}>
+                                {medication.documents.map((document) => (
+                                    <li key={document.id}>
                                         <div>
-                                            <strong>ID:</strong> {principle.id}
+                                            <strong>Expediente:</strong> {document.expedient}
                                         </div>
                                         <div>
-                                            <strong>Nome:</strong> {principle.name}
+                                            <strong>Id:</strong> {document.id}
+                                        </div>
+                                        <div>
+                                            <strong>Tipo:</strong> {document.type}
+                                        </div>
+                                        <div>
+                                            <strong>Url:</strong> <a href={document.url} download>{document.url}</a>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
+
                         </div>
-                    </li>
-                ))}
-            </ul>
+                    )}
+                    <div>
+                        <strong>Princípios Ativos:</strong>
+                        <ul>
+                            {medication.active_principles.map((principle) => (
+                                <li key={principle.id}>
+                                    <div>
+                                        <strong>ID:</strong> {principle.id}
+                                    </div>
+                                    <div>
+                                        <strong>Nome:</strong> {principle.name}
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            ))}
+        </div>
             <div>
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                <button className='pagination-button ' onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
                     Página Anterior
                 </button>
                 <button
+                    className='pagination-button '
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentItems.length < itemsPerPage}
                 >

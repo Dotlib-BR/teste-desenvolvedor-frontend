@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #71BF43;
+    padding: 20px;
+}
+
+.logo {
+    margin-top: 20px;
+}
+
+.search-container {
+    margin-top: 20px;
+}
+
+.input-search {
+    height: 50px;
+    width: 360px;
+    font-size: 20px;
+    border-radius: 8px;
+    margin-right: 32px;
+}
+
+.search-button {
+    width: 120px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.result {
+    width: 45%;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    width: 150px;
+    height: 50px;
+    background-color: #0A0;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.pagination-button[disabled] {
+    opacity: 0.9;
+    text-decoration: line-through;
+}
+
+.medication-details {
+    display: flex;
+    margin-top: 20px;
+    text-align: left;
+    background-color: #71BF43; /* Cor de fundo dos itens */
+}
+
+.expand-button {
+    width: 120px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 20px;
+    border-radius: 4px;
+}

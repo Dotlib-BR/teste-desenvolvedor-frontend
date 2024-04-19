@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllData } from '../Utils/fetchData';
 import RenderMedications from '../Components/renderMedications';
+import dotLibImg from '../Images/dotlib.png'
+import styles from '../styles.css'
 
 const MedicationSearch = () => {
     const [data, setData] = useState([]);
@@ -56,18 +58,19 @@ const MedicationSearch = () => {
         setExpandedDocument(expandedDocument === medicationId ? null : medicationId);
     };
 
-
     return (
-        <div>
-            <form onSubmit={(e) => e.preventDefault()}>
+        <div className="container">
+            <img className="logo" src={dotLibImg} alt="Logo" />
+            <div className="search-container">
                 <input
+                    className="input-search"
                     type="text"
                     value={searchQuery}
                     onChange={handleInputChange}
-                    placeholder="Digite o nome do medicamento ou da empresa fabricante"
+                    placeholder="Faça sua busca"
                 />
-                <button onClick={handleSearch}>Buscar</button>
-            </form>
+                <button className="search-button" onClick={handleSearch}>Buscar</button>
+            </div>
             {searchNotFound && <p>Busca não encontrada.</p>}
             <RenderMedications
                 filteredMedications={filteredMedications}
