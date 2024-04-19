@@ -5,7 +5,7 @@ import logo from "../../assets/dotlib_logo.png";
 import Medicine from "../medicine/medicine";
 import Menu from "../menu/menu";
 import { sortFromNewToOld, sortFromOldToNew } from "../../utils/dataOrganizer";
-import Pagination from "../../utils/pagination";
+import pagination from "../../utils/pagination";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +13,8 @@ export default function Home() {
   const [newToOld, setNewToOld] = useState([]);
   const [isTheOldItemFilterActive, setIsTheOldItemFilterActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchbarResult, setSearchbarResult] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     const LINK_API = "http://localhost:3000/data";
@@ -27,9 +29,16 @@ export default function Home() {
     });
   }, []);
 
-  const { paginatedDataNewToOld, paginatedDataOLdToNew, handlePreviousPage, handleNextPage } = Pagination(
+  const {
+    paginatedDataNewToOld,
+    paginatedDataOLdToNew,
+    paginatedDataSearchResult,
+    handlePreviousPage,
+    handleNextPage,
+  } = pagination(
     newToOld,
     oldToNew,
+    searchbarResult,
     currentPage,
     10,
     setCurrentPage
@@ -41,13 +50,21 @@ export default function Home() {
         <img src={logo} alt="DotLib logo" />
       </Header>
 
-      <Menu isTheOldItemFilterActive={isTheOldItemFilterActive} setIsTheOldItemFilterActive={setIsTheOldItemFilterActive}></Menu>
+      <Menu
+        isTheOldItemFilterActive={isTheOldItemFilterActive}
+        setIsTheOldItemFilterActive={setIsTheOldItemFilterActive}
+        oldToNew={oldToNew}
+        newToOld={newToOld}
+        setSearchbarResult={setSearchbarResult}
+        setIsSearching={setIsSearching}
+      ></Menu>
 
       <Body>
         {isLoading && <p>Carregando...</p>}
 
         {paginatedDataNewToOld &&
           !isTheOldItemFilterActive &&
+          !isSearching &&
           paginatedDataNewToOld.map(({ id, name, company, published_at }) => (
             <Medicine
               key={id}
@@ -59,6 +76,7 @@ export default function Home() {
 
         {paginatedDataOLdToNew &&
           isTheOldItemFilterActive &&
+          !isSearching &&
           paginatedDataOLdToNew.map(({ id, name, company, published_at }) => (
             <Medicine
               key={id}
@@ -68,10 +86,22 @@ export default function Home() {
             />
           ))}
 
+        {paginatedDataSearchResult &&
+          isSearching &&
+          paginatedDataSearchResult.map(
+            ({ id, name, company, published_at }) => (
+              <Medicine
+                key={id}
+                name={name}
+                company={company}
+                published_at={published_at}
+              />
+            )
+          )}
+
         <button onClick={handlePreviousPage}>Anterior</button>
         <span>{currentPage}</span>
         <button onClick={handleNextPage}>Próxima</button>
-
       </Body>
     </>
   );
