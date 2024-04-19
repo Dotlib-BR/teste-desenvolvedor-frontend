@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SearchImg from '../../../../assets/search.svg'
+
 import s from './style.module.sass'
 
 export default function Hero() {

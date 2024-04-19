@@ -1,7 +1,7 @@
 import MedicineDetails from '../../../../components/medicine-details'
 import { CurrentItems } from '../../../../interface/current-items'
+import { useApiContext } from '../../../../context/api-provider'
 import Modal from '../../../../components/modal'
-import useApi from '../../../../hook/useApi'
 
 import s from './style.module.sass'
 
@@ -12,7 +12,6 @@ export default function MedicineLeaflet() {
         page,
         filter,
         isModalOpen,
-        // loading,
         currentItems,
         indexOfLastItem,
         setFilter,
@@ -21,7 +20,7 @@ export default function MedicineLeaflet() {
         renderPageNumbers,
         closeModal,
         handleSelectItem,
-    } = useApi()
+    } = useApiContext()
 
     return (
         <section className={s.container}>
@@ -40,7 +39,7 @@ export default function MedicineLeaflet() {
                     {currentItems.map((item: CurrentItems) => (
                         <div
                             className={`${s.medicineNameBox} ${
-                                selectedMedicine!.id === item.id
+                                selectedMedicine?.id === item.id
                                     ? s.selectedMedicine
                                     : ''
                             }`}

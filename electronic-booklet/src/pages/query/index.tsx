@@ -1,42 +1,19 @@
-import { useCallback, useEffect, useState } from 'react'
-import { redirect, useLocation } from 'react-router-dom'
-import api from '../../services/api'
+import { useLocation } from 'react-router-dom'
+import { useApiContext } from '../../context/api-provider'
+
 import MedicineDetails from '../../components/medicine-details'
-import { SelectedMedicine } from '../../interface/selected-medicine-prop'
 
 import s from './style.module.sass'
+import { SelectedMedicineData } from '../../interface/selected-medicine-prop'
 
 export default function Query() {
+    const { medicine } = useApiContext()
     const location = useLocation()
     const search = new URLSearchParams(location.search).get('search')
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
 
-    const fetchData = useCallback(async () => {
-        setLoading(true)
-        try {
-            const { data } = await api.get(`/data?name=${search}`)
-            setData(data)
-        } catch (error) {
-            console.error('Erro ao buscar dados:', error)
-        } finally {
-            setLoading(false)
-        }
-    }, [search])
+    const filteredData = medicine.filter(item => item.name === search)
 
-    useEffect(() => {
-        fetchData()
-    }, [fetchData])
-
-    if (search === null || search === '') {
-        redirect('/')
-    }
-
-    if (loading) {
-        return <div className={s.container}>Carregando...</div>
-    }
-
-    if (data.length === 0) {
+    if (filteredData.length === 0) {
         return (
             <div className={s.container}>
                 Nenhum resultado encontrado para "{search}"
@@ -49,7 +26,7 @@ export default function Query() {
             <h1 className={s.titleSearch}>Resultados para: {search}</h1>
 
             <section className={s.searchItems}>
-                {data.map((item: SelectedMedicine) => (
+                {filteredData.map(item => (
                     <MedicineDetails key={item.id} data={item} />
                 ))}
             </section>
