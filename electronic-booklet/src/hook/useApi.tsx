@@ -10,7 +10,6 @@ export default function useApi() {
     const [medicine, setMedicine] = useState([])
     const [filter, setFilter] = useState<string>('recent')
     const [selectedMedicine, setSelectedMedicine] = useState<SelectedMedicine>()
-    const [loading, setLoading] = useState<boolean>(false)
     const [page, setPage] = useState<number>(1)
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true)
@@ -22,15 +21,13 @@ export default function useApi() {
     const total = Math.ceil(medicine.length / itemsPerPage)
 
     useEffect(() => {
-        if (isInitialLoad && medicine.length > 0) {
+        if (isInitialLoad && medicine && medicine.length > 0) {
             setSelectedMedicine(medicine[0])
             setIsInitialLoad(false)
         }
     }, [isInitialLoad, medicine])
 
     const fetchMedicine = useCallback(async () => {
-        setLoading(true)
-
         try {
             const { data } = await api.get(`/data`)
 
@@ -53,8 +50,6 @@ export default function useApi() {
             }
         } catch (error) {
             console.error(error)
-        } finally {
-            setLoading(false)
         }
     }, [filter])
 
@@ -118,7 +113,6 @@ export default function useApi() {
         page,
         filter,
         isModalOpen,
-        loading,
         currentItems,
         total,
         indexOfLastItem,
