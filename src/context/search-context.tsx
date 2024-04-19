@@ -1,11 +1,18 @@
 import { createContext, useContext, useState } from "react";
-import { ResponseLeafletMapper } from "../service/types";
+import {
+  ResponseLeafletMapper,
+  ResponseLeafletPaginationMapper,
+} from "../service/types";
 import { getDefaultLeafletPagination } from "../service/search.service";
 
 type SearchContext = {
   leafletCollection: ResponseLeafletMapper[];
   setLeafletCollection: (value: ResponseLeafletMapper[]) => void;
   searchLeafletPagination: (page: number) => void;
+  leafletCollectionPagination: ResponseLeafletPaginationMapper;
+  setLeafletCollectionPagination: (
+    value: ResponseLeafletPaginationMapper
+  ) => void;
 };
 
 export const SearchContext = createContext({} as SearchContext);
@@ -20,11 +27,19 @@ export const SearchContextProvider = ({
   const [leafletCollection, setLeafletCollection] = useState(
     {} as ResponseLeafletMapper[]
   );
+  const [leafletCollectionPagination, setLeafletCollectionPagination] =
+    useState({} as ResponseLeafletPaginationMapper);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
 
   const searchLeafletPagination = (page: number) => {
-    getDefaultLeafletPagination(page).then((data) =>
-      setLeafletCollection(data.data)
-    );
+    scrollToTop();
+    getDefaultLeafletPagination(page).then((data) => {
+      setLeafletCollection(data.data);
+      setLeafletCollectionPagination(data);
+    });
   };
 
   return (
@@ -33,6 +48,8 @@ export const SearchContextProvider = ({
         leafletCollection,
         setLeafletCollection,
         searchLeafletPagination,
+        leafletCollectionPagination,
+        setLeafletCollectionPagination,
       }}
     >
       {children}

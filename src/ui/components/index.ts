@@ -5,4 +5,5 @@ export { Header } from "./Header";
 export { Input } from "./Input";
 export { Layout } from "./Layout";
 export { LeafletCollection } from "./LeafletCollection";
+export { Pagination } from "./Pagination";
 export { SearchBar } from "./SearchBar";
