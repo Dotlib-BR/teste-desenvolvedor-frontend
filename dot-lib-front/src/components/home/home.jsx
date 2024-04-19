@@ -5,13 +5,14 @@ import logo from "../../assets/dotlib_logo.png";
 import Medicine from "../medicine/medicine";
 import Menu from "../menu/menu";
 import { sortFromNewToOld, sortFromOldToNew } from "../../utils/dataOrganizer";
+import Pagination from "../../utils/pagination";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [oldToNew, setOldToNew] = useState([]);
   const [newToOld, setNewToOld] = useState([]);
-  const [isTheOldItemFilterActive, setIsTheOldItemFilterActive] =
-    useState(false);
+  const [isTheOldItemFilterActive, setIsTheOldItemFilterActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const LINK_API = "http://localhost:3000/data";
@@ -26,6 +27,14 @@ export default function Home() {
     });
   }, []);
 
+  const { paginatedDataNewToOld, paginatedDataOLdToNew, handlePreviousPage, handleNextPage } = Pagination(
+    newToOld,
+    oldToNew,
+    currentPage,
+    10,
+    setCurrentPage
+  );
+
   return (
     <>
       <Header>
@@ -37,9 +46,9 @@ export default function Home() {
       <Body>
         {isLoading && <p>Carregando...</p>}
 
-        {newToOld &&
+        {paginatedDataNewToOld &&
           !isTheOldItemFilterActive &&
-          newToOld.map(({ id, name, company, published_at }) => (
+          paginatedDataNewToOld.map(({ id, name, company, published_at }) => (
             <Medicine
               key={id}
               name={name}
@@ -48,9 +57,9 @@ export default function Home() {
             />
           ))}
 
-        {oldToNew &&
+        {paginatedDataOLdToNew &&
           isTheOldItemFilterActive &&
-          oldToNew.map(({ id, name, company, published_at }) => (
+          paginatedDataOLdToNew.map(({ id, name, company, published_at }) => (
             <Medicine
               key={id}
               name={name}
@@ -58,6 +67,11 @@ export default function Home() {
               published_at={published_at}
             />
           ))}
+
+        <button onClick={handlePreviousPage}>Anterior</button>
+        <span>{currentPage}</span>
+        <button onClick={handleNextPage}>Próxima</button>
+
       </Body>
     </>
   );
