@@ -1,9 +1,13 @@
 import "./Switch.scss";
 
-export const Switch = () => {
+interface SwitchProps {
+  onChange: () => void;
+}
+
+export const Switch = ({ onChange }: SwitchProps) => {
   return (
     <label className="switch">
-      <input type="checkbox" />
+      <input type="checkbox" onClick={() => onChange()} />
       <span className="slider"></span>
     </label>
   );

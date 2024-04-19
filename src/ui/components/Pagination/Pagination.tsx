@@ -10,13 +10,15 @@ interface PaginationProps {
 }
 
 export const Pagination = ({ items }: PaginationProps) => {
-  const { searchLeafletPagination } = useSearchContext();
+  const { searchLeafletPagination, searchMode, searchText } =
+    useSearchContext();
   const [currentPage, setCurrentPage] = useState(1);
+
   const { pages, prev, next } = items;
   const handleNewPage = (pageNumber: number | null) => {
     if (pageNumber) {
       setCurrentPage(pageNumber);
-      searchLeafletPagination(pageNumber);
+      searchLeafletPagination(pageNumber, searchMode, searchText);
     }
   };
   return (
