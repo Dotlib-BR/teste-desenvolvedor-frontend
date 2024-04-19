@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
 import { useSearchContext } from "../../../context/search-context";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Switch } from "../Switch";
+import { IoMdSearch } from "react-icons/io";
+import { RiStarFill } from "react-icons/ri";
 import "./SearchBar.scss";
 
 export const SearchBar = () => {
@@ -12,6 +15,19 @@ export const SearchBar = () => {
     setSearchText,
     searchText,
   } = useSearchContext();
+
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleSearch = () => {
     searchLeafletPagination(1, searchMode, searchText);
@@ -26,16 +42,20 @@ export const SearchBar = () => {
   return (
     <div className="search-container">
       <div className="searchbar-container">
-        <Button search="left" color="secondary">
-          Favoritos
+        <Button search="left" color="secondary" iconButton={windowWidth < 514}>
+          {windowWidth < 514 ? <RiStarFill className="icon" /> : "Favoritos"}
         </Button>
         <Input
           placeholder="Pesquisar"
           onChange={(e) => setSearchText(e.target.value)}
           onKeyUp={(e) => handleInputEnter(e.key)}
         />
-        <Button search="right" onClick={() => handleSearch()}>
-          Buscar
+        <Button
+          search="right"
+          onClick={() => handleSearch()}
+          iconButton={windowWidth < 514}
+        >
+          {windowWidth < 514 ? <IoMdSearch className="icon" /> : "Buscar"}
         </Button>
       </div>
       <div className="switch-container">
