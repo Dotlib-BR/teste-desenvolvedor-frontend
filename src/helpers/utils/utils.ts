@@ -28,3 +28,8 @@ export const orderDocumentsByType = (data: DocumentsType[]) => {
   });
   return orderDocuments;
 };
+
+export const converterTextToDefault = (text: string) => {
+  const toUpText = text.toLocaleUpperCase();
+  return toUpText.replace(/ /g, "%20");
+};
