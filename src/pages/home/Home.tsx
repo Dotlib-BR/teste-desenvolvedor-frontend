@@ -25,6 +25,7 @@ export function Home() {
     const [pageSettings, setPageSettings] = useState<Partial<ApiResult> | null>(
         null,
     );
+    const [dateFilter, setDateFilter] = useState('asc');
     const [page, setPage] = useState(1);
 
     // Values
@@ -45,15 +46,20 @@ export function Home() {
 
             if (name && company) {
                 setSearch(true);
-                promise = DataServices.getByNameAndCompany(page, name, company);
+                promise = DataServices.getByNameAndCompany(
+                    page,
+                    name,
+                    company,
+                    dateFilter,
+                );
             } else if (name) {
                 setSearch(true);
-                promise = DataServices.getByName(page, name);
+                promise = DataServices.getByName(page, name, dateFilter);
             } else if (company) {
                 setSearch(true);
-                promise = DataServices.getByCompany(page, company);
+                promise = DataServices.getByCompany(page, company, dateFilter);
             } else {
-                promise = DataServices.getAll(page);
+                promise = DataServices.getAll(page, dateFilter);
             }
 
             promise.then((result) => {
@@ -76,7 +82,7 @@ export function Home() {
         };
 
         searchMedicines(name, company);
-    }, [page, location.search]);
+    }, [page, location.search, dateFilter]);
 
     const handleSearch = () => {
         if (medicineValue.length > 0 && companyValue.length > 0) {
@@ -142,7 +148,7 @@ export function Home() {
                     )}
                 </div>
             </div>
-            <Table>
+            <Table dateFilter={dateFilter} setDateFilter={setDateFilter}>
                 {medicines.map((medicine) => {
                     return (
                         <Line

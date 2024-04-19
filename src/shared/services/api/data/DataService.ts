@@ -1,9 +1,14 @@
 import { Api } from '../ApiConfig';
 import { ApiResult, MedicineInterface } from '../interfaces/MedicineInterface';
 
-const getAll = async (page: number): Promise<ApiResult | Error> => {
+const getAll = async (
+    page: number,
+    order: string,
+): Promise<ApiResult | Error> => {
     try {
-        const { data } = await Api().get(`/data?_page=${page}`);
+        const { data } = await Api().get(
+            `/data?_page=${page}${order === 'asc' ? '&_sort=published_at' : '&_sort=-published_at'}`,
+        );
 
         return data;
     } catch (error) {
@@ -21,9 +26,11 @@ const getById = async (id: string): Promise<MedicineInterface | Error> => {
     }
 };
 
-const getByName = async (page: number, name: string) => {
+const getByName = async (page: number, name: string, order: string) => {
     try {
-        const { data } = await Api().get(`/data?_page=${page}&name=${name}`);
+        const { data } = await Api().get(
+            `/data?_page=${page}&name=${name}${order === 'asc' ? '&_sort=published_at' : '&_sort=-published_at'}`,
+        );
 
         return data;
     } catch (error) {
@@ -31,10 +38,10 @@ const getByName = async (page: number, name: string) => {
     }
 };
 
-const getByCompany = async (page: number, company: string) => {
+const getByCompany = async (page: number, company: string, order: string) => {
     try {
         const { data } = await Api().get(
-            `/data?_page=${page}&company=${company}`,
+            `/data?_page=${page}&company=${company}${order === 'asc' ? '&_sort=published_at' : '&_sort=-published_at'}`,
         );
 
         return data;
@@ -47,10 +54,11 @@ const getByNameAndCompany = async (
     page: number,
     name: string,
     company: string,
+    order: string,
 ) => {
     try {
         const { data } = await Api().get(
-            `/data?_page=${page}&name=${name}&company=${company}`,
+            `/data?_page=${page}&name=${name}&company=${company}${order === 'asc' ? '&_sort=published_at' : '&_sort=-published_at'}`,
         );
 
         return data;
