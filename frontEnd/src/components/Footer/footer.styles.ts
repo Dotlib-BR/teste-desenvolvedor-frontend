@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-//Types
-import { IStyledSectionProps } from "./footer.types";
-
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -10,7 +7,7 @@ export const Container = styled.div`
   gap: 5px;
 `;
 
-export const Section = styled.section<IStyledSectionProps>`
+export const Section = styled.section`
   height: 100%;
   width: min-content;
   padding: 5px 10px;
@@ -26,7 +23,7 @@ export const Section = styled.section<IStyledSectionProps>`
   cursor: pointer;
 
   &:hover {
-    background-color: ${(props) => !props.isSelected && props.theme.primary};
-    color: ${(props) => !props.isSelected && props.theme.secondary};
+    background-color: ${(props) => props.theme.primary};
+    color: ${(props) => props.theme.secondary};
   }
 `;

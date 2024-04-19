@@ -10,6 +10,10 @@ export const searchedData = (
 ): IMedicineData[] => {
   const normalizedInputValue = unidecode(inputValue.toLowerCase());
 
+  if (!normalizedInputValue.trim()) {
+    return [];
+  }
+
   return data.filter((item) => {
     const normalizedName = unidecode(item.name.toLowerCase());
     const normalizedCompany = unidecode(item.company.toLowerCase());

@@ -20,7 +20,7 @@ export const Row = styled.tr<IRowProps>`
   gap: 30px;
 
   border-radius: 10px;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: ${(props) => (props.header ? "" : props.theme.quartiary)};
@@ -42,6 +42,16 @@ export const TBody = styled.tbody`
   border-radius: 10px;
 `;
 
-export const TData = styled.td`
-  border-radius: 10px;
+export const TData = styled.td``;
+
+export const NotFound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  font-size: 22px;
+  font-weight: bold;
+  color: ${(props) => props.theme.primary};
 `;
