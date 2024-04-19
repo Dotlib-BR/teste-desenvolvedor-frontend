@@ -23,6 +23,7 @@ img {
   border: none;
   border-radius: 10px;
   margin-right: 2%;
+  margin-left: 2%;
   margin-bottom: 2%;
   padding: 5px 15px;
   box-shadow: 0px 0px 15px #ddd;
@@ -48,4 +49,22 @@ input:focus {
 
 #search-icon {
   color: rgba(243, 106, 62, 1);
+}
+
+.botao-download {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  height: 50px;
+  width: 50px;
+  background-color: #e74c3c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  color: rgb(245, 241, 241) !important;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1;
 }

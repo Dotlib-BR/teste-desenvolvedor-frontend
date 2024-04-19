@@ -7,6 +7,7 @@ import 'styled-components'
 import { IMedicamentos, MedicamentosService } from './app/services/medicamentos/MedicamentosService.ts'
 import { ApiException } from './app/services/api/ApiException.ts';
 import DataTable from './app/components/Datatable.js';
+import ButtonDownload from './app/components/ButtonDownload.js';
 
 
 function App() {
@@ -37,9 +38,11 @@ function App() {
     return listaOrdem.filter((medicamento) => medicamento.name.toUpperCase().includes(upperBusca) || medicamento.company.includes(upperBusca));
   }, [busca, listaOrdem]); 
 
+
   return (
     <div>
       <div className="header">
+        <ButtonDownload />
         <img src={"medicamento_logo.png"} alt="logo" />
       </div>
       <div className="App">
