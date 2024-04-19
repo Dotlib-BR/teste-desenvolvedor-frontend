@@ -6,6 +6,7 @@ import { Switch } from "../Switch";
 import { IoMdSearch } from "react-icons/io";
 import { RiStarFill } from "react-icons/ri";
 import "./SearchBar.scss";
+import { useNavigate } from "react-router-dom";
 
 export const SearchBar = () => {
   const {
@@ -15,6 +16,7 @@ export const SearchBar = () => {
     setSearchText,
     searchText,
   } = useSearchContext();
+  const history = useNavigate();
 
   const [windowWidth, setWindowWidth] = useState<number>(0);
 
@@ -42,7 +44,12 @@ export const SearchBar = () => {
   return (
     <div className="search-container">
       <div className="searchbar-container">
-        <Button search="left" color="secondary" iconButton={windowWidth < 514}>
+        <Button
+          search="left"
+          color="secondary"
+          iconButton={windowWidth < 514}
+          onClick={() => history(`/favorites`)}
+        >
           {windowWidth < 514 ? <RiStarFill className="icon" /> : "Favoritos"}
         </Button>
         <Input
