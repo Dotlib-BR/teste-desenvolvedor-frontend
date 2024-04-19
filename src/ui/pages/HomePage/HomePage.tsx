@@ -23,7 +23,7 @@ export const HomePage = () => {
         title="Resultados"
         leafletCollection={leafletCollection}
       />
-      {leafletCollectionPagination && (
+      {leafletCollectionPagination?.data.length && (
         <Pagination items={leafletCollectionPagination} />
       )}
     </Layout>
