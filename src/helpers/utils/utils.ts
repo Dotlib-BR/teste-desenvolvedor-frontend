@@ -1,4 +1,4 @@
-import { DocumentsType } from "../../service/types";
+import { DocumentsType, ResponseLeafletMapper } from "../../service/types";
 
 export const dateConverter = (date: string) => {
   const newDate = new Date(date);
@@ -32,4 +32,19 @@ export const orderDocumentsByType = (data: DocumentsType[]) => {
 export const converterTextToDefault = (text: string) => {
   const toUpText = text.toLocaleUpperCase();
   return toUpText.replace(/ /g, "%20");
+};
+
+export const getLocalStorage = (key: string) => {
+  const data = window.localStorage.getItem(key);
+
+  return JSON.parse(data!);
+};
+
+export const setLocalStorage = (
+  key: string,
+  value: ResponseLeafletMapper[]
+) => {
+  const data = JSON.stringify(value);
+
+  return window.localStorage.setItem(key, data);
 };

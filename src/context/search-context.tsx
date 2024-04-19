@@ -4,6 +4,7 @@ import {
   ResponseLeafletPaginationMapper,
 } from "../service/types";
 import { getDefaultLeafletPagination } from "../service/search.service";
+import { getLocalStorage, setLocalStorage } from "../helpers/utils/utils";
 
 type SearchContext = {
   searchMode: boolean;
@@ -65,6 +66,10 @@ export const SearchContextProvider = ({
 
   const addFavoriteLeaflet = (leaflet: ResponseLeafletMapper) => {
     setLeafletFavoriteCollection([leaflet, ...leafletFavoriteCollection]);
+    setLocalStorage("leafletFavoriteCollection", [
+      ...leafletFavoriteCollection,
+      leaflet,
+    ]);
   };
 
   const removeFavoriteLeaflet = (leaflet: ResponseLeafletMapper) => {
@@ -72,6 +77,7 @@ export const SearchContextProvider = ({
       (item) => item.id !== leaflet.id
     );
     setLeafletFavoriteCollection(removedFavorite);
+    setLocalStorage("leafletFavoriteCollection", removedFavorite);
   };
 
   useEffect(() => {
@@ -92,6 +98,13 @@ export const SearchContextProvider = ({
       }
     }
   }, [leafletCollectionPagination, leafletFavoriteCollection]);
+
+  useEffect(() => {
+    const favorites = getLocalStorage("leafletFavoriteCollection");
+    if (favorites) {
+      setLeafletFavoriteCollection(favorites);
+    }
+  }, []);
 
   return (
     <SearchContext.Provider
