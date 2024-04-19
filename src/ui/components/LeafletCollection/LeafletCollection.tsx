@@ -4,13 +4,17 @@ import "./LeafletCollection.scss";
 
 interface LeafletCollectionProps {
   leafletList: ResponseLeafletMapper[];
+  title: string;
 }
 
-export const LeafletCollection = ({ leafletList }: LeafletCollectionProps) => {
+export const LeafletCollection = ({
+  leafletList,
+  title,
+}: LeafletCollectionProps) => {
   return (
     <section className="leafletcollection-container">
       <header className="leafletcollection-header">
-        <h1>Resultados</h1>
+        <h1>{title}</h1>
       </header>
       {leafletList.map((item) => (
         <Card key={item.id} item={item} />

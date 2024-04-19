@@ -8,7 +8,10 @@ export const FavoritePage = () => {
   return (
     <Layout>
       {leafletFavoriteCollection.length && (
-        <LeafletCollection leafletList={leafletFavoriteCollection} />
+        <LeafletCollection
+          title="Meus Favoritos"
+          leafletList={leafletFavoriteCollection}
+        />
       )}
     </Layout>
   );
