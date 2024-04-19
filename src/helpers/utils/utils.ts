@@ -1,3 +1,4 @@
+import jsPDF from "jspdf";
 import { DocumentsType, ResponseLeafletMapper } from "../../service/types";
 
 export const dateConverter = (date: string) => {
@@ -47,4 +48,23 @@ export const setLocalStorage = (
   const data = JSON.stringify(value);
 
   return window.localStorage.setItem(key, data);
+};
+
+export const exportToPdf = (leaflet: ResponseLeafletMapper) => {
+  const doc = new jsPDF({ orientation: "portrait" });
+
+  doc.setFontSize(10);
+
+  doc.text(`Nome: ${leaflet.name}`, 5, 10);
+  doc.text(`Laboratório: ${leaflet.company}`, 5, 20);
+  doc.text(`Data: ${leaflet.published_at}`, 5, 30);
+  doc.text(
+    `Substâncias Ativas: ${leaflet.active_principles.map((item, index) =>
+      index === 0 ? item.name : ` ${item.name}`
+    )}`,
+    5,
+    40
+  );
+
+  doc.save(`${leaflet.name}.pdf`);
 };
