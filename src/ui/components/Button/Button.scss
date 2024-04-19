@@ -9,6 +9,15 @@
   cursor: pointer;
   font-weight: 500;
 
+  &.icon-button {
+    width: 35px;
+    border-radius: 50px;
+    margin: 0 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &.left {
     border-radius: 16px 0px 0px 16px;
     width: 148px;

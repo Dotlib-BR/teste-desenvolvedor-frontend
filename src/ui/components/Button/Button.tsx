@@ -5,6 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "outlined";
   fullWidth?: boolean;
   search?: "left" | "right";
+  iconButton?: boolean;
 }
 
 export const Button = ({
@@ -13,13 +14,16 @@ export const Button = ({
   variant,
   fullWidth,
   search,
+  iconButton,
   ...props
 }: ButtonProps) => {
+  const isIconButton = iconButton ? "icon-button" : "";
   const isColor = color ? color : "primary";
-  const isSearch = search === "left" ? "left" : "right";
+  const isSearch =
+    search === "left" ? "left" : search === "right" ? "right" : "";
   const buttonClassName = `button ${isSearch} ${[isColor]} ${
     variant && `${[variant]}`
-  } ${fullWidth && "fullWidth"}`;
+  } ${fullWidth && "fullWidth"} ${isIconButton}`;
 
   return (
     <button {...props} className={buttonClassName}>
