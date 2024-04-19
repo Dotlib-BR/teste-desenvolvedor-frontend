@@ -1,0 +1,95 @@
+:root {
+    --result-primary-color: var(--primary-color);
+    --result-secondary-color: black;
+    --result-tertiary-color: white;
+
+    
+    --document-primary-color: royalblue;
+    --document-secondary-color: rgb(49, 84, 187);
+}
+
+
+.results-container {
+
+    display: grid;
+    width: 100%;
+
+    gap: 8px;
+    grid-template-columns: repeat(2, minmax(100px, auto));
+    grid-template-rows: [header-start] auto [header-end principles-start] auto [principles-end documents-start] auto [documents-end];
+}
+
+@media (max-width: 720px) {
+    .results-container {
+        grid-template-columns: repeat(1, minmax(100px, auto));
+    }
+}
+
+
+.result {
+    width: 100%;
+    border: solid 6px var(--secondary-color);
+
+    display: grid;
+    grid-row: span 2;
+    grid-template-columns: subgrid;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    .result-header{
+        position: relative;
+        background-color: var(--result-tertiary-color);
+        padding: 4px 8px;
+
+        grid-column: header;
+
+        h3 {
+            color: var(--result-primary-color);
+            text-align: start;
+        }
+    
+        p {
+            font-size: 0.8rem;
+            color: var(--result-secondary-color);
+            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            max-width: 80%;
+            width: fit-content;
+
+            &:hover {
+                white-space: normal;
+            }
+        }
+
+        .date {
+            position: absolute;
+            right: 8px;
+            top: 4px;
+        }
+
+
+    }
+
+    .result_active_principles {
+        display: flex;
+        background-color: var(--result-primary-color);
+        width: 100%;
+        padding: 2px 4px;
+        grid-column: principles;
+
+        gap: 4px;
+        flex-wrap: wrap;
+
+        span {
+            white-space: nowrap;
+            font-size: 0.8rem;
+            color: var(--result-secondary-color);
+            padding: 0 8px;
+            border-radius: 100px;
+            background-color: var(--secondary-color);
+        }
+    }
+
+}

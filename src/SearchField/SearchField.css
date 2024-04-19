@@ -11,7 +11,7 @@ form {
 
     grid-template-columns: [form-start] 1fr 1fr [form-end];
     grid-template-rows: [form-start text-start] 1fr [text-end submit-start] 1fr [submit-end form-end];
-    max-width: 300px;
+    /*max-width: 300px;*/
 
     border: 6px solid var(--secondary-color);
     background-color: white;
