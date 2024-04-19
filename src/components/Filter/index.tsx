@@ -1,15 +1,25 @@
 import { Search } from "@mui/icons-material";
-import { Grid, IconButton, TextField } from "@mui/material";
+import {
+  FormControl,
+  Grid,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { useState } from "react";
+import { PublishedAtEnum } from "../../utils/enums/published-at-order.enum";
 
 interface IFilter {
-  submit: (filter: { name: string; company: string }) => void;
+  submit: (filter: { name: string; company: string, sort: string}) => void;
 }
 
-export const Filter = ({  submit }: IFilter) => {
+export const Filter = ({ submit }: IFilter) => {
   const [filterValue, setFilterValue] = useState({
     name: "",
     company: "",
+    sort: PublishedAtEnum.NONE, 
   });
   const handleFilter = (key: string, value: string) => {
     setFilterValue((prev) => ({
@@ -24,8 +34,8 @@ export const Filter = ({  submit }: IFilter) => {
   return (
     <form className="filterContainer" onSubmit={(event) => handleSubmit(event)}>
       <Grid container spacing={2}>
-        <Grid item md={6} sm={12}>
-          <Grid item sm={12}>
+        <Grid item md={4} sm={12}>
+          <Grid item sm={6}>
             <TextField
               id="filled-search"
               label="Nome Remedio"
@@ -45,7 +55,24 @@ export const Filter = ({  submit }: IFilter) => {
             />
           </Grid>
         </Grid>
-        <Grid item md={6} sm={12}>
+        <Grid item md={4} sm={12}>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-select-small-label">Age</InputLabel>
+            <Select
+            onChange={(event) => handleFilter("sort", event.target.value)}
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              label="Age"
+            >
+              <MenuItem value={PublishedAtEnum.NONE}>
+                <em>Sem Ordenação</em>
+              </MenuItem>
+              <MenuItem value={PublishedAtEnum.ASC}>Mais Recente</MenuItem>
+              <MenuItem value={PublishedAtEnum.DESC}>Mais Antigo</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item md={4} sm={12}>
           <IconButton aria-label="fingerprint" color="secondary" type="submit">
             <Search />
           </IconButton>
