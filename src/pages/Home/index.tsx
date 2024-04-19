@@ -34,7 +34,8 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>
 
 export const Home: React.FC = () => {
-  const { response, isLoading, getMedications } = useMedication()
+  const { response, isLoading, getMedications, handleSetQueryParams } =
+    useMedication()
 
   const [sortOrder, setSortOrder] = useState<'-' | null>()
 
@@ -42,26 +43,58 @@ export const Home: React.FC = () => {
     (data: FormSchema) => {
       if (data.name.length > 0 && data.company.length > 0) {
         alert('Preencha apenas um campo para realiazr a pesquisa.')
+        handleSetQueryParams({
+          name: '',
+          company: '',
+        })
+        getMedications()
         return
       }
 
       if (data.company.length === 0 && data.name.length === 0) {
-        getMedications({
-          sort: sortOrder,
+        handleSetQueryParams({
+          name: '',
+          company: '',
+          page: '_page=1',
+          sort: '&_sort=-published_at',
         })
+        getMedications()
       }
 
-      if (data.name) getMedications({ name: data.name, sort: sortOrder })
+      if (data.name) {
+        handleSetQueryParams({
+          name: `&name=${data.name}`,
+        })
+        getMedications()
+      }
 
-      if (data.company)
-        getMedications({ company: data.company, sort: sortOrder })
+      if (data.company) {
+        handleSetQueryParams({
+          company: `&company=${data.company}`,
+        })
+        getMedications()
+      }
     },
-    [getMedications, sortOrder],
+    [getMedications, handleSetQueryParams],
   )
 
   const handleToggleSort = useCallback(() => {
-    sortOrder ? setSortOrder(() => null) : setSortOrder(() => '-')
-  }, [sortOrder])
+    if (sortOrder) {
+      handleSetQueryParams({
+        sort: '&_sort=published_at',
+      })
+      setSortOrder(null)
+      getMedications()
+    }
+
+    if (!sortOrder) {
+      handleSetQueryParams({
+        sort: '&_sort=-published_at',
+      })
+      setSortOrder('-')
+      getMedications()
+    }
+  }, [getMedications, handleSetQueryParams, sortOrder])
 
   const tableHeader = useMemo(() => {
     return [
@@ -75,7 +108,6 @@ export const Home: React.FC = () => {
           <OrderHeader
             onClick={() => {
               handleToggleSort()
-              getMedications({ sort: sortOrder })
             }}
           >
             <span>Publicado em</span>
@@ -190,6 +222,7 @@ export const Home: React.FC = () => {
             last={response.last}
             next={response.next}
             prev={response.prev}
+            handleSetQueryParams={handleSetQueryParams}
             handleGetNewData={getMedications}
           />
         ) : null}

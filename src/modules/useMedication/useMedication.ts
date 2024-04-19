@@ -40,45 +40,54 @@ export type GetMedicationsProps = {
   company?: string
 }
 
+export type QueryParams = {
+  name: string
+  company: string
+  page: string
+  sort: string
+}
+
 export const useMedication = () => {
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: '_page=1',
+  } as QueryParams)
   const [response, setResponse] = useState<ResponseSchema>({} as ResponseSchema)
   const [isLoading, setIsLoading] = useState(false)
 
-  const getMedications = useCallback(
-    async ({ page = 1, name, company, sort }: GetMedicationsProps) => {
-      let sortQuery = `&_sort=published_at`
-
-      if (sort) sortQuery = `&_sort=-published_at`
-
-      let query = `/data?_page=${page}${sortQuery}`
-
-      if (name)
-        query = `/data?name=${name.toUpperCase()}&_page=${page}${sortQuery}`
-
-      if (company)
-        query = `/data?company=${company.toUpperCase()}&_page=${page}${sortQuery}`
-
-      try {
-        setIsLoading(true)
-        const response = await api.get(query)
-
-        setResponse(response.data)
-
-        setIsLoading(false)
-      } catch (error) {
-        console.log(error)
+  const handleSetQueryParams = useCallback((data: Partial<QueryParams>) => {
+    setQueryParams((oldState) => {
+      return {
+        ...oldState,
+        ...data,
       }
-    },
-    [],
-  )
+    })
+  }, [])
+
+  const getMedications = useCallback(async () => {
+    const query = `/data?` + Object.values(queryParams).join('')
+
+    console.log(query)
+
+    try {
+      setIsLoading(true)
+      const response = await api.get(query)
+
+      setResponse(response.data)
+
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [queryParams])
 
   useEffect(() => {
-    getMedications({})
+    getMedications()
   }, [getMedications])
 
   return {
     getMedications,
     response,
     isLoading,
+    handleSetQueryParams,
   }
 }

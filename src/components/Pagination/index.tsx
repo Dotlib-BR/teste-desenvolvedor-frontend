@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Item, PaginationContainer } from './styles'
 
-import { GetMedicationsProps } from '@/modules/useMedication/useMedication'
+import { QueryParams } from '@/modules/useMedication/useMedication'
 
 type PaginationProps = {
   first: number
@@ -10,13 +10,15 @@ type PaginationProps = {
   pages: number
   prev: number | null
   next: number | null
-  handleGetNewData: (props: GetMedicationsProps) => void
+  handleGetNewData: () => void
+  handleSetQueryParams: (data: Partial<QueryParams>) => void
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
   pages,
   next,
   handleGetNewData,
+  handleSetQueryParams,
 }) => {
   const currentPage = next ? next - 1 : pages
   const pageNumbers = Array.from({ length: pages }, (_, index) => index + 1)
@@ -29,11 +31,12 @@ export const Pagination: React.FC<PaginationProps> = ({
             key={pageNumber}
             $isCurrentPage={currentPage === pageNumber}
             disabled={currentPage === pageNumber}
-            onClick={() =>
-              handleGetNewData({
-                page: pageNumber,
+            onClick={() => {
+              handleSetQueryParams({
+                page: `_page=${pageNumber}`,
               })
-            }
+              handleGetNewData()
+            }}
           >
             {pageNumber}
           </Item>
