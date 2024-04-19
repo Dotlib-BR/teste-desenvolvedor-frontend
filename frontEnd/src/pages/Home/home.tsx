@@ -2,54 +2,40 @@
 import { useEffect } from "react";
 
 //Styles
-import { Container, Title, Header, Main, Footer } from "./home.styles"
+import { Container, Title, Header, Main } from "./home.styles";
 
 //Components
 import Search from "../../components/Search/search";
 import Ordenation from "../../components/Ordenation/ordenation";
 import List from "../../components/List/list";
+import Footer from "../../components/Footer/footer";
 
 //Service
-import { getMedicineData } from "../../service";
+import { getMedicineByPageOrId } from "../../service/service";
 
 //Context
 import { useGlobalContext } from "../../context/context";
 
 function Home() {
-    const { state, setState } = useGlobalContext();
+  const { setState } = useGlobalContext();
 
-    const fetchData = async () => {
-        try {
-          const data = await getMedicineData();
-          setState({
-            ...state,
-            listData: data?.data
-          })
-        } catch (error) {
-          console.error("Erro ao buscar dados:", error);
-        }
-      };
-
-    useEffect(() =>  {      
-        fetchData();
-        console.log(state)
-    }, [])
+  useEffect(() => {
+    getMedicineByPageOrId(setState, undefined, 1);
+  }, []);
 
   return (
     <Container>
-        <Title>Bulário</Title>
-        <Header>
-            <Search />
-            <Ordenation />
-        </Header>
-        <Main>
-            <List />
-        </Main>
-        <Footer>
-            Aqui vai os botões da paginação
-        </Footer>
+      <Title>Bulário</Title>
+      <Header>
+        <Search />
+        <Ordenation />
+      </Header>
+      <Main>
+        <List />
+      </Main>
+      <Footer />
     </Container>
-  )
+  );
 }
 
-export default Home
+export default Home;
