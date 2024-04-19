@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# Sobre o projeto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O projeto consiste em uma aplicação desenvolvida em React utilizando o Vite.js como setup inicial.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   [x] Consulta por nome do medicamento e/ou laboratório através de query params.
+-   [x] Ordenação dos medicamentos pela data de publicação.
+-   [x] Paginação de 10 itens por página.
+-   [x] Conteúdo fornecido pela API REST na pasta 'api'.
+-   [x] Download do PDF da bula.
 
-## Expanding the ESLint configuration
+### Extras
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+-   [x] Modo escuro.
+-   [x] Visualização do PDF na página.
+-   [x] Rotas dinâmicas.
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologias/Ferramentas utilizadas
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+-   React
+-   Typescript
+-   React-router-dom
+-   Axios
+-   Json-server
+-   Vite
+-   Eslint
+-   Prettier
+
+## Como executar o projeto
+
+```
+# Clone o projeto e instale as dependências:
+
+$ yarn, npm i ou pnpm i
+
+# Execute o servidor:
+
+$ yarn dev & yarn api, npm run dev & npm run api ou pnpm dev & pnpm api
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+| :exclamation: É necessário executar os servidores em terminais diferentes |
+| ------------------------------------------------------------------------- |
+
+## Modelo Web
+
+![alt text](./public/webLight.png)
+![alt text](./public/webDark.png)
+
+## Modelo Mobile
+
+![alt text](./public/mobileLight.png)
+![alt text](./public//mobileDark.png)
