@@ -1,4 +1,4 @@
-export interface SelectedMedicine {
+export interface Items {
     id: string
     name: string
     published_at: string
@@ -7,9 +7,4 @@ export interface SelectedMedicine {
     documents: { type: string; url: string }[]
     medical_image: string
     company_image: string
-}
-
-export interface SelectedMedicineData {
-    data: SelectedMedicine
-    className?: string
 }

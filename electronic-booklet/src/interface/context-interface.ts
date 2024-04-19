@@ -1,9 +1,11 @@
 import { CurrentItems } from './current-items'
+import { Items } from './items'
 import { Medicine } from './medicine'
 import { SelectedMedicine } from './selected-medicine-prop'
 
 export interface ContextInterface {
     medicine: Medicine[]
+    items: Items[] | undefined
     selectedMedicine: SelectedMedicine | undefined
     page: number
     filter: string

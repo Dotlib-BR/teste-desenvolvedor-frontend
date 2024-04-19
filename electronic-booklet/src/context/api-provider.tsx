@@ -4,6 +4,7 @@ import { ContextInterface } from '../interface/context-interface'
 
 const ApiContext = createContext<ContextInterface>({
     medicine: [],
+    items: [],
     selectedMedicine: undefined,
     page: 1,
     filter: 'recent',

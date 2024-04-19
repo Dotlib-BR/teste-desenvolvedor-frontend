@@ -8,6 +8,7 @@ import ButtonPagination from '../components/button-pagination'
 
 export default function useApi() {
     const [medicine, setMedicine] = useState([])
+    const [items, setItems] = useState()
     const [filter, setFilter] = useState<string>('recent')
     const [selectedMedicine, setSelectedMedicine] = useState<SelectedMedicine>()
     const [page, setPage] = useState<number>(1)
@@ -48,6 +49,8 @@ export default function useApi() {
                 const sortedData = data.slice().sort(filterFunctions[filter])
                 setMedicine(sortedData)
             }
+
+            setItems(data)
         } catch (error) {
             console.error(error)
         }
@@ -116,6 +119,7 @@ export default function useApi() {
         currentItems,
         total,
         indexOfLastItem,
+        items,
         setPage,
         setFilter,
         setIsModalOpen,
