@@ -17,6 +17,17 @@
   }
 }
 
+.without-result {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: var(--errorThemeColor);
+  font-size: 1.1rem;
+  border: 2px solid var(--errorThemeColor);
+  padding: 8px;
+  border-radius: 16px;
+}
+
 @media (max-width: 1280px) {
   .leafletcollection-container {
     max-width: 964px;

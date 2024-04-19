@@ -19,9 +19,10 @@ export const HomePage = () => {
   return (
     <Layout>
       <SearchBar />
-      {leafletCollection.length && (
-        <LeafletCollection title="Resultados" leafletList={leafletCollection} />
-      )}
+      <LeafletCollection
+        title="Resultados"
+        leafletCollection={leafletCollection}
+      />
       {leafletCollectionPagination && (
         <Pagination items={leafletCollectionPagination} />
       )}

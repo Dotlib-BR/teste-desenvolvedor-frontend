@@ -3,12 +3,12 @@ import { Card } from "../Card";
 import "./LeafletCollection.scss";
 
 interface LeafletCollectionProps {
-  leafletList: ResponseLeafletMapper[];
+  leafletCollection?: ResponseLeafletMapper[];
   title: string;
 }
 
 export const LeafletCollection = ({
-  leafletList,
+  leafletCollection,
   title,
 }: LeafletCollectionProps) => {
   return (
@@ -16,9 +16,11 @@ export const LeafletCollection = ({
       <header className="leafletcollection-header">
         <h1>{title}</h1>
       </header>
-      {leafletList.map((item) => (
-        <Card key={item.id} item={item} />
-      ))}
+      {leafletCollection?.length ? (
+        leafletCollection.map((item) => <Card key={item.id} item={item} />)
+      ) : (
+        <div className="without-result">Sem Resultados</div>
+      )}
     </section>
   );
 };

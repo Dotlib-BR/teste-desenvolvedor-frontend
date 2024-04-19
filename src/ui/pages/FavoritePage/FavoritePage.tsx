@@ -7,12 +7,10 @@ export const FavoritePage = () => {
 
   return (
     <Layout>
-      {leafletFavoriteCollection.length && (
-        <LeafletCollection
-          title="Meus Favoritos"
-          leafletList={leafletFavoriteCollection}
-        />
-      )}
+      <LeafletCollection
+        title="Meus Favoritos"
+        leafletCollection={leafletFavoriteCollection}
+      />
     </Layout>
   );
 };
