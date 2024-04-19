@@ -6,4 +6,6 @@ input {
     padding: 10px;
 
     border: 1px solid var(--table-border);
+
+    background-color: var(--input-background);
 }

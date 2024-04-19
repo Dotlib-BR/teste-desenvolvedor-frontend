@@ -40,7 +40,7 @@
     background-color: var(--button-background);
 }
 .button:hover {
-    background-color: var(--table-hover);
+    background-color: var(--button-hover);
 }
 .first {
     border-radius: 5px 0 0 5px;

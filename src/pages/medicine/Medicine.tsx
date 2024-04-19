@@ -61,7 +61,9 @@ export default function Medicine() {
                     <li className="medicineListLine">
                         <b>Princípio ativo</b>
                         {medicine?.active_principles.map((principle) => {
-                            return <span>{principle.name}</span>;
+                            return (
+                                <span key={principle.id}>{principle.name}</span>
+                            );
                         })}
                     </li>
                 </ul>
@@ -71,7 +73,10 @@ export default function Medicine() {
                 <div>
                     {medicine?.documents.map((document) => {
                         return (
-                            <div className="documentContainer">
+                            <div
+                                key={document.id}
+                                className="documentContainer"
+                            >
                                 <div className="documentContainerTitle">
                                     <div className="documentContainerTitleTwo">
                                         <div className="documentTitle">

@@ -18,5 +18,5 @@
     background-color: var(--button-background);
 }
 .customButton:hover {
-    background-color: var(--table-hover);
+    background-color: var(--button-hover);
 }

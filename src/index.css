@@ -1,4 +1,6 @@
 :root {
+    --font-color: #000000;
+
     --background-main-color: #dee2e6;
     --background-light-color: #ffffff;
 
@@ -8,7 +10,24 @@
 
     --button-background: #d9d9d9;
     --button-border: #b4b7ba;
-    --button-select: #86bc42;
+
+    --input-background: #ffffff;
+}
+.dark-mode:root {
+    --font-color: #ffffff;
+
+    --background-main-color: #15161b;
+    --background-light-color: #ffffff;
+
+    --table-border: #242528;
+    --table-header: #242528;
+    --table-hover: #1a1d25;
+
+    --button-background: #36626b;
+    --button-border: #36626b;
+    --button-hover: #254248;
+
+    --input-background: #242528;
 }
 
 * {
@@ -16,6 +35,8 @@
     padding: 0;
 
     box-sizing: border-box;
+
+    color: var(--font-color);
 
     font-family:
         system-ui,

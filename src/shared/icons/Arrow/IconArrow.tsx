@@ -1,10 +1,13 @@
-interface Icons {
+import './IconArrow.css';
+
+export interface IconsInterface {
     [key: string]: () => JSX.Element;
 }
 
-const Icons: Icons = {
+const Icons: IconsInterface = {
     arrowLeft: () => (
         <svg
+            className="strokeSvg"
             width="20px"
             height="20px"
             viewBox="0 0 15 15"
@@ -21,6 +24,7 @@ const Icons: Icons = {
     ),
     doubleArrowLeft: () => (
         <svg
+            className="strokeSvg"
             width="20px"
             height="20px"
             viewBox="0 0 15 15"
@@ -37,6 +41,7 @@ const Icons: Icons = {
     ),
     arrowRight: () => (
         <svg
+            className="strokeSvg"
             width="20px"
             height="20px"
             viewBox="0 0 15 15"
@@ -53,6 +58,7 @@ const Icons: Icons = {
     ),
     doubleArrowRight: () => (
         <svg
+            className="strokeSvg"
             width="20px"
             height="20px"
             viewBox="0 0 15 15"

@@ -29,5 +29,7 @@ h1 {
 
     list-style: none;
 
+    width: 50%;
+
     gap: 20px;
 }

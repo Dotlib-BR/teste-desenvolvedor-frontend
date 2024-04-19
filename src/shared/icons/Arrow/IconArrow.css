@@ -1,0 +1,7 @@
+svg {
+    fill: var(--font-color);
+}
+
+.strokeSvg {
+    stroke: var(--font-color);
+}
