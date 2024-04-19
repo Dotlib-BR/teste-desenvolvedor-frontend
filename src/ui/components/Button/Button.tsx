@@ -14,16 +14,18 @@ export const Button = ({
   variant,
   fullWidth,
   search,
+  disabled,
   iconButton,
   ...props
 }: ButtonProps) => {
+  const isDisabled = disabled ? "disabled" : "";
   const isIconButton = iconButton ? "icon-button" : "";
   const isColor = color ? color : "primary";
   const isSearch =
     search === "left" ? "left" : search === "right" ? "right" : "";
   const buttonClassName = `button ${isSearch} ${[isColor]} ${
     variant && `${[variant]}`
-  } ${fullWidth && "fullWidth"} ${isIconButton}`;
+  } ${fullWidth && "fullWidth"} ${isIconButton} ${isDisabled}`;
 
   return (
     <button {...props} className={buttonClassName}>
