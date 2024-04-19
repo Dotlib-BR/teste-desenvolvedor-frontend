@@ -9,7 +9,6 @@ export const StyledTable = styled.table`
 
   thead {
     th {
-      min-width: 10rem;
       background-color: ${(props) => props.theme['background-secondary']};
       padding: 0.75rem;
       text-align: left;
@@ -43,6 +42,8 @@ export const StyledTable = styled.table`
     }
 
     td {
+      width: fit-content;
+      max-width: 10rem;
       background-color: ${(props) =>
         hexToRgba(props.theme['background-secondary'], 0.2)};
       padding: 0.65rem;

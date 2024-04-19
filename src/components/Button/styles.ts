@@ -5,9 +5,11 @@ import hexToRGBA from 'hex-to-rgba'
 type StyledButtonProps = {
   color: 'primary' | 'error' | 'disabled'
   size: 'sm' | 'md'
+  block?: boolean
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
+  width: fit-content;
   border-radius: 6px;
   font-weight: bold;
   border: none;
@@ -15,10 +17,17 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+
+  ${(props) =>
+    props.block &&
+    css`
+      width: 100%;
+    `}
 
   ${(props) =>
     props.size === 'sm' &&

@@ -46,3 +46,18 @@ export const DropDownContent = styled.div`
   flex-direction: column;
   gap: 0.45rem;
 `
+
+export const OrderHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  svg {
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+`

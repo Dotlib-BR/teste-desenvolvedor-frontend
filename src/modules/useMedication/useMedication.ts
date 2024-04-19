@@ -34,6 +34,7 @@ type ResponseSchema = {
 }
 
 export type GetMedicationsProps = {
+  sort?: '-' | null
   page?: number
   name?: string
   company?: string
@@ -44,30 +45,24 @@ export const useMedication = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const getMedications = useCallback(
-    async ({ page = 1, name, company }: GetMedicationsProps) => {
-      let query = `/data?_page=${page}`
+    async ({ page = 1, name, company, sort }: GetMedicationsProps) => {
+      let sortQuery = `&_sort=published_at`
 
-      if (name) query = `/data?name=${name.toUpperCase()}`
+      if (sort) sortQuery = `&_sort=-published_at`
 
-      if (company) query = `/data?company=${company.toUpperCase()}`
+      let query = `/data?_page=${page}${sortQuery}`
+
+      if (name)
+        query = `/data?name=${name.toUpperCase()}&_page=${page}${sortQuery}`
+
+      if (company)
+        query = `/data?company=${company.toUpperCase()}&_page=${page}${sortQuery}`
 
       try {
         setIsLoading(true)
         const response = await api.get(query)
 
-        if (name || company) {
-          setResponse({
-            data: response.data,
-            first: 0,
-            prev: null,
-            next: null,
-            last: 0,
-            pages: 0,
-            items: 0,
-          })
-        } else {
-          setResponse(response.data)
-        }
+        setResponse(response.data)
 
         setIsLoading(false)
       } catch (error) {

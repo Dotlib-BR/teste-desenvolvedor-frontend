@@ -1,8 +1,14 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import horizontalLogo from '@/assets/horizintal-logo.svg'
 
-import { MagnifyingGlass, Stethoscope, User } from '@phosphor-icons/react'
+import {
+  CaretDown,
+  CaretUp,
+  MagnifyingGlass,
+  Stethoscope,
+  User,
+} from '@phosphor-icons/react'
 import { z } from 'zod'
 import { format } from 'date-fns'
 
@@ -12,6 +18,7 @@ import {
   FlexSection,
   Header,
   HomeContainer,
+  OrderHeader,
 } from './styles'
 
 import { Button, Form, Pagination, Table } from '@/components'
@@ -29,6 +36,8 @@ type FormSchema = z.infer<typeof formSchema>
 export const Home: React.FC = () => {
   const { response, isLoading, getMedications } = useMedication()
 
+  const [sortOrder, setSortOrder] = useState<'-' | null>()
+
   const handleSubmit = useCallback(
     (data: FormSchema) => {
       if (data.name.length > 0 && data.company.length > 0) {
@@ -37,15 +46,22 @@ export const Home: React.FC = () => {
       }
 
       if (data.company.length === 0 && data.name.length === 0) {
-        getMedications({})
+        getMedications({
+          sort: sortOrder,
+        })
       }
 
-      if (data.name) getMedications({ name: data.name })
+      if (data.name) getMedications({ name: data.name, sort: sortOrder })
 
-      if (data.company) getMedications({ company: data.company })
+      if (data.company)
+        getMedications({ company: data.company, sort: sortOrder })
     },
-    [getMedications],
+    [getMedications, sortOrder],
   )
+
+  const handleToggleSort = useCallback(() => {
+    sortOrder ? setSortOrder(() => null) : setSortOrder(() => '-')
+  }, [sortOrder])
 
   const tableHeader = useMemo(() => {
     return [
@@ -55,7 +71,21 @@ export const Home: React.FC = () => {
       },
       {
         id: 'published_at',
-        title: 'Publicado em',
+        title: (
+          <OrderHeader
+            onClick={() => {
+              handleToggleSort()
+              getMedications({ sort: sortOrder })
+            }}
+          >
+            <span>Publicado em</span>
+            {sortOrder !== '-' ? (
+              <CaretUp size={16} />
+            ) : (
+              <CaretDown size={16} />
+            )}
+          </OrderHeader>
+        ),
       },
       {
         id: 'company',
@@ -70,7 +100,7 @@ export const Home: React.FC = () => {
         title: 'Princípios Ativos',
       },
     ]
-  }, [])
+  }, [handleToggleSort, sortOrder])
 
   const tableBody = useMemo(() => {
     if (response.data) {
@@ -142,6 +172,7 @@ export const Home: React.FC = () => {
             placeholder="Multilab "
           />
           <Button
+            type="submit"
             icon={<MagnifyingGlass />}
             loading={isLoading}
             textLoading="Buscando..."
