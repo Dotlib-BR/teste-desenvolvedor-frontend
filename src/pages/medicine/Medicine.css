@@ -1,0 +1,69 @@
+.containerInfo {
+    border: 1px solid var(--table-border);
+    border-radius: 5px;
+
+    margin-top: 50px;
+
+    width: 100%;
+}
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+
+    background-color: var(--table-header);
+}
+
+.medicineListLine {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    gap: 50px;
+
+    height: 30px;
+
+    border-bottom: 1px solid var(--table-border);
+}
+.medicineListLine b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 200px;
+
+    background-color: var(--table-header);
+}
+
+.documentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.documentContainerTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 50px;
+
+    margin: 0 20px;
+}
+.documentContainerTitleTwo {
+    display: flex;
+    flex-direction: row;
+}
+.documentTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    height: 100%;
+    gap: 20px;
+}

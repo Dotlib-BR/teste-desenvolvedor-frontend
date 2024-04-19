@@ -18,9 +18,9 @@ const getAll = async (
 
 const getById = async (id: string): Promise<MedicineInterface | Error> => {
     try {
-        const { data } = await Api().get(`/data${id}`);
+        const { data } = await Api().get(`/data?id=${id}`);
 
-        return data;
+        return data[0];
     } catch (error) {
         return new Error('Erro ao consultar a API');
     }
