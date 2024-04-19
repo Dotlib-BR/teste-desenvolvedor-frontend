@@ -13,12 +13,12 @@ import { Filter } from "./components/Filter";
 function App() {
   const [recipes, setRecipes] = useState<IMedicalRecipe[]>([]);
   const [filterConfig, setFilterConfig] = useState<IFilterConfig>({
-    page: "1",
+    page: 1,
     last: 0,
     items: 0,
   });
   useEffect(() => {
-    getRecipes({ page: filterConfig.page, name: "", company: "" }).then(
+    getRecipes({ page: filterConfig.page, name: "", company: "", sort:"" }).then(
       (response) => {
         setRecipes(response.data.data);
         setFilterConfig((prev) => ({
@@ -30,18 +30,19 @@ function App() {
     );
   }, [filterConfig.page]);
 
-  const handleFilter = (filter: { name: string; company: string }) => {
+  const handleFilter = (filter: { name: string; company: string, sort: string, }) => {
     getRecipes({
       page: filterConfig.page,
       name: filter.name,
       company: filter.company,
+      sort: filter.sort,
     }).then((response) => {
       setRecipes(response.data.data);
       setFilterConfig((prev) => ({ ...prev }));
     });
   };
 
-  const pagination = (page: string) => {
+  const pagination = (page: number) => {
     setFilterConfig((prev) => ({ ...prev, page }));
   };
 
