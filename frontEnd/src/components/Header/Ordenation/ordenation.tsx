@@ -19,7 +19,7 @@ function Ordenation() {
 
   return (
     <Select name="select" onChange={(e) => handleOrder(e.target.value)}>
-      <Option value="" disabled selected hidden>
+      <Option value="" disabled defaultValue="">
         Selecione uma opção
       </Option>
       <Option value="oldest">Mais antigo</Option>

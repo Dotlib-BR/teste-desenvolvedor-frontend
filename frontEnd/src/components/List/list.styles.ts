@@ -42,7 +42,8 @@ export const TBody = styled.tbody`
   border-radius: 10px;
 `;
 
-export const TData = styled.td``;
+export const TData = styled.td`
+`;
 
 export const NotFound = styled.div`
   display: flex;

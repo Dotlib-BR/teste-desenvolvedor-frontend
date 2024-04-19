@@ -9,10 +9,10 @@ import { formatToPtBrDate } from "../../../utils/utils";
 
 export const handleList = (data: IMedicineData[]) => {
     if (!data.length) {
-      return <NotFound>Nome não encontrado :(</NotFound>;
+      return <Row><TData><NotFound>Nome não encontrado :(</NotFound></TData></Row>
     } else {
       return data.map((data: IMedicineData) => (
-        <Row key={data.id}>
+        <Row key={data.id}> 
           <TData>
             <h4>{data.name}</h4>
             <p>{data.company}</p>

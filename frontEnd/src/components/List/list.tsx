@@ -14,7 +14,7 @@ function List() {
   return (
     <Table>
       <Header>
-        <Row header>
+        <Row header='true'>
           <THeader>Remédio</THeader>
           <THeader>Publicação</THeader>
         </Row>

@@ -1,5 +1,5 @@
 //React
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useMemo } from "react";
 
 //Types
 import { IGlobalState, IGlobalStateContextType } from "./types";
@@ -17,8 +17,10 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({
     showFooter: true
   });
 
+  const memoizedState = useMemo(() => state, [state]);
+
   return (
-    <IGlobalStateContext.Provider value={{ state, setState }}>
+    <IGlobalStateContext.Provider value={{ state: memoizedState, setState }}>
       {children}
     </IGlobalStateContext.Provider>
   );
