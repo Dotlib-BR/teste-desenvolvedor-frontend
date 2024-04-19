@@ -2,18 +2,18 @@
 import { Select, Option } from "./ordenation.styles";
 
 //Utils
-import { orderByPublishedAt } from "../../utils/utils";
+import { orderByPublishedAt } from "../../../utils/utils";
 
 //Context
-import { useGlobalContext } from "../../context/context";
+import { useGlobalContext } from "../../../context/context";
 
 function Ordenation() {
-  const { setState } = useGlobalContext();
+  const { state, setState } = useGlobalContext();
 
   const handleOrder = (order: string) => {
     setState((prevState) => ({
       ...prevState,
-      listData: orderByPublishedAt(prevState.listData, order),
+      listData: orderByPublishedAt(state.listData, order),
     }));
   };
 

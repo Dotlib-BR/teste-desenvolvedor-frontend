@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    width: fit-content;
+//Animation
+import { motion } from "framer-motion";
+
+export const Container = styled(motion.div)`
+    width: 50%;
     height: fit-content;
 
     display: flex;
@@ -9,15 +12,13 @@ export const Container = styled.div`
 
     align-self: center;
     justify-content: center;
-`
+    gap: 20px;
 
-export const Title = styled.h1`
-    text-align: center;
-`
+    border-radius: 20px;
+    border: solid 3px ${(props) => props.theme.primary};
+    padding: 20px;
 
-export const Header = styled.header`
-    display: flex;
-    justify-content: space-between;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `
 
 export const Main = styled.main``

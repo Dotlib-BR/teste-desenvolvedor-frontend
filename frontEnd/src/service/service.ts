@@ -34,6 +34,7 @@ export const getSearchedMedicine = async (
     setState((prevState) => ({
       ...prevState,
       listData: filteredData,
+      showFooter: false
     }));
   } catch (error) {
     console.error("Erro ao buscar dados:", error);

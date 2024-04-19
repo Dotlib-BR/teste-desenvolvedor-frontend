@@ -1,13 +1,47 @@
 import styled from "styled-components";
 
-export const Table = styled.table``
+//Types
+import { IRowProps } from "./list.types";
 
-export const Header = styled.thead``
+export const Table = styled.table`
+  width: 100%;
+  padding: 10px;
+`;
 
-export const Row = styled.tr``
+export const Header = styled.thead`
+  color: ${(props) => props.theme.primary};
+`;
 
-export const THeader = styled.th``
+export const Row = styled.tr<IRowProps>`
+  display: flex;
+  justify-content: space-between;
 
-export const TBody = styled.tbody``
+  padding: 20px;
+  gap: 30px;
 
-export const TData = styled.td``
+  border-radius: 10px;
+  transition: background-color .3s;
+
+  &:hover {
+    background-color: ${(props) => (props.header ? "" : props.theme.quartiary)};
+  }
+`;
+
+export const THeader = styled.th`
+  border-radius: 10px;
+`;
+
+export const TBody = styled.tbody`
+  height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  overflow-y: scroll;
+  border-radius: 10px;
+`;
+
+export const TData = styled.td`
+  border-radius: 10px;
+`;

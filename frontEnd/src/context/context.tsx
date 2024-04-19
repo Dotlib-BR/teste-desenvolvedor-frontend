@@ -14,6 +14,7 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({
   const [state, setState] = useState<IGlobalState>({
     page: 1,
     listData: [],
+    showFooter: true
   });
 
   return (

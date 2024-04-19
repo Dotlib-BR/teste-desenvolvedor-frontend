@@ -2,13 +2,14 @@
 import { useEffect } from "react";
 
 //Styles
-import { Container, Title, Header, Main } from "./home.styles";
+import { Container, Main } from "./home.styles";
+import { AnimatePresence } from "framer-motion";
+import { showUpAnimation } from "../../styles/animation";
 
 //Components
-import Search from "../../components/Search/search";
-import Ordenation from "../../components/Ordenation/ordenation";
 import List from "../../components/List/list";
 import Footer from "../../components/Footer/footer";
+import Header from "../../components/Header/header";
 
 //Service
 import { getMedicineByPageOrId } from "../../service/service";
@@ -17,24 +18,22 @@ import { getMedicineByPageOrId } from "../../service/service";
 import { useGlobalContext } from "../../context/context";
 
 function Home() {
-  const { setState } = useGlobalContext();
+  const { state, setState } = useGlobalContext();
 
   useEffect(() => {
     getMedicineByPageOrId(setState, undefined, 1);
   }, []);
 
   return (
-    <Container>
-      <Title>Bulário</Title>
-      <Header>
-        <Search />
-        <Ordenation />
-      </Header>
-      <Main>
-        <List />
-      </Main>
-      <Footer />
-    </Container>
+    <AnimatePresence>
+      <Container {...showUpAnimation}>
+        <Header />
+        <Main>
+          <List />
+        </Main>
+        {state.showFooter && <Footer />}
+      </Container>
+    </AnimatePresence>
   );
 }
 
