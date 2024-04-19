@@ -1,0 +1,8 @@
+@use '../../styles/mixin' as mixin
+@use '../../styles/variables' as variables
+
+.btnNotActive
+    @include mixin.paginationBtn(variables.$border-color, variables.$text-dark)
+
+.activeBtn
+    @include mixin.paginationBtn(variables.$button-color, variables.$background-dark)
