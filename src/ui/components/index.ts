@@ -7,3 +7,4 @@ export { Layout } from "./Layout";
 export { LeafletCollection } from "./LeafletCollection";
 export { Pagination } from "./Pagination";
 export { SearchBar } from "./SearchBar";
+export { Switch } from "./Switch";
