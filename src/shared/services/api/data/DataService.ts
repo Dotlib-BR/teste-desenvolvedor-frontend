@@ -55,6 +55,25 @@ const getByNameAndCompany = async (
 
         return data;
     } catch (error) {
+        return new Error('Erro ao baixar o PDF');
+    }
+};
+
+const downloadPdf = async () => {
+    try {
+        const pdfUrl = '/pdf_sample.pdf';
+
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = 'pdf_sample.pdf';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+
+        link.click();
+        link.remove();
+
+        URL.revokeObjectURL(pdfUrl);
+    } catch (error) {
         return new Error('Erro ao consultar a API');
     }
 };
@@ -65,4 +84,5 @@ export const DataServices = {
     getByName,
     getByCompany,
     getByNameAndCompany,
+    downloadPdf,
 };

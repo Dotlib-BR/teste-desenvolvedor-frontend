@@ -1,43 +1,39 @@
-import IconPdf from '../../icons/Pdf/IconPdf';
-import { formatDate } from '../../services/utils/formatDate';
 import './Line.css';
+
+import IconPdf from '../../icons/Pdf/IconPdf';
+import { DataServices } from '../../services/api/data/DataService';
+import { formatDate } from '../../services/utils/formatDate';
 
 interface LineProps {
     id: string;
     name: string;
     company: string;
     date: string;
-    patient: string;
-    professional: string;
+    patient?: string;
+    professional?: string;
 }
 
-export default function Line({
-    id,
-    name,
-    company,
-    date,
-    patient,
-    professional,
-}: LineProps) {
-    const handleDownloadPatient = (
+export default function Line({ id, name, company, date }: LineProps) {
+    const handleDownloadPatient = async (
         e: React.MouseEvent<HTMLTableDataCellElement, MouseEvent>,
     ) => {
         e.stopPropagation();
-        console.log(patient);
+
+        await DataServices.downloadPdf();
     };
 
-    const handleDownloadProfessional = (
+    const handleDownloadProfessional = async (
         e: React.MouseEvent<HTMLTableDataCellElement, MouseEvent>,
     ) => {
         e.stopPropagation();
-        console.log(professional);
+
+        await DataServices.downloadPdf();
     };
 
     return (
         <tr className="tableLine" onClick={() => console.log(id)}>
             <td>{name}</td>
             <td>{company}</td>
-            <td className="align">{formatDate(date)}</td>
             <td
                 className="align download"
                 onClick={(e) => handleDownloadPatient(e)}
@@ -50,6 +46,7 @@ export default function Line({
             >
                 <IconPdf width="20px" height="20px" />
             </td>
+            <td className="align">{formatDate(date)}</td>
         </tr>
     );
 }
