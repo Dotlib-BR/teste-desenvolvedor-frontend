@@ -1,7 +1,14 @@
+.article-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 8px;
+}
+
 .card-container {
   width: 300px;
   height: 524px;
-  margin: 8px 8px;
   background: var(--mainThemeColorDark);
   border-radius: 16px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -75,5 +82,17 @@
       cursor: pointer;
       color: var(--whiteColor);
     }
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 16px auto;
+  width: 300px;
+
+  .icon {
+    font-size: 1.2rem;
+    margin: 0 4px;
   }
 }
