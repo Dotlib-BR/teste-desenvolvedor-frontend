@@ -1,0 +1,26 @@
+.card-medicine-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0px 22px 12px -4px rgba(0,0,0,0.1);
+}
+
+.card-medicine-item:hover{
+    background: #a8a8a8;
+    cursor: pointer;
+}
+
+.document-link-download{
+    padding: 5px;
+    border-radius: 8px;
+    background: #c3c3c3;
+    color: white;
+}
+
+.document-link-download:hover{
+    background: #afafaf;
+}
