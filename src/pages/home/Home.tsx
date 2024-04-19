@@ -15,6 +15,7 @@ import Button from '../../shared/components/Button/Button';
 import IconSearch from '../../shared/icons/Search/IconSeacrh';
 import IconDelete from '../../shared/icons/Delete/IconDelete';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Header from '../../shared/components/Header';
 
 export function Home() {
     const navigate = useNavigate();
@@ -119,6 +120,7 @@ export function Home() {
 
     return (
         <Container>
+            <Header />
             <div className="searchContainer">
                 Filtro:
                 <div className="searchContainerTwo">

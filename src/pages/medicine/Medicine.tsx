@@ -2,13 +2,16 @@ import './Medicine.css';
 
 import { useEffect, useState } from 'react';
 import { DataServices } from '../../shared/services/api/data/DataService';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MedicineInterface } from '../../shared/services/api/interfaces/MedicineInterface';
 import Container from '../../shared/components/Container';
 import { formatDate } from '../../shared/services/utils/formatDate';
 import Button from '../../shared/components/Button/Button';
+import Header from '../../shared/components/Header';
 
 export default function Medicine() {
+    const navigate = useNavigate();
+
     const { id } = useParams();
 
     const [medicine, setMedicine] = useState<MedicineInterface | null>(null);
@@ -21,7 +24,6 @@ export default function Medicine() {
                 alert(result);
             } else {
                 setMedicine(result);
-                console.log(result);
             }
         });
     }, [id]);
@@ -30,8 +32,15 @@ export default function Medicine() {
         DataServices.downloadPdf();
     };
 
+    const handleNavigate = () => {
+        navigate('/');
+    };
+
     return (
         <Container>
+            <Header>
+                <Button onClick={() => handleNavigate()}>Voltar</Button>
+            </Header>
             <div className="containerInfo">
                 <div className="headerContainer">Detalhe do Produto</div>
                 <ul className="medicineList">

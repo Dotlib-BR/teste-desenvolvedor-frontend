@@ -1,9 +1,15 @@
 import './Header.css';
 
-export default function Header() {
+interface HeaderProps {
+    children?: React.ReactNode;
+}
+
+export default function Header({ children }: HeaderProps) {
     return (
-        <header>
-            <h1>LOGO</h1>
+        <header className="header">
+            <h1>Bulário eletrônico</h1>
+
+            <ul className="navigate">{children}</ul>
         </header>
     );
 }
