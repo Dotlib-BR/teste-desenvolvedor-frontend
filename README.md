@@ -1,31 +1,33 @@
-[![](https://dotlib.com/theme/img/logos/logo.png)](https://www.dotlib.com)
+# Leaflet Collection
 
-# Descrição da vaga de Desenvolvedor Frontend Jr.
+![leafletCollection-1](https://github.com/JPSS14/react-books-2/assets/40327303/6aa1d0df-40c4-4677-82a0-4aa635fd0e6f)
 
-Buscamos profissionais que sejam apaixonados por desenvolvimento, inovação e novas tecnologias, para integrar nosso time em projetos baseados em Laravel, Node.js, React e React Native.
+Pesquisa de itens por nome do remédio e laboratório, ordenadas por data.
 
-[Oportunidades Dotlib](https://github.com/Dotlib-BR/oportunidades)
+## Install
 
-## Requisitos
+```bash
+npm install
+# or
+yarn
+```
 
-### Obrigatórios:
+## Run
 
-- Experiência em desenvolvimento de sites em React
-- Consumo de APIs RESTful
-- SASS e Flexbox
-- API Contexts e Hooks
-- Controle de versões (GIT)
+```bash
+npm run dev
+# or
+yarn dev
+# and
+json-server api/dotlib.json -s ./api/public
+```
 
-### Bônus:
+localhost:5173/
 
-- Conhecimentos em Docker
-- Conhecimentos em Typescript
-- Conhecimentos em Node.js
-- Conhecimentos em testes automatizados com Cypress
-- Experiência em metodologias ágeis (Scrum/Kanban)
+![leafletCollection-3](https://github.com/JPSS14/react-books-2/assets/40327303/11d1d9ee-973f-45b5-b07e-5677d375f9ed)
 
-## Como se candidatar
+Possibilidade de favoritar itens.
 
-Para se candidatar, basta acessar a url e realizar o teste para a vaga:
+![leafletCollection-2](https://github.com/JPSS14/react-books-2/assets/40327303/809223f2-fd84-4d37-9f72-2601b3eac60e)
 
-- [Teste para Desenvolvedor Frontend Jr.](teste-frontend.md)
+Lista de resultados.
