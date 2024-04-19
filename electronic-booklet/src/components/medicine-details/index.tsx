@@ -4,9 +4,12 @@ import { SelectedMedicineData } from '../../interface/selected-medicine-prop'
 
 import s from './style.module.sass'
 
-export default function MedicineDetails({ data }: SelectedMedicineData) {
+export default function MedicineDetails({
+    data,
+    className,
+}: SelectedMedicineData) {
     return (
-        <div className={s.medicineItem}>
+        <div className={className ? s.medicineQuery : s.medicineItem}>
             <div className={s.brandInfo}>
                 <figure className={s.brandImageContainer}>
                     <img

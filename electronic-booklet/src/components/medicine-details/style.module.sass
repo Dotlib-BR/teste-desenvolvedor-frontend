@@ -5,7 +5,7 @@
 .medicineItem
     @include mixin.size(37.7rem, 26.8rem)
     border-radius: 0.2rem
-    border: 1px solid #99B933
+    border: 1px solid variables.$border-color
     background: #FFF
 
     @include media.max-width(large)
@@ -13,6 +13,16 @@
 
     @include media.max-width(small)
         @include mixin.size(100%, 100%)
+
+.medicineQuery
+    @include mixin.size(37.7rem, 26.8rem)
+    border: 1px solid variables.$border-color
+
+    @include media.max-width(medium)
+        width: 20rem
+
+    @include media.max-width(xsmall)
+        @include mixin.size(17rem, 100%)
 
 .brandInfo
     @include mixin.itemsCenter
