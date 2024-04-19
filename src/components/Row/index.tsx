@@ -2,6 +2,7 @@ import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import {
   Box,
   Collapse,
+  Grid,
   IconButton,
   Table,
   TableBody,
@@ -13,10 +14,10 @@ import {
 import React from "react";
 import { IMedicalRecipe } from "../../utils/types/medicals-recipe.type";
 
-interface IRow{
-  recipe: IMedicalRecipe
+interface IRow {
+  recipe: IMedicalRecipe;
 }
-export const Row = ({recipe}:IRow) => {
+export const Row = ({ recipe }: IRow) => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -38,41 +39,70 @@ export const Row = ({recipe}:IRow) => {
         <TableCell align="right">{recipe.company}</TableCell>
         <TableCell align="right">{recipe.published_at}</TableCell>
       </TableRow>
-      {/* <TableRow>
+      <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                History
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+              <Grid container spacing={2}>
+                <Grid sm={12} md={6}>
+                  <Typography variant="subtitle1" gutterBottom component="div">
+                    Documentos
+                  </Typography>
+                  <Table size="small" aria-label="purchases">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>#</TableCell>
+                        <TableCell>Expedient</TableCell>
+                        <TableCell align="right">Type</TableCell>
+                        <TableCell align="right">URL</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {recipe.documents.map((document) => (
+                        <TableRow key={document.id}>
+                          <TableCell component="th" scope="row">
+                            {document.id}
+                          </TableCell>
+                          <TableCell>{document.expedient}</TableCell>
+                          <TableCell align="right">
+                            {document.type}
+                          </TableCell>
+                          <TableCell align="right">
+                          {document.url}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </Grid>
+                <Grid sm={12} md={6}>
+                  <Typography variant="subtitle1" gutterBottom component="div">
+                    Principio Ativo
+                  </Typography>
+                  <Table size="small" aria-label="purchases">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>#</TableCell>
+                        <TableCell>Name</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {recipe.active_principles.map((active_principle) => (
+                        <TableRow key={active_principle.id}>
+                          <TableCell component="th" scope="row">
+                            {active_principle.id}
+                          </TableCell>
+                          <TableCell>{active_principle.name}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </Grid>
+              </Grid>
             </Box>
           </Collapse>
         </TableCell>
-      </TableRow> */}
+      </TableRow>
     </React.Fragment>
   );
 };

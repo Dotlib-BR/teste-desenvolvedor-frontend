@@ -73,7 +73,7 @@ export const Filter = ({ submit }: IFilter) => {
           </FormControl>
         </Grid>
         <Grid item md={4} sm={12}>
-          <IconButton aria-label="fingerprint" color="secondary" type="submit">
+          <IconButton aria-label="fingerprint" color="secondary" type="submit" className="search">
             <Search />
           </IconButton>
         </Grid>
