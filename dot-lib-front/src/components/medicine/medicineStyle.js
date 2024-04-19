@@ -7,6 +7,10 @@ export const Body = styled.div`
   margin-bottom: 8px;
   width: 500px;
 
+  .activePrinciples {
+    line-height: 18px;
+  }
+
   div {
     padding: 3px;
   }

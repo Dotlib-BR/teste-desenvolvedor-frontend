@@ -66,36 +66,39 @@ export default function Home() {
         {paginatedDataNewToOld &&
           !isTheOldItemFilterActive &&
           !isSearching &&
-          paginatedDataNewToOld.map(({ id, name, company, published_at }) => (
+          paginatedDataNewToOld.map(({ id, name, company, published_at,active_principles }) => (
             <Medicine
               key={id}
               name={name}
               company={company}
               published_at={published_at}
+              active_principles={active_principles.map(principle => principle.name)}
             />
           ))}
 
         {paginatedDataOLdToNew &&
           isTheOldItemFilterActive &&
           !isSearching &&
-          paginatedDataOLdToNew.map(({ id, name, company, published_at }) => (
+          paginatedDataOLdToNew.map(({ id, name, company, published_at, active_principles }) => (
             <Medicine
               key={id}
               name={name}
               company={company}
               published_at={published_at}
+              active_principles={active_principles.map(principle => principle.name)}
             />
           ))}
 
         {paginatedDataSearchResult &&
           isSearching &&
           paginatedDataSearchResult.map(
-            ({ id, name, company, published_at }) => (
+            ({ id, name, company, published_at, active_principles }) => (
               <Medicine
                 key={id}
                 name={name}
                 company={company}
                 published_at={published_at}
+                active_principles={active_principles.map(principle => principle.name)}
               />
             )
           )}
