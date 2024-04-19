@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   ResponseLeafletMapper,
   ResponseLeafletPaginationMapper,
@@ -17,10 +17,14 @@ type SearchContext = {
     sarchMode: boolean,
     searchText: string
   ) => void;
-  leafletCollectionPagination: ResponseLeafletPaginationMapper;
+  leafletCollectionPagination?: ResponseLeafletPaginationMapper;
   setLeafletCollectionPagination: (
     value: ResponseLeafletPaginationMapper
   ) => void;
+  leafletFavoriteCollection: ResponseLeafletMapper[];
+  setLeafletFavoriteCollection: (value: ResponseLeafletMapper[]) => void;
+  addFavoriteLeaflet: (leaflet: ResponseLeafletMapper) => void;
+  removeFavoriteLeaflet: (leaflet: ResponseLeafletMapper) => void;
 };
 
 export const SearchContext = createContext({} as SearchContext);
@@ -34,11 +38,15 @@ export const SearchContextProvider = ({
 }: SearchContextProviderProps) => {
   const [searchMode, setSearchMode] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [leafletCollection, setLeafletCollection] = useState(
-    {} as ResponseLeafletMapper[]
-  );
+  const [leafletCollection, setLeafletCollection] = useState<
+    ResponseLeafletMapper[]
+  >([]);
   const [leafletCollectionPagination, setLeafletCollectionPagination] =
-    useState({} as ResponseLeafletPaginationMapper);
+    useState<ResponseLeafletPaginationMapper>();
+
+  const [leafletFavoriteCollection, setLeafletFavoriteCollection] = useState<
+    ResponseLeafletMapper[]
+  >([]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -51,10 +59,39 @@ export const SearchContextProvider = ({
   ) => {
     scrollToTop();
     getDefaultLeafletPagination(page, searchMode, searchText).then((data) => {
-      setLeafletCollection(data.data);
       setLeafletCollectionPagination(data);
     });
   };
+
+  const addFavoriteLeaflet = (leaflet: ResponseLeafletMapper) => {
+    setLeafletFavoriteCollection([leaflet, ...leafletFavoriteCollection]);
+  };
+
+  const removeFavoriteLeaflet = (leaflet: ResponseLeafletMapper) => {
+    const removedFavorite = leafletFavoriteCollection.filter(
+      (item) => item.id !== leaflet.id
+    );
+    setLeafletFavoriteCollection(removedFavorite);
+  };
+
+  useEffect(() => {
+    if (leafletCollectionPagination) {
+      if (leafletFavoriteCollection.length) {
+        const result = leafletCollectionPagination.data.map((item) => {
+          const favoriteItem = leafletFavoriteCollection.find(
+            (fav) => fav.id === item.id
+          );
+          return {
+            ...item,
+            favorite: favoriteItem ? true : false,
+          };
+        });
+        setLeafletCollection(result);
+      } else {
+        setLeafletCollection(leafletCollectionPagination.data);
+      }
+    }
+  }, [leafletCollectionPagination, leafletFavoriteCollection]);
 
   return (
     <SearchContext.Provider
@@ -68,6 +105,10 @@ export const SearchContextProvider = ({
         setSearchMode,
         searchText,
         setSearchText,
+        leafletFavoriteCollection,
+        setLeafletFavoriteCollection,
+        addFavoriteLeaflet,
+        removeFavoriteLeaflet,
       }}
     >
       {children}

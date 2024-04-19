@@ -1,12 +1,28 @@
 import { ResponseLeafletMapper } from "../../../service/types";
 import { RiStarLine } from "react-icons/ri";
+import { RiStarFill } from "react-icons/ri";
 import "./Card.scss";
+import { useState } from "react";
+import { useSearchContext } from "../../../context/search-context";
 
 interface CardProps {
   item: ResponseLeafletMapper;
 }
 
 export const Card = ({ item }: CardProps) => {
+  const { addFavoriteLeaflet, removeFavoriteLeaflet } = useSearchContext();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleAddFavoriteLeaflet = (status: boolean) => {
+    if (status) {
+      setIsFavorite(true);
+      addFavoriteLeaflet(item);
+    } else {
+      setIsFavorite(false);
+      removeFavoriteLeaflet(item);
+    }
+  };
+
   return (
     <article className="card-container">
       <header className="card-header">
@@ -49,7 +65,11 @@ export const Card = ({ item }: CardProps) => {
         ))}
       </div>
       <div className="favorite-container">
-        <RiStarLine />
+        {isFavorite || item.favorite ? (
+          <RiStarFill onClick={() => handleAddFavoriteLeaflet(false)} />
+        ) : (
+          <RiStarLine onClick={() => handleAddFavoriteLeaflet(true)} />
+        )}
       </div>
     </article>
   );
