@@ -4,15 +4,16 @@ import SearchForm from './components/search-form';
 import { useMedicineData } from './services/medicine';
 import MedicineList from './components/medicine-list';
 import Pagination from './components/pagination';
+import { calculateTotalPages, filteredMedicines, orderByDateMedicines } from './helpers/medicine';
 
 function App() {
     const { data } = useMedicineData();
     const [searchText, setSearchText] = useState('');
     const [page, setPage] = useState(1);
 
-    const medicines = data || [];
-
-    const totalPages = Math.ceil(medicines.length / 10)
+    const medicines = orderByDateMedicines(data || []);
+    
+    const totalPages = calculateTotalPages(medicines.length);
 
     const handleSearchChange = (searchText: string) => {
         setSearchText(searchText);
