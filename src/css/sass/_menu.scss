@@ -1,0 +1,21 @@
+header {
+    width: 100%;
+    height: 72px;
+    position: fixed;
+    background-color: $primary-dark;
+    z-index: 999;
+}
+
+.nav-desktop {
+    padding: 10px 24px;
+    max-width: $container-xl;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+}
