@@ -122,7 +122,7 @@ function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }
             Voltar
           </button>
 
-          <div className="resultPage-sumary-buttons">
+          <div>
             <Pagination
                 postPerPage={postPerPage}
                 totalPosts={ tableArray.length}

@@ -1,0 +1,70 @@
+@import '../../index.scss';
+
+.pagination {
+    width: 6rem;
+
+    ul {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+
+        list-style: none;
+
+        li {
+            list-style: none;
+            a {
+                display: block;
+                width: 1.2rem;
+                height: 1.6rem;
+                text-decoration: none;
+                
+                border: none;
+
+                text-align: center;
+
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+
+                background-color: $Iconblue;
+                color: $MainWhite;
+
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+
+
+// .pagination {
+
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;
+//     gap: .5rem;
+
+
+//     padding: 1rem 0rem;
+
+//     button {
+//         width: 1.3rem;
+//         height: 1.5rem;
+//         border: none;
+
+//         background-color: $Iconblue;
+//         color: $MainWhite;
+
+//         font-family: "Poppins", sans-serif;
+//         font-weight: 400;
+
+//         cursor: pointer;
+
+//          &:hover{
+//             transform: scale(1.1);
+//          }
+//     }
+// }

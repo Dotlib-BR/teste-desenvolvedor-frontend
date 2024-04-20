@@ -1,1 +1,38 @@
-/*# sourceMappingURL=Pagination.css.map */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #D9D9D9;
+}
+
+.pagination {
+  width: 6rem;
+}
+.pagination ul {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  list-style: none;
+}
+.pagination ul li {
+  list-style: none;
+}
+.pagination ul li a {
+  display: block;
+  width: 1.2rem;
+  height: 1.6rem;
+  text-decoration: none;
+  border: none;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  background-color: #0477BF;
+  color: #FFF;
+  cursor: pointer;
+}
+.pagination ul li a:hover {
+  transform: scale(1.1);
+}/*# sourceMappingURL=Pagination.css.map */

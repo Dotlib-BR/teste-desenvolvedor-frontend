@@ -10,8 +10,8 @@ function Pagination({ postPerPage, totalPosts, setPageNumber}) {
     }
 
   return (
-    <nav>
-        <ul className="pagination">
+    <nav className="pagination">
+        <ul >
             {
                 pageNumbers.map((item) => (
                     <li key={item} className="page-item">
