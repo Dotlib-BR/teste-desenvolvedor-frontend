@@ -1,0 +1,8 @@
+.error {
+    @include typeface-2(p3, desktop);
+    @include responsive(s) {
+        @include typeface-2(p3, mobile);
+    }
+    color: $auxiliary-red;
+    margin-top: 8px;
+}

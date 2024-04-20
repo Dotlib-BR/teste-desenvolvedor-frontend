@@ -151,5 +151,8 @@ p {
     overflow: hidden;
 }
 
+// ========== COMPONENTS IMPORTS ========== //
+@import '../../components/Helper/Error/sass/typography';
+
 // ========== PAGES IMPORTS ========== //
 @import '../../pages/Home/sections/Hero/sass/typography';
