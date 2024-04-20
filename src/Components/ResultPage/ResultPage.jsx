@@ -4,8 +4,14 @@ import { useState } from "react";
 
 
 function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }) {
+
   const [pageNumber, setPageNumber] = useState(1);
   const [postPerPage, setPostPerPagae] = useState(10);
+  const [filteredArray , setFilteredArray] = useState({})
+
+  const indexOfLastPost = pageNumber * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+ 
 
   if (drug) {
     tableArray = tableArray.filter((item) => {
@@ -24,10 +30,10 @@ function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }
     })
   }
 
-  const indexOfLastPost = pageNumber * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
+
   let currentPosts = tableArray.slice(indexOfFirstPost, indexOfLastPost);
-  console.log(currentPosts)
+ 
+  console.log(currentPosts, tableArray)
 
 
 
@@ -119,9 +125,7 @@ function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }
           <div className="resultPage-sumary-buttons">
             <Pagination
                 postPerPage={postPerPage}
-                totalPosts={
-                  drug || labs ? currentPosts.length : tableArray.length
-                }
+                totalPosts={ tableArray.length}
                 setPageNumber={setPageNumber}
             />
           </div>

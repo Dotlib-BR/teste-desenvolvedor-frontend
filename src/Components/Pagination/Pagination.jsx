@@ -15,7 +15,7 @@ function Pagination({ postPerPage, totalPosts, setPageNumber}) {
             {
                 pageNumbers.map((item) => (
                     <li key={item} className="page-item">
-                        <a href="!#" className="page-link" onClick={() => setPageNumber(item)}>
+                        <a href="!#" className="page-link" onClick={() => setPageNumber(item + 1)}>
                             {item + 1}
                         </a>
                     </li>
