@@ -2,6 +2,8 @@ import "./ResultPage.css"
 import Pagination from "../Pagination/Pagination";
 import { useState } from "react";
 import OrderIcon from "../../Assets/OrderIcon.svg"
+import pdfsample from "../../api/public/pdf_sample.pdf"
+import pdfIcon from "../../Assets/pdfIcon.png"
 
 
 function ResultPage({ tableArray, setResultOpen, drug, setDrug, labs, setLabs }) {
@@ -34,7 +36,7 @@ function ResultPage({ tableArray, setResultOpen, drug, setDrug, labs, setLabs })
 
   let currentPosts = tableArray.slice(indexOfFirstPost, indexOfLastPost);
 
-  currentPosts =  isAscending ? sortByDateAscending(currentPosts) : sortByDateDescending(currentPosts);
+  currentPosts = isAscending ? sortByDateAscending(currentPosts) : sortByDateDescending(currentPosts);
 
 
   function formatDate(date) {
@@ -119,10 +121,18 @@ function ResultPage({ tableArray, setResultOpen, drug, setDrug, labs, setLabs })
                     {formatDate(item.published_at)}
                   </td>
                   <td>
-                    {<a href={item.documents[0].url}>Baixar</a>}
+                    {
+                      <a href={pdfsample} download='bula do paciente'>
+                        <img src={pdfIcon} alt="Botão de download da bula do paciente em pdf" />
+                      </a>
+                    }
                   </td>
                   <td>
-                    {<a href={item.documents[1].url}>Baixar</a>}
+                    {
+                      <a href={pdfsample} download='bula do profissional'>
+                        <img src={pdfIcon} alt="Botão de download da bula do profissional em pdf" />
+                      </a>
+                    }
                   </td>
                 </tr>
               ))
