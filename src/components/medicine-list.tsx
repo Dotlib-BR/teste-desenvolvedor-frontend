@@ -3,12 +3,13 @@ import MedicineItem from './medicine-item';
 
 interface MedicineListProps {
     data: MedicineData[];
+    page: number;
 }
-const MedicineList = ({ data }: MedicineListProps) => {
+const MedicineList = ({ data, page }: MedicineListProps) => {
     return (
         <div>
             <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {data.slice(0, 10).map(medicine => (
+                {data.slice((page - 1) * 10, page * 10).map(medicine => (
                     <MedicineItem medicine={medicine} key={medicine.id} />
                 ))}
             </ul>
