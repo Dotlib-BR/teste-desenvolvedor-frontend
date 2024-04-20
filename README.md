@@ -1,31 +1,22 @@
 [![](https://dotlib.com/theme/img/logos/logo.png)](https://www.dotlib.com)
 
-# Descrição da vaga de Desenvolvedor Frontend Jr.
+# Resolução teste desenvolvedor frontend
 
-Buscamos profissionais que sejam apaixonados por desenvolvimento, inovação e novas tecnologias, para integrar nosso time em projetos baseados em Laravel, Node.js, React e React Native.
+Seguem instruções para rodar o projeto
 
-[Oportunidades Dotlib](https://github.com/Dotlib-BR/oportunidades)
 
-## Requisitos
+```sh
+# instala as dependências npm
+npm install    
 
-### Obrigatórios:
+# inicia o json-server
+npm run server
 
-- Experiência em desenvolvimento de sites em React
-- Consumo de APIs RESTful
-- SASS e Flexbox
-- API Contexts e Hooks
-- Controle de versões (GIT)
+# inicializa a página 
+npm start
+```
 
-### Bônus:
+## Pacotes utilizados
 
-- Conhecimentos em Docker
-- Conhecimentos em Typescript
-- Conhecimentos em Node.js
-- Conhecimentos em testes automatizados com Cypress
-- Experiência em metodologias ágeis (Scrum/Kanban)
-
-## Como se candidatar
-
-Para se candidatar, basta acessar a url e realizar o teste para a vaga:
-
-- [Teste para Desenvolvedor Frontend Jr.](teste-frontend.md)
+- Axios (para requisições de API)
+- Json server (para carregar a API)
