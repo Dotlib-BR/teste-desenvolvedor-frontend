@@ -6,6 +6,7 @@ export const Body = styled.div`
   background-color: Gainsboro;
   margin-bottom: 8px;
   width: 500px;
+  position: relative;
 
   .activePrinciples {
     line-height: 18px;
@@ -18,5 +19,26 @@ export const Body = styled.div`
   .description {
     font-weight: 800;
     font-size: 20px;
+  }
+
+  button {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      background-color: #aaaaaa;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      margin-left: 2px;
+    }
   }
 `;

@@ -1,10 +1,17 @@
 import { Body } from "./medicineStyle";
 import dateConverter from "../../utils/dateConverter";
 import extractActivePrinciplesNames  from "../../utils/activePrincipes";
+import downloadIcon from "../../assets/download-outline.svg"
 
-export default function Medicine({ name, company, published_at, active_principles }) {
+export default function Medicine({ name, company, published_at, active_principles, url, setIsPopupOpened, setPdfUrl}) {
   let convertedDate = dateConverter(published_at);
   let activePrinciples = extractActivePrinciplesNames(active_principles);
+  
+
+  function downloadPdf(url){
+    setPdfUrl(url);
+    setIsPopupOpened(true)
+  }
 
   return (
     <Body>
@@ -23,6 +30,7 @@ export default function Medicine({ name, company, published_at, active_principle
         <span className="description">Data de publicação:</span>{" "}
         <span>{convertedDate}</span>
       </div>
+      <button onClick={() => downloadPdf(url)}>Baixar PDF<img src={downloadIcon} alt="download icon" /></button>
     </Body>
   );
 }

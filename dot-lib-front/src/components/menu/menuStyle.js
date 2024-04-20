@@ -5,13 +5,16 @@ export const Body = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 50px;
-  
 
   button {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 15px;
+    cursor: pointer;
+    &:hover {
+      background-color: #aaaaaa;
+    }
   }
 
   img {

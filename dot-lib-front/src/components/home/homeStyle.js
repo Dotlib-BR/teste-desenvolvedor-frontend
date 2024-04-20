@@ -30,7 +30,11 @@ export const Buttons = styled.div`
     font-size: 25px;
   }
 
-  button{
+  button {
     font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: #aaaaaa;
+    }
   }
 `;
