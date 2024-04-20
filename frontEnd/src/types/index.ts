@@ -3,11 +3,11 @@ export interface IMedicineData {
   name: string;
   published_at: string;
   company: string;
-  documents: Document[];
+  documents: IDocument[];
   active_principles: IActivePrinciple[];
 }
 
-export interface DIocument {
+export interface IDocument {
   id: string;
   expedient: string;
   type: string;

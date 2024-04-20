@@ -8,6 +8,8 @@ export interface IGlobalState {
     page: number;
     listData: IMedicineData[];
     showFooter: boolean;
+    showDetails: boolean;
+    detailsData: IMedicineData | null;
   }
 
 export interface IGlobalStateContextType {

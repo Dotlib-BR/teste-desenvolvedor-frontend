@@ -4,6 +4,9 @@ import { Table, Header, Row, THeader, TBody } from "./list.styles";
 //Context
 import { useGlobalContext } from "../../context/context";
 
+//Components
+import Details from "../Details/details";
+
 //Utils
 import { handleList } from "./utils/listUtils";
 
@@ -12,6 +15,8 @@ function List() {
   const { state } = useGlobalContext();
 
   return (
+    <>
+    {state.showDetails && <Details />}
     <Table>
       <Header>
         <Row header='true'>
@@ -23,6 +28,7 @@ function List() {
         {handleList(state.listData)}
       </TBody>
     </Table>
+    </>
   );
 }
 

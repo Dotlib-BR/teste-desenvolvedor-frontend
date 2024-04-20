@@ -14,7 +14,9 @@ export const GlobalStateProvider: React.FC<{ children: ReactNode }> = ({
   const [state, setState] = useState<IGlobalState>({
     page: 1,
     listData: [],
-    showFooter: true
+    showFooter: true,
+    showDetails: false,
+    detailsData: null
   });
 
   const memoizedState = useMemo(() => state, [state]);

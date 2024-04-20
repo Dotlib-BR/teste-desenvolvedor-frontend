@@ -4,7 +4,6 @@ import { useEffect } from "react";
 //Styles
 import { Container, Main } from "./home.styles";
 import { AnimatePresence } from "framer-motion";
-import { showUpAnimation } from "../../styles/animation";
 
 //Components
 import List from "../../components/List/list";
@@ -26,7 +25,7 @@ function Home() {
 
   return (
     <AnimatePresence>
-      <Container {...showUpAnimation}>
+      <Container>
         <Header />
         <Main>
           <List />

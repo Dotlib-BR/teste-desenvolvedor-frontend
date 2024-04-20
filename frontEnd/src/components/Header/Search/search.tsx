@@ -39,7 +39,7 @@ function Search() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Input type="text" value={searchValue} onChange={handleChange} />
+      <Input type="text" placeholder="Pesquise por nome" value={searchValue} onChange={handleChange} />
       <IconButton type="submit">
         <SearchCheck color="#3F826D" />
       </IconButton>
