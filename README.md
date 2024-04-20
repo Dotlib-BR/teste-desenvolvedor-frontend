@@ -82,7 +82,7 @@ Implementou-se testes automatizados E2E utilizando Cypress para simular interaç
 
 Desenvolveu-se testes de componentes no Cypress para verificar o funcionamento correto de unidades específicas da aplicação, isoladamente.
 
-15. Integração do Docker:
+16. Integração do Docker:
 
 Foram criados Dockerfiles específicos para os ambientes de desenvolvimento (dev) e produção (prod) para serem utilizados com o Docker Compose.
 
