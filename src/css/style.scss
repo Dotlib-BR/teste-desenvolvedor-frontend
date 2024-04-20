@@ -1,0 +1,38 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@import 'sass/colors';
+@import 'sass/layout';
+@import 'sass/typography';
+@import 'sass/spacing';
+@import 'sass/buttons';
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    scroll-behavior: smooth;
+    background-color: $white-light;
+    position: relative;
+}
+
+svg,
+img {
+    width: 100%;
+    display: block;
+}
+
+@import 'sass/menu';
+@import 'sass/footer';
+
+.border {
+    border: 1px solid red;
+}
