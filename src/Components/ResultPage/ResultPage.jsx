@@ -16,6 +16,25 @@ function ResultPage({ tableArray, setResultOpen, drug, setDrug, labs, setLabs })
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
 
+
+  if (drug && labs) {
+
+    tableArray = tableArray.filter((item) => {
+      return drug.toLowerCase() === ''
+        ? item
+        : item.name.toLowerCase().includes(drug);
+    })
+
+    tableArray = tableArray.filter((item) => {
+      return labs.toLowerCase() === ''
+        ? item
+        : item.company.toLowerCase().includes(labs);
+    })
+
+    return;
+  }
+
+
   if (drug) {
     tableArray = tableArray.filter((item) => {
       return drug.toLowerCase() === ''
@@ -35,8 +54,6 @@ function ResultPage({ tableArray, setResultOpen, drug, setDrug, labs, setLabs })
 
 
   let currentPosts = tableArray.slice(indexOfFirstPost, indexOfLastPost);
-
-  currentPosts = isAscending ? sortByDateAscending(currentPosts) : sortByDateDescending(currentPosts);
 
 
   function formatDate(date) {

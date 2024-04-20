@@ -12,6 +12,11 @@ function Main() {
   const [resultOpen, setResultOpen] = useState(false);
   const [localData, setLocalData] = useState({});
  
+  function removeSpecialCharacters(text) {
+    var pattern = /[^a-zA-Z0-9\s]/g;
+    var newText = text.replace(pattern, '');
+    return newText;
+}
 
 
   async function getData() {
@@ -19,9 +24,6 @@ function Main() {
 
       const pageResponse = await api.get(`/data`);
       setLocalData(pageResponse.data);
-
-
-
 
       return;
 
@@ -36,6 +38,9 @@ function Main() {
 
     setDrug(drug.toLowerCase());
     setLabs(labs.toLowerCase());
+
+    setDrug(removeSpecialCharacters(drug));
+    setLabs(removeSpecialCharacters(labs));
 
   }, [resultOpen])
 
