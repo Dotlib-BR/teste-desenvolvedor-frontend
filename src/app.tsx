@@ -12,7 +12,7 @@ import {
 import Spinner from './components/spinner';
 
 function App() {
-    const { data, isLoading } = useMedicineData();
+    const { data, isLoading, isError } = useMedicineData();
     const [searchText, setSearchText] = useState('');
     const [page, setPage] = useState(1);
 
@@ -31,6 +31,7 @@ function App() {
             <Header />
             <SearchForm handleSearchChange={handleSearchChange} />
             {isLoading && <Spinner />}
+            {isError && <p>Ocorreu um erro ao carregar os medicamentos.</p>}
             {!isLoading &&
                 searchText !== '' &&
                 filteredMedicinesArray.length === 0 && (
