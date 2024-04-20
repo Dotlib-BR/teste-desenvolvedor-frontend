@@ -157,3 +157,6 @@ $container-s: 540px;
 .bb-gray {
     border-bottom: 1px solid $gray-5;
 }
+
+// ========== COMPONENTS IMPORTS ========== //
+@import '../../components/Card/sass/layout';
