@@ -1,0 +1,56 @@
+.pagination-buttons {
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border: 2px solid $primary-normal;
+    background: transparent;
+    border-radius: 8px;
+    transition: 0.5s ease;
+    @include typeface-2(p2, desktop);
+    @include responsive(s) {
+        @include typeface-2(p2, mobile);
+    }
+
+    &:hover {
+        border: 2px solid $primary-dark;
+        background: $primary-dark;
+        color: $white-light;
+
+        svg {
+            path {
+                fill: $white-light;
+            }
+        }
+    }
+}
+
+.pagination-buttons.active {
+    border: 2px solid $primary-dark;
+
+    background-color: $primary-dark;
+    color: $white-light;
+}
+
+.page-primary {
+    width: 56px;
+    height: 56px;
+    text-align: center;
+    padding: 16px;
+    background: linear-gradient(225deg, $secondary-dark 0%, $primary-dark 100%);
+    border: 0;
+    border-radius: 8px;
+    color: $white-light;
+}
+
+.page-secondary {
+    width: 56px;
+    height: 56px;
+    text-align: center;
+    padding: 16px;
+    border: 2px solid $primary-normal;
+    border-radius: 8px;
+}
