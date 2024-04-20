@@ -15,6 +15,7 @@ body {
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
   background-color: #FFF;
 }
+
 .main-result-table .resultPage-table-header {
   display: flex;
   align-items: center;
@@ -23,17 +24,20 @@ body {
   background-color: #048ABF;
   border-radius: 24px 24px 0 0;
 }
+
 .main-result-table .resultPage-table-header h2 {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 1.2rem;
   color: #FFF;
 }
+
 .main-result-table table {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #dddddd;
 }
+
 .main-result-table table th,
 .main-result-table table td,
 .main-result-table table tr {
@@ -44,9 +48,11 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
+
 .main-result-table table tr:nth-child(even) {
   background-color: #f5f5f5;
 }
+
 .main-result-table table tr td {
   max-width: 11rem;
   padding-left: 1rem;
@@ -56,6 +62,7 @@ body {
   font-size: 10px;
   text-align: center;
 }
+
 .main-result-table #order-by-date {
   display: flex;
   justify-content: center;
@@ -63,29 +70,35 @@ body {
   gap: 0.2rem;
   border: none;
 }
+
 .main-result-table #order-by-date img {
   height: 1rem;
   width: 1rem;
 }
+
 .main-result-table .section-main-table {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 60vh;
 }
+
 .main-result-table .section-main-table a img {
   width: 1.5rem;
   height: 1.5rem;
 }
+
 .main-result-table .section-main-table a img:hover {
   transform: scale(1.1);
 }
+
 .main-result-table .result-table-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem 2rem;
 }
+
 .main-result-table #exit-button {
   padding: 0.8rem;
   border: none;
@@ -94,6 +107,9 @@ body {
   color: #FFF;
   cursor: pointer;
 }
+
 .main-result-table #exit-button:hover {
   transform: scale(1.1);
-}/*# sourceMappingURL=ResultPage.css.map */
+}
+
+/*# sourceMappingURL=ResultPage.css.map */

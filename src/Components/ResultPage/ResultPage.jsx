@@ -169,7 +169,9 @@ function ResultPage({ tableArray, setResultOpen, drug, setDrug, labs, setLabs })
             <Pagination
               postPerPage={postPerPage}
               totalPosts={tableArray.length}
+              pageNumber={pageNumber}
               setPageNumber={setPageNumber}
+              
             />
           </div>
         </section>

@@ -7,12 +7,12 @@ function MedicalSearchForm({ drug, setDrug, labs, setLabs, setResultOpen }) {
         event.preventDefault();
     }
 
-    function handleCleanForm(){
+    function handleCleanForm() {
         setDrug('');
         setLabs('');
     }
 
-    function handleResultVisibility(){
+    function handleResultVisibility() {
         setResultOpen(true)
     }
 

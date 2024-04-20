@@ -98,10 +98,11 @@
         justify-content: space-between;
         min-height: 60vh;
 
-        a {     
+        a {
             img {
                 width: 1.5rem;
                 height: 1.5rem;
+
                 &:hover {
                     transform: scale(1.1);
                 }

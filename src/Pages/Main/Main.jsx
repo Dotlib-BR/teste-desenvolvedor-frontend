@@ -11,12 +11,12 @@ function Main() {
   const [labs, setLabs] = useState('');
   const [resultOpen, setResultOpen] = useState(false);
   const [localData, setLocalData] = useState({});
- 
+
   function removeSpecialCharacters(text) {
     var pattern = /[^a-zA-Z0-9\s]/g;
     var newText = text.replace(pattern, '');
     return newText;
-}
+  }
 
 
   async function getData() {
