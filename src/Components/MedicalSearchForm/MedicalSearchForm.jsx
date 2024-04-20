@@ -16,6 +16,7 @@ function MedicalSearchForm({ drug, setDrug, labs, setLabs, setResultOpen }) {
         setResultOpen(true)
     }
 
+
     return (
         <article className='main-form-article'>
             <div>

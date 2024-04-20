@@ -1,7 +1,35 @@
-import { useState } from "react"
 import "./ResultPage.css"
+import Pagination from "../Pagination/Pagination";
+import { useState } from "react";
 
-function ResultPage({ tableArray, setPageNumber,pageNumber,setResultOpen, setDrug, setLabs}) {
+
+function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }) {
+  const [pageNumber, setPageNumber] = useState(1);
+  const [postPerPage, setPostPerPagae] = useState(10);
+
+  if (drug) {
+    tableArray = tableArray.filter((item) => {
+      return drug.toLowerCase() === ''
+        ? item
+        : item.name.toLowerCase().includes(drug);
+    })
+  }
+
+
+  if (labs) {
+    tableArray = tableArray.filter((item) => {
+      return labs.toLowerCase() === ''
+        ? item
+        : item.company.toLowerCase().includes(labs);
+    })
+  }
+
+  const indexOfLastPost = pageNumber * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  let currentPosts = tableArray.slice(indexOfFirstPost, indexOfLastPost);
+  console.log(currentPosts)
+
+
 
   function formatDate(date) {
     return new Date(date).toLocaleString("pt-br", {
@@ -11,25 +39,13 @@ function ResultPage({ tableArray, setPageNumber,pageNumber,setResultOpen, setDru
     });
   }
 
-  function handlePrevPage (){
-    if(pageNumber > 1){
-      setPageNumber(pageNumber - 1);
-    }
-  }
 
-  function handleNextPage (){
-    if(pageNumber < 3){
-      setPageNumber(pageNumber + 1)
-    }
-  }
-
-  function handleExit(){
+  function handleExit() {
     setResultOpen(false);
     setDrug('');
     setLabs('');
   }
 
-   
 
   return (
     <article className="main-result-table">
@@ -63,15 +79,17 @@ function ResultPage({ tableArray, setPageNumber,pageNumber,setResultOpen, setDru
             </th>
           </tr>
           {
-            tableArray.map((item) => (
+            currentPosts.map((item) => (
               <tr key={item.id}>
                 <td>
                   {item.name}
                 </td>
                 <td>
-                  {item.active_principles.map((name) => (
-                    name.name
-                  ))}
+                  {
+                    item.active_principles
+                      .map((principle) => principle.name)
+                      .join(', ')
+                  }
                 </td>
                 <td>
                   {item.company}
@@ -79,11 +97,11 @@ function ResultPage({ tableArray, setPageNumber,pageNumber,setResultOpen, setDru
                 <td>
                   {formatDate(item.published_at)}
                 </td>
-                <td >
-                  {/* {item.documents[0].url} */}
+                <td>
+                  {<a href={item.documents[0].url}>Baixar</a>}
                 </td>
                 <td>
-                  {/* {item.documents[1].url} */}
+                  {<a href={item.documents[1].url}>Baixar</a>}
                 </td>
               </tr>
             ))
@@ -91,7 +109,7 @@ function ResultPage({ tableArray, setPageNumber,pageNumber,setResultOpen, setDru
         </table>
         <section className="result-table-footer">
 
-          <button 
+          <button
             id="exit-button"
             onClick={() => handleExit()}
           >
@@ -99,21 +117,13 @@ function ResultPage({ tableArray, setPageNumber,pageNumber,setResultOpen, setDru
           </button>
 
           <div className="resultPage-sumary-buttons">
-            <button onClick={() => handlePrevPage()}>
-              &lt;
-            </button>
-            <button onClick={() => setPageNumber(1)}>
-              1
-            </button>
-            <button  onClick={() => setPageNumber(2)}>
-              2
-            </button>
-            <button  onClick={() => setPageNumber(3)}>
-              3
-            </button>
-            <button onClick={() => handleNextPage()}>
-              &gt;
-            </button>
+            <Pagination
+                postPerPage={postPerPage}
+                totalPosts={
+                  drug || labs ? currentPosts.length : tableArray.length
+                }
+                setPageNumber={setPageNumber}
+            />
           </div>
         </section>
       </section>

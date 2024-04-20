@@ -1,7 +1,7 @@
 import './Main.css'
 import Header from '../../Components/Header/Header'
 import MedicalSearchForm from '../../Components/MedicalSearchForm/MedicalSearchForm'
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import ResultPage from '../../Components/ResultPage/ResultPage';
 import api from '../../Services/api';
 
@@ -11,28 +11,23 @@ function Main() {
   const [labs, setLabs] = useState('');
   const [resultOpen, setResultOpen] = useState(false);
   const [localData, setLocalData] = useState({});
-  const [pageNumber, setPageNumber] = useState(1);
-
-
-  console.log(pageNumber)
-
+ 
 
 
   async function getData() {
     try {
-      
-      if(!drug && !labs){
 
-        const pageResponse = await api.get(`data?_page=${pageNumber}`);
-        setLocalData(pageResponse.data.data);
+      const pageResponse = await api.get(`/data`);
+      setLocalData(pageResponse.data);
 
-        return
 
-      }
-   
-      const response = await api.get('/data');
-      setLocalData(response.data);
-      
+
+      console.log(localData)
+
+
+      return;
+
+
     } catch (error) {
       console.log(error.response)
     }
@@ -40,10 +35,12 @@ function Main() {
 
   useEffect(() => {
 
-   getData()
+    getData();
 
-    
-  }, [resultOpen, pageNumber])
+    setDrug(drug.toLowerCase());
+    setLabs(labs.toLowerCase());
+
+  }, [resultOpen])
 
   return (
     <>
@@ -53,10 +50,10 @@ function Main() {
       <main>
         {
           resultOpen ?
-            <ResultPage 
-              tableArray= {localData}
-              pageNumber= {pageNumber}
-              setPageNumber={setPageNumber}
+            <ResultPage
+              tableArray={localData}
+              drug={drug}
+              labs={labs}
               setResultOpen={setResultOpen}
               setDrug={setDrug}
               setLabs={setLabs}
