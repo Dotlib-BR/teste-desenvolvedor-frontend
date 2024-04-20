@@ -10,3 +10,37 @@ a {
         opacity: 0.8;
     }
 }
+
+.primary-button {
+    cursor: pointer;
+    padding: 12px 16px;
+    text-align: center;
+    background: linear-gradient(225deg, $secondary-dark 0%, $primary-dark 100%);
+    border: 0;
+    border-radius: 8px;
+    transition: 0.5s ease;
+    color: $white-normal;
+
+    @include typeface-2(p2, desktop);
+    @include responsive(s) {
+        @include typeface-2(p2, mobile);
+    }
+
+    &:hover {
+        opacity: 0.7;
+        box-shadow:
+            2px 3.249px 3.46px 0px rgba(12, 95, 178, 0.03),
+            2px 5.466px 6.123px 0px rgba(12, 95, 178, 0.05),
+            2px 6.855px 8.272px 0px rgba(12, 95, 178, 0.07),
+            2px 7.733px 10.387px 0px rgba(12, 95, 178, 0.07),
+            2px 8.82px 13.598px 0px rgba(12, 95, 178, 0.09),
+            2px 14px 24px 0px rgba(12, 95, 178, 0.12);
+    }
+
+    @include responsive(s) {
+        width: 148px;
+    }
+}
+
+// ========== COMPONENTS IMPORTS ========== //
+@import '../../components/Input/sass/buttons';

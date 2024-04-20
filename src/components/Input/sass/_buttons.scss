@@ -1,0 +1,35 @@
+input {
+    outline: none;
+    width: 100%;
+    padding: 12px 16px;
+    background-color: $white-normal;
+    color: $black-dark;
+    border: 1px solid $gray-5;
+    border-radius: 8px;
+    accent-color: $primary-normal;
+    @include typeface-2(p2, desktop);
+    @include responsive(s) {
+        @include typeface-2(p2, mobile);
+    }
+
+    &:focus {
+        border: 1px solid $primary-normal;
+    }
+}
+
+.input-container {
+    min-width: 550px;
+    @include responsive(s) {
+        max-width: 360px;
+    }
+}
+
+label {
+    color: $black-dark;
+    font-weight: 600 !important;
+
+    @include typeface-2(p2, desktop);
+    @include responsive(s) {
+        @include typeface-2(p2, mobile);
+    }
+}
