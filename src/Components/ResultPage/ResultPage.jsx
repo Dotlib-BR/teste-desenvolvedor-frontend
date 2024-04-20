@@ -1,17 +1,18 @@
 import "./ResultPage.css"
 import Pagination from "../Pagination/Pagination";
 import { useState } from "react";
+import OrderIcon from "../../Assets/OrderIcon.svg"
 
 
-function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }) {
+function ResultPage({ tableArray, setResultOpen, drug, setDrug, labs, setLabs }) {
 
   const [pageNumber, setPageNumber] = useState(1);
   const [postPerPage, setPostPerPagae] = useState(10);
-  const [filteredArray , setFilteredArray] = useState({})
+  const [isAscending, setIsAscending] = useState(true);
 
   const indexOfLastPost = pageNumber * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
- 
+
 
   if (drug) {
     tableArray = tableArray.filter((item) => {
@@ -32,9 +33,8 @@ function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }
 
 
   let currentPosts = tableArray.slice(indexOfFirstPost, indexOfLastPost);
- 
-  console.log(currentPosts, tableArray)
 
+  currentPosts =  isAscending ? sortByDateAscending(currentPosts) : sortByDateDescending(currentPosts);
 
 
   function formatDate(date) {
@@ -43,6 +43,16 @@ function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }
       month: "numeric",
       year: "numeric",
     });
+  }
+
+
+
+  function sortByDateAscending(items) {
+    return items.sort((a, b) => new Date(a.published_at) - new Date(b.published_at));
+  }
+
+  function sortByDateDescending(items) {
+    return items.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
   }
 
 
@@ -74,8 +84,12 @@ function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }
             <th>
               Laboratório
             </th>
-            <th>
+            <th id="order-by-date" onClick={() => setIsAscending(!isAscending)}>
               Data de publicação
+              <img
+                src={OrderIcon}
+                alt="Seta indicando que a lista está ordenada em ordem acendente"
+              />
             </th>
             <th>
               Bula do paciente
@@ -124,9 +138,9 @@ function ResultPage({ tableArray,  setResultOpen, drug, setDrug, labs, setLabs }
 
           <div>
             <Pagination
-                postPerPage={postPerPage}
-                totalPosts={ tableArray.length}
-                setPageNumber={setPageNumber}
+              postPerPage={postPerPage}
+              totalPosts={tableArray.length}
+              setPageNumber={setPageNumber}
             />
           </div>
         </section>
