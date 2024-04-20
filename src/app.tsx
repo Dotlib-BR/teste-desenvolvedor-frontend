@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Header from './components/header';
 import SearchForm from './components/search-form';
+import { useMedicineData } from './services/medicine';
 
 function App() {
+    const { data } = useMedicineData();
     const [searchText, setSearchText] = useState('');
 
     const handleSearchChange = (searchText: string) => {
@@ -14,6 +16,9 @@ function App() {
             <Header />
             <SearchForm handleSearchChange={handleSearchChange} />
             {searchText}
+            {data?.map(medicine => (
+                <p>{medicine.name}</p>
+            ))}
         </div>
     );
 }
