@@ -9,9 +9,10 @@ import {
     filteredMedicines,
     orderByDateMedicines
 } from './helpers/medicine';
+import Spinner from './components/spinner';
 
 function App() {
-    const { data } = useMedicineData();
+    const { data, isLoading } = useMedicineData();
     const [searchText, setSearchText] = useState('');
     const [page, setPage] = useState(1);
 
@@ -29,19 +30,25 @@ function App() {
         <div className="max-w-7xl mx-auto px-5 xl:px-0 py-5 flex flex-col gap-6 h-full">
             <Header />
             <SearchForm handleSearchChange={handleSearchChange} />
-            <MedicineList data={medicines} page={page} />
-            {searchText !== '' && filteredMedicinesArray.length === 0 ? (
-                <div className="font-semibold mt-8">
-                    Nenhum medicamento encontrado para "{searchText}"
-                </div>
-            ) : (
-                <div className="md:mt-8">
-                    <Pagination
-                        page={page}
-                        setPage={setPage}
-                        totalPages={totalPages}
-                    />
-                </div>
+            {isLoading && <Spinner />}
+            {!isLoading &&
+                searchText !== '' &&
+                filteredMedicinesArray.length === 0 && (
+                    <div className="font-semibold">
+                        Nenhum medicamento encontrado para "{searchText}"
+                    </div>
+                )}
+            {!isLoading && filteredMedicinesArray.length > 0 && (
+                <>
+                    <MedicineList data={medicines} page={page} />
+                    <div className="md:mt-8">
+                        <Pagination
+                            page={page}
+                            setPage={setPage}
+                            totalPages={totalPages}
+                        />
+                    </div>
+                </>
             )}
         </div>
     );
