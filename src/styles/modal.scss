@@ -1,0 +1,14 @@
+@import './global.scss';
+
+.MuiModal-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-container {
+    @include color-scheme-1;
+    padding: 20px;
+    max-width: min(80vw, 600px);
+    max-height: min(80vh, 600px);
+    overflow: auto;
+}

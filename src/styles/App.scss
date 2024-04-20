@@ -1,0 +1,54 @@
+@import './global.scss';
+
+.App {
+  @include color-scheme-1;
+  text-align: center;
+
+  .logo {
+    width: 60%;
+    @media (min-width: $mobile-max-width) {
+      width: auto;
+      height: 5vmin;
+    }
+  }
+
+  header {
+    @include color-scheme-1;
+    min-height: 10vh;
+    padding: 30px 10vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: calc(10px + 2vmin);
+  }
+
+  h1 {
+    font-size: 24px;
+    @media (min-width: $mobile-max-width) {
+      font-size: 36px;
+    }
+  }
+
+  .table_container {
+    @media (min-width: $mobile-max-width) {
+      padding: 0 50px;
+    }
+
+    .tabulator-row-even {
+      @include color-scheme-2;
+    }
+
+    .tabulator .tabulator-footer .tabulator-paginator {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.App-link {
+  color: $color-1;
+}

@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+$color-1: #99B933;
+$color-2: #ffffff;
+$color-3: #000000;
+$color-4: #1F1F1F;
+$color-5: #F0F0F0;
+$color-6: #99B933;
+$success-color: #3c3;
+$warning-color: #cc3;
+$error-color: #c33;
+
+@mixin color-scheme-1 {
+  background-color: $color-2;
+  color: $color-3;
+}
+
+@mixin color-scheme-2 {
+  background-color: $color-5;
+  color: $color-3;
+}
+
+@mixin color-scheme-3 {
+  background-color: $color-1;
+  color: $color-2;
+}
+
+@mixin color-scheme-4 {
+  background-color: $color-2;
+  color: $color-3;
+}
+
+$mobile-max-width: 767px;

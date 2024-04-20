@@ -1,0 +1,10 @@
+# Dockerfile.dev
+FROM node:18.20.2
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+CMD ["npm", "start"]

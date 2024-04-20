@@ -1,0 +1,11 @@
+@import './global.scss';
+
+body :not(i) {
+  font-family: Work Sans,Open Sans,sans-serif !important;
+}
+
+body {
+  @include color-scheme-1;
+  margin: 0;
+  font-family: Work Sans,Open Sans,sans-serif !important;
+}

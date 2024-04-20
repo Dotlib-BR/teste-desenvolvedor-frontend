@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    volumes:
+      - .:/app
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
+
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '80:80'

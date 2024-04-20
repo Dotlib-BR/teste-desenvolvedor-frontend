@@ -1,0 +1,16 @@
+# Estágio de Build
+FROM node:18.20.2
+
+WORKDIR /app
+
+COPY ./build /app
+
+# Estágio de Produção
+
+RUN npm install -g serve
+
+# Exponha a porta na qual o aplicativo será executado (padrão 80 para o 'serve')
+EXPOSE 80
+
+# Comando para iniciar o aplicativo quando o contêiner for iniciado
+CMD ["serve", "-s", "/app", "-p", "80"]

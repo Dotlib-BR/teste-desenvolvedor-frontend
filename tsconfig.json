@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs", // Usando 'commonjs' para compatibilidade com o Cypress
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "types": ["cypress"] // Adicionando tipos do Cypress
+  },
+  "include": ["cypress/**/*", "src/**/*"], // Incluindo arquivos do Cypress e do código-fonte
+  "exclude": ["node_modules"] // Excluindo a pasta 'node_modules' da compilação
+}
