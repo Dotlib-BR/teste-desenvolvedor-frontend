@@ -1,0 +1,37 @@
+footer {
+    width: 100%;
+    background-color: $primary-dark;
+}
+
+.logo-footer {
+    width: 163px;
+    height: 48px;
+}
+
+.back-to-top {
+    color: $white-light;
+    padding: 16px 48px 16px 12px;
+    position: relative;
+
+    &::after {
+        content: '';
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translate(-50%, -50%) translate3d(8px, 0, 0);
+
+        background-image: url('../assets/arrow-up.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: 0.5s ease;
+    }
+
+    &:hover {
+        &::after {
+            top: 40%;
+        }
+    }
+}
