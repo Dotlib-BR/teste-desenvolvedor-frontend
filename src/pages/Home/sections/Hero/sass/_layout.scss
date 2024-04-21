@@ -1,0 +1,19 @@
+.hero-svg {
+    @include responsive(s) {
+        width: 150%;
+    }
+
+    @include responsive(xs) {
+        width: 100%;
+    }
+}
+
+.hero-text {
+    @include responsive(s) {
+        margin-top: 96px;
+    }
+
+    @include responsive(xs) {
+        margin-top: 32px;
+    }
+}

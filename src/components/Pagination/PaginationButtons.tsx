@@ -4,11 +4,10 @@ import { PaginationButtonsProps } from './interfaces';
 const PaginationButtons = ({
     children,
     onClick,
-    key,
     className,
 }: PaginationButtonsProps): React.ReactElement => {
     return (
-        <button onClick={onClick} key={key} className={className}>
+        <button onClick={onClick} className={className}>
             {children}
         </button>
     );

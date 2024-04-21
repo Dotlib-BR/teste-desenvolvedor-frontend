@@ -33,7 +33,7 @@ const SearchForm = (): React.ReactElement => {
     };
 
     return (
-        <form className="mt-3 flex-center" onSubmit={handleSubmit}>
+        <form className="mt-3 search-form" onSubmit={handleSubmit}>
             <Input
                 type="text"
                 label={null}

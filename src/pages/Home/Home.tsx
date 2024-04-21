@@ -17,7 +17,7 @@ const Home = (): React.ReactElement => {
         <>
             <Hero />
             <section className="container">
-                <div className="flex-item-1">
+                <div className="flex-item-1 w-100">
                     <Search />
                     <div className="cards-container mt-4">
                         {data.map((item: IMedicine, index: number) => (

@@ -1,6 +1,5 @@
 a {
     cursor: pointer;
-    padding: 16px 12px;
     text-decoration: none;
     display: inline-block;
     color: $black-normal;
@@ -36,10 +35,6 @@ a {
             2px 7.733px 10.387px 0px rgba(12, 95, 178, 0.07),
             2px 8.82px 13.598px 0px rgba(12, 95, 178, 0.09),
             2px 14px 24px 0px rgba(12, 95, 178, 0.12);
-    }
-
-    @include responsive(s) {
-        width: 148px;
     }
 }
 

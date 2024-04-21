@@ -65,7 +65,7 @@ export const Pagination = ({
                 <IconSkipLast />
             </PaginationButtons>
 
-            <p className="ml-2">
+            <p className="ml-2 disappear">
                 Página {currentPage} de {pages}
             </p>
         </div>

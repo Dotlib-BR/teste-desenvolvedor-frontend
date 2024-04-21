@@ -9,25 +9,18 @@ const Footer = (): React.ReactElement => {
     return (
         <footer>
             <section className="container py-5 space-between">
-                <div>
+                <div className="mt-4 flex-center flex-column">
                     <img
                         src="./src/assets/logo.png"
                         alt="Dotlib Logo"
                         className="logo-footer"
                     />
-                    <p className="mt-2 color-white">
-                        Projeto desenvolvido como desafio <br />
-                        porposto pela Dotlib.
-                    </p>
-                </div>
-
-                <div className="">
-                    <p className="color-white text-center">
+                    <p className="color-white text-center mt-3">
                         © 2022 All rights reserved
                     </p>
                 </div>
 
-                <a href="#" className="back-to-top " onClick={backToTop}>
+                <a href="#" className="back-to-top mt-4" onClick={backToTop}>
                     De volta ao topo
                 </a>
             </section>

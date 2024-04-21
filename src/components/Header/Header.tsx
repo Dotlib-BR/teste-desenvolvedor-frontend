@@ -10,7 +10,7 @@ export const Header = (): React.ReactElement => {
                     <LogoSVG className="logo" />
                 </Link>
 
-                <Link to="/" className="ml-3 color-white">
+                <Link to="/" className="ml-4 color-white">
                     Home
                 </Link>
             </nav>

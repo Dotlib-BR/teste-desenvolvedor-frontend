@@ -18,9 +18,10 @@ input {
 }
 
 .input-container {
-    min-width: 550px;
-    @include responsive(s) {
-        max-width: 360px;
+    width: 550px;
+
+    @include responsive(xs) {
+        width: 100%;
     }
 }
 
