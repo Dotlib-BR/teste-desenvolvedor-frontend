@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Paginationcontainer = styled.div`
+  margin: 50px 0;
+
   display: flex;
   justify-content: center;
   align-items: center;

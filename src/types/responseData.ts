@@ -1,3 +1,5 @@
+import { FetchErrors } from "./errors"
+
 type DocumentType = "PROFESSIONAL" | "PATIENT"
 
 type Document = {
@@ -17,11 +19,11 @@ export type Medication = {
   name: string
   published_at: string
   company: string
-  documents: Document
+  documents: Document[]
   active_principles: ActivePrinciple[]
 }
 
-export type Data = {
+export type MedicationData = {
   data: Medication[]
   first: number
   items: number
@@ -31,5 +33,13 @@ export type Data = {
   prev: number | null
 }
 
-export type SearchByType = 'name' | 'company'
+export type SearchByType = 'none' | 'name' | 'company' 
 
+type Error = {
+  error: boolean
+  errorMsg: FetchErrors
+}
+
+export type ResponseData = MedicationData & Error
+
+export type GetMedication = (page: number, value?: string) => Promise<ResponseData>

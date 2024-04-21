@@ -1,20 +1,21 @@
-import { useState } from "react"
-import { getMedications } from "../../functions/getMedication"
-import { Data, SearchByType } from "../../types/responseData"
-import { InputError } from "../../types/Errors"
-import { Pagination } from "../Pagination"
-import { InputContainer, SearchWrapper } from "./Styles"
+import { useContext, useState } from "react"
+import { getMedicationByName, getMedicationByCompany } from "../../functions/fetch_medications"
+import { ResponseData, SearchByType } from "../../types/responseData"
+import { Container, InputContainer, SearchWrapper } from "./Styles"
 import { DropSelector } from "../DropSelector"
-import { DEFAULT_PAGE } from "../utils/pagination"
+import { DEFAULT_PAGE } from "../../utils/pagination"
+import { InputErrors } from "../../types/errors"
+import { MedicationContext, MedicationContextType } from "../../contexts/Medication"
+import { LoaderContext, LoaderContextType } from "../../contexts/Loader"
 
-export function SearchField() {
-
+export const SearchField = () => {
   const [searchBy, setSearchBy] = useState<SearchByType>('name') 
-  const [error, setError] = useState<InputError | null>(null)
-  const [medications, setMedications] = useState<Data>()
-  const [valueSearched, setValueSearched] = useState('')
+  const [inputError, setInputError] = useState<InputErrors>('')
 
-  async function search(e?: React.KeyboardEvent<HTMLInputElement>) {
+  const { MedicationDispatch } = useContext(MedicationContext) as MedicationContextType
+  const { setLoading } = useContext(LoaderContext) as LoaderContextType 
+  
+  const search = async (e?: React.KeyboardEvent<HTMLInputElement>) => {
     let value: string
 
     if (e) {
@@ -26,39 +27,56 @@ export function SearchField() {
     }
 
     if (!value) {
-      setError({
-        error: 'Digite algo para pesquisar'
+      setInputError('Campo vazio.')
+      return
+    }
+    
+    setLoading(true)
+    let data: ResponseData 
+    if (searchBy === 'name') {
+      data = await getMedicationByName(DEFAULT_PAGE, value)
+    } else {
+      data = await getMedicationByCompany(DEFAULT_PAGE, value)
+    }
+    setLoading(false)
+
+    if (data.error) {
+      MedicationDispatch({
+        type: 'SET_ERROR',
+        payload: {
+          error: data.error,
+          errorMsg: data.errorMsg
+        }
       })
       return
     }
-    const data = await getMedications(value, searchBy, DEFAULT_PAGE)
 
-    setMedications(data)
-    setValueSearched(value)
+    MedicationDispatch({ type: "SET_VALUE_SEARCHED", payload: { value, method: searchBy } })
+    MedicationDispatch({ type: "SET_MEDICATION_DATA", payload: data })
+  }
+
+  const cleanInput = () => {
+    const input = document.getElementById('search-field') as HTMLInputElement
+    input.value = ''
   }
 
   return (
-    <>
+    <Container>
       <SearchWrapper>
         <DropSelector searchBy={searchBy} setSearchBy={setSearchBy}/>
-        <InputContainer $error={!!error}>
+        <InputContainer $error={!!inputError}>
           <input 
           type="text" 
           name="" id="search-field" 
           onKeyDown={(e) => search(e)} 
-          onFocus={() => setError(null)}
+          onFocus={() => setInputError('')}
           />
 
+          <i className="bi bi-x-lg" onClick={cleanInput}></i>
           <i className="bi bi-search" onClick={() => search()}></i>
-          {error?.error && <span>{'* ' + error.error}</span>}
+          {inputError && <span>{inputError}</span>}
         </InputContainer>
       </SearchWrapper>
-
-      <Pagination 
-      medicationsData={medications}
-      setMedications={setMedications}
-      valueSearched={valueSearched}
-      />
-    </>
+    </Container>
   )
 }

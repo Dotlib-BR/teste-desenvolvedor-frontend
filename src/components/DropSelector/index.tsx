@@ -7,10 +7,10 @@ type DropSelectorProps = {
   setSearchBy: (searchBy: SearchByType) => void
 }
 
-export function DropSelector({ searchBy, setSearchBy }: DropSelectorProps) {
-  const [hover, setHover] = useState(true)
+export const DropSelector = ({ searchBy, setSearchBy }: DropSelectorProps) => {
+  const [hover, setHover] = useState(false)
 
-  function selectOption(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) {
+  const selectOption= (e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
     const target = e.target as HTMLParagraphElement
     setSearchBy(target.textContent === 'nome' ? 'name' : 'company')
   }
@@ -19,17 +19,17 @@ export function DropSelector({ searchBy, setSearchBy }: DropSelectorProps) {
 
   return (
     <DropDownWrapper
-    $hover={hover}
-    onMouseEnter={() => setHover(true)}
-    onMouseLeave={() => setHover(false)}
-    >
+      $hover={hover}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      >
 
-    <p>pesquisar por: {option}</p>
-    {hover &&  
-    <Options>
-      <p onClick={(e) => selectOption(e)}>nome</p>
-      <p onClick={(e) => selectOption(e)}>laboratório</p>
-    </Options>}
+      <p>pesquisar por: {option}</p>
+      {hover &&  
+      <Options>
+        <p onClick={(e) => selectOption(e)}>nome</p>
+        <p onClick={(e) => selectOption(e)}>laboratório</p>
+      </Options>}
     </DropDownWrapper>
   )
 }

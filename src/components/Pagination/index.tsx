@@ -1,53 +1,38 @@
-import { getMedications } from "../../functions/getMedication"
-import { Data } from "../../types/responseData"
-import { MedicationRow } from "../MedicationRow"
+import { useContext } from "react"
+import { getAllMedications, getMedicationByCompany, getMedicationByName } from "../../functions/fetch_medications"
 import { Paginationcontainer } from "./Styles"
+import { MedicationContext, MedicationContextType } from "../../contexts/Medication"
+import { ResponseData } from "../../types/responseData"
 
-type PaginationProps = {
-  valueSearched: string
-  medicationsData: Data | undefined
-  setMedications: (value: Data) => void
-}
+export const Pagination = () => {
+  const { MedicationState: { medicationData, search }, MedicationDispatch } = useContext(MedicationContext) as MedicationContextType
+  
+  const currentPage = ( medicationData?.prev || 0) + 1
 
-export function Pagination({ valueSearched,  medicationsData, setMedications }: PaginationProps) {
+  const paginate = async (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    const thisElement = e.target as HTMLSpanElement
+    const page = thisElement.id === 'next-page' ? currentPage + 1 : currentPage - 1
 
-  async function nextPage() {
-    const data = await getMedications(valueSearched, 'name', currentPage + 1)
-    setMedications(data)
+
+    let data: ResponseData
+    if (search.method === 'name') {
+      data = await getMedicationByName(page, search.value)
+    } else if (search.method === 'company') {
+      data = await getMedicationByCompany(page, search.value)
+    } else {
+      data = await getAllMedications(page)
+    }
+    MedicationDispatch({ type: "SET_MEDICATION_DATA", payload: data })
   }
 
-  async function prevPage() {
-    const data = await getMedications(valueSearched, 'name', currentPage - 1) 
-    setMedications(data)
-  }
-
-  const currentPage = ( medicationsData?.prev || 0) + 1
 
   return (
     <>
-      <table>
-        {!! medicationsData?.data.length && 
-        <>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Laboratório</th>
-              <th>Data de publicação</th>
-            </tr>
-          </thead>
-          <tbody>
-            { medicationsData.data.map((medication, index) => (
-              <MedicationRow key={index} medication={medication}/>
-            ))}
-          </tbody>
-        </>}
-      </table>
-
-      {(!! medicationsData?.data.length) && 
+      {(!!medicationData?.data.length) && 
       <Paginationcontainer>
-        { medicationsData.prev && <span onClick={prevPage}>{ medicationsData.prev}</span>}
+        { medicationData.prev && <span id='prev-page' onClick={(e) => paginate(e)}>{medicationData.prev}</span>}
         <span className="selected">{currentPage}</span>
-        { medicationsData.next && <span onClick={nextPage}>{ medicationsData.next}</span>}
+        { medicationData.next && <span id='next-page' onClick={(e) => paginate(e)}>{medicationData.next}</span>}
       </Paginationcontainer>}
     </>
   )

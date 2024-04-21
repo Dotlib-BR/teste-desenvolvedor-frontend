@@ -9,15 +9,16 @@ export const DropDownWrapper = styled.div<DropDownWrapperProps>`
   display: flex;
   align-items: center;
   
-  border: 1px solid var(--secundary-color);
+  border: 1px solid var(--secundary-color-hover);
   border-radius: ${({ $hover }) => $hover ? '5px 5px 0 0' : '5px'};
   
   padding: 0 10px;
+  height: 35px;
 
   cursor: pointer;
 
   &:hover {
-    background-color: var(--secundary-color);
+    background-color: var(--secundary-color-hover);
   }
 `
 
@@ -26,7 +27,7 @@ export const Options = styled.div`
   bottom: -63px;
   left: 0;
 
-  background-color: var(--secundary-color);
+  background-color: var(--secundary-color-hover);
   border-radius: 0 0 5px 5px;
   width: 100%;
   
