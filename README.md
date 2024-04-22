@@ -28,4 +28,4 @@ Buscamos profissionais que sejam apaixonados por desenvolvimento, inovação e n
 
 Para se candidatar, basta acessar a url e realizar o teste para a vaga:
 
-- [Teste para Desenvolvedor Frontend Jr.](teste-frontend.md)
+- Não há nenhuma vaga em aberto no momento.
