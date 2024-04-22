@@ -1,7 +1,7 @@
 # Bulário Eletrônico
 
 <p align="center">
-  <img src="./logo.svg" alt="esta imagem é a logo do Teste" border="0">
+  <img src="./public/logo.svg" alt="esta imagem é a logo do Teste" border="0">
 </p>
 
 💡 Desafio desenvolvido pela equipe Dotlib para a vaga de Desenvolvedor Front End Jr.
@@ -22,7 +22,7 @@ Nesse projeto foram utilizadas as tecnologias:
 
 Windows, MacOs ou Linux: Por ser um projeto React usando Vite, possui alguns passos a serem seguindos para fazer a instalação:
 
-* Abra seu editor de código, indico utilizar o VSCode
+* Abra seu editor de código, indico utilizar o VSCode.
 
 * Clone esse repositório: 
 ```sh
@@ -32,18 +32,18 @@ git init
 #clona o repositório
 git clone https://github.com/RodrigoTissianel/teste-frontend-Dotlib.git
 ```
-* Navegue até o diretório do projeto
+* Navegue até o diretório do projeto.
 
-*Instale as dependências
+* Instale as dependências:
 ```sh
 npm install
 ```
 
-* Carregue a API usando o json-server
+* Carregue a API usando o json-server:
 ```sh
 npm run json-server
 ```
-* Inicie a aplicação
+* Inicie a aplicação:
 ```sh
 npm run dev
 ```
