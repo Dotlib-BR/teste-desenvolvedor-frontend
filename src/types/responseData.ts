@@ -1,5 +1,3 @@
-import { FetchErrors } from "./erros"
-
 type DocumentType = "PROFESSIONAL" | "PATIENT"
 
 type Document = {
@@ -34,12 +32,11 @@ export type MedicationData = {
 }
 
 export type SearchByType = 'none' | 'name' | 'company' 
+export type SortBy = 'published_at' | 'name' | 'company'
 
-type Error = {
-  error: boolean
-  errorMsg: FetchErrors
+type Params = {
+  value: string
+  method: SearchByType
 }
 
-export type ResponseData = MedicationData & Error
-
-export type GetMedication = (page: number, value?: string) => Promise<ResponseData>
+export type GetMedication = (page: number, sortBy: SortBy, params?: Params) => Promise<MedicationData>

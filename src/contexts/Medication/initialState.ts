@@ -1,5 +1,6 @@
 import { FetchErrors } from "../../types/erros"
-import { Medication, MedicationData, SearchByType } from "../../types/responseData"
+import { Medication, MedicationData, SearchByType, SortBy } from "../../types/responseData"
+import { DEFAULT_SORT } from "../../utils/pagination"
 
 export type MedicationState = {
   medicationData: MedicationData | null
@@ -12,6 +13,7 @@ export type MedicationState = {
     value: string
     method: SearchByType
   }
+  sort: SortBy
 }
 
 export const initialState: MedicationState = {
@@ -24,5 +26,6 @@ export const initialState: MedicationState = {
   search: {
     value: '',
     method: 'none'
-  }
+  },
+  sort: DEFAULT_SORT
 }

@@ -14,6 +14,8 @@ export const reducer: MedicationReducer = (state, action) => {
       return {...state, error: action.payload}
     case 'SET_VALUE_SEARCHED':
       return {...state, search: action.payload}
+    case 'SET_SORT':
+      return {...state, sort: action.payload}
     default:
       return {...state};
   }

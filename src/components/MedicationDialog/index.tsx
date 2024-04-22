@@ -13,8 +13,6 @@ export const  MedicationDialog = () => {
     }
   }
 
-  console.dir(selectedMedication)
-
   return (
     <DetailsWrapper onClick={(e) => closeModal(e)} $display={!!selectedMedication}>
       <DetailsContainer>

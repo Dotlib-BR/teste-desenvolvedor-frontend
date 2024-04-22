@@ -1,12 +1,12 @@
 import { useContext, useState } from "react"
-import { getMedicationByName, getMedicationByCompany } from "../../functions/fetch_medications"
+import { getMedications } from "../../functions/get_medications.ts"
 import { Container, InputContainer, SearchWrapper } from "./Styles"
-import { ResponseData, SearchByType } from "../../types/responseData"
+import { SearchByType } from "../../types/responseData"
 import { InputErrors } from "../../types/erros"
 import { MedicationContext, MedicationContextType } from "../../contexts/Medication"
 import { LoaderContext, LoaderContextType } from "../../contexts/Loader"
 import { DropSelector } from "../DropSelector"
-import { DEFAULT_PAGE } from "../../utils/pagination"
+import { DEFAULT_PAGE, DEFAULT_SORT } from "../../utils/pagination"
 
 export const SearchField = () => {
   const [searchBy, setSearchBy] = useState<SearchByType>('name') 
@@ -32,27 +32,26 @@ export const SearchField = () => {
     }
     
     setLoading(true)
-    let data: ResponseData 
-    if (searchBy === 'name') {
-      data = await getMedicationByName(DEFAULT_PAGE, value)
-    } else {
-      data = await getMedicationByCompany(DEFAULT_PAGE, value)
-    }
-    setLoading(false)
 
-    if (data.error) {
+    getMedications(DEFAULT_PAGE, DEFAULT_SORT, {
+      method: searchBy,
+      value
+    })
+    .then((data) => { 
+      setLoading(false)
+      MedicationDispatch({ type: "SET_VALUE_SEARCHED", payload: { value, method: searchBy } })
+      MedicationDispatch({ type: "SET_MEDICATION_DATA", payload: data })
+      MedicationDispatch({ type: 'SET_SORT', payload: DEFAULT_SORT})
+    }).catch((error) => {
+      console.log(error)
       MedicationDispatch({
         type: 'SET_ERROR',
         payload: {
-          error: data.error,
-          errorMsg: data.errorMsg
+          error: true,
+          errorMsg: "Algo deu errado. Tente novamente mais tarde"
         }
       })
-      return
-    }
-
-    MedicationDispatch({ type: "SET_VALUE_SEARCHED", payload: { value, method: searchBy } })
-    MedicationDispatch({ type: "SET_MEDICATION_DATA", payload: data })
+    })
   }
 
   const cleanInput = () => {

@@ -8,7 +8,7 @@ export const DialogWrapper = styled.div<Props>`
   position: absolute;
   z-index: 5;
 
-  min-height: 100vh;
+  height: max(100% , 100vh);
   width: 100%;
 
   display: flex;

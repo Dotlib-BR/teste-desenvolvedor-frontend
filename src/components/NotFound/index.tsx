@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { MedicationContext, MedicationContextType } from "../../contexts/Medication"
 import { Container } from "./Styles"
-import notFoundIcon from '../../img/not-found.png'
-import { getAllMedications } from "../../functions/fetch_medications"
-import { DEFAULT_PAGE } from "../../utils/pagination"
+import { getMedications } from "../../functions/get_medications.ts"
+import { DEFAULT_PAGE, DEFAULT_SORT } from "../../utils/pagination"
 import { LoaderContext, LoaderContextType } from "../../contexts/Loader"
+import notFoundIcon from '../../img/not-found.png'
 
 export const NotFound = () => {
 
@@ -13,24 +13,22 @@ export const NotFound = () => {
 
   const fetchData = () => {
     setLoading(true)
-    getAllMedications(DEFAULT_PAGE)
-    .then((data) => {
-
-      if (data.error) {
-        MedicationDispatch({
-          type: 'SET_ERROR',
-          payload: {
-            error: data.error,
-            errorMsg: data.errorMsg
-          }
-        })
-        setLoading(false)
-        return
-      }
-
+    getMedications(DEFAULT_PAGE, DEFAULT_SORT)
+    .then((data) => { 
+      setLoading(false)
       MedicationDispatch({ type: "SET_MEDICATION_DATA", payload: data })
       MedicationDispatch({ type: "SET_VALUE_SEARCHED", payload: { method: "none", value: '' } })
+      MedicationDispatch({ type: 'SET_SORT', payload: DEFAULT_SORT})
+    }).catch((error) => {
       setLoading(false)
+      console.log(error)
+      MedicationDispatch({
+        type: 'SET_ERROR',
+        payload: {
+          error: true,
+          errorMsg: "Algo deu errado. Tente novamente mais tarde"
+        }
+      })
     })
   }
 

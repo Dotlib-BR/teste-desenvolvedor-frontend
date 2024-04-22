@@ -20,6 +20,14 @@ export const TableContainer = styled.div`
   tr {
     height: 60px;
   }
+
+  th {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
   
   td:nth-child(1), th:nth-child(1) {
     width: 20%;

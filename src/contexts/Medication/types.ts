@@ -1,7 +1,8 @@
 import { FetchErrors } from "../../types/erros"
-import { Medication, MedicationData, SearchByType } from "../../types/responseData"
+import { Medication, MedicationData, SearchByType, SortBy } from "../../types/responseData"
 
-export type Actions = SetMedicationData | SetSelectedMedication | SetError | SetValueSearched
+export type Actions = SetMedicationData | SetSelectedMedication | SetError | SetValueSearched | SetSort
+
 type SetMedicationData = {
   type: 'SET_MEDICATION_DATA'
   payload: MedicationData
@@ -26,4 +27,9 @@ type SetValueSearched = {
     value: string
     method: SearchByType
   }
+}
+
+type SetSort = {
+  type: 'SET_SORT'
+  payload: SortBy
 }
