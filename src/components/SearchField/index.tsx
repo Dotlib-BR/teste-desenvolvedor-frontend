@@ -1,12 +1,12 @@
 import { useContext, useState } from "react"
 import { getMedicationByName, getMedicationByCompany } from "../../functions/fetch_medications"
-import { ResponseData, SearchByType } from "../../types/responseData"
 import { Container, InputContainer, SearchWrapper } from "./Styles"
-import { DropSelector } from "../DropSelector"
-import { DEFAULT_PAGE } from "../../utils/pagination"
-import { InputErrors } from "../../types/errors"
+import { ResponseData, SearchByType } from "../../types/responseData"
+import { InputErrors } from "../../types/erros"
 import { MedicationContext, MedicationContextType } from "../../contexts/Medication"
 import { LoaderContext, LoaderContextType } from "../../contexts/Loader"
+import { DropSelector } from "../DropSelector"
+import { DEFAULT_PAGE } from "../../utils/pagination"
 
 export const SearchField = () => {
   const [searchBy, setSearchBy] = useState<SearchByType>('name') 

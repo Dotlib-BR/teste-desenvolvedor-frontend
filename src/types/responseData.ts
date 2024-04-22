@@ -1,4 +1,4 @@
-import { FetchErrors } from "./errors"
+import { FetchErrors } from "./erros"
 
 type DocumentType = "PROFESSIONAL" | "PATIENT"
 
@@ -27,7 +27,7 @@ export type MedicationData = {
   data: Medication[]
   first: number
   items: number
-  last: 2
+  last: number
   next: number
   pages: number
   prev: number | null

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { breakingPoints } from '../../utils/breakingPoints'
 
 type Props = {
   $display: boolean
@@ -30,7 +31,7 @@ export const DetailsContainer = styled.div`
   width: min(800px, 90%);
   min-height: 500px;
 
-  padding: 50px;  
+  padding: 50px;
 
   background-color: #fff;
 
@@ -38,6 +39,10 @@ export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
+
+  @media (max-width: ${breakingPoints.sm}) {
+    padding: 50px 20px;
+  }
 `
 
 export const DescriptionContainer = styled.div`
@@ -68,10 +73,20 @@ export const CloseIcon = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--main-color-hover);
+    background-color: var(--primary-color-hover);
   }
 
   .bi-x-lg {
     font-size: 20px;
+  }
+
+  @media (max-width: ${breakingPoints.sm}) {
+
+    width: 30px;
+    height: 30px;
+
+    .bi-x-lg {
+      font-size: 15px;
+    }
   }
 `

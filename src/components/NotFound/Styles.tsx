@@ -22,6 +22,6 @@ export const Container = styled.div`
   }
 
   & h3 {
-    color: var(--main-color)
+    color: var(--primary-color)
   }
 `

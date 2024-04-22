@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { breakingPoints } from '../../utils/breakingPoints'
 
 type InputContainerProps = {
   $error: boolean
@@ -12,7 +13,7 @@ export const Container = styled.div`
 
 export const SearchWrapper = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 20px;
 
   * {
     border: none;
@@ -29,9 +30,15 @@ export const SearchWrapper = styled.div`
   border-radius: 5px;
   transform: translateY(-50%);
 
-  width: 800px;
-  height: 200px;
+  width: min(800px, 90vw);
+  min-height: 200px;
   padding: 10px;
+
+  @media (max-width: ${breakingPoints.md}) {
+    flex-direction: column-reverse;
+    min-height: 250px;
+    gap: 10px;
+  }
 `
 
 export const InputContainer = styled.div<InputContainerProps>`
@@ -41,7 +48,7 @@ export const InputContainer = styled.div<InputContainerProps>`
   position: relative;
   gap: 10px;
 
-  width: 400px;
+  width: min(400px, 80%);
 
   border: 1px solid ${({ $error }) => $error ? 'var(--error)' : 'var(--secundary-color)'};
   border-radius: 5px;
@@ -58,7 +65,6 @@ export const InputContainer = styled.div<InputContainerProps>`
     position: absolute;
     bottom: -25px;
     left: 0;
-    font-size: 14px;
     color: var(--error);
   }
 
@@ -66,7 +72,7 @@ export const InputContainer = styled.div<InputContainerProps>`
     cursor: pointer;  
 
     &:hover {
-      color: var(--main-color);
+      color: var(--primary-color);
     }
   }
 `

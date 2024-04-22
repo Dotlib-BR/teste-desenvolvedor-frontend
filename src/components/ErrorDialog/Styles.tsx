@@ -5,19 +5,18 @@ type Props = {
 }
 
 export const DialogWrapper = styled.div<Props>`
-
-  opacity: ${props => props.$error ? 1 : 0};
-  pointer-events: ${props => props.$error ? 'auto' : 'none'};
-  transition: opacity 0.5s ease-in-out;
+  position: absolute;
+  z-index: 5;
 
   min-height: 100vh;
   width: 100%;
 
-  position: absolute;
-  z-index: 5;
-
   display: flex;
   justify-content: center;
+
+  opacity: ${props => props.$error ? 1 : 0};
+  pointer-events: ${props => props.$error ? 'auto' : 'none'};
+  transition: opacity 0.5s ease-in-out;
 
   background-color: rgba(0, 0, 0, 0.5);
 
@@ -62,11 +61,12 @@ export const DialogWrapper = styled.div<Props>`
 `
 
 export const DialogContainer = styled.div`
-  background-color: var(--main-color);
-  color: #ffffff;
-  
   min-width: 300px;
   height: fit-content;
+
+  background-color: var(--primary-color);
+  color: #ffffff;
+  
   padding: 30px;
   margin-top: 50px;
 

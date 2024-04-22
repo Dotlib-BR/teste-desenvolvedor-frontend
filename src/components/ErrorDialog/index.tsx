@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
-import { DialogWrapper, DialogContainer } from "./Styles"
 import { MedicationContext, MedicationContextType } from "../../contexts/Medication"
+import { DialogWrapper, DialogContainer } from "./Styles"
 
 export const ErrorDialog = () => {
 

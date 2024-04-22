@@ -1,4 +1,4 @@
-import { FetchErrors } from "../../types/errors"
+import { FetchErrors } from "../../types/erros"
 import { Medication, MedicationData, SearchByType } from "../../types/responseData"
 
 export type Actions = SetMedicationData | SetSelectedMedication | SetError | SetValueSearched

@@ -1,6 +1,6 @@
 import { HeaderConatiner } from "./Styles"
 
-export const  Header = () => {
+export const Header = () => {
   return (
     <HeaderConatiner>
       <h1>Bulário Eletrônico</h1>

@@ -19,8 +19,10 @@ export const getAllMedications: GetMedication = async (page) =>  {
 
 export const getMedicationByName: GetMedication = async (page, value) =>  {
   try {
-    const data = await fetch(`${baseUrl}?_page=${page}&_per_page=${DEFAULT_LIMIT}&_sort=published_at&name_like=${value?.toUpperCase()}`)
+    const data = await fetch(`${baseUrl}?_page=${page}&_per_page=${DEFAULT_LIMIT}&_sort=published_at&name=${value?.toUpperCase()}`)
     .then((data) => data.json()) 
+    console.log(data)
+    console.log(value)
     return data as ResponseData
   } catch (error) {
     console.log(`Error: ${error}`)

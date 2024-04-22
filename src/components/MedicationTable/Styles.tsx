@@ -10,8 +10,7 @@ export const TableContainer = styled.div`
   text-align: center;
 
   table {
-    width: min(1200px, 90vw);
-    font-size: 15px;
+    width: min(1200px, 95vw);
   }
 
   thead {
@@ -22,14 +21,22 @@ export const TableContainer = styled.div`
     height: 60px;
   }
   
-  td {
-    width: 33%;
+  td:nth-child(1), th:nth-child(1) {
+    width: 20%;
   }
-  `
+
+  td:nth-child(2), th:nth-child(2) {
+    width: 60%;
+  }
+
+  td:nth-child(3), th:nth-child(3) {
+    width: 20%;
+  }
+`
 
 export const TableRow = styled.tr<TableRowProps>`
   &:hover {
     ${({ $hover }) => $hover && 'cursor: pointer'};
-    ${({ $hover }) => $hover && 'background-color: var( --main-color-hover)'};
+    ${({ $hover }) => $hover && 'background-color: var( --primary-color-hover)'};
   }
 `

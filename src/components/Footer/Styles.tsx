@@ -4,11 +4,13 @@ export const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  
   gap: 10px;
   padding: 15px;
 
 
-  background-color: var(--main-color);
+  background-color: var(--primary-color);
   color: #fff;
 
   .bi {
